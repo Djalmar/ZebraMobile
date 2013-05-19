@@ -95,10 +95,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>D:\DotNet\Librerias\Multiplatform\Newtonsoft Json\Bin\WindowsPhone\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\Visual Studio 2012\Projects\DigiZebras\DigiZebras\Bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="QuickMethods">
-      <HintPath>D:\DotNet\Librerias\WP8\QuickMethods\QuickMethods\Bin\Debug\QuickMethods.dll</HintPath>
+      <HintPath>..\..\..\Visual Studio 2012\Projects\dig3\DigiZebrasApp\DigiZebrasApp\DigiZebrasApp\Bin\Debug\QuickMethods.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

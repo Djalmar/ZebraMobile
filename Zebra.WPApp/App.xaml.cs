@@ -7,11 +7,28 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Zebra.WPApp.Resources;
+using System.IO.IsolatedStorage;
 
 namespace Zebra.WPApp
 {
     public partial class App : Application
     {
+        public static bool FirstTimeLaunch
+        {
+            get
+            {
+                if (IsolatedStorageSettings.ApplicationSettings.Contains("firstLaunch"))
+                {
+                    return (bool)(IsolatedStorageSettings.ApplicationSettings["firstLaunch"]);
+                }
+                else return false;
+            }
+            set
+            {
+                IsolatedStorageSettings.ApplicationSettings["firstLaunch"] = value;
+                IsolatedStorageSettings.ApplicationSettings.Save();
+            }
+        }
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>

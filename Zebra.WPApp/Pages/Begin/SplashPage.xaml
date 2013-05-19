@@ -20,54 +20,6 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock  Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Style="{StaticResource stlTituloPagina}"></TextBlock>
-        <Grid Grid.Row="1">
-            <ScrollViewer>
-                <StackPanel VerticalAlignment="Top">
-                    <StackPanel Orientation="Horizontal" Background="Black">
-                        <Image Width="200" Height="200" Source="/Assets/Tiles/IconicTileMediumLarge.png"></Image>
-                        <StackPanel>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                        </StackPanel>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Background="Black">
-                        <Image Width="200" Height="200" Source="/Assets/Tiles/IconicTileMediumLarge.png"></Image>
-                        <StackPanel>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                        </StackPanel>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Background="Black">
-                        <Image Width="200" Height="200" Source="/Assets/Tiles/IconicTileMediumLarge.png"></Image>
-                        <StackPanel>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                        </StackPanel>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Background="Black">
-                        <Image Width="200" Height="200" Source="/Assets/Tiles/IconicTileMediumLarge.png"></Image>
-                        <StackPanel>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                        </StackPanel>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Background="Black">
-                        <Image Width="200" Height="200" Source="/Assets/Tiles/IconicTileMediumLarge.png"></Image>
-                        <StackPanel>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                            <TextBlock Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"></TextBlock>
-                        </StackPanel>
-                    </StackPanel>
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>
-        <Border Grid.Row="2" Width="60" Height="60" Background="Black" Margin="12" HorizontalAlignment="Right">
-            <Image Source="/Assets/Tiles/IconicTileMediumLarge.png"/>
-        </Border>
+        <MediaElement Name="mdeVideo" Grid.Row="1" Source="/Videos/Microsoft - Ruggedized Win 7 Commercial.mp4"></MediaElement>
     </Grid>
 </phone:PhoneApplicationPage>

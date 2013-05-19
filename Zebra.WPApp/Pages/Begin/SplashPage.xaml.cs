@@ -15,6 +15,12 @@ namespace Zebra.WPApp.Pages.Begin
         public SplashPage()
         {
             InitializeComponent();
+            mdeVideo.MediaEnded += mdeVideo_MediaEnded;
+        }
+
+        void mdeVideo_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/Begin/SettingsPage.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }
