@@ -16,15 +16,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding LocalizedResources.TxbSettingsTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Style="{StaticResource stlTituloPagina}"></TextBlock>
         <Grid Grid.Row="1">
             <ScrollViewer>
-                <StackPanel Background="Black">
+                <StackPanel>
                     <StackPanel>
                         <TextBlock Margin="12" Text="{Binding LocalizedResources.TxbSettingsDistance, Mode=OneWay, Source={StaticResource LocalizedStrings}}" ></TextBlock>
                         <Slider Margin="24,0,24,-32"></Slider>
-                        <Grid Background="Black">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -42,7 +43,7 @@
                     <StackPanel>
                         <TextBlock Margin="12" Text="{Binding LocalizedResources.TxbSettingsDistance, Mode=OneWay, Source={StaticResource LocalizedStrings}}" ></TextBlock>
                         <Slider Margin="24,0,24,-32"></Slider>
-                        <Grid Background="Black">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -60,6 +61,12 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
+        <Border Name="brdNextButton" Tap="brdNextButton_Tap_1" Margin="12" Grid.Row="2" Width="60" Height="60" HorizontalAlignment="Right">
+            <Grid>
+                <Ellipse StrokeThickness="4" Stroke="{StaticResource PhoneContrastBackgroundBrush}"/>
+                <TextBlock FontFamily="Wingdings 3" FontSize="{StaticResource PhoneFontSizeExtraLarge}" Text="Ò" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
     </Grid>
 
 </phone:PhoneApplicationPage>

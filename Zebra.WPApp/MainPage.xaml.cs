@@ -14,38 +14,29 @@ namespace Zebra.WPApp
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        public bool FirstTimeLoaded { get; set; }
-        // Constructor
         public MainPage()
         {
             InitializeComponent();
             this.Loaded += MainPage_Loaded;
-            FirstTimeLoaded = true;
             (Resources["stbZebraWalking"] as Storyboard).Completed += MainPage_Completed;
         }
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            //la animacion va a tener un tiempo de duracion aleatorio
             (Resources["stbZebraWalking"] as Storyboard).Begin();
-            
         }
-
         void MainPage_Completed(object sender, EventArgs e)
         {
-            if (FirstTimeLoaded)
+            if (!App.FirstTimeLaunch)
             {
-                if (!App.FirstTimeLaunch)
-                {
-                    //comienza la animacion y navegamos a instrucciones y settings
-                    NavigationService.Navigate(new Uri("/Pages/Begin/SplashPage.xaml", UriKind.RelativeOrAbsolute));
-                    App.FirstTimeLaunch = true;
-                }
-                else
-                {
-                    NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.RelativeOrAbsolute));
-                }
+                //comienza la animacion y navegamos a instrucciones y settings
+                NavigationService.Navigate(new Uri("/Pages/Begin/SplashPage.xaml", UriKind.RelativeOrAbsolute));
             }
-            FirstTimeLoaded = false;
+            else
+            {
+                NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.RelativeOrAbsolute));
+            }
         }
         
         // Sample code for building a localized ApplicationBar

@@ -11,10 +11,6 @@
         <Style x:Name="stlTituloPagina" TargetType="TextBlock">
             <Setter Property="FontSize" Value="40"></Setter>
             <Setter Property="Margin" Value="12"></Setter>
-            <Setter Property="Foreground" Value="Black"></Setter>
-        </Style>
-        <Style TargetType="Grid">
-            <Setter Property="Background" Value="White"></Setter>
         </Style>
     </Application.Resources>
 
