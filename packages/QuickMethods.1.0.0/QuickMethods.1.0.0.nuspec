@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>QuickMethods</id>
+    <version>1.0.0</version>
+    <title>Quick methods for Windows Phone</title>
+    <authors>JorgeCupi</authors>
+    <owners>JorgeCupi</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Series of helpful methods for Windows Phone</description>
+    <summary>Well, this is just a series of quick methods you can use in your Windows Phone projects, there are some helpful methods to make an async download, check internet connection and more.</summary>
+    <releaseNotes>This is an alpha release, just to test how it's working</releaseNotes>
+    <language>en-US</language>
+    <tags>windows phone; quick methods; helpful methods</tags>
+    <references />
+  </metadata>
+</package>
