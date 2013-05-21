@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using Microsoft.Phone.Controls;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using Zebra.WPApp.Resources;
 using System.Windows.Media.Animation;
+using System.Windows.Navigation;
 
 namespace Zebra.WPApp
 {
@@ -21,12 +15,13 @@ namespace Zebra.WPApp
             (Resources["stbZebraWalking"] as Storyboard).Completed += MainPage_Completed;
         }
 
-        void MainPage_Loaded(object sender, RoutedEventArgs e)
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             //la animacion va a tener un tiempo de duracion aleatorio
             (Resources["stbZebraWalking"] as Storyboard).Begin();
         }
-        void MainPage_Completed(object sender, EventArgs e)
+
+        private void MainPage_Completed(object sender, EventArgs e)
         {
             if (!App.FirstTimeLaunch)
             {

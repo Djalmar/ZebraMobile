@@ -14,9 +14,9 @@
     shell:SystemTray.IsVisible="False">
     <Grid x:Name="grdMain">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding LocalizedResources.TxbSettingsTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Style="{StaticResource stlTituloPagina}"></TextBlock>
         <Grid Grid.Row="1">
@@ -27,15 +27,15 @@
                         <Slider Margin="24,0,24,-32"></Slider>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="100" HorizontalAlignment="Center"></TextBlock>
                             <TextBlock Text="200" Grid.Column="1" HorizontalAlignment="Center"></TextBlock>
-                            <TextBlock Text="500" Grid.Column="2" HorizontalAlignment="Center"/>
+                            <TextBlock Text="500" Grid.Column="2" HorizontalAlignment="Center" />
                             <TextBlock Text="1k" Grid.Column="3" HorizontalAlignment="Center"></TextBlock>
                             <TextBlock Text="3k" Grid.Column="4" HorizontalAlignment="Center"></TextBlock>
                         </Grid>
@@ -45,15 +45,15 @@
                         <Slider Margin="24,0,24,-32"></Slider>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="100" HorizontalAlignment="Center"></TextBlock>
                             <TextBlock Text="200" Grid.Column="1" HorizontalAlignment="Center"></TextBlock>
-                            <TextBlock Text="500" Grid.Column="2" HorizontalAlignment="Center"/>
+                            <TextBlock Text="500" Grid.Column="2" HorizontalAlignment="Center" />
                             <TextBlock Text="1k" Grid.Column="3" HorizontalAlignment="Center"></TextBlock>
                             <TextBlock Text="3k" Grid.Column="4" HorizontalAlignment="Center"></TextBlock>
                         </Grid>
@@ -63,10 +63,9 @@
         </Grid>
         <Border Name="brdNextButton" Tap="brdNextButton_Tap_1" Margin="12" Grid.Row="2" Width="60" Height="60" HorizontalAlignment="Right">
             <Grid>
-                <Ellipse StrokeThickness="4" Stroke="{StaticResource PhoneContrastBackgroundBrush}"/>
-                <TextBlock FontFamily="Wingdings 3" FontSize="{StaticResource PhoneFontSizeExtraLarge}" Text="Ò" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Ellipse StrokeThickness="4" Stroke="{StaticResource PhoneContrastBackgroundBrush}" />
+                <TextBlock FontFamily="Wingdings 3" FontSize="{StaticResource PhoneFontSizeExtraLarge}" Text="Ò" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
         </Border>
     </Grid>
-
 </phone:PhoneApplicationPage>

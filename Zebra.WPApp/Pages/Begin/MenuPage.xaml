@@ -12,37 +12,37 @@
     shell:SystemTray.IsVisible="False">
     <phone:PhoneApplicationPage.Resources>
         <Storyboard x:Name="stbTitleAnimation" RepeatBehavior="Forever">
-            <DoubleAnimation Duration="0:0:3" From="-600" To="600" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:3" From="-600" To="600" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="textBlock" d:IsOptimized="True" />
         </Storyboard>
     </phone:PhoneApplicationPage.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock x:Name="textBlock" Text="{Binding TargetNullValue=Zebra}" FontSize="108" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="93,29,0,28" FontFamily="Century Gothic" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
-                <CompositeTransform TranslateX="1"/>
+                <CompositeTransform TranslateX="1" />
             </TextBlock.RenderTransform>
             <TextBlock.Foreground>
-                <SolidColorBrush Color="Black" Opacity="0.4"/>
+                <SolidColorBrush Color="Black" Opacity="0.4" />
             </TextBlock.Foreground>
         </TextBlock>
         <TextBlock Visibility="Collapsed" Text="{Binding LocalizedResources.ResourceLanguage,TargetNullValue=FindPlaces, Mode=OneWay, Source={StaticResource LocalizedStrings}}" FontFamily="Century Gothic" ></TextBlock>
-        <Grid Grid.Row="1" >
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.1*"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="12"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.1*" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="0.1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition/>
-                <RowDefinition Height="12"/>
-                <RowDefinition/>
-                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="0.1*" />
+                <RowDefinition />
+                <RowDefinition Height="12" />
+                <RowDefinition />
+                <RowDefinition Height="0.3*" />
             </Grid.RowDefinitions>
             <Grid.Resources>
                 <Style TargetType="TextBlock">
@@ -50,34 +50,36 @@
                     <Setter Property="Foreground" Value="White"></Setter>
                 </Style>
             </Grid.Resources>
+
             <Border Grid.Column="1" Grid.Row="1">
                 <Border.Background>
                     <SolidColorBrush  Color="#FFE96F25" Opacity="0.9"></SolidColorBrush>
                 </Border.Background>
                 <Grid Background="Transparent">
-                    <!--<Image Source="/Assets/MainPageIcons/dondeV2.png" Width="150" Height="150" Margin="32,39,31,74"/>-->
+                    <!--<Image Source="/Assets/MainPageIcons/dondeV2.png" Width="150" Height="150" Margin="32,39,31,74" />-->
                     <TextBlock Text="Places" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="72,0,0,11" FontFamily="Century Gothic" FontSize="24" ></TextBlock>
                 </Grid>
             </Border>
-            <Border Grid.Column="1" Grid.Row="3">
+            <Border Grid.Column="1" Grid.Row="3"
+                    Name="btnWallet">
                 <Border.Background>
-                    <SolidColorBrush Color="#FFCC2F2F" Opacity="0.95"/>
+                    <SolidColorBrush Color="#FFCC2F2F" Opacity="0.95" />
                 </Border.Background>
                 <Grid Background="Transparent">
                     <TextBlock Text="$" HorizontalAlignment="Center" FontSize="150" Margin="66,27,66,-27"></TextBlock>
                     <TextBlock Text="Wallet" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="12,0,0,12" FontFamily="Century Gothic" FontSize="24" ></TextBlock>
                 </Grid>
             </Border>
-            <Border Grid.Column="3" Grid.Row="1" >
+            <Border Grid.Column="3" Grid.Row="1">
                 <Border.Background>
-                    <SolidColorBrush Color="#FF00C267" Opacity="0.9"/>
+                    <SolidColorBrush Color="#FF00C267" Opacity="0.9" />
                 </Border.Background>
                 <Grid Background="Transparent">
-                    <Image Source="/Assets/MainPageIcons/sabe.png" Width="150" Height="150" Margin="31,32,31,72"/>
+                    <Image Source="/Assets/MainPageIcons/sabe.png" Width="150" Height="150" Margin="31,32,31,72" />
                     <TextBlock Text="Traffic" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="12,0,0,12" FontFamily="Century Gothic" FontSize="24" ></TextBlock>
                 </Grid>
             </Border>
-            <Border Grid.Column="3" Grid.Row="3" Background="#FF919191" 
+            <Border Grid.Column="3" Grid.Row="3" Background="#FF919191"
                     Name="btnZebra">
                 <Grid Background="Transparent">
                     <TextBlock Text="Z" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="130" FontFamily="Century Gothic"></TextBlock>

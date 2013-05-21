@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Microsoft.Phone.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
+using ZebrasLib.Classes;
 
 namespace Zebra.WPApp.Pages.Begin
 {
@@ -16,14 +14,25 @@ namespace Zebra.WPApp.Pages.Begin
         {
             InitializeComponent();
             btnZebra.Tap += btnZebra_Tap;
+            btnWallet.Tap += btnWallet_Tap;
         }
 
-        void btnZebra_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private async void btnWallet_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (App.isAuthenticated)
+            {
+                List<Friend> lstFbFriends = await ZebrasLib.Facebook.Methods.downloadFriendsList(App.facebookAccessToken);
+                MessageBox.Show(lstFbFriends.Count().ToString());
+            }
+        }
+
+        private void btnZebra_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (!App.isAuthenticated)
                 NavigationService.Navigate(new Uri("/Pages/Login/FacebookLoginPage.xaml", UriKind.Relative));
             else MessageBox.Show("You're already Logged in");
         }
+
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
             base.OnBackKeyPress(e);

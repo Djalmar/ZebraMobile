@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using ZebrasLib.Classes;
+
 namespace ZebrasLib
-{  
+{
     public class Main
     {
         public static string urlWallet = "https://cebritas.com/wallet/getPlaces?";
@@ -19,7 +20,7 @@ namespace ZebrasLib
         public static string FacebookId = String.Empty;
 
         public static async Task<List<Place>> GetPlacesList(string url)
-        { 
+        {
             string downloadedInfo = await DownloadInfo(url);
             return JsonConvert.DeserializeObject<List<Place>>(downloadedInfo);
         }

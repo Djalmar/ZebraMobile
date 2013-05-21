@@ -16,8 +16,8 @@
     <phone:PhoneApplicationPage.Resources>
         <Storyboard x:Name="stbZebraWalking">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="grdAnimation">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-450"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="453"/>
+                <EasingDoubleKeyFrame KeyTime="0" Value="-450" />
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="453" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </phone:PhoneApplicationPage.Resources>
@@ -25,13 +25,13 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="grdSplash" Background="Black">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition />
+            <RowDefinition Height="0.2*" />
         </Grid.RowDefinitions>
         <TextBlock Text="Zebra" Grid.Row="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <Grid Name="grdAnimation" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
-                <CompositeTransform/>
+                <CompositeTransform />
             </Grid.RenderTransform>
             <Image Name="Head" Source="/Assets/Tiles/FlipCycleTileSmall.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-90,0,90"></Image>
             <Image Name="Body" Source="/Assets/Tiles/FlipCycleTileSmall.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,69,0,-69"></Image>

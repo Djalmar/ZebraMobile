@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using System;
 using System.Diagnostics;
-using System.Resources;
+using System.IO.IsolatedStorage;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 using Zebra.WPApp.Resources;
-using System.IO.IsolatedStorage;
 
 namespace Zebra.WPApp
 {
@@ -29,9 +28,10 @@ namespace Zebra.WPApp
                 IsolatedStorageSettings.ApplicationSettings.Save();
             }
         }
-        public static bool isAuthenticated 
+
+        public static bool isAuthenticated
         {
-            get 
+            get
             {
                 if (IsolatedStorageSettings.ApplicationSettings.Contains("isAuthenticated"))
                 {
@@ -39,17 +39,19 @@ namespace Zebra.WPApp
                 }
                 else return false;
             }
-                
-            set {
+
+            set
+            {
                 IsolatedStorageSettings.ApplicationSettings["isAuthenticated"] = value;
                 IsolatedStorageSettings.ApplicationSettings.Save();
             }
         }
-        public static string facebookAccessToken 
+
+        public static string facebookAccessToken
         {
             get
             {
-                if (IsolatedStorageSettings.ApplicationSettings.Contains("fabAccessToken"))
+                if (IsolatedStorageSettings.ApplicationSettings.Contains("fbAccessToken"))
                 {
                     return (IsolatedStorageSettings.ApplicationSettings["fbAccessToken"]).ToString();
                 }
@@ -61,6 +63,7 @@ namespace Zebra.WPApp
                 IsolatedStorageSettings.ApplicationSettings.Save();
             }
         }
+
         public static string facebookId
         {
             get
@@ -77,7 +80,6 @@ namespace Zebra.WPApp
                 IsolatedStorageSettings.ApplicationSettings.Save();
             }
         }
-        
 
         public static PhoneApplicationFrame RootFrame { get; private set; }
 
@@ -114,7 +116,6 @@ namespace Zebra.WPApp
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-
         }
 
         // Code to execute when the application is launching (eg, from Start)
@@ -222,7 +223,7 @@ namespace Zebra.WPApp
             }
         }
 
-        #endregion
+        #endregion Phone application initialization
 
         // Initialize the app's font and flow direction as defined in its localized resource strings.
         //
