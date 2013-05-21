@@ -107,6 +107,12 @@
     <Compile Include="Pages\Begin\SplashPage.xaml.cs">
       <DependentUpon>SplashPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Login\FacebookLoginPage.xaml.cs">
+      <DependentUpon>FacebookLoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Login\LandingPage.xaml.cs">
+      <DependentUpon>LandingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Places\CategoriesPage.xaml.cs">
       <DependentUpon>CategoriesPage.xaml</DependentUpon>
     </Compile>
@@ -135,6 +141,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Begin\SplashPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Login\FacebookLoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Login\LandingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,7 +188,7 @@
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
-    <Content Include="Videos\Microsoft - Ruggedized Win 7 Commercial.mp4" />
+    <Content Include="Videos\bmtdk.mp3" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">

@@ -15,6 +15,12 @@ namespace Zebra.WPApp.Pages.Begin
         public MenuPage()
         {
             InitializeComponent();
+            btnZebra.Tap += btnZebra_Tap;
+        }
+
+        void btnZebra_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/Login/FacebookLoginPage.xaml",UriKind.Relative));
         }
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {

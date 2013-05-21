@@ -14,6 +14,12 @@ namespace ZebrasLib
         public static string urlPlaces = "https://cebritas.com/places/getPlaces?";
         public static WebClient client;
 
+
+        public static readonly string FacebookAppId = "316949918437312";
+        internal static string AccessToken = String.Empty;
+        internal static string FacebookId = String.Empty;
+        public static bool isAuthenticated = false;
+
         public static async Task<List<Place>> GetPlacesList(string url)
         { 
             string downloadedInfo = await DownloadInfo(url);

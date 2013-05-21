@@ -23,12 +23,18 @@
 			</DoubleAnimationUsingKeyFrames>
 		</Storyboard>
 	</phone:PhoneApplicationPage.Resources>
-    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid Name="grdPrincipal">
-        <TextBlock x:Name="textBlock"  Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Style="{StaticResource stlTituloPagina}" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <MediaElement Name="mdeVideo" Grid.Row="1" Source="/Videos/Microsoft - Ruggedized Win 7 Commercial.mp4" AutoPlay="False"/>
-		<StackPanel Name="stkButtons" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-			<Border Width="100" Height="100" Margin="12">
+        <TextBlock x:Name="textBlock"  
+                   Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Style="{StaticResource stlTituloPagina}" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <MediaElement Name="mdeVideo" 
+                      Grid.Row="1" 
+                      Source="/Videos/bmtdk.mp3" 
+                      AutoPlay="False"/>
+		<StackPanel Name="stkButtons" 
+                    Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+			<Border Width="100" 
+                    Height="100" 
+                    Margin="12">
 				<Grid>
 					<Ellipse StrokeThickness="4" Stroke="{StaticResource PhoneContrastBackgroundBrush}"></Ellipse>
 					<TextBlock Text="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Webdings" FontSize="80"/>
