@@ -20,7 +20,8 @@ namespace Zebra.WPApp.Pages.Login
 
         void LandingPage_Loaded(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Conectado!!!");
+            NavigationService.RemoveBackEntry();
+            NavigationService.GoBack();
         }
     }
 }

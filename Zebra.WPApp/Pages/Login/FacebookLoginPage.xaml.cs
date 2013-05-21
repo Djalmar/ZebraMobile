@@ -21,13 +21,15 @@ namespace Zebra.WPApp.Pages
 
         async void FacebookLoginPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!Main.isAuthenticated)
-            {
-                Main.isAuthenticated = true;
-
-                await LogIn.Authenticate();
-                NavigationService.Navigate(new Uri("/Pages/Login/LandingPage.xaml", UriKind.Relative));
-            }
+            bool isAuthenticated = await LogIn.canAuthenticate();
+            if (isAuthenticated)
+                {
+                    App.isAuthenticated = true;
+                    App.facebookAccessToken = Main.AccessToken;
+                    App.facebookId = Main.FacebookId;
+                    NavigationService.Navigate(new Uri("/Pages/Login/LandingPage.xaml", UriKind.Relative));
+                }
+            else NavigationService.GoBack();
         }
     }
 }

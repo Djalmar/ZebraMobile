@@ -20,7 +20,9 @@ namespace Zebra.WPApp.Pages.Begin
 
         void btnZebra_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Pages/Login/FacebookLoginPage.xaml",UriKind.Relative));
+            if (!App.isAuthenticated)
+                NavigationService.Navigate(new Uri("/Pages/Login/FacebookLoginPage.xaml", UriKind.Relative));
+            else MessageBox.Show("You're already Logged in");
         }
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {

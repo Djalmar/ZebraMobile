@@ -29,15 +29,58 @@ namespace Zebra.WPApp
                 IsolatedStorageSettings.ApplicationSettings.Save();
             }
         }
-        /// <summary>
-        /// Provides easy access to the root frame of the Phone Application.
-        /// </summary>
-        /// <returns>The root frame of the Phone Application.</returns>
+        public static bool isAuthenticated 
+        {
+            get 
+            {
+                if (IsolatedStorageSettings.ApplicationSettings.Contains("isAuthenticated"))
+                {
+                    return (bool)(IsolatedStorageSettings.ApplicationSettings["isAuthenticated"]);
+                }
+                else return false;
+            }
+                
+            set {
+                IsolatedStorageSettings.ApplicationSettings["isAuthenticated"] = value;
+                IsolatedStorageSettings.ApplicationSettings.Save();
+            }
+        }
+        public static string facebookAccessToken 
+        {
+            get
+            {
+                if (IsolatedStorageSettings.ApplicationSettings.Contains("fabAccessToken"))
+                {
+                    return (IsolatedStorageSettings.ApplicationSettings["fbAccessToken"]).ToString();
+                }
+                else return String.Empty;
+            }
+            set
+            {
+                IsolatedStorageSettings.ApplicationSettings["fbAccessToken"] = value;
+                IsolatedStorageSettings.ApplicationSettings.Save();
+            }
+        }
+        public static string facebookId
+        {
+            get
+            {
+                if (IsolatedStorageSettings.ApplicationSettings.Contains("fbId"))
+                {
+                    return (IsolatedStorageSettings.ApplicationSettings["fbId"]).ToString();
+                }
+                else return String.Empty;
+            }
+            set
+            {
+                IsolatedStorageSettings.ApplicationSettings["fbId"] = value;
+                IsolatedStorageSettings.ApplicationSettings.Save();
+            }
+        }
+        
+
         public static PhoneApplicationFrame RootFrame { get; private set; }
 
-        /// <summary>
-        /// Constructor for the Application object.
-        /// </summary>
         public App()
         {
             // Global handler for uncaught exceptions.

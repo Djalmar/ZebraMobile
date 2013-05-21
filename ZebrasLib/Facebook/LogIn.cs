@@ -14,21 +14,24 @@ namespace ZebrasLib
     {
         public class LogIn
         {
-            public static FacebookSessionClient FacebookSessionClient = new FacebookSessionClient(Main.FacebookAppId);
+            public static FacebookSessionClient FacebookSessionClient;
             private static FacebookSession session;
-            public static async Task Authenticate()
+            public static async Task<bool> canAuthenticate()
             {
-                string message = String.Empty;
                 try
                 {
+                    FacebookSessionClient = new FacebookSessionClient(Main.FacebookAppId);
                     session = await FacebookSessionClient.LoginAsync("user_about_me,read_stream");
                     Main.AccessToken = session.AccessToken;
                     Main.FacebookId = session.FacebookId;
+                    return true;
                 }
+
                 catch (InvalidOperationException e)
                 {
-                    message = "Jodiste!!! Mira lo que paso: " + e.Message;
-                    MessageBox.Show(message);
+                    MessageBox.Show("No se pudo iniciar la sesion, intentalo de nuevo por favor");
+                    session = new FacebookSession();
+                    return false;
                 }
             }
         }
