@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Navigation;
 using ZebrasLib.Classes;
 using ZebrasLib.Facebook;
+
 namespace Zebra.WPApp.Pages.Begin
 {
     public partial class MenuPage : PhoneApplicationPage

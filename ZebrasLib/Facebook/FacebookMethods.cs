@@ -50,7 +50,7 @@ namespace ZebrasLib
 
                     string result = e.GetResultData().ToString();
                     FacebookData data = JsonConvert.DeserializeObject<FacebookData>(result);
-                    
+
                     IEnumerable<Friend> formatedList = from Friend F in data.friends
                                                        where F.usesApp == true
                                                        select F;

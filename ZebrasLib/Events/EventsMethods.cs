@@ -4,14 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using ZebrasLib.Classes;
-using ZebrasLib.Facebook;
+
 namespace ZebrasLib
 {
     namespace Events
-    { 
+    {
         public static partial class EventsMethods
         {
             public static async Task<EventResult> ReportEvent(
@@ -53,15 +52,15 @@ namespace ZebrasLib
                 return await downloadedInfo(uriAddress);
             }
 
-            public static async Task<EventResult> GetEvents(double latitude, double longitude,List<string> fbFriendList)
+            public static async Task<EventResult> GetEvents(double latitude, double longitude, List<string> fbFriendList)
             {
                 string friendsList = String.Empty;
                 foreach (string friend in fbFriendList)
-                    friendsList += friend+",";
+                    friendsList += friend + ",";
 
                 Uri uriAddress = new Uri(GetProblemsUri +
                     "?latitude=" + latitude +
-                    "&longitude=" + longitude + 
+                    "&longitude=" + longitude +
                     "&friendsList=" + friendsList, UriKind.Absolute);
 
                 return await downloadedInfo(uriAddress);
@@ -70,23 +69,23 @@ namespace ZebrasLib
             public static List<Event> GetEventsReportedByAccuracy(List<Event> lstEventsSource, int accuracyDegree)
             {
                 IEnumerable<Event> query = from E in lstEventsSource
-                                               where E.accuracyDegree == accuracyDegree
-                                               select E;
+                                           where E.accuracyDegree == accuracyDegree
+                                           select E;
                 return query.ToList();
             }
 
             public static List<Event> GetEventsReportedByType(List<Event> lstEventsSource, string type)
             {
                 IEnumerable<Event> query = from E in lstEventsSource
-                                               where E.type == type
-                                               select E;
+                                           where E.type == type
+                                           select E;
                 return query.ToList();
             }
 
             public static List<Event> GetEventsReportedNear(List<Event> lstEventsSource, double latitude, double longitude, int distanceFromUser)
             {
                 IEnumerable<Event> query = from E in lstEventsSource
-                                           where isNear(E.latitude,E.longitude,latitude,longitude, distanceFromUser)
+                                           where isNear(E.latitude, E.longitude, latitude, longitude, distanceFromUser)
                                            select E;
                 return query.ToList();
             }
@@ -101,6 +100,6 @@ namespace ZebrasLib
                     return true;
                 return false;
             }
-        }   
+        }
     }
 }
