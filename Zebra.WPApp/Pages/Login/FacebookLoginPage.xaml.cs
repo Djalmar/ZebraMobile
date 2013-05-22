@@ -16,7 +16,7 @@ namespace Zebra.WPApp.Pages
 
         private async void FacebookLoginPage_Loaded(object sender, RoutedEventArgs e)
         {
-            bool isAuthenticated = await Methods.canAuthenticate();
+            bool isAuthenticated = await FacebookMethods.canAuthenticate();
             if (isAuthenticated)
             {
                 App.isAuthenticated = true;

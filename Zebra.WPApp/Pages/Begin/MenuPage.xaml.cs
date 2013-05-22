@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Navigation;
 using ZebrasLib.Classes;
-
+using ZebrasLib.Facebook;
 namespace Zebra.WPApp.Pages.Begin
 {
     public partial class MenuPage : PhoneApplicationPage
@@ -21,7 +21,7 @@ namespace Zebra.WPApp.Pages.Begin
         {
             if (App.isAuthenticated)
             {
-                List<Friend> lstFbFriends = await ZebrasLib.Facebook.Methods.downloadFriendsList(App.facebookAccessToken);
+                List<Friend> lstFbFriends = await FacebookMethods.downloadFriendsList(App.facebookAccessToken);
                 MessageBox.Show(lstFbFriends.Count().ToString());
             }
         }

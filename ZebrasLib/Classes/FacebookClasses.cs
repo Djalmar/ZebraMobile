@@ -44,10 +44,10 @@ namespace ZebrasLib
         public class FacebookData
         {
             [JsonProperty("data")]
-            public static List<Friend> friends { get; set; }
+            public List<Friend> friends { get; set; }
 
             [JsonProperty("paging")]
-            public static Paging paging { get; set; }
+            public Paging paging { get; set; }
         }
     }
 }

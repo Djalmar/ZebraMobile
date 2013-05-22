@@ -11,7 +11,7 @@ namespace ZebrasLib
 {
     namespace Facebook
     {
-        public class Methods
+        public class FacebookMethods
         {
             private static FacebookSessionClient FacebookSessionClient;
             private static FacebookSession session;
@@ -50,8 +50,8 @@ namespace ZebrasLib
 
                     string result = e.GetResultData().ToString();
                     FacebookData data = JsonConvert.DeserializeObject<FacebookData>(result);
-
-                    IEnumerable<Friend> formatedList = from Friend F in FacebookData.friends
+                    
+                    IEnumerable<Friend> formatedList = from Friend F in data.friends
                                                        where F.usesApp == true
                                                        select F;
                     downloadedList.SetResult(formatedList.ToList());

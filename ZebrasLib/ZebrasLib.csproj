@@ -85,16 +85,17 @@
   <ItemGroup>
     <Compile Include="Classes\Category.cs" />
     <Compile Include="Classes\FacebookClasses.cs" />
-    <Compile Include="Facebook\LogIn.cs" />
+    <Compile Include="Classes\Event.cs" />
+    <Compile Include="Facebook\FacebookMethods.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Classes\Place.cs" />
-    <Compile Include="Places\Methods.cs" />
+    <Compile Include="Places\PlacesMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Wallet\Methods.cs" />
+    <Compile Include="Events\EventsMethods.cs" />
+    <Compile Include="Events\UsefulAttributes.cs" />
+    <Compile Include="Wallet\TrafficMethods.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Traffic\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="Facebook">
       <HintPath>..\packages\Facebook.6.4.0\lib\wp8\Facebook.dll</HintPath>
