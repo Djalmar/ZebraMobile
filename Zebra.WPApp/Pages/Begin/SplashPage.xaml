@@ -14,33 +14,34 @@
     shell:SystemTray.IsVisible="False">
     <phone:PhoneApplicationPage.Resources>
         <Storyboard x:Name="stbTxbTitle">
-            <DoubleAnimation Duration="0:0:1" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock" d:IsOptimized="True" />
+            <DoubleAnimation Duration="0:0:1" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="txbTitle" d:IsOptimized="True"/>
         </Storyboard>
         <Storyboard x:Name="stbStkButtons">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="stkButtons">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </phone:PhoneApplicationPage.Resources>
     <Grid Name="grdPrincipal">
-        <TextBlock x:Name="textBlock"
+        <TextBlock Name="txbTitle"  
                    Text="{Binding LocalizedResources.TxbInfoTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Style="{StaticResource stlTituloPagina}" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <MediaElement Name="mdeVideo"
-                      Grid.Row="1"
-                      Source="/Videos/bmtdk.mp3"
-                      AutoPlay="False" />
-        <StackPanel Name="stkButtons"
+        <MediaElement Name="mdeVideo" 
+                      Grid.Row="1" 
+                      Source="/Videos/bmtdk.mp3" 
+                      AutoPlay="False"/>
+        <StackPanel Name="stkButtons" 
                     Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <Border Width="100"
-                    Height="100"
-                    Margin="12">
+            <Border Width="100" 
+                    Height="100" 
+                    Margin="12"
+                    Name="btnReplay">
                 <Grid>
                     <Ellipse StrokeThickness="4" Stroke="{StaticResource PhoneContrastBackgroundBrush}"></Ellipse>
-                    <TextBlock Text="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Webdings" FontSize="80" />
+                    <TextBlock Text="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Webdings" FontSize="80"/>
                 </Grid>
             </Border>
-            <Border Width="100" Height="100" Margin="12">
+            <Border Name="btnContinue" Width="100" Height="100" Margin="12">
                 <Grid>
                     <Ellipse StrokeThickness="4" Stroke="{StaticResource PhoneContrastBackgroundBrush}"></Ellipse>
                     <TextBlock Text=":" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Webdings" FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"></TextBlock>
