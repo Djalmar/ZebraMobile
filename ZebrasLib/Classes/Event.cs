@@ -6,29 +6,29 @@ namespace ZebrasLib
     {
         public class Event
         {
-            [JsonProperty("code")]
-            public string code { get; set; }
+            [JsonProperty("ReportCount")]
+            public int timesReported { get; set; }
 
-            [JsonProperty("fbUserCode")]
+            [JsonProperty("Verified")]
+            public bool isVerified { get; set; }
+            
+            [JsonProperty("FbCode")]
             public string fbUserCode { get; set; }
-
-            [JsonProperty("type")]
-            public string type { get; set; }
-
-            [JsonProperty("description")]
-            public string description { get; set; }
-
-            [JsonProperty("reportedAt")]
-            public string reportedAt { get; set; }
-
-            [JsonProperty("accuracyDegree")]
-            public int accuracyDegree { get; set; }
-
-            [JsonProperty("latitude")]
+           
+            [JsonProperty("Latitude")]
             public double latitude { get; set; }
 
-            [JsonProperty("longitude")]
+            [JsonProperty("Longitude")]
             public double longitude { get; set; }
+           
+            [JsonProperty("Type")]
+            public string type { get; set; }
+
+            [JsonProperty("Description")]
+            public string description { get; set; }
+
+            [JsonProperty("ReportedAt")]
+            public string reportedAt { get; set; }
         }
     }
 }

@@ -19,8 +19,7 @@ namespace ZebrasLib
                     double longitude,
                     string description,
                     string type,
-                    string accuracyDegree,
-                    string reportedAt)
+                    DateTime reportedAt)
             {
                 client = new WebClient();
                 client.Encoding = System.Text.Encoding.UTF8;
@@ -32,14 +31,15 @@ namespace ZebrasLib
                 client.Headers["Accept-Encoding"] = "gzip,deflate,sdch";
                 client.Headers["Accept-Language"] = "en-US,en;q=0.8";
                 client.Headers["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.3";
+
+                string secondsFromUnixTime = DateTimeToUnixTime(reportedAt);
                 string data =
                     "fbUserCode=" + fbUserCode +
                     "&latitude=" + latitude +
                     "&longitude=" + longitude +
                     "&description=" + description +
                     "&type=" + type +
-                    "&accuracyDegree=" + accuracyDegree +
-                    "&reportedAt=" + reportedAt;
+                    "&reportedAt=" + secondsFromUnixTime;
                 string result = await Internet.UploadStringAsync(client, ReportProblemUri, data);
                 return JsonConvert.DeserializeObject<EventResult>(result);
             }
@@ -52,24 +52,22 @@ namespace ZebrasLib
                 return await downloadedInfo(uriAddress);
             }
 
-            public static async Task<EventResult> GetEvents(double latitude, double longitude, List<string> fbFriendList)
+            public static async Task<EventResult> GetEvents(List<string> fbFriendList)
             {
                 string friendsList = String.Empty;
                 foreach (string friend in fbFriendList)
                     friendsList += friend + ",";
 
-                Uri uriAddress = new Uri(GetProblemsUri +
-                    "?latitude=" + latitude +
-                    "&longitude=" + longitude +
-                    "&friendsList=" + friendsList, UriKind.Absolute);
+                Uri uriAddress = new Uri(GetProblemsByFriendsUri +
+                    "?friends=" + friendsList, UriKind.Absolute);
 
                 return await downloadedInfo(uriAddress);
             }
 
-            public static List<Event> GetEventsReportedByAccuracy(List<Event> lstEventsSource, int accuracyDegree)
+            public static List<Event> GetEventsVerified(List<Event> lstEventsSource)
             {
                 IEnumerable<Event> query = from E in lstEventsSource
-                                           where E.accuracyDegree == accuracyDegree
+                                           where E.isVerified
                                            select E;
                 return query.ToList();
             }
@@ -88,17 +86,6 @@ namespace ZebrasLib
                                            where isNear(E.latitude, E.longitude, latitude, longitude, distanceFromUser)
                                            select E;
                 return query.ToList();
-            }
-
-            private static bool isNear(double latOne, double lonOne, double latTwo, double lonTwo, int distanceFromUser)
-            {
-                double x = 69.1 * (latTwo - latOne);
-                double y = 53.0 * (lonTwo - lonOne);
-                double distance = Math.Sqrt(x * x + y * y);
-
-                if (distance < distanceFromUser)
-                    return true;
-                return false;
             }
         }
     }
