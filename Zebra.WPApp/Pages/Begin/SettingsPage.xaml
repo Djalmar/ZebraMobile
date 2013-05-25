@@ -64,7 +64,7 @@
         <Border Name="brdNextButton" Tap="brdNextButton_Tap_1" Margin="12" Grid.Row="2" Width="60" Height="60" HorizontalAlignment="Right">
             <Grid>
                 <Ellipse StrokeThickness="4" Stroke="{StaticResource PhoneContrastBackgroundBrush}" />
-                <TextBlock FontFamily="Wingdings 3" FontSize="{StaticResource PhoneFontSizeExtraLarge}" Text="Ò" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock FontFamily="Wingdings 3" FontSize="{StaticResource PhoneFontSizeExtraLarge}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Ò" />
             </Grid>
         </Border>
     </Grid>
