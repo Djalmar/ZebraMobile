@@ -48,15 +48,16 @@
                                     <Run Text="    "></Run>
                                 </TextBlock>
                                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF3B5998">
-                                    <Border BorderThickness="0,0,2,2">
+                                    <Border BorderThickness="0,0,2,2" Tap="Border_Tap_1">
                                         <Border.BorderBrush>
-                                            <SolidColorBrush Color="{StaticResource PhoneContrastBackgroundColor}"/>
+                                            <SolidColorBrush Opacity="0.5" Color="{StaticResource PhoneContrastBackgroundColor}"/>
                                         </Border.BorderBrush>
-                                        <TextBlock Text=" f " HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72"></TextBlock>
+                                        <TextBlock Text=" f " HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" Foreground="White"></TextBlock>
                                     </Border>
                                 </Grid>
                             </StackPanel>
                         </Border>
+                        <ProgressBar Name="prgLoginFacebook" Margin="12" IsIndeterminate="True"/>
                     </StackPanel>
                     <!--
                     <StackPanel>
