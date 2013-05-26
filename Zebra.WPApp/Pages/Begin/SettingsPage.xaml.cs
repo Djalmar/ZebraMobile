@@ -34,7 +34,6 @@ namespace Zebra.WPApp.Pages.Begin
                 App.isAuthenticated = true;
                 App.facebookAccessToken = Main.AccessToken;
                 App.facebookId = Main.FacebookId;
-                NavigationService.GoBack();
             }
             prgLoginFacebook.Visibility = System.Windows.Visibility.Visible;
             //cambiar el texto a ya esta logueado o algo asi

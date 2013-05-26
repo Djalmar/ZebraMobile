@@ -57,7 +57,7 @@
                                 </Grid>
                             </StackPanel>
                         </Border>
-                        <ProgressBar Name="prgLoginFacebook" Margin="12" IsIndeterminate="True"/>
+                        <ProgressBar Name="prgLoginFacebook" Margin="12" IsIndeterminate="True" Visibility="Collapsed"/>
                     </StackPanel>
                     <!--
                     <StackPanel>
