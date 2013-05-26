@@ -4,13 +4,26 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
-
+    
     <!--Application Resources-->
     <Application.Resources>
         <local:LocalizedStrings xmlns:local="clr-namespace:Zebra.WPApp" x:Key="LocalizedStrings" />
         <Style x:Name="stlTituloPagina" TargetType="TextBlock">
             <Setter Property="FontSize" Value="40"></Setter>
             <Setter Property="Margin" Value="12"></Setter>
+        </Style>
+        <Style x:Key="Share" TargetType="TextBlock">
+            <Setter Property="FontSize"
+                    Value="48"/>
+            <Setter Property="FontFamily"
+                    Value="Segoe WP Bold"/>
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+            <Setter Property="HorizontalAlignment"
+                                Value="Left"/>
+            <Setter Property="Margin"
+                    Value="20"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
         </Style>
     </Application.Resources>
 

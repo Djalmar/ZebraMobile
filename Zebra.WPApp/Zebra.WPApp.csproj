@@ -111,6 +111,7 @@
     <Compile Include="Pages\Login\FacebookLoginPage.xaml.cs">
       <DependentUpon>FacebookLoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OtherPages\Share.xaml.cs" />
     <Compile Include="Pages\Places\CategoriesPage.xaml.cs">
       <DependentUpon>CategoriesPage.xaml</DependentUpon>
     </Compile>
@@ -145,6 +146,10 @@
     <Page Include="Pages\Login\FacebookLoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OtherPages\Share.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Places\CategoriesPage.xaml">
       <SubType>Designer</SubType>
@@ -218,7 +223,7 @@
     </Reference>
     <Reference Include="QuickMethods, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\QuickMethods.1.0.1\lib\QuickMethods.dll</HintPath>
+      <HintPath>..\packages\QuickMethods.1.1.0\lib\QuickMethods.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
