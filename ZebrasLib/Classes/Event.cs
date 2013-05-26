@@ -11,9 +11,9 @@ namespace ZebrasLib
 
             [JsonProperty("Verified")]
             public bool isVerified { get; set; }
-            
-            [JsonProperty("FbCode")]
-            public string fbUserCode { get; set; }
+
+            [JsonProperty("facebookCode")]
+            public string facebookUserCode { get; set; }
            
             [JsonProperty("Latitude")]
             public double latitude { get; set; }
@@ -22,7 +22,7 @@ namespace ZebrasLib
             public double longitude { get; set; }
            
             [JsonProperty("Type")]
-            public string type { get; set; }
+            public int type { get; set; }
 
             [JsonProperty("Description")]
             public string description { get; set; }

@@ -14,12 +14,11 @@ namespace ZebrasLib
         public static partial class EventsMethods
         {
             public static async Task<EventResult> ReportEvent(
-                    string fbUserCode,
+                    string facebookCode,
                     double latitude,
                     double longitude,
                     string description,
-                    string type,
-                    DateTime reportedAt)
+                    int type)
             {
                 client = new WebClient();
                 client.Encoding = System.Text.Encoding.UTF8;
@@ -32,14 +31,12 @@ namespace ZebrasLib
                 client.Headers["Accept-Language"] = "en-US,en;q=0.8";
                 client.Headers["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.3";
 
-                string secondsFromUnixTime = DateTimeToUnixTime(reportedAt);
                 string data =
-                    "fbUserCode=" + fbUserCode +
+                    "fbUserCode=" + facebookCode +
                     "&latitude=" + latitude +
                     "&longitude=" + longitude +
                     "&description=" + description +
-                    "&type=" + type +
-                    "&reportedAt=" + secondsFromUnixTime;
+                    "&type=" + type;
                 string result = await Internet.UploadStringAsync(client, ReportProblemUri, data);
                 return JsonConvert.DeserializeObject<EventResult>(result);
             }
@@ -72,7 +69,7 @@ namespace ZebrasLib
                 return query.ToList();
             }
 
-            public static List<Event> GetEventsReportedByType(List<Event> lstEventsSource, string type)
+            public static List<Event> GetEventsReportedByType(List<Event> lstEventsSource, int type)
             {
                 IEnumerable<Event> query = from E in lstEventsSource
                                            where E.type == type

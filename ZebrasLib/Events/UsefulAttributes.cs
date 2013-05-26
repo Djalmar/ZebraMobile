@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using System.Windows;
 using ZebrasLib.Classes;
 
 namespace ZebrasLib
@@ -20,13 +21,13 @@ namespace ZebrasLib
 
             public class EventResult
             {
-                [JsonProperty("Error")]
-                public string errorMessage { get; set; }
+                [JsonProperty("status")]
+                public string status { get; set; }
 
-                [JsonProperty("Success")]
-                public string successMessage { get; set; }
+                [JsonProperty("message")]
+                public string message { get; set; }
 
-                [JsonProperty("Events")]
+                [JsonProperty("data")]
                 public List<Event> eventsList { get; set; }
             }
 
@@ -34,8 +35,10 @@ namespace ZebrasLib
             {
                 client = new WebClient();
                 string result = await Internet.DownloadStringAsync(client, uriAddress);
+
                 EventResult eventResult = JsonConvert.DeserializeObject<EventResult>(result);
-                eventResult.eventsList = formatedList(eventResult.eventsList);
+                if(thereIsNoProblemo(eventResult.status, eventResult.message))
+                    eventResult.eventsList = formatedList(eventResult.eventsList);
                 return eventResult;
             }
 
@@ -68,6 +71,25 @@ namespace ZebrasLib
                 foreach (Event E in unformatedList)
                     E.reportedAt = UnixTimeToDateTime(Double.Parse(E.reportedAt));
                 return unformatedList;
+            }
+
+            private static bool thereIsNoProblemo(string status, string message)
+            {
+                switch (status)
+	            {
+                    case "200":
+                        return true;
+                    case "400":
+                        MessageBox.Show(message);
+                        return false;
+                    case "403":
+                        MessageBox.Show("You don't have permissions");
+                        return false;;
+                    case "500":
+                        MessageBox.Show("There was a problemo jefe");
+                        return false;
+		            default: return false;
+	            }
             }
         }
     }
