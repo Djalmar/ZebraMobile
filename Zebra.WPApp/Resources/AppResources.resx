@@ -143,4 +143,7 @@
   <data name="TxbSettingsTitle" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="TxbFacebookLogin" xml:space="preserve">
+    <value>Login with</value>
+  </data>
 </root>

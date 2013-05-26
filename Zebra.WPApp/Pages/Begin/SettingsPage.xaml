@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tool="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -39,10 +40,28 @@
                             <TextBlock Text="1k" Grid.Column="3" HorizontalAlignment="Center"></TextBlock>
                             <TextBlock Text="3k" Grid.Column="4" HorizontalAlignment="Center"></TextBlock>
                         </Grid>
+                        <tool:ToggleSwitch Name="tglSwitchDistanceUnit" SwitchForeground="{x:Null}"/>
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Run Text="{Binding LocalizedResources.TxbFacebookLogin, Mode=OneWay, Source={StaticResource LocalizedStrings}}" FontSize="36"></Run>
+                                    <Run Text="    "></Run>
+                                </TextBlock>
+                                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF3B5998">
+                                    <Border BorderThickness="0,0,2,2">
+                                        <Border.BorderBrush>
+                                            <SolidColorBrush Color="{StaticResource PhoneContrastBackgroundColor}"/>
+                                        </Border.BorderBrush>
+                                        <TextBlock Text=" f " HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72"></TextBlock>
+                                    </Border>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
                     </StackPanel>
+                    <!--
                     <StackPanel>
                         <TextBlock Margin="12" Text="{Binding LocalizedResources.TxbSettingsDistance, Mode=OneWay, Source={StaticResource LocalizedStrings}}" ></TextBlock>
-                        <Slider Margin="24,0,24,-32"></Slider>
+                        <Slider Margin="24,0,24,-32"></Sli der>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -58,13 +77,15 @@
                             <TextBlock Text="3k" Grid.Column="4" HorizontalAlignment="Center"></TextBlock>
                         </Grid>
                     </StackPanel>
+                    -->
+                    
                 </StackPanel>
             </ScrollViewer>
         </Grid>
         <Border Name="brdNextButton" Tap="brdNextButton_Tap_1" Margin="12" Grid.Row="2" Width="60" Height="60" HorizontalAlignment="Right">
             <Grid>
                 <Ellipse StrokeThickness="4" Stroke="{StaticResource PhoneContrastBackgroundBrush}" />
-                <TextBlock FontFamily="Wingdings 3" FontSize="{StaticResource PhoneFontSizeExtraLarge}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Ò" />
+                <TextBlock FontFamily="Wingdings 3" FontSize="{StaticResource PhoneFontSizeExtraLarge}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="&#xF0D2;" />
             </Grid>
         </Border>
     </Grid>

@@ -106,6 +106,15 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login with.
+        /// </summary>
+        public static string TxbFacebookLogin {
+            get {
+                return ResourceManager.GetString("TxbFacebookLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Info.
         /// </summary>
         public static string TxbInfoTitle {
