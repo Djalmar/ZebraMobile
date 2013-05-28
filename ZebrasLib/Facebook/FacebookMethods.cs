@@ -37,16 +37,30 @@ namespace ZebrasLib
                 }
             }
 
-            public static async Task<List<facebookUser>> downloadFriendsList(string accessToken)
+            public static Task<List<facebookUser>> downloadFriendsList(string accessToken)
             {
                 var downloadedList = new TaskCompletionSource<List<facebookUser>>();
                 FacebookClient fb = new FacebookClient(accessToken);
 
-                WebClient client = new WebClient();
-                string x = await Internet.DownloadStringAsync(client,
-                    new System.Uri("https://graph.facebook.com/me/friends?fields=installed,name,picture", System.UriKind.Absolute));
-                List<facebookUser> data = JsonConvert.DeserializeObject<List<facebookUser>>(x);
-                return data;
+                fb.GetCompleted += (o, e) =>
+                {
+                    if (e.Error != null)
+                    {
+                        downloadedList.SetException(e.Error);
+                        return;
+                    }
+
+                    string result = e.GetResultData().ToString();
+                    FacebookData data = JsonConvert.DeserializeObject<FacebookData>(result);
+
+                    IEnumerable<facebookUser> formatedList = from facebookUser F in data.friends
+                                                       where F.usesApp == true
+                                                       select F;
+                    downloadedList.SetResult(formatedList.ToList());
+                };
+
+                fb.GetTaskAsync("/me/friends?fields=installed,name,picture");
+                return downloadedList.Task;
             }
 
             public static async Task<List<Reporter>> GetFbInfoForTheseReporters(List<Reporter> list, string accessToken)
