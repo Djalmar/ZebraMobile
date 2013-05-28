@@ -22,9 +22,20 @@ namespace Zebra.WPApp.Pages.Begin
         {
             if (App.isAuthenticated)
             {
-                List<facebookUser> lstFbFriends = await FacebookMethods.downloadFriendsList(App.facebookAccessToken);
-                MessageBox.Show(lstFbFriends.Count().ToString());
+                Reporter reporter = new Reporter { facebookCode = "100000308955899",};
+                Reporter reporterTwo = new Reporter { facebookCode = "500652212", };
+                Reporter reporterThree = new Reporter { facebookCode = "502315910", };
+                List<Reporter> list = new List<Reporter>();
+                list.Add(reporter);
+                list.Add(reporterTwo);
+                list.Add(reporterThree);
+                List<Reporter> reporters = await FacebookMethods.GetFbInfoForTheseReporters(list, App.facebookAccessToken);
+                foreach (Reporter R in reporters)
+                {
+                    MessageBox.Show(R.name + " " + R.picture);
+                }
             }
+            else MessageBox.Show("You're not logged in");
         }
 
         private void btnZebra_Tap(object sender, System.Windows.Input.GestureEventArgs e)

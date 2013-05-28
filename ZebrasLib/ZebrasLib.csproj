@@ -87,6 +87,7 @@
     <Compile Include="Classes\Category.cs" />
     <Compile Include="Classes\FacebookClasses.cs" />
     <Compile Include="Classes\Event.cs" />
+    <Compile Include="Classes\Reporter.cs" />
     <Compile Include="Facebook\FacebookMethods.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Classes\Place.cs" />
