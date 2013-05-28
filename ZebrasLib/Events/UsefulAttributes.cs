@@ -21,13 +21,13 @@ namespace ZebrasLib
 
             public class EventResult
             {
-                [JsonProperty("status")]
+                [JsonProperty("Status")]
                 public string status { get; set; }
 
-                [JsonProperty("message")]
+                [JsonProperty("Message")]
                 public string message { get; set; }
 
-                [JsonProperty("data")]
+                [JsonProperty("Data")]
                 public List<Event> eventsList { get; set; }
             }
 

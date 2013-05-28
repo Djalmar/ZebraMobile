@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace ZebrasLib
 {
@@ -6,29 +7,32 @@ namespace ZebrasLib
     {
         public class Event
         {
-            [JsonProperty("ReportCount")]
-            public int timesReported { get; set; }
-
-            [JsonProperty("Verified")]
-            public bool isVerified { get; set; }
-
             [JsonProperty("facebookCode")]
             public string facebookUserCode { get; set; }
+
+            [JsonProperty("importance")]
+            public int importance { get; set; }
+
+            [JsonProperty("verified")]
+            public bool isVerified { get; set; }
            
-            [JsonProperty("Latitude")]
+            [JsonProperty("latitude")]
             public double latitude { get; set; }
 
-            [JsonProperty("Longitude")]
+            [JsonProperty("longitude")]
             public double longitude { get; set; }
-           
-            [JsonProperty("Type")]
+
+            [JsonProperty("reportedAt")]
+            public string reportedAt { get; set; }
+
+            [JsonProperty("type")]
             public int type { get; set; }
 
-            [JsonProperty("Description")]
+            [JsonProperty("description")]
             public string description { get; set; }
 
-            [JsonProperty("ReportedAt")]
-            public string reportedAt { get; set; }
+            [JsonProperty ("reporters")]
+            public List<Reporter> reporters { get; set; }
         }
     }
 }
