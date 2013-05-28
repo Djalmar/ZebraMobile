@@ -35,9 +35,9 @@ namespace ZebrasLib
                 }
             }
 
-            public static Task<List<Friend>> downloadFriendsList(string accessToken)
+            public static Task<List<facebookUser>> downloadFriendsList(string accessToken)
             {
-                var downloadedList = new TaskCompletionSource<List<Friend>>();
+                var downloadedList = new TaskCompletionSource<List<facebookUser>>();
                 FacebookClient fb = new FacebookClient(accessToken);
 
                 fb.GetCompleted += (o, e) =>
@@ -51,7 +51,7 @@ namespace ZebrasLib
                     string result = e.GetResultData().ToString();
                     FacebookData data = JsonConvert.DeserializeObject<FacebookData>(result);
 
-                    IEnumerable<Friend> formatedList = from Friend F in data.friends
+                    IEnumerable<facebookUser> formatedList = from facebookUser F in data.friends
                                                        where F.usesApp == true
                                                        select F;
                     downloadedList.SetResult(formatedList.ToList());
@@ -59,6 +59,41 @@ namespace ZebrasLib
 
                 fb.GetTaskAsync("/me/friends?fields=installed,name,picture");
                 return downloadedList.Task;
+            }
+
+            public static async Task<List<Reporter>> GetFbInfoForTheseReporters(List<Reporter> list, string accessToken)
+            {
+                facebookUser user = new facebookUser();
+                foreach (Reporter reporter in list)
+                {
+                    user = await FacebookMethods.getUserInfo(accessToken, reporter.facebookCode);
+                    reporter.name = user.Name;
+                    reporter.picture = user.picture.data.url;
+                }
+                return list;
+            }
+
+            private static Task<facebookUser> getUserInfo(string accessToken, string facebookId)
+            {
+                var downloadedUser = new TaskCompletionSource<facebookUser>();
+                FacebookClient fb = new FacebookClient(accessToken);
+
+                fb.GetCompleted += (o, e) =>
+                {
+                    if (e.Error != null)
+                    {
+                        downloadedUser.SetException(e.Error);
+                        return;
+                    }
+
+                    string result = e.GetResultData().ToString();
+                    facebookUser data = JsonConvert.DeserializeObject<facebookUser>(result);
+
+                    downloadedUser.SetResult(data);
+                };
+
+                fb.GetTaskAsync("/+" + facebookId + "fields=,name,picture");
+                return downloadedUser.Task;
             }
         }
     }

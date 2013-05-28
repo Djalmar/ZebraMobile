@@ -5,7 +5,7 @@ namespace ZebrasLib
 {
     namespace Classes
     {
-        public class Friend
+        public class facebookUser
         {
             [JsonProperty("id")]
             public string id { get; set; }
@@ -44,7 +44,7 @@ namespace ZebrasLib
         public class FacebookData
         {
             [JsonProperty("data")]
-            public List<Friend> friends { get; set; }
+            public List<facebookUser> friends { get; set; }
 
             [JsonProperty("paging")]
             public Paging paging { get; set; }

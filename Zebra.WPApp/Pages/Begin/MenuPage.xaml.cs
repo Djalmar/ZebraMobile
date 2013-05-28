@@ -22,7 +22,7 @@ namespace Zebra.WPApp.Pages.Begin
         {
             if (App.isAuthenticated)
             {
-                List<Friend> lstFbFriends = await FacebookMethods.downloadFriendsList(App.facebookAccessToken);
+                List<facebookUser> lstFbFriends = await FacebookMethods.downloadFriendsList(App.facebookAccessToken);
                 MessageBox.Show(lstFbFriends.Count().ToString());
             }
         }

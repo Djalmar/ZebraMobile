@@ -6,7 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using ZebrasLib.Classes;
-
+using ZebrasLib.Facebook;
 namespace ZebrasLib
 {
     namespace Events
@@ -39,6 +39,7 @@ namespace ZebrasLib
                 EventResult eventResult = JsonConvert.DeserializeObject<EventResult>(result);
                 if(thereIsNoProblemo(eventResult.status, eventResult.message))
                     eventResult.eventsList = formatedList(eventResult.eventsList);
+
                 return eventResult;
             }
 

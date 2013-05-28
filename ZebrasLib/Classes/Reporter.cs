@@ -14,6 +14,12 @@ namespace ZebrasLib
 
             [JsonProperty("description")]
             public string description { get; set; }
+
+            [JsonProperty("name")]
+            public string name { get; set; }
+
+            [JsonProperty("picture")]
+            public string picture { get; set; }
         }
     }
 }
