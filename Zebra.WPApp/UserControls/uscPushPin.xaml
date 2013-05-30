@@ -6,29 +6,28 @@
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}" Width="100" Height="100"            >
+    Foreground="{StaticResource PhoneForegroundBrush}" Width="100" Height="100">
 
     <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Ellipse Name="elpPush" Grid.ColumnSpan="4" Grid.RowSpan="5" StrokeThickness="4" Fill="{StaticResource PhoneAccentBrush}">
             <Ellipse.Stroke>
-                <SolidColorBrush Color="{StaticResource PhoneContrastBackgroundColor}"/>
+                <SolidColorBrush Color="{StaticResource PhoneContrastBackgroundColor}" />
             </Ellipse.Stroke>
         </Ellipse>
         <Image Name="imgIconCategory" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="/Assets/ApplicationIcon.png" Stretch="Fill"></Image>
-        <TextBlock Name="txbCategory" Text="{Binding TargetNullValue=category}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" FontSize="12" Foreground="{StaticResource PhoneBackgroundBrush}"/>
+        <TextBlock Name="txbCategory" Text="{Binding TargetNullValue=category}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" FontSize="12" Foreground="{StaticResource PhoneBackgroundBrush}" />
     </Grid>
 </UserControl>

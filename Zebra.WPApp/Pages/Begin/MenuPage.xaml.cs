@@ -1,10 +1,10 @@
 ﻿using Microsoft.Phone.Controls;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Navigation;
 using ZebrasLib.Classes;
+using ZebrasLib.Events;
 using ZebrasLib.Facebook;
 
 namespace Zebra.WPApp.Pages.Begin
@@ -22,22 +22,29 @@ namespace Zebra.WPApp.Pages.Begin
         {
             if (App.isAuthenticated)
             {
-                #region Get facebook info from a list of fb codes
-                //Reporter reporter = new Reporter { facebookCode = "100000308955899",};
-                //Reporter reporterTwo = new Reporter { facebookCode = "500652212", };
-                //Reporter reporterThree = new Reporter { facebookCode = "502315910", };
-                //List<Reporter> list = new List<Reporter>();
-                //list.Add(reporter);
-                //list.Add(reporterTwo);
-                //list.Add(reporterThree);
-                //List<Reporter> reporters = await FacebookMethods.GetFbInfoForTheseReporters(list, App.facebookAccessToken);
-                //foreach (Reporter R in reporters)
-                //{
-                //    MessageBox.Show(R.name + " " + R.picture);
-                //}
-                #endregion
-                List<facebookUser> users = await FacebookMethods.downloadFriendsList(App.facebookAccessToken);
-                MessageBox.Show(users.Count().ToString());
+                #region Uso de mock data y descarga de informacion de facebook de los reporteros de un evento dado
+
+                List<Event> lstEvents = EventsMethods.MockDataGetEvents();
+                foreach (Event E in lstEvents)
+                {
+                    MessageBox.Show(E.description);
+                    E.reporters = await FacebookMethods.GetFbInfoForTheseReporters(E.reporters, App.facebookAccessToken);
+                    string message = "Reportado por: ";
+                    foreach (Reporter R in E.reporters)
+                    {
+                        message += R.name + " ";
+                    }
+                    MessageBox.Show(message);
+                }
+
+                #endregion Uso de mock data y descarga de informacion de facebook de los reporteros de un evento dado
+
+                #region Get a list of facebook friends that are using the same app
+
+                //List<facebookUser> users = await FacebookMethods.downloadFriendsList(App.facebookAccessToken);
+                //MessageBox.Show(users.Count().ToString());
+
+                #endregion Get a list of facebook friends that are using the same app
             }
             else MessageBox.Show("You're not logged in");
         }

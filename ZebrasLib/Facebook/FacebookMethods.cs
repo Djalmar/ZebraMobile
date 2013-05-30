@@ -54,8 +54,8 @@ namespace ZebrasLib
                     FacebookData data = JsonConvert.DeserializeObject<FacebookData>(result);
 
                     IEnumerable<facebookUser> formatedList = from facebookUser F in data.friends
-                                                       where F.usesApp == true
-                                                       select F;
+                                                             where F.usesApp == true
+                                                             select F;
                     downloadedList.SetResult(formatedList.ToList());
                 };
 
@@ -82,7 +82,7 @@ namespace ZebrasLib
 
                 WebClient client = new WebClient();
                 string x = await Internet.DownloadStringAsync(client,
-                    new System.Uri("https://graph.facebook.com/"+ facebookId + "?fields=name,picture",System.UriKind.Absolute));
+                    new System.Uri("https://graph.facebook.com/" + facebookId + "?fields=name,picture", System.UriKind.Absolute));
                 facebookUser data = JsonConvert.DeserializeObject<facebookUser>(x);
                 return data;
             }

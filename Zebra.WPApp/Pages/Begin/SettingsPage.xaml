@@ -40,7 +40,7 @@
                             <TextBlock Text="1k" Grid.Column="3" HorizontalAlignment="Center"></TextBlock>
                             <TextBlock Text="3k" Grid.Column="4" HorizontalAlignment="Center"></TextBlock>
                         </Grid>
-                        <tool:ToggleSwitch Name="tglSwitchDistanceUnit" SwitchForeground="{x:Null}"/>
+                        <tool:ToggleSwitch Name="tglSwitchDistanceUnit" SwitchForeground="{x:Null}" />
                         <Border HorizontalAlignment="Center" VerticalAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -50,14 +50,14 @@
                                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF3B5998">
                                     <Border BorderThickness="0,0,2,2" Tap="Border_Tap_1">
                                         <Border.BorderBrush>
-                                            <SolidColorBrush Opacity="0.5" Color="{StaticResource PhoneContrastBackgroundColor}"/>
+                                            <SolidColorBrush Opacity="0.5" Color="{StaticResource PhoneContrastBackgroundColor}" />
                                         </Border.BorderBrush>
                                         <TextBlock Text=" f " HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" Foreground="White"></TextBlock>
                                     </Border>
                                 </Grid>
                             </StackPanel>
                         </Border>
-                        <ProgressBar Name="prgLoginFacebook" Margin="12" IsIndeterminate="True" Visibility="Collapsed"/>
+                        <ProgressBar Name="prgLoginFacebook" Margin="12" IsIndeterminate="True" Visibility="Collapsed" />
                     </StackPanel>
                     <!--
                     <StackPanel>
@@ -79,7 +79,6 @@
                         </Grid>
                     </StackPanel>
                     -->
-                    
                 </StackPanel>
             </ScrollViewer>
         </Grid>

@@ -1,6 +1,6 @@
-﻿using QuickMethods;
+﻿using Microsoft.Phone.Controls;
+using QuickMethods;
 using System;
-using Microsoft.Phone.Controls;
 
 namespace Zebra.WPApp.Pages
 {

@@ -2,9 +2,11 @@
 using QuickMethods;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Windows;
 using ZebrasLib.Classes;
 
 namespace ZebrasLib
@@ -83,6 +85,28 @@ namespace ZebrasLib
                                            where isNear(E.latitude, E.longitude, latitude, longitude, distanceFromUser)
                                            select E;
                 return query.ToList();
+            }
+
+            public static List<Event> MockDataGetEvents()
+            {
+                string direction = "MockData/EventsResult.json";
+
+                #region getListFromJsonFile
+
+                var streamInfo = Application.GetResourceStream(new Uri(direction, UriKind.Relative));
+                string result = "";
+                if (null != streamInfo)
+                {
+                    using (var sr = new StreamReader(streamInfo.Stream))
+                    {
+                        result = sr.ReadToEnd();
+                    }
+                }
+
+                #endregion getListFromJsonFile
+
+                EventResult eventResult = JsonConvert.DeserializeObject<EventResult>(result);
+                return eventResult.eventsList;
             }
         }
     }

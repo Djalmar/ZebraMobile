@@ -6,7 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using ZebrasLib.Classes;
-using ZebrasLib.Facebook;
+
 namespace ZebrasLib
 {
     namespace Events
@@ -19,25 +19,13 @@ namespace ZebrasLib
 
             public static WebClient client;
 
-            public class EventResult
-            {
-                [JsonProperty("Status")]
-                public string status { get; set; }
-
-                [JsonProperty("Message")]
-                public string message { get; set; }
-
-                [JsonProperty("Data")]
-                public List<Event> eventsList { get; set; }
-            }
-
             private static async Task<EventResult> downloadedInfo(Uri uriAddress)
             {
                 client = new WebClient();
                 string result = await Internet.DownloadStringAsync(client, uriAddress);
 
                 EventResult eventResult = JsonConvert.DeserializeObject<EventResult>(result);
-                if(thereIsNoProblemo(eventResult.status, eventResult.message))
+                if (thereIsNoProblemo(eventResult.status, eventResult.message))
                     eventResult.eventsList = formatedList(eventResult.eventsList);
 
                 return eventResult;
@@ -77,7 +65,7 @@ namespace ZebrasLib
             private static bool thereIsNoProblemo(string status, string message)
             {
                 switch (status)
-	            {
+                {
                     case "200":
                         return true;
                     case "400":
@@ -85,12 +73,12 @@ namespace ZebrasLib
                         return false;
                     case "403":
                         MessageBox.Show("You don't have permissions");
-                        return false;;
+                        return false; ;
                     case "500":
                         MessageBox.Show("There was a problemo jefe");
                         return false;
-		            default: return false;
-	            }
+                    default: return false;
+                }
             }
         }
     }
