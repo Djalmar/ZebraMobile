@@ -24,15 +24,17 @@ namespace Zebra.WPApp.Pages.Begin
             {
                 #region Uso de mock data y descarga de informacion de facebook de los reporteros de un evento dado
 
-                List<Event> lstEvents = EventsMethods.MockDataGetEvents();
-                foreach (Event E in lstEvents)
+                EventResult result = EventsMethods.MockDataGetEvents();
+                if (EventsMethods.thereIsNoProblemo(result.status, result.message))
+                    result.eventsList = EventsMethods.formatedList(result.eventsList);
+                foreach (Event E in result.eventsList)
                 {
                     MessageBox.Show(E.description);
                     E.reporters = await FacebookMethods.GetFbInfoForTheseReporters(E.reporters, App.facebookAccessToken);
                     string message = "Reportado por: ";
                     foreach (Reporter R in E.reporters)
                     {
-                        message += R.name + " ";
+                        message += R.name + " a las " + R.reportedAt+". ";
                     }
                     MessageBox.Show(message);
                 }

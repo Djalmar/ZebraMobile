@@ -55,14 +55,21 @@ namespace ZebrasLib
                 return false;
             }
 
-            private static List<Event> formatedList(List<Event> unformatedList)
+            public static List<Event> formatedList(List<Event> unformatedList)
             {
                 foreach (Event E in unformatedList)
+                {
                     E.reportedAt = UnixTimeToDateTime(Double.Parse(E.reportedAt));
+                    foreach (Reporter R in E.reporters)
+                    {
+                        R.reportedAt = UnixTimeToDateTime(Double.Parse(R.reportedAt));
+                    }
+                }
+                
                 return unformatedList;
             }
 
-            private static bool thereIsNoProblemo(string status, string message)
+            public static bool thereIsNoProblemo(string status, string message)
             {
                 switch (status)
                 {

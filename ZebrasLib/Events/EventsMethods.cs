@@ -87,7 +87,7 @@ namespace ZebrasLib
                 return query.ToList();
             }
 
-            public static List<Event> MockDataGetEvents()
+            public static EventResult MockDataGetEvents()
             {
                 string direction = "MockData/EventsResult.json";
 
@@ -106,7 +106,7 @@ namespace ZebrasLib
                 #endregion getListFromJsonFile
 
                 EventResult eventResult = JsonConvert.DeserializeObject<EventResult>(result);
-                return eventResult.eventsList;
+                return eventResult;
             }
         }
     }
