@@ -1,4 +1,5 @@
 ﻿using Microsoft.Phone.Controls;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using ZebrasLib.Classes;
@@ -15,6 +16,8 @@ namespace Zebra.WPApp.Pages.Places
 
         private void CategoriesPage_Loaded(object sender, RoutedEventArgs e)
         {
+	    // Algun comentario
+            // Otro comentario
             List<Category> listCategories = new List<Category>();
             listCategories.Add(new Category { name = "Coffe" });
             listCategories.Add(new Category { name = "Coffe1" });

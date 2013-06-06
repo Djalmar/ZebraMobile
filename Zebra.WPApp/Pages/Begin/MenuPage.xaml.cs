@@ -69,5 +69,9 @@ namespace Zebra.WPApp.Pages.Begin
                 }
             }
         }
+        private void goToPlaces(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/Places/PlacesBegin.xaml?", UriKind.Relative));
+        }
     }
 }

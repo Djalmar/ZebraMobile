@@ -115,6 +115,10 @@
     <Compile Include="Pages\Places\CategoriesPage.xaml.cs">
       <DependentUpon>CategoriesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Places\CategoryDetaill.xaml.cs" />
+    <Compile Include="Pages\Places\Place.xaml.cs" />
+    <Compile Include="Pages\Places\PlacesBegin.xaml.cs" />
+    <Compile Include="Pages\Places\PleceTotal.xaml.cs" />
     <Compile Include="Pages\Trouble\ProblemsPage.xaml.cs">
       <DependentUpon>ProblemsPage.xaml</DependentUpon>
     </Compile>
@@ -167,6 +171,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Places\CategoryDetaill.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Places\Place.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Places\PlacesBegin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Places\PleceTotal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\Trouble\ProblemsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,6 +216,16 @@
     <Content Include="Assets\AppBar\edit.png" />
     <Content Include="Assets\AppBar\share.png" />
     <Content Include="Assets\AppBar\upload.png" />
+    <Content Include="images\Icons\banc.png" />
+    <Content Include="images\Icons\build.png" />
+    <Content Include="images\Icons\cine.png" />
+    <Content Include="images\Icons\coffee.png" />
+    <Content Include="images\Icons\hospital.png" />
+    <Content Include="images\Icons\internet.png" />
+    <Content Include="images\Icons\night.png" />
+    <Content Include="images\Icons\restaurant.png" />
+    <Content Include="images\Icons\sports.png" />
+    <Content Include="images\Icons\transport.png" />
     <Content Include="MockData\EventsResult.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -244,9 +274,7 @@
       <Name>ZebrasLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="images\Icons\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">

@@ -9,7 +9,8 @@
     mc:Ignorable="d"
     SupportedOrientations="Portrait" Orientation="Portrait"
 	xmlns:tool="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="False"
+    xmlns:tk="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
     <phone:PhoneApplicationPage.Resources>
         <Storyboard x:Name="stbTitleAnimation" RepeatBehavior="Forever">
             <DoubleAnimation Duration="0:0:3" From="-600" To="600" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="textBlock" d:IsOptimized="True" />
@@ -28,6 +29,9 @@
                 <SolidColorBrush Color="Black" Opacity="0.4" />
             </TextBlock.Foreground>
         </TextBlock>
+        <tk:ListPicker>
+           
+        </tk:ListPicker>
         <TextBlock Visibility="Collapsed" Text="{Binding LocalizedResources.ResourceLanguage,TargetNullValue=FindPlaces, Mode=OneWay, Source={StaticResource LocalizedStrings}}" FontFamily="Century Gothic" ></TextBlock>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -55,7 +59,7 @@
                 <Border.Background>
                     <SolidColorBrush  Color="#FFE96F25" Opacity="0.9"></SolidColorBrush>
                 </Border.Background>
-                <Grid Background="Transparent">
+                <Grid Background="Transparent" Name="contentPlaces" Tap="goToPlaces">
                     <!--<Image Source="/Assets/MainPageIcons/dondeV2.png" Width="150" Height="150" Margin="32,39,31,74" />-->
                     <TextBlock Text="Places" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="72,0,0,11" FontFamily="Century Gothic" FontSize="24" ></TextBlock>
                 </Grid>
