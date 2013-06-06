@@ -1,31 +1,29 @@
-﻿using Microsoft.Phone.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Windows;
-using ZebrasLib.Classes;
+using System.Windows.Controls;
+using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using System.Windows.Media.Imaging;
 
 namespace Zebra.WPApp.Pages.Places
 {
-    public partial class CategoriesPage : PhoneApplicationPage
+    public partial class PlacesBegin : PhoneApplicationPage
     {
-        public CategoriesPage()
+        public PlacesBegin()
         {
             InitializeComponent();
-            this.Loaded += CategoriesPage_Loaded;
+           
         }
-
-        private void CategoriesPage_Loaded(object sender, RoutedEventArgs e)
+        
+        // Selection changed event
+        private void CategorySelected(object sender, SelectionChangedEventArgs e)
         {
-	    // Algun comentario
-            // Otro comentario
-            List<Category> listCategories = new List<Category>();
-            listCategories.Add(new Category { name = "Coffe" });
-            listCategories.Add(new Category { name = "Coffe1" });
-            listCategories.Add(new Category { name = "Coffe2" });
-            listCategories.Add(new Category { name = "Coffe3" });
-            listCategories.Add(new Category { name = "Coffe4" });
-
-            lstCategories.ItemsSource = listCategories;
+            //navegacion a la pagina SubCategories le mandas como queryString "category"
         }
+
     }
 }

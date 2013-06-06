@@ -17,12 +17,19 @@ namespace Zebra.WPApp.Pages.Places
         public CategoryDetaill()
         {
             InitializeComponent();
+            this.Loaded += CategoryDetaill_Loaded;
         }
+
+        void CategoryDetaill_Loaded(object sender, RoutedEventArgs e)
+        {
+            //llenamos a los 3 stackPanels All, Popular, Near
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
              base.OnNavigatedTo(e);
              string cat = NavigationContext.QueryString["category"];
-             txtCambiar.Title = cat;
+             txbCategory.Title = cat;
         }
     }
 }

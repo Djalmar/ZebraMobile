@@ -1,35 +1,39 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="Zebra.WPApp.Pages.Places.CategoriesPage"
+    x:Class="Zebra.WPApp.Pages.Places.PlacesBegin"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d"
-    shell:SystemTray.IsVisible="false">
-
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="361*"></RowDefinition>
-            <RowDefinition Height="143*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Categories"></TextBlock>
-        <ListBox Name="lstCategories">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding Icon}" Width="100" Height="100"></Image>
-                        <TextBlock Text="{Binding Name}"></TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <TextBlock Text="{Binding TargetNullValue=Places}" Style="{StaticResource stlTituloPagina}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <ScrollViewer>
+            <Grid>
+                <!--En este listBox llenas las categorias-->
+                <ListBox Name="lstCategoryList" SelectionChanged="CategorySelected" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="12">
+                                <Image Source="{Binding source}" Width="50" Height="50"></Image>
+                                <TextBlock Text="{Binding CategoryName}" VerticalAlignment="Center" Margin="12"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </ScrollViewer>
     </Grid>
+    
 </phone:PhoneApplicationPage>

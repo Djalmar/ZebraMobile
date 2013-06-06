@@ -29,9 +29,6 @@
                 <SolidColorBrush Color="Black" Opacity="0.4" />
             </TextBlock.Foreground>
         </TextBlock>
-        <tk:ListPicker>
-           
-        </tk:ListPicker>
         <TextBlock Visibility="Collapsed" Text="{Binding LocalizedResources.ResourceLanguage,TargetNullValue=FindPlaces, Mode=OneWay, Source={StaticResource LocalizedStrings}}" FontFamily="Century Gothic" ></TextBlock>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
