@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using System.Windows;
 using ZebrasLib.Classes;
 
 namespace ZebrasLib
@@ -37,6 +38,25 @@ namespace ZebrasLib
             Uri uri = new Uri(url, UriKind.Absolute);
             string downloadedInfo = await Internet.DownloadStringAsync(client, uri);
             return downloadedInfo;
+        }
+
+        public static bool thereIsNoProblemo(string status, string message)
+        {
+            switch (status)
+            {
+                case "200":
+                    return true;
+                case "400":
+                    MessageBox.Show(message);
+                    return false;
+                case "403":
+                    MessageBox.Show("You don't have permissions");
+                    return false; ;
+                case "500":
+                    MessageBox.Show("There was a problemo jefe");
+                    return false;
+                default: return false;
+            }
         }
     }
 }

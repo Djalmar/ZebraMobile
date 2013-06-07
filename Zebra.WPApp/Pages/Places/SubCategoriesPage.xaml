@@ -12,26 +12,36 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot">
-        <phone:Panorama Title="{Binding TargetNullValue=Category}" Name="txbCategory">
-            <phone:PanoramaItem Header="{Binding TargetNullValue=All}">
-                <StackPanel Name="stkAllPlaces">
-                    <!--Desde codigo añadimos los expanders llenados con los diferentes lugares-->
-                </StackPanel>
-            </phone:PanoramaItem>
-            <phone:PanoramaItem Header="{Binding TargetNullValue=Popular}">
-                <StackPanel Name="stkPopularPlaces">
-                    <!--Desde codigo añadimos los expanders llenados con los diferentes lugares-->
-                </StackPanel>
-            </phone:PanoramaItem>
-            <phone:PanoramaItem Header="{Binding TargetNullValue=Near}">
-                <StackPanel Name="stkNearPlaces">
-                    <!--Desde codigo añadimos los expanders llenados con los diferentes lugares-->
-                </StackPanel>
-            </phone:PanoramaItem>
-        </phone:Panorama>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding TargetNullValue=Places}" 
+                   Style="{StaticResource stlTituloPagina}" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Name="txbCategory"/>
+        <ScrollViewer Grid.Row="1">
+            <Grid>
+                <ListBox Name="lstCategoryList">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="12">
+                                <Image Source="{Binding icon}" 
+                                       Width="50" 
+                                       Height="50"/>
+                                <TextBlock Text="{Binding name}" 
+                                           VerticalAlignment="Center" 
+                                           Margin="12"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </ScrollViewer>
     </Grid>
+    
 </phone:PhoneApplicationPage>

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Navigation;
+using ZebrasLib;
 using ZebrasLib.Classes;
 using ZebrasLib.Events;
 using ZebrasLib.Facebook;
@@ -27,7 +28,7 @@ namespace Zebra.WPApp.Pages.Begin
                 #region Uso de mock data y descarga de informacion de facebook de los reporteros de un evento dado
 
                 EventResult result = EventsMethods.MockDataGetEvents();
-                if (EventsMethods.thereIsNoProblemo(result.status, result.message))
+                if (Main.thereIsNoProblemo(result.status, result.message))
                     result.eventsList = EventsMethods.formatedList(result.eventsList);
                 foreach (Event E in result.eventsList)
                 {

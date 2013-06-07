@@ -24,7 +24,6 @@ namespace Zebra.WPApp.Pages.Places
         void CategoriesPage_Loaded(object sender, RoutedEventArgs e)
         {
             lstCategoryList.ItemsSource = PlacesMethods.MockDataGetCategories();   
-
         }
 
         void lstCategoryList_SelectionChanged(object sender, SelectionChangedEventArgs e)

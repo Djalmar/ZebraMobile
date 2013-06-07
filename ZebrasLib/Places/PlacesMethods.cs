@@ -125,6 +125,27 @@ namespace ZebrasLib
 
                 return JsonConvert.DeserializeObject<List<Category>>(result);
             }
+            public static PlacesResult MockDataGetPlaces()
+            {
+                string direction = "MockData/PlacesResult.json";
+
+                #region getListFromJsonFile
+
+                var streamInfo = Application.GetResourceStream(new Uri(direction, UriKind.Relative));
+                string result = "";
+                if (null != streamInfo)
+                {
+                    using (var sr = new StreamReader(streamInfo.Stream))
+                    {
+                        result = sr.ReadToEnd();
+                    }
+                }
+
+                #endregion getListFromJsonFile
+
+                PlacesResult res = JsonConvert.DeserializeObject<PlacesResult>(result);
+                return res;
+            }
         }
     }
 }

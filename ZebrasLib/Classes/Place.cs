@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace ZebrasLib
 {
@@ -50,6 +51,18 @@ namespace ZebrasLib
 
             [JsonProperty("Longitude")]
             public double longitude { get; set; }
+        }
+
+        public class PlacesResult
+        {
+            [JsonProperty("Status")]
+            public string status { get; set; }
+
+            [JsonProperty("Message")]
+            public string message { get; set; }
+
+            [JsonProperty("Data")]
+            public List<Place> placesList { get; set; }
         }
     }
 }

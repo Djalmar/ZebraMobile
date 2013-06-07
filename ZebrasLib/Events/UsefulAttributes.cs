@@ -25,7 +25,7 @@ namespace ZebrasLib
                 string result = await Internet.DownloadStringAsync(client, uriAddress);
 
                 EventResult eventResult = JsonConvert.DeserializeObject<EventResult>(result);
-                if (thereIsNoProblemo(eventResult.status, eventResult.message))
+                if (Main.thereIsNoProblemo(eventResult.status, eventResult.message))
                     eventResult.eventsList = formatedList(eventResult.eventsList);
 
                 return eventResult;
@@ -67,25 +67,6 @@ namespace ZebrasLib
                 }
                 
                 return unformatedList;
-            }
-
-            public static bool thereIsNoProblemo(string status, string message)
-            {
-                switch (status)
-                {
-                    case "200":
-                        return true;
-                    case "400":
-                        MessageBox.Show(message);
-                        return false;
-                    case "403":
-                        MessageBox.Show("You don't have permissions");
-                        return false; ;
-                    case "500":
-                        MessageBox.Show("There was a problemo jefe");
-                        return false;
-                    default: return false;
-                }
             }
         }
     }

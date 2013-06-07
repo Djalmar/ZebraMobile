@@ -10,9 +10,9 @@ using Microsoft.Phone.Shell;
 
 namespace Zebra.WPApp.Pages.Places
 {
-    public partial class PlacesPage : PhoneApplicationPage
+    public partial class SelectedPlacePage : PhoneApplicationPage
     {
-        public PlacesPage()
+        public SelectedPlacePage()
         {
             InitializeComponent();
         }
