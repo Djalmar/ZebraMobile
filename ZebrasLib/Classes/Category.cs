@@ -6,19 +6,22 @@ namespace ZebrasLib
     {
         public class Category
         {
-            [JsonProperty("Code")]
+            [JsonProperty("code")]
             public string code { get; set; }
 
-            [JsonProperty("Name")]
+            [JsonProperty("name")]
             public string name { get; set; }
 
-            [JsonProperty("SpanishName")]
+            [JsonProperty("spanishName")]
             public string spanishName { get; set; }
 
-            [JsonProperty("ParentId")]
-            public long parentId { get; set; }
+            [JsonProperty("icon")]
+            public string icon { get; set; }
 
-            [JsonProperty("Parent")]
+            [JsonProperty("parentId")]
+            public string parentId { get; set; }
+
+            [JsonProperty("parent")]
             public Category parent { get; set; }
         }
     }

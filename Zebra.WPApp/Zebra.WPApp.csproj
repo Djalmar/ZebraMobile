@@ -115,7 +115,7 @@
     <Compile Include="Pages\Places\SubCategoriesPage.xaml.cs" />
     <Compile Include="Pages\Places\uscPlace.xaml.cs" />
     <Compile Include="Pages\Places\CategoriesPage.xaml.cs" />
-    <Compile Include="Pages\Places\PlacePage.cs" />
+    <Compile Include="Pages\Places\PlacesPage.cs" />
     <Compile Include="Pages\Trouble\ProblemsPage.xaml.cs">
       <DependentUpon>ProblemsPage.xaml</DependentUpon>
     </Compile>
@@ -176,7 +176,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\Places\Placepage.xaml">
+    <Page Include="Pages\Places\Placespage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -220,6 +220,12 @@
     <Content Include="images\Icons\sports.png" />
     <Content Include="images\Icons\transport.png" />
     <Content Include="MockData\EventsResult.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MockData\CategoriesResult.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MockData\SubCategoriesResult.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />

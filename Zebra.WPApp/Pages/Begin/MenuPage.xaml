@@ -56,7 +56,8 @@
                 <Border.Background>
                     <SolidColorBrush  Color="#FFE96F25" Opacity="0.9"></SolidColorBrush>
                 </Border.Background>
-                <Grid Background="Transparent" Name="contentPlaces" Tap="goToPlaces">
+                <Grid Background="Transparent" 
+                      Name="btnPlaces" Margin="-1,0,1,0">
                     <!--<Image Source="/Assets/MainPageIcons/dondeV2.png" Width="150" Height="150" Margin="32,39,31,74" />-->
                     <TextBlock Text="Places" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="72,0,0,11" FontFamily="Century Gothic" FontSize="24" ></TextBlock>
                 </Grid>
@@ -75,7 +76,8 @@
                 <Border.Background>
                     <SolidColorBrush Color="#FF00C267" Opacity="0.9" />
                 </Border.Background>
-                <Grid Background="Transparent">
+                <Grid Background="Transparent"
+                      Name="btnTraffic">
                     <Image Source="/Assets/MainPageIcons/sabe.png" Width="150" Height="150" Margin="31,32,31,72" />
                     <TextBlock Text="Traffic" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="12,0,0,12" FontFamily="Century Gothic" FontSize="24" ></TextBlock>
                 </Grid>

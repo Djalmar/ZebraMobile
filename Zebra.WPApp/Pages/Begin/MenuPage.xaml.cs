@@ -16,6 +16,8 @@ namespace Zebra.WPApp.Pages.Begin
             InitializeComponent();
             btnZebra.Tap += btnZebra_Tap;
             btnWallet.Tap += btnWallet_Tap;
+            btnPlaces.Tap += btnPlaces_Tap;
+            btnTraffic.Tap += btnTraffic_Tap;
         }
 
         private async void btnWallet_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -58,6 +60,17 @@ namespace Zebra.WPApp.Pages.Begin
             else MessageBox.Show("You're already Logged in");
         }
 
+
+        void btnPlaces_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/Places/CategoriesPage.xaml", UriKind.Relative));
+        }
+
+        void btnTraffic_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/Places/ProblemsPage.xaml", UriKind.Relative));
+        }
+
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
             base.OnBackKeyPress(e);
@@ -68,10 +81,6 @@ namespace Zebra.WPApp.Pages.Begin
                     NavigationService.RemoveBackEntry();
                 }
             }
-        }
-        private void goToPlaces(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/Pages/Places/PlacesBegin.xaml", UriKind.Relative));
         }
     }
 }

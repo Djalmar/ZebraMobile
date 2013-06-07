@@ -12,9 +12,9 @@ using System.Windows.Media.Imaging;
 
 namespace Zebra.WPApp.Pages.Places
 {
-    public partial class CategoryDetaill : PhoneApplicationPage
+    public partial class SubCategoriesPage : PhoneApplicationPage
     {
-        public CategoryDetaill()
+        public SubCategoriesPage()
         {
             InitializeComponent();
             this.Loaded += CategoryDetaill_Loaded;

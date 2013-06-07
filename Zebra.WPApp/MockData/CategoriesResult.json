@@ -1,0 +1,47 @@
+[
+	{
+		code:"catA1",
+		name:"food",
+		spanishName:"comida",
+		icon:"food.png",
+		parentID:"",
+		parent:
+		{}
+	},
+	{
+		code:"catA2",
+		name:"hotels",
+		spanishName:"hoteles",
+		icon:"hotels.png",
+		parentID:"",
+		parent:
+		{}
+	},
+	{
+		code:"catA3",
+		name:"education",
+		spanishName:"educacion",
+		icon:"education.png",
+		parentID:"",
+		parent:
+		{}
+	},
+	{
+		code:"catA4",
+		name:"shops and services",
+		spanishName:"tiendas y servicios",
+		icon:"shops.png",
+		parentID:"",
+		parent:
+		{}
+	},
+	{
+		code:"catA5",
+		name:"tourism",
+		spanishName:"turismo",
+		icon:"tourism.png",
+		parentID:"",
+		parent:
+		{}
+	}
+]
