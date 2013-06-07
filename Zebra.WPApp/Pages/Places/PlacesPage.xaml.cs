@@ -15,22 +15,35 @@ namespace Zebra.WPApp.Pages.Places
     public partial class PlacesPage : PhoneApplicationPage
     {
         PlacesResult result;
+        List<Category> lstSubCategpries;
         List<Place> lstPlaces;
         public PlacesPage()
         {
             InitializeComponent();
             this.Loaded += PlacesPage_Loaded;
             result = new PlacesResult();
+            lstSubCategpries = new List<Category>();
             lstPlaces = new List<Place>();
         }
 
         void PlacesPage_Loaded(object sender, RoutedEventArgs e)
         {
             result = PlacesMethods.MockDataGetPlaces();
+            lstSubCategpries = PlacesMethods.MockDataGetSubCategories();
             if (Main.thereIsNoProblemo(result.status, result.message))
             {
                 lstPlaces = result.placesList;
-                lstbAllPlaces.ItemsSource = lstPlaces;
+                foreach (var subCategory in lstSubCategpries)
+                {
+                    ExpanderView expander = new ExpanderView();
+                    expander.Header = subCategory.name;
+                    var query = from variable in lstPlaces where variable.categoryCode.Equals(subCategory.code) select variable;
+                    foreach (var place in query)
+                    {
+                        expander.Items.Add(place);
+                    }
+                }
+                //lstbAllPlaces.ItemsSource = lstPlaces;
             }
         }
 

@@ -12,8 +12,6 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
-    
-    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
