@@ -46,10 +46,7 @@ namespace ZebrasLib
 
             private static bool isNear(double latOne, double lonOne, double latTwo, double lonTwo, int distanceFromUser)
             {
-                double x = 69.1 * (latTwo - latOne);
-                double y = 53.0 * (lonTwo - lonOne);
-                double distance = Math.Sqrt(x * x + y * y);
-
+                double distance = Main.findDistance(latOne,lonOne,latTwo,lonTwo)
                 if (distance < distanceFromUser)
                     return true;
                 return false;

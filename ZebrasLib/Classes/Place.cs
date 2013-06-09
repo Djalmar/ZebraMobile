@@ -51,6 +51,8 @@ namespace ZebrasLib
 
             [JsonProperty("Longitude")]
             public double longitude { get; set; }
+
+            public double distance { get; set; }
         }
 
         public class PlacesResult

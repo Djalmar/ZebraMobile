@@ -18,35 +18,14 @@ namespace ZebrasLib
                 return await Main.GetCategoriesList(Main.urlCategories);
             }
 
-            public static async Task<List<Category>> getSubCategoriesByCategoy(string categoryCode)
-            {
-                string url = Main.urlCategories +
-                    "parentCat=" + categoryCode;
-                return await Main.GetCategoriesList(url);
-            }
-
-            public static async Task<List<Place>> getAllPlaces()
-            {
-                return await Main.GetPlacesList(Main.urlPlaces);
-            }
-
-            public static async Task<List<Place>> getAllPlaces(string categoryCode)
+            public static async Task<List<Place>> getAllPlacesByCategory(string categoryCode)
             {
                 string url = Main.urlPlaces +
                     "catCode=" + categoryCode;
                 return await Main.GetPlacesList(url);
             }
 
-            public static async Task<List<Place>> getNearPlaces(double latitude, double longitude, int nearDistance)
-            {
-                string url = Main.urlPlaces +
-                    "lat=" + latitude +
-                    "&lon=" + longitude +
-                    "&distance=" + nearDistance;
-                return await Main.GetPlacesList(url);
-            }
-
-            public static async Task<List<Place>> getNearPlaces(string categoryCode, double latitude, double longitude, int nearDistance)
+            public static async Task<List<Place>> getPlacesNearByCategory(string categoryCode, double latitude, double longitude, int nearDistance)
             {
                 string url = Main.urlPlaces +
                     "catCode=" + categoryCode +
@@ -56,45 +35,36 @@ namespace ZebrasLib
                 return await Main.GetPlacesList(url);
             }
 
-            public static async Task<List<Place>> getPlacesByCategory(string categoryCode)
+            public static async Task<List<Place>> getPlacesByQuery(string query, double latitude, double longitude)
             {
-                string url = Main.urlPlaces +
-                    "catCode=" + categoryCode;
-                return await Main.GetPlacesList(url);
-            }
-
-            public static async Task<List<Place>> getPlacesByCategory(string categoryCode, double latitude, double longitude, int nearDistance)
-            {
-                string url = Main.urlPlaces +
-                    "catCode=" + categoryCode +
-                    "&lat=" + latitude +
-                    "&lon=" + longitude +
-                    "&distance=" + nearDistance;
-                return await Main.GetPlacesList(url);
-            }
-
-            public static async Task<List<Place>> getPlacesByQuery(string query)
-            {
+                //tienen que estar ordenados por distancia
                 string url = Main.urlPlaces +
                     "query=" + query;
-                return await Main.GetPlacesList(url);
+                List<Place> lstPlaces = await Main.GetPlacesList(url);
+
+                return GetListOrderedByDistance(latitude, longitude, lstPlaces);
             }
 
-            public static async Task<List<Place>> getPlacesByQuery(string query, double latitude, double longitude, int nearDistance)
+            private static List<Place> GetListOrderedByDistance(double latitude, double longitude, List<Place> lstPlaces)
             {
-                string url = Main.urlPlaces +
-                    "query=" + query +
-                    "&lat=" + latitude +
-                    "&lon=" + longitude +
-                    "&distance=" + nearDistance;
-                return await Main.GetPlacesList(url);
+                foreach (Place P in lstPlaces)
+                    P.distance = Main.findDistance(P.latitude, P.longitude, latitude, longitude);
+
+                IEnumerable<Place> newList = from allPlaces
+                                            in lstPlaces
+                                            orderby allPlaces.distance ascending
+                                            select allPlaces;
+                return newList.ToList();
             }
 
-            public static async Task<Place> getPlaceByCode(string placeCode)
+            public static List<Place> getListOrderedByPopularity(List<Place> lstPlaces)
             {
-                string url = Main.urlPlaces +
-                   "placeCode=" + placeCode;
-                return (await Main.GetPlacesList(url)).First();
+                IEnumerable<Place> newList =    from allPlaces
+                                                in lstPlaces
+                                                where allPlaces.rating >=7
+                                                orderby allPlaces.distance descending
+                                                select allPlaces;
+                return newList.ToList();
             }
 
             public static List<Category> MockDataGetCategories()
@@ -125,6 +95,7 @@ namespace ZebrasLib
 
                 return JsonConvert.DeserializeObject<List<Category>>(result);
             }
+            
             public static PlacesResult MockDataGetPlaces()
             {
                 string direction = "MockData/PlacesResult.json";

@@ -58,5 +58,12 @@ namespace ZebrasLib
                 default: return false;
             }
         }
+
+        public static double findDistance(double latA, double lonA, double latB, double lonB)
+        {
+            double x = 69.1 * (latB - latA);
+            double y = 53.0 * (lonB - lonA);
+            return Math.Sqrt(x * x + y * y);
+        }
     }
 }
