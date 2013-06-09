@@ -17,6 +17,7 @@ namespace Zebra.WPApp.Pages.Places
         PlacesResult result;
         List<Category> lstSubCategpries;
         List<Place> lstPlaces;
+        List<myCategory> bindingList;
         public PlacesPage()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace Zebra.WPApp.Pages.Places
             result = new PlacesResult();
             lstSubCategpries = new List<Category>();
             lstPlaces = new List<Place>();
+            bindingList = new List<myCategory>();
         }
 
         void PlacesPage_Loaded(object sender, RoutedEventArgs e)
@@ -35,15 +37,17 @@ namespace Zebra.WPApp.Pages.Places
                 lstPlaces = result.placesList;
                 foreach (var subCategory in lstSubCategpries)
                 {
-                    ExpanderView expander = new ExpanderView();
-                    expander.Header = subCategory.name;
+                    myCategory categoria = new myCategory();
+                    categoria.Categoryy = subCategory;
                     var query = from variable in lstPlaces where variable.categoryCode.Equals(subCategory.code) select variable;
-                    foreach (var place in query)
+                    categoria.PlacesList = new List<Place>();
+                    foreach (var item in query)
                     {
-                        expander.Items.Add(place);
+                        categoria.PlacesList.Add(item);
                     }
+                    bindingList.Add(categoria);
                 }
-                //lstbAllPlaces.ItemsSource = lstPlaces;
+                lstPopular.ItemsSource = bindingList;
             }
         }
 
@@ -51,6 +55,28 @@ namespace Zebra.WPApp.Pages.Places
         {
             base.OnNavigatedTo(e);
             txbCategory.Title = NavigationContext.QueryString["category"];
+        }
+    }
+    class myCategory
+    {
+        private Category category;
+
+        public Category Categoryy
+        {
+            get { return category; }
+            set { category = value; }
+        }
+        
+        private List<Place> placesList;
+
+        public List<Place> PlacesList
+        {
+            get { return placesList; }
+            set { placesList = value; }
+        }
+        public myCategory()
+        {
+
         }
     }
 }

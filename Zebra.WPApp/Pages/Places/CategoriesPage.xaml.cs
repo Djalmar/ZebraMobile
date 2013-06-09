@@ -29,8 +29,10 @@ namespace Zebra.WPApp.Pages.Places
         void lstCategoryList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Category selectedcategory = lstCategoryList.SelectedItem as Category;
-            if (selectedcategory.name != "")
-                NavigationService.Navigate(new Uri("/Pages/Places/SubCategoriesPage.xaml?category="+selectedcategory.name, UriKind.Relative));
+
+            if (selectedcategory != null)
+                if (selectedcategory.name != "")
+                    NavigationService.Navigate(new Uri("/Pages/Places/PlacesPage.xaml?category=" + selectedcategory.name, UriKind.Relative));
         }
     }
 }

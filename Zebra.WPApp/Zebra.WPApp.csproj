@@ -118,7 +118,6 @@
     <Compile Include="Pages\Places\SelectedPlacePage.xaml.cs">
       <DependentUpon>SelectedPlacePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Places\SubCategoriesPage.xaml.cs" />
     <Compile Include="Pages\Places\uscPlace.xaml.cs" />
     <Compile Include="Pages\Places\CategoriesPage.xaml.cs" />
     <Compile Include="Pages\Trouble\ProblemsPage.xaml.cs">
@@ -176,10 +175,6 @@
     <Page Include="Pages\Places\SelectedPlacePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Places\SubCategoriesPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Places\uscPlace.xaml">
       <Generator>MSBuild:Compile</Generator>

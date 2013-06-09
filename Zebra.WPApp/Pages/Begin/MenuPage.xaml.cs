@@ -69,7 +69,7 @@ namespace Zebra.WPApp.Pages.Begin
 
         void btnTraffic_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Pages/Places/ProblemsPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Pages/Trouble/TroublesPage.xaml", UriKind.Relative));
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)

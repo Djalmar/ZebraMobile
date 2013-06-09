@@ -2,6 +2,7 @@
     x:Class="Zebra.WPApp.Pages.Places.PlacesPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:tool="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -38,9 +39,38 @@
                 </StackPanel>
             </phone:PanoramaItem>
             <phone:PanoramaItem Header="{Binding TargetNullValue=Popular}">
-                <StackPanel Name="stkPopularPlaces">
-                    <!--Desde codigo añadimos los expanders llenados con los diferentes lugares-->
-                </StackPanel>
+                <ListBox Grid.Row="0" x:Name="lstPopular">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <tool:ExpanderView Header="{Binding Path=Categoryy.name}" Expander="{Binding}"
+                                ItemsSource="{Binding PlacesList}"
+                                NonExpandableHeader="{Binding}"
+                                IsNonExpandable="{Binding HasNoOptions}" 
+                                IsExpanded="{Binding IsExpanded, Mode=TwoWay}">
+                                <tool:ExpanderView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Border Width="50" Height="50" Background="Red"></Border>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Path=name}"></TextBlock>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </tool:ExpanderView.ItemTemplate>
+                            </tool:ExpanderView>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </phone:PanoramaItem>
             <phone:PanoramaItem Header="{Binding TargetNullValue=Near}">
                 <StackPanel Name="stkNearPlaces">

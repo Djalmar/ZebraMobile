@@ -23,19 +23,21 @@
         <phone:Panorama Title="{Binding TargetNullValue=wht_s_gng_n}">
             <phone:PanoramaItem Header="{Binding TargetNullValue=Mp}">
                 <Grid>
-                    <maps:Map Name="mapTroubles">
-                    </maps:Map>
+                    <!--<maps:Map Name="mapTroubles">
+                    </maps:Map>-->
                 </Grid>
             </phone:PanoramaItem>
             <phone:PanoramaItem Header="{Binding TargetNullValue=Troubles}">
-                <ListBox>
+                <ListBox Name="lstTroubles">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <Image Height="50" Width="50"></Image>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding title}"></TextBlock>
-                                    <TextBlock Text="{Binding TargetNullValue=something}"></TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="{StaticResource PhoneAccentBrush}" Margin="12">
+                                    <Image Height="100" Width="100" Source="/images/Icons/coffee.png"></Image>
+                                </Border>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding reportedAt}" FontSize="32"></TextBlock>
+                                    <TextBlock Text="{Binding description}" FontSize="24"></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -45,5 +47,10 @@
         </phone:Panorama>
         
     </Grid>
-
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+            <shell:ApplicationBarIconButton Text="Report" IconUri="/Assets/AppBar/upload.png" Click="btnReportClick"></shell:ApplicationBarIconButton>
+            <shell:ApplicationBarIconButton Text="Share" IconUri="/Assets/AppBar/share.png" Click="btnShareClick"></shell:ApplicationBarIconButton>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
 </phone:PhoneApplicationPage>

@@ -13,32 +13,52 @@
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <TextBlock Text="{Binding TargetNullValue=Places}" 
-                   Style="{StaticResource stlTituloPagina}" 
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
-        <ScrollViewer Grid.Row="1">
-            <Grid>
-                <ListBox Name="lstCategoryList">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="12">
-                                <Image Source="{Binding icon}" 
-                                       Width="50" 
-                                       Height="50"/>
-                                <TextBlock Text="{Binding name}" 
-                                           VerticalAlignment="Center" 
-                                           Margin="12"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Grid>
-        </ScrollViewer>
+        <phone:Pivot>
+            <!--<phone:Pivot.TitleTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding TargetNullValue=Places}" FontSize="38" Width="440" TextAlignment="Center"></TextBlock>
+                </DataTemplate>
+            </phone:Pivot.TitleTemplate>-->
+            <phone:PivotItem Header="{Binding TargetNullValue=Categories}">
+                <Grid>
+                    <ScrollViewer Grid.Row="2">
+                        <Grid>
+                            <ListBox Name="lstCategoryList">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Margin="12">
+                                            <Border Background="{StaticResource PhoneAccentBrush}" Width="100" Height="100">
+                                                <Image 
+                                                Source="{Binding icon}" 
+                                                Width="50" 
+                                                Height="50"/>
+                                            </Border>
+                                            <TextBlock 
+                                                Text="{Binding name}" 
+                                                VerticalAlignment="Center" 
+                                                Margin="12" 
+                                                FontSize="32"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </phone:PivotItem>
+            
+            <phone:PivotItem Header="{Binding TargetNullValue=Search}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <TextBox Name="txtSearch"/>
+                        <Image Width="40" Height="44" HorizontalAlignment="Right" Margin="0,0,16,0" Source="/Assets/AppBar/add.png"></Image>
+                    </Grid>
+                </Grid>
+            </phone:PivotItem>
+        </phone:Pivot>
     </Grid>
-    
 </phone:PhoneApplicationPage>

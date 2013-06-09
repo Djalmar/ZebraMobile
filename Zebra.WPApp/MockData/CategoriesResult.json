@@ -3,7 +3,7 @@
 		code:"catA1",
 		name:"food",
 		spanishName:"comida",
-		icon:"food.png",
+		icon:"/images/Icons/restaurant.png",
 		parentID:"",
 		parent:
 		{}
@@ -12,7 +12,7 @@
 		code:"catA2",
 		name:"hotels",
 		spanishName:"hoteles",
-		icon:"hotels.png",
+		icon:"/images/Icons/build.png",
 		parentID:"",
 		parent:
 		{}
@@ -21,7 +21,7 @@
 		code:"catA3",
 		name:"education",
 		spanishName:"educacion",
-		icon:"education.png",
+		icon:"/images/Icons/hospital.png",
 		parentID:"",
 		parent:
 		{}
@@ -30,7 +30,7 @@
 		code:"catA4",
 		name:"shops and services",
 		spanishName:"tiendas y servicios",
-		icon:"shops.png",
+		icon:"/images/Icons/banc.png",
 		parentID:"",
 		parent:
 		{}
@@ -39,7 +39,7 @@
 		code:"catA5",
 		name:"tourism",
 		spanishName:"turismo",
-		icon:"tourism.png",
+		icon:"/images/Icons/internet.png",
 		parentID:"",
 		parent:
 		{}
