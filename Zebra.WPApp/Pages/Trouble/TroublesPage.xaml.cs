@@ -43,5 +43,16 @@ namespace Zebra.WPApp.Pages.Trouble
                 lstTroubles.ItemsSource = troublesList;
             }
         }
+
+        //REPORT
+        private void ApplicationBarIconButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ApplicationBarIconButton_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

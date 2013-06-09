@@ -39,7 +39,7 @@
                 </StackPanel>
             </phone:PanoramaItem>
             <phone:PanoramaItem Header="{Binding TargetNullValue=Popular}">
-                <ListBox Grid.Row="0" x:Name="lstPopular" Tap="lstPopular_Tap">
+                <ListBox Grid.Row="0" x:Name="lstPopular">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -76,7 +76,7 @@
                                 <tool:ExpanderView.ItemTemplate>
                                     <DataTemplate>
                                             <ListBoxItem>
-                                                <StackPanel Tap="StackPanel_Tap" Tag="{Binding Path=name}">
+                                                <StackPanel Tap="StackPanel_Tap" Tag="{Binding Path=id}">
                                                     <TextBlock Name="txbName" Text="{Binding Path=name}" FontSize="{StaticResource PhoneFontSizeLarge}" FontFamily="{StaticResource PhoneFontFamilyLight}"></TextBlock>
                                                     <TextBlock Text="{Binding Path=address}" FontSize="{StaticResource PhoneFontSizeNormal}"></TextBlock>
                                                 </StackPanel>

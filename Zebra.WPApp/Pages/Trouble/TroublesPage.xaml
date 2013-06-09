@@ -47,10 +47,10 @@
         </phone:Panorama>
         
     </Grid>
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
+    <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar>
-            <shell:ApplicationBarIconButton Text="Report" IconUri="/Assets/AppBar/upload.png" Click="btnReportClick"></shell:ApplicationBarIconButton>
-            <shell:ApplicationBarIconButton Text="Share" IconUri="/Assets/AppBar/share.png" Click="btnShareClick"></shell:ApplicationBarIconButton>
+            <shell:ApplicationBarIconButton Text="Report" IconUri="/Assets/AppBar/upload.png" Click="ApplicationBarIconButton_Click"></shell:ApplicationBarIconButton>
+            <shell:ApplicationBarIconButton Text="Share" IconUri="/Assets/AppBar/share.png" Click="ApplicationBarIconButton_Click_1"></shell:ApplicationBarIconButton>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

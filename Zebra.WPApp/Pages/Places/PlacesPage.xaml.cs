@@ -60,7 +60,8 @@ namespace Zebra.WPApp.Pages.Places
         private void StackPanel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             //mandas un query o algo asi tu PEDO
-            NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml",UriKind.Relative);
+            // el sender es un stackPanel y el ID esta en la propiedad Tag
+            NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml", UriKind.Relative));
         }
     }
     class myCategory
