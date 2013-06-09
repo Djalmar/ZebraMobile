@@ -25,31 +25,8 @@ namespace ZebrasLib
                 return await Main.GetPlacesList(url);
             }
 
-            public static async Task<List<Place>> getPlacesNearByCategory(string categoryCode, double latitude, double longitude, int nearDistance)
-            {
-                string url = Main.urlPlaces +
-                    "catCode=" + categoryCode +
-                    "&lat=" + latitude +
-                    "&lon=" + longitude +
-                    "&distance=" + nearDistance;
-                return await Main.GetPlacesList(url);
-            }
-
-            public static async Task<List<Place>> getPlacesByQuery(string query, double latitude, double longitude)
-            {
-                //tienen que estar ordenados por distancia
-                string url = Main.urlPlaces +
-                    "query=" + query;
-                List<Place> lstPlaces = await Main.GetPlacesList(url);
-
-                return getPlacesOrderedByDistance(latitude, longitude, lstPlaces);
-            }
-
             public static List<Place> getPlacesOrderedByDistance(double latitude, double longitude, List<Place> lstPlaces)
             {
-                foreach (Place P in lstPlaces)
-                    P.distance = Main.findDistance(P.latitude, P.longitude, latitude, longitude);
-
                 IEnumerable<Place> newList = from allPlaces
                                             in lstPlaces
                                             orderby allPlaces.distance ascending
@@ -67,6 +44,24 @@ namespace ZebrasLib
                 return newList.ToList();
             }
 
+            public static List<Place> getDistancesForEachPlace(double latitude, double longitude, List<Place> lstPlaces)
+            {
+                foreach (Place P in lstPlaces)
+                    P.distance = Main.findDistance(P.latitude, P.longitude, latitude, longitude);
+                return lstPlaces;
+            }
+
+            public static async Task<List<Place>> getPlacesByQuery(string query, double latitude, double longitude)
+            {
+                //tienen que estar ordenados por distancia
+                string url = Main.urlPlaces +
+                    "query=" + query;
+                List<Place> lstPlaces = await Main.GetPlacesList(url);
+
+                return getPlacesOrderedByDistance(latitude, longitude, lstPlaces);
+            }
+
+            #region MockData
             public static List<Category> MockDataGetCategories()
             {
                 string direction = "MockData/CategoriesResult.json";
@@ -95,7 +90,7 @@ namespace ZebrasLib
 
                 return JsonConvert.DeserializeObject<List<Category>>(result);
             }
-            
+
             public static PlacesResult MockDataGetPlaces()
             {
                 string direction = "MockData/PlacesResult.json";
@@ -117,6 +112,8 @@ namespace ZebrasLib
                 PlacesResult res = JsonConvert.DeserializeObject<PlacesResult>(result);
                 return res;
             }
+
+            #endregion
         }
     }
 }

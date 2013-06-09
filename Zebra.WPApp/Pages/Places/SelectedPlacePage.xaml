@@ -11,21 +11,30 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False"
+    xmlns:map="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps">
 
-    <Grid x:Name="LayoutRoot">
-        <phone:Panorama Title="my application" Name="panPlace">
-
-            <!--Panorama item one-->
-            <phone:PanoramaItem Header="item1" Name="itmPlace">
-                <Grid/>
-            </phone:PanoramaItem>
-
-            <!--Panorama item two-->
-            <phone:PanoramaItem Header="item2" Name="itmPlaceMap">
-                <Grid/>
-            </phone:PanoramaItem>
-        </phone:Panorama>
-    </Grid>
+    <phone:Panorama Name="panPlace">
+        <phone:PanoramaItem Header="Where is it" 
+                            Name="itmPlace">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <map:Map Name="mapLocation"/>
+                <TextBlock Name="txtLocationAddress"
+                           Grid.Row="1"/>
+                <TextBlock Name="txtLocationDistance"
+                           Grid.Row="2"/>
+            </Grid>
+        </phone:PanoramaItem>
+            
+        <phone:PanoramaItem Header="Info" 
+                            Name="itmPlaceMap">
+            <Grid/>
+        </phone:PanoramaItem>
+    </phone:Panorama>
     
 </phone:PhoneApplicationPage>

@@ -16,5 +16,14 @@ namespace Zebra.WPApp.Pages.Places
         {
             InitializeComponent();
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+
+            panPlace.Title = staticClasses.selectedPlace.name;
+            txtLocationAddress.Text = staticClasses.selectedPlace.address;
+            txtLocationDistance.Text = staticClasses.selectedPlace.distance.ToString();
+        }
     }
 }

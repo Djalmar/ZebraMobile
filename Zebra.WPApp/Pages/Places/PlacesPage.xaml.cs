@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Device.Location;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Navigation;
 using ZebrasLib;
 using ZebrasLib.Classes;
@@ -31,14 +32,6 @@ namespace Zebra.WPApp.Pages.Places
         {
             watcher.Start();
             watcher.MovementThreshold = 200;
-
-            result = PlacesMethods.MockDataGetPlaces();
-            noProblemo = Main.thereIsNoProblemo(result.status, result.message);
-            if (noProblemo)
-            {
-                lstbAllPlaces.ItemsSource = getDajaCategories(result.placesList);
-                lstbPopularPlaces.ItemsSource = getDajaCategories(PlacesMethods.getPlacesOrderedByPopularity(result.placesList));
-            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -49,12 +42,24 @@ namespace Zebra.WPApp.Pages.Places
 
         private void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
+            result = PlacesMethods.MockDataGetPlaces();
+            noProblemo = Main.thereIsNoProblemo(result.status, result.message);
             if (noProblemo)
+            {
+                result.placesList = PlacesMethods.getDistancesForEachPlace(
+                    e.Position.Location.Latitude,
+                    e.Position.Location.Longitude,
+                    result.placesList);
+
+                lstbAllPlaces.ItemsSource = getDajaCategories(result.placesList);
+                lstbPopularPlaces.ItemsSource = getDajaCategories(PlacesMethods.getPlacesOrderedByPopularity(result.placesList));
                 lstbNearPlaces.ItemsSource =
                     getDajaCategories(PlacesMethods.getPlacesOrderedByDistance(
                         e.Position.Location.Latitude,
                         e.Position.Location.Longitude,
                         result.placesList));
+            }
+                
         }
 
         private void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
@@ -74,11 +79,10 @@ namespace Zebra.WPApp.Pages.Places
             }
         }
 
-        private void StackPanel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void placeSelected(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            //mandas un query o algo asi tu PEDO
-            // el sender es un stackPanel y el ID esta en la propiedad Tag
-            NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml", UriKind.Relative));
+            staticClasses.selectedPlace = (((sender as StackPanel).Tag) as Place);
+            NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml",UriKind.Relative));
         }
 
         private List<bindingCategory> getDajaCategories(List<Place> lstPlaces)

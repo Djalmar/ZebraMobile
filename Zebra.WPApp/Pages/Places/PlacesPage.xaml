@@ -48,7 +48,8 @@
                         <tool:ExpanderView.ItemTemplate>
                             <DataTemplate>
                                 <ListBoxItem>
-                                    <StackPanel Tap="StackPanel_Tap" Tag="{Binding Path=id}">
+                                    <StackPanel Tap="placeSelected"
+                                                Tag="{Binding}">
                                         <TextBlock Name="txbName" Text="{Binding Path=name}" 
                                                    FontSize="{StaticResource PhoneFontSizeLarge}" 
                                                    FontFamily="{StaticResource PhoneFontFamilyLight}"/>
@@ -63,12 +64,12 @@
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel.Resources>
                                         <Style TargetType="TextBlock">
-                                            <Setter Property="FontSize" Value="28"></Setter>
-                                            <Setter Property="Opacity" Value="0.5"></Setter>
+                                            <Setter Property="FontSize" Value="28"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
                                         </Style>
                                     </StackPanel.Resources>
-                                    <TextBlock Text="{Binding Path=lstPlaces.Count}"></TextBlock>
-                                    <TextBlock Text="  places found"></TextBlock>
+                                    <TextBlock Text="{Binding Path=lstPlaces.Count}"/>
+                                    <TextBlock Text="  places found"/>
                                 </StackPanel>
                             </DataTemplate>
                         </tool:ExpanderView.ExpanderTemplate>
