@@ -42,10 +42,10 @@ namespace ZebrasLib
                     "query=" + query;
                 List<Place> lstPlaces = await Main.GetPlacesList(url);
 
-                return GetListOrderedByDistance(latitude, longitude, lstPlaces);
+                return getPlacesOrderedByDistance(latitude, longitude, lstPlaces);
             }
 
-            private static List<Place> GetListOrderedByDistance(double latitude, double longitude, List<Place> lstPlaces)
+            public static List<Place> getPlacesOrderedByDistance(double latitude, double longitude, List<Place> lstPlaces)
             {
                 foreach (Place P in lstPlaces)
                     P.distance = Main.findDistance(P.latitude, P.longitude, latitude, longitude);
@@ -57,7 +57,7 @@ namespace ZebrasLib
                 return newList.ToList();
             }
 
-            public static List<Place> getListOrderedByPopularity(List<Place> lstPlaces)
+            public static List<Place> getPlacesOrderedByPopularity(List<Place> lstPlaces)
             {
                 IEnumerable<Place> newList =    from allPlaces
                                                 in lstPlaces

@@ -16,98 +16,107 @@
     shell:SystemTray.IsVisible="False">
 
     <Grid x:Name="LayoutRoot">
-        <phone:Panorama Title="{Binding TargetNullValue=Category}" 
-                        Name="txbCategory">
-            <phone:PanoramaItem Header="{Binding TargetNullValue=All}">
-                <StackPanel Name="stkAllPlaces">
-                    <ListBox Name="lstbAllPlaces"
-                             Height="500">
-                        <ListBox.ItemTemplate>
+        <Grid.Resources>
+            <DataTemplate x:Key="expanderList">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border VerticalAlignment="Top" Margin="12" 
+                            Background="{StaticResource PhoneAccentBrush}" 
+                            Width="100" Height="100">
+                        <Image Source="{Binding Path=category.icon}" 
+                               Width="70" 
+                               Height="70"/>
+                    </Border>
+                    <tool:ExpanderView Header="{Binding}" Grid.Column="1"
+                                               Expander="{Binding}"
+                                               ItemsSource="{Binding lstPlaces}"
+                                               NonExpandableHeader="{Binding}"
+                                               IsNonExpandable="{Binding HasNoOptions}" 
+                                               IsExpanded="{Binding IsExpanded, Mode=TwoWay}">
+                        <tool:ExpanderView.HeaderTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding Icon}"/>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding Name}"
-                                                   FontSize="23"/>
-                                        <TextBlock Text="{Binding Address}"
-                                                   FontSize="23"/>
-                                    </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="12">
+                                    <TextBlock Text="{Binding Path=category.name}" 
+                                               FontSize="{StaticResource PhoneFontSizeLarge}" 
+                                               FontFamily="{StaticResource PhoneFontFamilyLight}"/>
                                 </StackPanel>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>
-            </phone:PanoramaItem>
-            <phone:PanoramaItem Header="{Binding TargetNullValue=Popular}">
-                <ListBox Grid.Row="0" x:Name="lstPopular">
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="ListBoxItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        </Style>
-                    </ListBox.ItemContainerStyle>
+                        </tool:ExpanderView.HeaderTemplate>
+                        <tool:ExpanderView.ItemTemplate>
+                            <DataTemplate>
+                                <ListBoxItem>
+                                    <StackPanel Tap="StackPanel_Tap" Tag="{Binding Path=id}">
+                                        <TextBlock Name="txbName" Text="{Binding Path=name}" 
+                                                   FontSize="{StaticResource PhoneFontSizeLarge}" 
+                                                   FontFamily="{StaticResource PhoneFontFamilyLight}"/>
+                                        <TextBlock Text="{Binding Path=address}" 
+                                                   FontSize="{StaticResource PhoneFontSizeNormal}"/>
+                                    </StackPanel>
+                                </ListBoxItem>
+                            </DataTemplate>
+                        </tool:ExpanderView.ItemTemplate>
+                        <tool:ExpanderView.ExpanderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="FontSize" Value="28"></Setter>
+                                            <Setter Property="Opacity" Value="0.5"></Setter>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <TextBlock Text="{Binding Path=lstPlaces.Count}"></TextBlock>
+                                    <TextBlock Text="  places found"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </tool:ExpanderView.ExpanderTemplate>
+                    </tool:ExpanderView>
+                </Grid>
+            </DataTemplate>
+            <Style TargetType="ListBoxItem" x:Key="expanderListItem">
+                <Setter Property="HorizontalContentAlignment" 
+                                    Value="Stretch"/>
+            </Style>
+        </Grid.Resources>
+        <phone:Panorama Title="{Binding TargetNullValue=Category}" 
+                        Name="txbCategory">
+            
+            <phone:PanoramaItem Header="{Binding TargetNullValue=All}">
+                <ListBox Grid.Row="0" x:Name="lstbAllPlaces"
+                         ItemTemplate="{StaticResource expanderList}"
+                         ItemContainerStyle="{StaticResource expanderListItem}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel/>
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Border VerticalAlignment="Top" Margin="12" Background="{StaticResource PhoneAccentBrush}" Width="100" Height="100">
-                                    <Image Source="{Binding Path=Categoryy.icon}" Width="70" Height="70"></Image>
-                                </Border>
-                                <tool:ExpanderView Header="{Binding}" Grid.Column="1"
-                                               Expander="{Binding}"
-                                               ItemsSource="{Binding PlacesList}"
-                                               NonExpandableHeader="{Binding}"
-                                               IsNonExpandable="{Binding HasNoOptions}" 
-                                               IsExpanded="{Binding IsExpanded, Mode=TwoWay}">
-                                <tool:ExpanderView.HeaderTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" Margin="12">
-                                            <TextBlock Text="{Binding Path=Categoryy.name}" FontSize="{StaticResource PhoneFontSizeLarge}" FontFamily="{StaticResource PhoneFontFamilyLight}"></TextBlock>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </tool:ExpanderView.HeaderTemplate>
-                                <tool:ExpanderView.ItemTemplate>
-                                    <DataTemplate>
-                                            <ListBoxItem>
-                                                <StackPanel Tap="StackPanel_Tap" Tag="{Binding Path=id}">
-                                                    <TextBlock Name="txbName" Text="{Binding Path=name}" FontSize="{StaticResource PhoneFontSizeLarge}" FontFamily="{StaticResource PhoneFontFamilyLight}"></TextBlock>
-                                                    <TextBlock Text="{Binding Path=address}" FontSize="{StaticResource PhoneFontSizeNormal}"></TextBlock>
-                                                </StackPanel>
-                                            </ListBoxItem>
-                                        </DataTemplate>
-                                </tool:ExpanderView.ItemTemplate>
-                                <tool:ExpanderView.ExpanderTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <StackPanel.Resources>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="FontSize" Value="28"></Setter>
-                                                    <Setter Property="Opacity" Value="0.5"></Setter>
-                                                </Style>
-                                            </StackPanel.Resources>
-                                            <TextBlock Text="{Binding Path=PlacesList.Count}"></TextBlock>
-                                            <TextBlock Text="  places found"></TextBlock>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </tool:ExpanderView.ExpanderTemplate>
-                            </tool:ExpanderView>
-                            <!--</StackPanel>-->
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
                 </ListBox>
             </phone:PanoramaItem>
+            
+            <phone:PanoramaItem Header="{Binding TargetNullValue=Popular}">
+                <ListBox Grid.Row="0" x:Name="lstbPopularPlaces"
+                         ItemTemplate="{StaticResource expanderList}"
+                         ItemContainerStyle="{StaticResource expanderListItem}">
+                         <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                </ListBox>
+            </phone:PanoramaItem>
+            
             <phone:PanoramaItem Header="{Binding TargetNullValue=Near}">
-                <StackPanel Name="stkNearPlaces">
-                    <!--Desde codigo añadimos los expanders llenados con los diferentes lugares-->
-                </StackPanel>
+                <ListBox Grid.Row="0" x:Name="lstbNearPlaces"
+                         ItemTemplate="{StaticResource expanderList}"
+                         ItemContainerStyle="{StaticResource expanderListItem}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
             </phone:PanoramaItem>
         </phone:Panorama>
     </Grid>

@@ -1,53 +1,43 @@
-﻿using System;
+﻿using Microsoft.Phone.Controls;
+using System;
 using System.Collections.Generic;
+using System.Device.Location;
 using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
+using ZebrasLib;
 using ZebrasLib.Classes;
 using ZebrasLib.Places;
-using ZebrasLib;
+
 namespace Zebra.WPApp.Pages.Places
 {
     public partial class PlacesPage : PhoneApplicationPage
     {
-        PlacesResult result;
-        List<Category> lstSubCategpries;
-        List<Place> lstPlaces;
-        List<myCategory> bindingList;
+        private PlacesResult result;
+        private GeoCoordinateWatcher watcher;
+        private bool noProblemo;
+
         public PlacesPage()
         {
             InitializeComponent();
             this.Loaded += PlacesPage_Loaded;
             result = new PlacesResult();
-            lstSubCategpries = new List<Category>();
-            lstPlaces = new List<Place>();
-            bindingList = new List<myCategory>();
+            watcher = new GeoCoordinateWatcher();
+            watcher.StatusChanged += watcher_StatusChanged;
+            watcher.PositionChanged += watcher_PositionChanged;
         }
 
-        void PlacesPage_Loaded(object sender, RoutedEventArgs e)
+        private void PlacesPage_Loaded(object sender, RoutedEventArgs e)
         {
+            watcher.Start();
+            watcher.MovementThreshold = 200;
+
             result = PlacesMethods.MockDataGetPlaces();
-            lstSubCategpries = PlacesMethods.MockDataGetSubCategories();
-            if (Main.thereIsNoProblemo(result.status, result.message))
+            noProblemo = Main.thereIsNoProblemo(result.status, result.message);
+            if (noProblemo)
             {
-                lstPlaces = result.placesList;
-                foreach (var subCategory in lstSubCategpries)
-                {
-                    myCategory categoria = new myCategory();
-                    categoria.Categoryy = subCategory;
-                    var query = from variable in lstPlaces where variable.categoryCode.Equals(subCategory.code) select variable;
-                    categoria.PlacesList = new List<Place>();
-                    foreach (var item in query)
-                    {
-                        categoria.PlacesList.Add(item);
-                    }
-                    bindingList.Add(categoria);
-                }
-                lstPopular.ItemsSource = bindingList;
+                lstbAllPlaces.ItemsSource = getDajaCategories(result.placesList);
+                lstbPopularPlaces.ItemsSource = getDajaCategories(PlacesMethods.getPlacesOrderedByPopularity(result.placesList));
             }
         }
 
@@ -57,33 +47,60 @@ namespace Zebra.WPApp.Pages.Places
             txbCategory.Title = NavigationContext.QueryString["category"];
         }
 
+        private void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            if (noProblemo)
+                lstbNearPlaces.ItemsSource =
+                    getDajaCategories(PlacesMethods.getPlacesOrderedByDistance(
+                        e.Position.Location.Latitude,
+                        e.Position.Location.Longitude,
+                        result.placesList));
+        }
+
+        private void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
+        {
+            switch (e.Status)
+            {
+                case GeoPositionStatus.Disabled:
+                    MessageBox.Show("GPS Disabled");
+                    break;
+
+                case GeoPositionStatus.NoData:
+                    MessageBox.Show("No GPS Data");
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
         private void StackPanel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             //mandas un query o algo asi tu PEDO
             // el sender es un stackPanel y el ID esta en la propiedad Tag
             NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml", UriKind.Relative));
         }
-    }
-    class myCategory
-    {
-        private Category category;
 
-        public Category Categoryy
+        private List<bindingCategory> getDajaCategories(List<Place> lstPlaces)
         {
-            get { return category; }
-            set { category = value; }
-        }
-        
-        private List<Place> placesList;
+            List<bindingCategory> lstCategoriesDaja = new List<bindingCategory>();
+            List<Category> lstSubCategories = PlacesMethods.MockDataGetSubCategories();
+            bindingCategory categoryDaja;
 
-        public List<Place> PlacesList
-        {
-            get { return placesList; }
-            set { placesList = value; }
-        }
-        public myCategory()
-        {
+            foreach (Category subCategory in lstSubCategories)
+            {
+                categoryDaja = new bindingCategory();
+                categoryDaja.category = subCategory;
+                var query = from variable
+                            in lstPlaces
+                            where variable.categoryCode.Equals(subCategory.code)
+                            select variable;
 
+                categoryDaja.lstPlaces = query.ToList();
+
+                lstCategoriesDaja.Add(categoryDaja);
+            }
+            return lstCategoriesDaja;
         }
     }
 }
