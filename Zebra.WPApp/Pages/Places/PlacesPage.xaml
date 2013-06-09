@@ -39,7 +39,7 @@
                 </StackPanel>
             </phone:PanoramaItem>
             <phone:PanoramaItem Header="{Binding TargetNullValue=Popular}">
-                <ListBox Grid.Row="0" x:Name="lstPopular">
+                <ListBox Grid.Row="0" x:Name="lstPopular" Tap="lstPopular_Tap">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -52,22 +52,54 @@
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <tool:ExpanderView Header="{Binding Path=Categoryy.name}" Expander="{Binding}"
-                                ItemsSource="{Binding PlacesList}"
-                                NonExpandableHeader="{Binding}"
-                                IsNonExpandable="{Binding HasNoOptions}" 
-                                IsExpanded="{Binding IsExpanded, Mode=TwoWay}">
-                                <tool:ExpanderView.ItemTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Border VerticalAlignment="Top" Margin="12" Background="{StaticResource PhoneAccentBrush}" Width="100" Height="100">
+                                    <Image Source="{Binding Path=Categoryy.icon}" Width="70" Height="70"></Image>
+                                </Border>
+                                <tool:ExpanderView Header="{Binding}" Grid.Column="1"
+                                               Expander="{Binding}"
+                                               ItemsSource="{Binding PlacesList}"
+                                               NonExpandableHeader="{Binding}"
+                                               IsNonExpandable="{Binding HasNoOptions}" 
+                                               IsExpanded="{Binding IsExpanded, Mode=TwoWay}">
+                                <tool:ExpanderView.HeaderTemplate>
                                     <DataTemplate>
-                                        <StackPanel>
-                                            <Border Width="50" Height="50" Background="Red"></Border>
-                                            <StackPanel>
-                                                <TextBlock Text="{Binding Path=name}"></TextBlock>
-                                            </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="12">
+                                            <TextBlock Text="{Binding Path=Categoryy.name}" FontSize="{StaticResource PhoneFontSizeLarge}" FontFamily="{StaticResource PhoneFontFamilyLight}"></TextBlock>
                                         </StackPanel>
                                     </DataTemplate>
+                                </tool:ExpanderView.HeaderTemplate>
+                                <tool:ExpanderView.ItemTemplate>
+                                    <DataTemplate>
+                                            <ListBoxItem>
+                                                <StackPanel Tap="StackPanel_Tap" Tag="{Binding Path=name}">
+                                                    <TextBlock Name="txbName" Text="{Binding Path=name}" FontSize="{StaticResource PhoneFontSizeLarge}" FontFamily="{StaticResource PhoneFontFamilyLight}"></TextBlock>
+                                                    <TextBlock Text="{Binding Path=address}" FontSize="{StaticResource PhoneFontSizeNormal}"></TextBlock>
+                                                </StackPanel>
+                                            </ListBoxItem>
+                                        </DataTemplate>
                                 </tool:ExpanderView.ItemTemplate>
+                                <tool:ExpanderView.ExpanderTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <StackPanel.Resources>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="FontSize" Value="28"></Setter>
+                                                    <Setter Property="Opacity" Value="0.5"></Setter>
+                                                </Style>
+                                            </StackPanel.Resources>
+                                            <TextBlock Text="{Binding Path=PlacesList.Count}"></TextBlock>
+                                            <TextBlock Text="  places found"></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </tool:ExpanderView.ExpanderTemplate>
                             </tool:ExpanderView>
+                            <!--</StackPanel>-->
+                            </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

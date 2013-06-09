@@ -56,6 +56,12 @@ namespace Zebra.WPApp.Pages.Places
             base.OnNavigatedTo(e);
             txbCategory.Title = NavigationContext.QueryString["category"];
         }
+
+        private void StackPanel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            //mandas un query o algo asi tu PEDO
+            NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml",UriKind.Relative);
+        }
     }
     class myCategory
     {

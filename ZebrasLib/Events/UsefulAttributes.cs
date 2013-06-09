@@ -46,7 +46,7 @@ namespace ZebrasLib
 
             private static bool isNear(double latOne, double lonOne, double latTwo, double lonTwo, int distanceFromUser)
             {
-                double distance = Main.findDistance(latOne,lonOne,latTwo,lonTwo)
+                double distance = Main.findDistance(latOne, lonOne, latTwo, lonTwo);
                 if (distance < distanceFromUser)
                     return true;
                 return false;

@@ -3,14 +3,14 @@
 		code:"catB1",
 		name:"restaurants",
 		spanishName:"restaurantes",
-		icon:"foodrestaurant.png",
+		icon:"/images/Icons/restaurant.png",
 		parentID:"catA1",
 		parent:
 		{
 			code:"catA1",
 			name:"food",
 			spanishName:"comida",
-			icon:"food.png",
+			icon:"/images/Icons/restaurant.png",
 			parentID:"",
 			parent:{}
 		}
@@ -19,14 +19,14 @@
 		code:"catB2",
 		name:"bars",
 		spanishName:"bares",
-		icon:"foodbar.png",
+		icon:"/images/Icons/night.png",
 		parentID:"catA1",
 		parent:
 		{
 			code:"catA1",
 			name:"food",
 			spanishName:"comida",
-			icon:"food.png",
+			icon:"/images/Icons/restaurant.png",
 			parentID:"",
 			parent:{}
 		}
@@ -35,14 +35,14 @@
 		code:"catB3",
 		name:"cofees",
 		spanishName:"cafes",
-		icon:"foodcoffee.png",
+		icon:"/images/Icons/coffe.png",
 		parentID:"catA1",
 		parent:
 		{
 			code:"catA1",
 			name:"food",
 			spanishName:"comida",
-			icon:"food.png",
+			icon:"/images/Icons/restaurant.png",
 			parentID:"",
 			parent:{}
 		}

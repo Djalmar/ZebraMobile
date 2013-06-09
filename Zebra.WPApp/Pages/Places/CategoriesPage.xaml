@@ -30,8 +30,8 @@
                                             <Border Background="{StaticResource PhoneAccentBrush}" Width="100" Height="100">
                                                 <Image 
                                                 Source="{Binding icon}" 
-                                                Width="50" 
-                                                Height="50"/>
+                                                Width="70" 
+                                                Height="70"/>
                                             </Border>
                                             <TextBlock 
                                                 Text="{Binding name}" 
