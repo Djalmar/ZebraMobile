@@ -10,6 +10,9 @@ using Microsoft.Phone.Shell;
 using ZebrasLib.Classes;
 using ZebrasLib.Events;
 using ZebrasLib;
+using Microsoft.Phone.Maps.Controls;
+using System.Device.Location;
+using Zebra.WPApp.UserControls;
 namespace Zebra.WPApp.Pages.Trouble
 {
     public partial class TroublesPage : PhoneApplicationPage
@@ -42,12 +45,32 @@ namespace Zebra.WPApp.Pages.Trouble
                 troublesList = result.eventsList;
                 lstTroubles.ItemsSource = troublesList;
             }
+            LoadPushPins();
+        }
+
+        private void LoadPushPins()
+        {
+            MapLayer layers = new MapLayer();
+            MapOverlay overlay;
+
+            foreach (var item in result.eventsList)
+            {
+                
+                overlay = new MapOverlay();
+                uscPushPin pushPin = new uscPushPin();
+                pushPin.txbCategory.Text = item.type + "";
+                overlay.Content = pushPin;
+                overlay.GeoCoordinate = new GeoCoordinate(item.latitude, item.longitude);
+                layers.Add(overlay);
+            }
+            mapTroubles.Center = new GeoCoordinate(-16.482208, -68.123117);
+            mapTroubles.Layers.Add(layers);
         }
 
         //REPORT
         private void ApplicationBarIconButton_Click(object sender, EventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/Pages/Trouble/ReportPage.xaml", UriKind.Relative));
         }
 
         private void ApplicationBarIconButton_Click_1(object sender, EventArgs e)

@@ -14,20 +14,35 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False">
     
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.Resources>
         </Grid.Resources>
-        <phone:Panorama Title="{Binding TargetNullValue=wht_s_gng_n}">
-            <phone:PanoramaItem Header="{Binding TargetNullValue=Mp}">
+        <phone:Panorama Title="{Binding}">
+            <phone:Panorama.TitleTemplate>
+                <DataTemplate>
+                    <TextBlock Margin="12,40" Text="{Binding TargetNullValue=wht_s_gng_n}" FontSize="60"></TextBlock>
+                </DataTemplate>
+            </phone:Panorama.TitleTemplate>
+            <phone:PanoramaItem Header="{Binding}">
+                <phone:PanoramaItem.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding TargetNullValue=map}" FontSize="50"></TextBlock>
+                    </DataTemplate>
+                </phone:PanoramaItem.HeaderTemplate>
                 <Grid>
-                    <maps:Map Name="mapTroubles">
+                    <maps:Map Margin="12" Name="mapTroubles" ZoomLevel="14">
                     </maps:Map>
                 </Grid>
             </phone:PanoramaItem>
-            <phone:PanoramaItem Header="{Binding TargetNullValue=Troubles}">
+            <phone:PanoramaItem Header="{Binding}">
+                <phone:PanoramaItem.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding TargetNullValue=troubles}" FontSize="50"></TextBlock>
+                    </DataTemplate>
+                </phone:PanoramaItem.HeaderTemplate>
                 <ListBox Name="lstTroubles">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -49,8 +64,7 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar>
-            <shell:ApplicationBarIconButton Text="Report" IconUri="/Assets/AppBar/upload.png" Click="ApplicationBarIconButton_Click"></shell:ApplicationBarIconButton>
-            <shell:ApplicationBarIconButton Text="Share" IconUri="/Assets/AppBar/share.png" Click="ApplicationBarIconButton_Click_1"></shell:ApplicationBarIconButton>
+            <shell:ApplicationBarIconButton Text="Report" IconUri="/Assets/AppBar/edit.png" Click="ApplicationBarIconButton_Click"></shell:ApplicationBarIconButton>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

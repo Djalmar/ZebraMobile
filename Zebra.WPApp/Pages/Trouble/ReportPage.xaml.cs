@@ -30,6 +30,7 @@ namespace Zebra.WPApp.Pages.Trouble
         void ReportPage_Loaded(object sender, RoutedEventArgs e)
         {
             //aqui el metodo que solo me retorna las categorias
+
             troubleCategoryList=new List<string>();
             troubleCategoryList.Add("Parade");
             troubleCategoryList.Add("Bloqueo");
