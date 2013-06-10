@@ -32,6 +32,8 @@ namespace Zebra.WPApp.Pages.Places
         {
             watcher.Start();
             watcher.MovementThreshold = 200;
+            result = PlacesMethods.MockDataGetPlaces();
+            lstbAllPlaces.ItemsSource = getDajaCategories(result.placesList);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

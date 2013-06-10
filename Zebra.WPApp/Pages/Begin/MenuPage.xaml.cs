@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
 using ZebrasLib;
 using ZebrasLib.Classes;
@@ -12,6 +14,9 @@ namespace Zebra.WPApp.Pages.Begin
 {
     public partial class MenuPage : PhoneApplicationPage
     {
+
+        
+        
         public MenuPage()
         {
             InitializeComponent();
@@ -82,6 +87,11 @@ namespace Zebra.WPApp.Pages.Begin
                     NavigationService.RemoveBackEntry();
                 }
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/Places/CategoriesPage.xaml", UriKind.Relative));
         }
     }
 }
