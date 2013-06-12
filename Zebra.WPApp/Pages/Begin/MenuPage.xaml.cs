@@ -14,9 +14,7 @@ namespace Zebra.WPApp.Pages.Begin
 {
     public partial class MenuPage : PhoneApplicationPage
     {
-
-        
-        
+   
         public MenuPage()
         {
             InitializeComponent();
@@ -65,7 +63,21 @@ namespace Zebra.WPApp.Pages.Begin
                 NavigationService.Navigate(new Uri("/Pages/Login/FacebookLoginPage.xaml", UriKind.Relative));
             else MessageBox.Show("You're already Logged in");
         }
+        private void StartTransition()
+        {
+            RotateTransition rotatetransition = new RotateTransition();
+            rotatetransition.Mode = RotateTransitionMode.In90Clockwise;
 
+            PhoneApplicationPage phoneApplicationPage =
+            (PhoneApplicationPage)(((PhoneApplicationFrame)Application.Current.RootVisual)).Content;
+
+            ITransition transition = rotatetransition.GetTransition(phoneApplicationPage);
+            transition.Completed += delegate
+            {
+                transition.Stop();
+            };
+            transition.Begin();
+        }
 
         void btnPlaces_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {

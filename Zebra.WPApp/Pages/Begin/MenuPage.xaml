@@ -12,6 +12,27 @@
     tool:TiltEffect.IsTiltEnabled="True"
     shell:SystemTray.IsVisible="False"
     xmlns:tk="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+    
+    <tool:TransitionService.NavigationInTransition>
+        <tool:NavigationInTransition>
+            <tool:NavigationInTransition.Backward>
+                <tool:TurnstileTransition Mode="BackwardIn"/>
+            </tool:NavigationInTransition.Backward>
+            <tool:NavigationInTransition.Forward>
+                <tool:TurnstileTransition Mode="ForwardIn"/>
+            </tool:NavigationInTransition.Forward>
+        </tool:NavigationInTransition>
+    </tool:TransitionService.NavigationInTransition>
+    <tool:TransitionService.NavigationOutTransition>
+        <tool:NavigationOutTransition>
+            <tool:NavigationOutTransition.Backward>
+                <tool:TurnstileTransition Mode="BackwardOut"/>
+            </tool:NavigationOutTransition.Backward>
+            <tool:NavigationOutTransition.Forward>
+                <tool:TurnstileTransition Mode="ForwardOut"/>
+            </tool:NavigationOutTransition.Forward>
+        </tool:NavigationOutTransition>
+    </tool:TransitionService.NavigationOutTransition>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -21,7 +42,7 @@
         <Grid Grid.Row="1">
             <StackPanel>
                 <StackPanel>
-                    <Border Margin="12">
+                    <Border Margin="12" tool:TurnstileFeatherEffect.FeatheringIndex="0">
                         <Border.Background>
                             <SolidColorBrush Color="#FF2DA80F" />
                         </Border.Background>
@@ -34,7 +55,7 @@
                 <StackPanel Orientation="Horizontal" Margin="12,0">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Border Width="105" Height="105" Background="#FF007ACC">
+                            <Border Width="105" Height="105" Background="#FF007ACC" tool:TurnstileFeatherEffect.FeatheringIndex="1">
                                 <Grid Background="Transparent" Name="btnPlaces" >
                                     <TextBlock Text="Places" FontSize="24" ></TextBlock>
                                 </Grid>

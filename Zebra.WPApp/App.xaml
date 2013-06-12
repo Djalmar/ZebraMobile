@@ -26,6 +26,32 @@
                     Value="20" />
             <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}" />
         </Style>
+        <Style x:Key="TransitionPageStyle" TargetType="phone:PhoneApplicationPage">
+            <Setter Property="tool:TransitionService.NavigationInTransition">
+                <Setter.Value>
+                    <tool:NavigationInTransition>
+                        <tool:NavigationInTransition.Backward>
+                            <tool:TurnstileTransition Mode="BackwardIn"/>
+                        </tool:NavigationInTransition.Backward>
+                        <tool:NavigationInTransition.Forward>
+                            <tool:TurnstileTransition Mode="ForwardIn"/>
+                        </tool:NavigationInTransition.Forward>
+                    </tool:NavigationInTransition>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="tool:TransitionService.NavigationOutTransition">
+                <Setter.Value>
+                    <tool:NavigationOutTransition>
+                        <tool:NavigationOutTransition.Backward>
+                            <tool:TurnstileTransition Mode="BackwardOut"/>
+                        </tool:NavigationOutTransition.Backward>
+                        <tool:NavigationOutTransition.Forward>
+                            <tool:TurnstileTransition Mode="ForwardOut"/>
+                        </tool:NavigationOutTransition.Forward>
+                    </tool:NavigationOutTransition>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Zebra.WPApp;
 
 namespace Zebra.WPApp.Pages.Places
 {
@@ -15,15 +16,21 @@ namespace Zebra.WPApp.Pages.Places
         public SelectedPlacePage()
         {
             InitializeComponent();
+            this.Loaded += SelectedPlacePage_Loaded;
+        }
+
+        void SelectedPlacePage_Loaded(object sender, RoutedEventArgs e)
+        {
+            panItemName.DataContext = staticClasses.selectedPlace;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
 
-            panPlace.Title = staticClasses.selectedPlace.name;
-            txtLocationAddress.Text = staticClasses.selectedPlace.address;
-            txtLocationDistance.Text = staticClasses.selectedPlace.distance.ToString();
+            //panPlace.Title = staticClasses.selectedPlace.name;
+            //txtLocationAddress.Text = staticClasses.selectedPlace.address;
+            //txtLocationDistance.Text = staticClasses.selectedPlace.distance.ToString();
         }
     }
 }
