@@ -12,81 +12,106 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="False">
-    <Grid x:Name="grdMain">
+    shell:SystemTray.IsVisible="False"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="8*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding LocalizedResources.TxbSettingsTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}" Style="{StaticResource stlTituloPagina}"></TextBlock>
-        <Grid Grid.Row="1">
-            <ScrollViewer>
-                <StackPanel>
-                    <StackPanel>
-                        <TextBlock Margin="12" Text="{Binding LocalizedResources.TxbSettingsDistance, Mode=OneWay, Source={StaticResource LocalizedStrings}}" ></TextBlock>
-                        <Slider Margin="24,0,24,-32"></Slider>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="100" HorizontalAlignment="Center"></TextBlock>
-                            <TextBlock Text="200" Grid.Column="1" HorizontalAlignment="Center"></TextBlock>
-                            <TextBlock Text="500" Grid.Column="2" HorizontalAlignment="Center" />
-                            <TextBlock Text="1k" Grid.Column="3" HorizontalAlignment="Center"></TextBlock>
-                            <TextBlock Text="3k" Grid.Column="4" HorizontalAlignment="Center"></TextBlock>
-                        </Grid>
-                        <tool:ToggleSwitch Name="tglSwitchDistanceUnit" SwitchForeground="{x:Null}" />
-                        <Border HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Run Text="{Binding LocalizedResources.TxbFacebookLogin, Mode=OneWay, Source={StaticResource LocalizedStrings}}" FontSize="36"></Run>
-                                    <Run Text="    "></Run>
-                                </TextBlock>
-                                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF3B5998">
-                                    <Border BorderThickness="0,0,2,2" Tap="Border_Tap_1">
-                                        <Border.BorderBrush>
-                                            <SolidColorBrush Opacity="0.5" Color="{StaticResource PhoneContrastBackgroundColor}" />
-                                        </Border.BorderBrush>
-                                        <TextBlock Text=" f " HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" Foreground="White"></TextBlock>
-                                    </Border>
-                                </Grid>
+        
+        <controls:Pivot Name="pivotMain">
+            <controls:PivotItem 
+                Name="pivotCategoriesSelection"
+                Header="Places">
+                <ListBox Name="lstCategories"/>
+            </controls:PivotItem>
+            
+            <controls:PivotItem
+                Name="pivotSettings"
+                Header="Settings">
+                <Grid x:Name="grdMain">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{
+                        Binding LocalizedResources.TxbSettingsTitle, 
+                        Mode=OneWay, 
+                        Source={StaticResource LocalizedStrings}}" 
+                               Style="{StaticResource stlTituloPagina}"/>
+                    <Grid Grid.Row="1">
+                        <ScrollViewer>
+                            <StackPanel>
+                                <StackPanel>
+                                    <TextBlock Margin="12" Text="{Binding LocalizedResources.TxbSettingsDistance, Mode=OneWay, Source={StaticResource LocalizedStrings}}" ></TextBlock>
+                                    <Slider Margin="24,0,24,-32"></Slider>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="100" HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="200" Grid.Column="1" HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="500" Grid.Column="2" HorizontalAlignment="Center" />
+                                        <TextBlock Text="1k" Grid.Column="3" HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="3k" Grid.Column="4" HorizontalAlignment="Center"></TextBlock>
+                                    </Grid>
+                                    <tool:ToggleSwitch Name="tglSwitchDistanceUnit" 
+                                                       SwitchForeground="{x:Null}" 
+                                                       Content=""/>
+                                </StackPanel>
                             </StackPanel>
-                        </Border>
-                        <ProgressBar Name="prgLoginFacebook" Margin="12" IsIndeterminate="True" Visibility="Collapsed" />
-                    </StackPanel>
-                    <!--
-                    <StackPanel>
-                        <TextBlock Margin="12" Text="{Binding LocalizedResources.TxbSettingsDistance, Mode=OneWay, Source={StaticResource LocalizedStrings}}" ></TextBlock>
-                        <Slider Margin="24,0,24,-32"></Sli der>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="100" HorizontalAlignment="Center"></TextBlock>
-                            <TextBlock Text="200" Grid.Column="1" HorizontalAlignment="Center"></TextBlock>
-                            <TextBlock Text="500" Grid.Column="2" HorizontalAlignment="Center" />
-                            <TextBlock Text="1k" Grid.Column="3" HorizontalAlignment="Center"></TextBlock>
-                            <TextBlock Text="3k" Grid.Column="4" HorizontalAlignment="Center"></TextBlock>
-                        </Grid>
-                    </StackPanel>
-                    -->
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </controls:PivotItem>
+            
+            <controls:PivotItem
+                Name="pivotLogIn"
+                Header="Facebook">
+                <StackPanel>
+                    <Border HorizontalAlignment="Center" 
+                            VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Run Text="{Binding LocalizedResources.TxbFacebookLogin, Mode=OneWay, Source={StaticResource LocalizedStrings}}" FontSize="36"/>
+                                        <Run Text="    "/>
+                            </TextBlock>
+                            <Grid HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center" 
+                                  Background="#FF3B5998">
+                                <Border BorderThickness="0,0,2,2" 
+                                        Name="borderFacebook">
+                                    <Border.BorderBrush>
+                                        <SolidColorBrush Opacity="0.5" 
+                                                         Color="{StaticResource PhoneContrastBackgroundColor}" />
+                                    </Border.BorderBrush>
+                                    <TextBlock Text=" f " 
+                                               HorizontalAlignment="Center" 
+                                               VerticalAlignment="Center" 
+                                               FontSize="72" 
+                                               Foreground="White"/>
+                                </Border>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <ProgressBar Name="prgLoginFacebook" Margin="12" IsIndeterminate="True" Visibility="Collapsed" />
                 </StackPanel>
-            </ScrollViewer>
-        </Grid>
-        <Border Name="brdNextButton" Tap="brdNextButton_Tap_1" Margin="12" Grid.Row="2" Width="60" Height="60" HorizontalAlignment="Right">
-            <Grid>
-                <Ellipse StrokeThickness="4" Stroke="{StaticResource PhoneContrastBackgroundBrush}" />
-                <TextBlock FontFamily="Wingdings 3" FontSize="{StaticResource PhoneFontSizeExtraLarge}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="&#xF0D2;" />
-            </Grid>
+            </controls:PivotItem>
+        </controls:Pivot>
+        
+        <Border Grid.Row="1"
+                Name="borderNextButton" 
+                Margin="12"
+                Width="60" 
+                Height="60" 
+                HorizontalAlignment="Right">
+            <Image Source="/images/next.png"/>
         </Border>
     </Grid>
 </phone:PhoneApplicationPage>

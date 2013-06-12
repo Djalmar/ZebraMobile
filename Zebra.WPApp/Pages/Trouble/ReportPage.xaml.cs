@@ -11,7 +11,7 @@ using ZebrasLib.Events;
 using System.Device.Location;
 using Zebra.WPApp.Resources;
 using ZebrasLib.Classes;
-
+using ZebrasLib;
 
 namespace Zebra.WPApp.Pages.Trouble
 {
@@ -55,24 +55,23 @@ namespace Zebra.WPApp.Pages.Trouble
         }
 
         void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
-        {/*
-            if (e.Status == GeoPositionStatus.Disabled)
-                MessageBox.Show(AppResources.messageGpsDisabled);
-            if (e.Status == GeoPositionStatus.NoData)
-                MessageBox.Show(AppResources.messageGpsNoData);
-          */
+        {
+            //if (e.Status == GeoPositionStatus.Disabled)
+            //    MessageBox.Show(AppResources.messageGpsDisabled);
+            //if (e.Status == GeoPositionStatus.NoData)
+            //    MessageBox.Show(AppResources.messageGpsNoData);
         }
 
-        async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             double latitude = e.Position.Location.Latitude;
             double longitude = e.Position.Location.Longitude;
             int type = lspTroubleCategory.SelectedIndex;
             string description = txtDescription.Text;
-            result = await EventsMethods.ReportEvent(App.facebookId, latitude, longitude, description, type);
+            //result = await EventsMethods.ReportEvent(App.facebookId, latitude, longitude, description, type);
+            //if (Main.thereIsNoProblemo(result.status,result.message))
+            //    MessageBox.Show("Se ha hecho el reporte");
             watcher.Stop();
-            //no se que hacer con el result
-            MessageBox.Show("Se ha hecho el reporte");
         }
 
         private void btnShareClick(object sender, EventArgs e)

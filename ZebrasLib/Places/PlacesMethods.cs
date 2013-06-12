@@ -25,6 +25,14 @@ namespace ZebrasLib
                 return await Main.GetPlacesList(url);
             }
 
+            public static async Task<List<Place>> DownloadAllPlacesFromThisCategories(List<Category> list)
+            {
+                List<Place> allPlaces = new List<Place>();
+                foreach (Category category in list)
+                    allPlaces.AddRange(await getAllPlacesByCategory(category.code));
+                return allPlaces;
+            }
+
             public static List<Place> getPlacesOrderedByDistance(double latitude, double longitude, List<Place> lstPlaces)
             {
                 IEnumerable<Place> newList = from allPlaces

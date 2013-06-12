@@ -115,7 +115,7 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Info.
+        ///   Looks up a localized string similar to A &quot;normal&quot; day.
         /// </summary>
         public static string TxbInfoTitle {
             get {

@@ -1,9 +1,12 @@
 ﻿using Microsoft.Phone.Controls;
 using System;
+using System.Windows.Controls;
 using System.Windows.Navigation;
 using ZebrasLib;
 using ZebrasLib.Facebook;
-
+using ZebrasLib.Places;
+using ZebrasLib.Classes;
+using System.Collections.Generic;
 namespace Zebra.WPApp.Pages.Begin
 {
     public partial class SettingsPage : PhoneApplicationPage
@@ -11,21 +14,33 @@ namespace Zebra.WPApp.Pages.Begin
         public SettingsPage()
         {
             InitializeComponent();
+
+            lstCategories.SelectionMode = SelectionMode.Multiple;
+            borderFacebook.Tap += borderFacebook_Tap;
+            borderNextButton.Tap += borderNextButton_Tap;
+            this.Loaded += SettingsPage_Loaded;
         }
 
-        private void brdNextButton_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
+        async void borderNextButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            //podriamos considerar preguntarle al usuario si esta seguro de continuar, ademas avisarle q podra cambiar esto en
-            //el menu de configuraciones
-
-            NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.RelativeOrAbsolute));
-            //aqui recien decimos q el usuario entro por primera vez a la app
-            App.FirstTimeLaunch = true;
-
-            //tenemos que guardar la configuracion que el usuario a ingresado -> IsoaltedStorge
+            if (pivotMain.SelectedIndex == 2)
+            {
+                List<Category> categories = lstCategories.SelectedItems as List<Category>;
+                List<Place> lstDownloadedPlaces;
+                if(categories.Count>0)
+                    lstDownloadedPlaces = await PlacesMethods.DownloadAllPlacesFromThisCategories(categories);
+                NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
+            }
+            else pivotMain.SelectedIndex++;
         }
 
-        private async void Border_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
+        private void SettingsPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            lstCategories.ItemsSource = PlacesMethods.MockDataGetCategories();
+            lstCategories.DisplayMemberPath = "name";
+        }
+
+        private async void borderFacebook_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             prgLoginFacebook.Visibility = System.Windows.Visibility.Collapsed;
             bool isAuthenticated = await FacebookMethods.canAuthenticate();

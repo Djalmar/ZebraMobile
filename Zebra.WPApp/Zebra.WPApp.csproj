@@ -224,6 +224,9 @@
     <Content Include="images\Icons\restaurant.png" />
     <Content Include="images\Icons\sports.png" />
     <Content Include="images\Icons\transport.png" />
+    <Content Include="images\next.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="MockData\EventsResult.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -135,7 +135,7 @@
     <value>Menu Item</value>
   </data>
   <data name="TxbInfoTitle" xml:space="preserve">
-    <value>Info</value>
+    <value>A "normal" day</value>
   </data>
   <data name="TxbSettingsDistance" xml:space="preserve">
     <value>Choose your minimal distance</value>
