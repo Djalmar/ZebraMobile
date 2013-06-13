@@ -11,35 +11,59 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
+    xmlns:tool="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    tool:TiltEffect.IsTiltEnabled="True"
     xmlns:clases="clr-namespace:Zebra.WPApp"
     shell:SystemTray.IsVisible="False"
     xmlns:map="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps">
-
-    <!--<phone:Panorama Name="panPlace">
-        <phone:PanoramaItem Header="Where is it" 
-                            Name="itmPlace">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="6*"/>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <map:Map Name="mapLocation"/>
-                <TextBlock Name="txtLocationAddress"
-                           Grid.Row="1"/>
-                <TextBlock Name="txtLocationDistance"
-                           Grid.Row="2"/>
-            </Grid>
-        </phone:PanoramaItem>
-            
-        <phone:PanoramaItem Header="Info" 
-                            Name="itmPlaceMap">
-            <Grid/>
-        </phone:PanoramaItem>
-    </phone:Panorama>-->
     <phone:Panorama Title="{Binding TargetNullValue=Category}">
         <phone:PanoramaItem x:Name="panItemName" Header="{Binding  Path=name, TargetNullValue=placeName}">
-            
+            <ScrollViewer>
+                <Grid>
+                    <StackPanel>
+                        <tool:Rating x:Name="rtnRating" Value="{Binding rating}" Margin="12" Height="60" Width="300" ReadOnly="False"/>
+                        <TextBlock Text="Address" Opacity="0.7" Margin="12"></TextBlock>
+                        <TextBlock Name="txbDireccion" FontSize="38" HorizontalAlignment="Left" Margin="24,0">
+                            <Run Text="{Binding address}"></Run>
+                        </TextBlock>
+                        <TextBlock Text="Prices_between" Opacity="0.7" Margin="12"></TextBlock>
+                        <TextBlock x:Name="txbPrecio" Margin="24,0" FontSize="48" HorizontalAlignment="Left" >
+                            <Run Text="{Binding minPrice}"/>
+                            <Run Text=" - "/>
+                            <Run Text="{Binding maxPrice}"/>
+                        </TextBlock>
+                        <!--<TextBlock Text="Features"
+                                   Opacity="0.7" Margin="12"/>-->
+                        <!--<ListBox x:Name="lstPlaceFeatures" Margin="24">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox FontSize="32" IsChecked="{Binding Exist}" Content="{Binding Name}" IsEnabled="False"></CheckBox>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>-->
+                        <tool:ExpanderView x:Name="expFeatures" FontSize="32" Header="Features" IsExpanded="False" Expander="{Binding}" NonExpandableHeader="{Binding}" Margin="12">
+                            <tool:ExpanderView.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox FontSize="32" IsChecked="{Binding Exist}" Content="{Binding Name}" IsEnabled="False" ></CheckBox>
+                                </DataTemplate>
+                            </tool:ExpanderView.ItemTemplate>
+                            <tool:ExpanderView.ExpanderTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel.Resources>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="FontSize" Value="28"/>
+                                                <Setter Property="Opacity" Value="0.5"/>
+                                            </Style>
+                                        </StackPanel.Resources>
+                                        <TextBlock Text="algo no se que"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </tool:ExpanderView.ExpanderTemplate>
+                        </tool:ExpanderView>
+                    </StackPanel>            
+                </Grid>
+            </ScrollViewer>
         </phone:PanoramaItem>
         
     </phone:Panorama>
