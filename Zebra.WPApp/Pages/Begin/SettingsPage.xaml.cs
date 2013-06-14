@@ -3,10 +3,10 @@ using System;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using ZebrasLib;
-using ZebrasLib.Facebook;
 using ZebrasLib.Places;
 using ZebrasLib.Classes;
 using System.Collections.Generic;
+using OurFacebook;
 namespace Zebra.WPApp.Pages.Begin
 {
     public partial class SettingsPage : PhoneApplicationPage
@@ -34,9 +34,9 @@ namespace Zebra.WPApp.Pages.Begin
             else pivotMain.SelectedIndex++;
         }
 
-        private void SettingsPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void SettingsPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            lstCategories.ItemsSource = PlacesMethods.MockDataGetCategories();
+            lstCategories.ItemsSource = await PlacesMethods.MockDataGetCategories();
             lstCategories.DisplayMemberPath = "name";
         }
 

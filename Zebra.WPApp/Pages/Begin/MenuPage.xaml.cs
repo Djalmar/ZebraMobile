@@ -8,8 +8,7 @@ using System.Windows.Navigation;
 using ZebrasLib;
 using ZebrasLib.Classes;
 using ZebrasLib.Events;
-using ZebrasLib.Facebook;
-
+using OurFacebook;
 namespace Zebra.WPApp.Pages.Begin
 {
     public partial class MenuPage : PhoneApplicationPage
@@ -30,8 +29,8 @@ namespace Zebra.WPApp.Pages.Begin
             {
                 #region Uso de mock data y descarga de informacion de facebook de los reporteros de un evento dado
 
-                EventResult result = EventsMethods.MockDataGetEvents();
-                if (Main.thereIsNoProblemo(result.status, result.message))
+                EventResult result = await EventsMethods.MockDataGetEvents();
+                if (Main.thereIsNoProblemo(result.status))
                     result.eventsList = EventsMethods.formatedList(result.eventsList);
                 foreach (Event E in result.eventsList)
                 {

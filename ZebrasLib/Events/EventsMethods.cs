@@ -1,12 +1,8 @@
 ﻿using Newtonsoft.Json;
-using QuickMethods;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
-using System.Windows;
 using ZebrasLib.Classes;
 
 namespace ZebrasLib
@@ -22,33 +18,22 @@ namespace ZebrasLib
                     string description,
                     int type)
             {
-                client = new WebClient();
-                client.Encoding = System.Text.Encoding.UTF8;
-                client.Headers["Connection"] = "keep-alive";
-                client.Headers["Cache-Control"] = "max-age=0";
-                client.Headers["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-                client.Headers["User-Agent"] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.152 Safari/537.22";
-                client.Headers["Content-Type"] = "application/x-www-form-urlencoded";
-                client.Headers["Accept-Encoding"] = "gzip,deflate,sdch";
-                client.Headers["Accept-Language"] = "en-US,en;q=0.8";
-                client.Headers["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.3";
-
                 string data =
                     "fbUserCode=" + facebookCode +
                     "&latitude=" + latitude +
                     "&longitude=" + longitude +
                     "&description=" + description +
                     "&type=" + type;
-                string result = await Internet.UploadStringAsync(client, ReportProblemUri, data);
+                string result = await Internet.UploadStringAsync(ReportProblemUri, data);
                 return JsonConvert.DeserializeObject<EventResult>(result);
             }
 
             public static async Task<EventResult> GetEvents(double latitude, double longitude)
             {
-                Uri uriAddress = new Uri(GetProblemsUri +
+                string url = GetProblemsUri +
                     "?latitude=" + latitude +
-                    "&longitude=" + longitude, UriKind.Absolute);
-                return await downloadedInfo(uriAddress);
+                    "&longitude=" + longitude;
+                return await downloadedInfo(url);
             }
 
             public static async Task<EventResult> GetEvents(List<string> fbFriendList)
@@ -57,8 +42,8 @@ namespace ZebrasLib
                 foreach (string friend in fbFriendList)
                     friendsList += friend + ",";
 
-                Uri uriAddress = new Uri(GetProblemsByFriendsUri +
-                    "?friends=" + friendsList, UriKind.Absolute);
+                string uriAddress = GetProblemsByFriendsUri +
+                    "?friends=" + friendsList;
 
                 return await downloadedInfo(uriAddress);
             }
@@ -87,23 +72,11 @@ namespace ZebrasLib
                 return query.ToList();
             }
 
-            public static EventResult MockDataGetEvents()
+            public static async Task<EventResult> MockDataGetEvents()
             {
                 string direction = "MockData/EventsResult.json";
 
-                #region getListFromJsonFile
-
-                var streamInfo = Application.GetResourceStream(new Uri(direction, UriKind.Relative));
-                string result = "";
-                if (null != streamInfo)
-                {
-                    using (var sr = new StreamReader(streamInfo.Stream))
-                    {
-                        result = sr.ReadToEnd();
-                    }
-                }
-
-                #endregion getListFromJsonFile
+                string result = await Main.GetStringFromStream(direction);
 
                 EventResult eventResult = JsonConvert.DeserializeObject<EventResult>(result);
                 return eventResult;

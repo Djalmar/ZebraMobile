@@ -37,10 +37,10 @@ namespace Zebra.WPApp.Pages.Trouble
             this.Loaded += TroublesPage_Loaded;
         }
 
-        void TroublesPage_Loaded(object sender, RoutedEventArgs e)
+        async void TroublesPage_Loaded(object sender, RoutedEventArgs e)
         {
-            result = EventsMethods.MockDataGetEvents();
-            if (Main.thereIsNoProblemo(result.status,result.message))
+            result = await EventsMethods.MockDataGetEvents();
+            if (Main.thereIsNoProblemo(result.status))
             {
                 troublesList = result.eventsList;
                 lstTroubles.ItemsSource = troublesList;

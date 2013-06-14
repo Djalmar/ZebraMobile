@@ -1,10 +1,8 @@
 ﻿using Newtonsoft.Json;
-using QuickMethods;
+using PCLStorage;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Threading.Tasks;
-using System.Windows;
 using ZebrasLib.Classes;
 
 namespace ZebrasLib
@@ -14,7 +12,6 @@ namespace ZebrasLib
         public static string urlWallet = "https://cebritas.com/wallet/getPlaces?";
         public static string urlCategories = "https://cebritas.com/places/getCategories?";
         public static string urlPlaces = "https://cebritas.com/places/getPlaces?";
-        public static WebClient client;
 
         public static readonly string FacebookAppId = "316949918437312";
         public static string AccessToken = String.Empty;
@@ -34,26 +31,20 @@ namespace ZebrasLib
 
         public static async Task<string> DownloadInfo(string url)
         {
-            client = new WebClient();
-            Uri uri = new Uri(url, UriKind.Absolute);
-            string downloadedInfo = await Internet.DownloadStringAsync(client, uri);
-            return downloadedInfo;
+            return await Internet.DownloadStringAsync(url);
         }
 
-        public static bool thereIsNoProblemo(string status, string message)
+        public static bool thereIsNoProblemo(string status)
         {
             switch (status)
             {
                 case "200":
                     return true;
                 case "400":
-                    MessageBox.Show(message);
                     return false;
                 case "403":
-                    MessageBox.Show("You don't have permissions");
                     return false; ;
                 case "500":
-                    MessageBox.Show("There was a problemo jefe");
                     return false;
                 default: return false;
             }
@@ -64,6 +55,12 @@ namespace ZebrasLib
             double x = 69.1 * (latB - latA);
             double y = 53.0 * (lonB - lonA);
             return Math.Sqrt(x * x + y * y);
+        }
+
+        public static async Task<string> GetStringFromStream(string direction)
+        {
+            IFile file = await PCLStorage.FileSystem.Current.GetFileFromPathAsync(direction);
+            return await file.ReadAllTextAsync();
         }
     }
 }

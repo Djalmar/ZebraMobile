@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
-using QuickMethods;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Threading.Tasks;
-using System.Windows;
 using ZebrasLib.Classes;
 
 namespace ZebrasLib
@@ -13,19 +10,16 @@ namespace ZebrasLib
     {
         public static partial class EventsMethods
         {
-            public static Uri ReportProblemUri = new Uri("http://stcbolivia.net/api/problems/report", UriKind.Absolute);
+            public static string ReportProblemUri = "http://stcbolivia.net/api/problems/report";
             public static string GetProblemsUri = "http://stcbolivia.net/api/problems/get";
             public static string GetProblemsByFriendsUri = "http://stcbolivia.net/api/problems/getbyfriends";
 
-            public static WebClient client;
-
-            private static async Task<EventResult> downloadedInfo(Uri uriAddress)
+            private static async Task<EventResult> downloadedInfo(string uriAddress)
             {
-                client = new WebClient();
-                string result = await Internet.DownloadStringAsync(client, uriAddress);
+                string result = await Internet.DownloadStringAsync(uriAddress);
 
                 EventResult eventResult = JsonConvert.DeserializeObject<EventResult>(result);
-                if (Main.thereIsNoProblemo(eventResult.status, eventResult.message))
+                if (Main.thereIsNoProblemo(eventResult.status))
                     eventResult.eventsList = formatedList(eventResult.eventsList);
 
                 return eventResult;
@@ -35,7 +29,7 @@ namespace ZebrasLib
             {
                 DateTime currentTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
                 currentTime = currentTime.AddSeconds(secondsPastEpoch).ToLocalTime();
-                return currentTime.ToShortTimeString();
+                return currentTime.ToLocalTime().ToString();
             }
 
             private static string DateTimeToUnixTime(DateTime currentTime)
@@ -62,7 +56,7 @@ namespace ZebrasLib
                         R.reportedAt = UnixTimeToDateTime(Double.Parse(R.reportedAt));
                     }
                 }
-                
+
                 return unformatedList;
             }
         }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Device.Location;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -28,12 +29,12 @@ namespace Zebra.WPApp.Pages.Places
             watcher.PositionChanged += watcher_PositionChanged;
         }
 
-        private void PlacesPage_Loaded(object sender, RoutedEventArgs e)
+        private async void PlacesPage_Loaded(object sender, RoutedEventArgs e)
         {
             watcher.Start();
             watcher.MovementThreshold = 200;
-            result = PlacesMethods.MockDataGetPlaces();
-            lstbAllPlaces.ItemsSource = getDajaCategories(result.placesList);
+            result = await PlacesMethods.MockDataGetPlaces();
+            lstbAllPlaces.ItemsSource = await getDajaCategories(result.placesList);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -42,10 +43,10 @@ namespace Zebra.WPApp.Pages.Places
             txbCategory.Title = NavigationContext.QueryString["category"];
         }
 
-        private void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        private async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            result = PlacesMethods.MockDataGetPlaces();
-            noProblemo = Main.thereIsNoProblemo(result.status, result.message);
+            result = await PlacesMethods.MockDataGetPlaces();
+            noProblemo = Main.thereIsNoProblemo(result.status);
             if (noProblemo)
             {
                 result.placesList = PlacesMethods.getDistancesForEachPlace(
@@ -53,10 +54,10 @@ namespace Zebra.WPApp.Pages.Places
                     e.Position.Location.Longitude,
                     result.placesList);
 
-                lstbAllPlaces.ItemsSource = getDajaCategories(result.placesList);
-                lstbPopularPlaces.ItemsSource = getDajaCategories(PlacesMethods.getPlacesOrderedByPopularity(result.placesList));
+                lstbAllPlaces.ItemsSource = await getDajaCategories(result.placesList);
+                lstbPopularPlaces.ItemsSource = await getDajaCategories(PlacesMethods.getPlacesOrderedByPopularity(result.placesList));
                 lstbNearPlaces.ItemsSource =
-                    getDajaCategories(PlacesMethods.getPlacesOrderedByDistance(
+                    await getDajaCategories(PlacesMethods.getPlacesOrderedByDistance(
                         e.Position.Location.Latitude,
                         e.Position.Location.Longitude,
                         result.placesList));
@@ -87,10 +88,10 @@ namespace Zebra.WPApp.Pages.Places
             NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml",UriKind.Relative));
         }
 
-        private List<bindingCategory> getDajaCategories(List<Place> lstPlaces)
+        private async Task<List<bindingCategory>> getDajaCategories(List<Place> lstPlaces)
         {
             List<bindingCategory> lstCategoriesDaja = new List<bindingCategory>();
-            List<Category> lstSubCategories = PlacesMethods.MockDataGetSubCategories();
+            List<Category> lstSubCategories = await PlacesMethods.MockDataGetSubCategories();
             bindingCategory categoryDaja;
 
             foreach (Category subCategory in lstSubCategories)

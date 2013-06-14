@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Navigation;
 using ZebrasLib;
-using ZebrasLib.Facebook;
+using OurFacebook;
 
 namespace Zebra.WPApp.Pages
 {

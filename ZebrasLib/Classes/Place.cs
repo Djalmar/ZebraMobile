@@ -5,7 +5,7 @@ namespace ZebrasLib
 {
     namespace Classes
     {
-        public class    Place
+        public class Place
         {
             [JsonProperty("Id")]
             public long id { get; set; }

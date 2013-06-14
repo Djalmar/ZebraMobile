@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zebra.WPApp", "Zebra.WPApp\Zebra.WPApp.csproj", "{061D3A57-0F49-4E8F-A30F-22AE28325062}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZebrasLib", "ZebrasLib\ZebrasLib.csproj", "{58380F74-B3AD-4906-B0E9-BC37FBC15B6B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZebrasLib", "ZebrasLib\ZebrasLib.csproj", "{CE42BA4F-97A0-41F4-9CFA-01F734E1A2E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,18 +33,14 @@ Global
 		{061D3A57-0F49-4E8F-A30F-22AE28325062}.Release|x86.ActiveCfg = Release|x86
 		{061D3A57-0F49-4E8F-A30F-22AE28325062}.Release|x86.Build.0 = Release|x86
 		{061D3A57-0F49-4E8F-A30F-22AE28325062}.Release|x86.Deploy.0 = Release|x86
-		{58380F74-B3AD-4906-B0E9-BC37FBC15B6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58380F74-B3AD-4906-B0E9-BC37FBC15B6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58380F74-B3AD-4906-B0E9-BC37FBC15B6B}.Debug|ARM.ActiveCfg = Debug|ARM
-		{58380F74-B3AD-4906-B0E9-BC37FBC15B6B}.Debug|ARM.Build.0 = Debug|ARM
-		{58380F74-B3AD-4906-B0E9-BC37FBC15B6B}.Debug|x86.ActiveCfg = Debug|x86
-		{58380F74-B3AD-4906-B0E9-BC37FBC15B6B}.Debug|x86.Build.0 = Debug|x86
-		{58380F74-B3AD-4906-B0E9-BC37FBC15B6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58380F74-B3AD-4906-B0E9-BC37FBC15B6B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58380F74-B3AD-4906-B0E9-BC37FBC15B6B}.Release|ARM.ActiveCfg = Release|ARM
-		{58380F74-B3AD-4906-B0E9-BC37FBC15B6B}.Release|ARM.Build.0 = Release|ARM
-		{58380F74-B3AD-4906-B0E9-BC37FBC15B6B}.Release|x86.ActiveCfg = Release|x86
-		{58380F74-B3AD-4906-B0E9-BC37FBC15B6B}.Release|x86.Build.0 = Release|x86
+		{CE42BA4F-97A0-41F4-9CFA-01F734E1A2E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE42BA4F-97A0-41F4-9CFA-01F734E1A2E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE42BA4F-97A0-41F4-9CFA-01F734E1A2E7}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{CE42BA4F-97A0-41F4-9CFA-01F734E1A2E7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CE42BA4F-97A0-41F4-9CFA-01F734E1A2E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE42BA4F-97A0-41F4-9CFA-01F734E1A2E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE42BA4F-97A0-41F4-9CFA-01F734E1A2E7}.Release|ARM.ActiveCfg = Release|Any CPU
+		{CE42BA4F-97A0-41F4-9CFA-01F734E1A2E7}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

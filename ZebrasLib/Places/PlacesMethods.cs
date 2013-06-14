@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using ZebrasLib.Classes;
 
 namespace ZebrasLib
@@ -37,18 +34,18 @@ namespace ZebrasLib
             {
                 IEnumerable<Place> newList = from allPlaces
                                             in lstPlaces
-                                            orderby allPlaces.distance ascending
-                                            select allPlaces;
+                                             orderby allPlaces.distance ascending
+                                             select allPlaces;
                 return newList.ToList();
             }
 
             public static List<Place> getPlacesOrderedByPopularity(List<Place> lstPlaces)
             {
-                IEnumerable<Place> newList =    from allPlaces
-                                                in lstPlaces
-                                                where allPlaces.rating >=7
-                                                orderby allPlaces.distance descending
-                                                select allPlaces;
+                IEnumerable<Place> newList = from allPlaces
+                                             in lstPlaces
+                                             where allPlaces.rating >= 7
+                                             orderby allPlaces.distance descending
+                                             select allPlaces;
                 return newList.ToList();
             }
 
@@ -70,58 +67,38 @@ namespace ZebrasLib
             }
 
             #region MockData
-            public static List<Category> MockDataGetCategories()
+
+            public static Task<List<Category>> MockDataGetCategories()
             {
                 string direction = "MockData/CategoriesResult.json";
 
                 return GetCategoriesForThisJson(direction);
             }
 
-            public static List<Category> MockDataGetSubCategories()
+            public static Task<List<Category>> MockDataGetSubCategories()
             {
                 string direction = "MockData/SubCategoriesResult.json";
 
                 return GetCategoriesForThisJson(direction);
             }
 
-            private static List<Category> GetCategoriesForThisJson(string direction)
-            {
-                var streamInfo = Application.GetResourceStream(new Uri(direction, UriKind.Relative));
-                string result = "";
-                if (null != streamInfo)
-                {
-                    using (var sr = new StreamReader(streamInfo.Stream))
-                    {
-                        result = sr.ReadToEnd();
-                    }
-                }
-
-                return JsonConvert.DeserializeObject<List<Category>>(result);
-            }
-
-            public static PlacesResult MockDataGetPlaces()
+            public static async Task<PlacesResult> MockDataGetPlaces()
             {
                 string direction = "MockData/PlacesResult.json";
-
-                #region getListFromJsonFile
-
-                var streamInfo = Application.GetResourceStream(new Uri(direction, UriKind.Relative));
-                string result = "";
-                if (null != streamInfo)
-                {
-                    using (var sr = new StreamReader(streamInfo.Stream))
-                    {
-                        result = sr.ReadToEnd();
-                    }
-                }
-
-                #endregion getListFromJsonFile
+                string result = await Main.GetStringFromStream(direction);
 
                 PlacesResult res = JsonConvert.DeserializeObject<PlacesResult>(result);
                 return res;
             }
 
-            #endregion
+            private static async Task<List<Category>> GetCategoriesForThisJson(string direction)
+            {
+                string result = await Main.GetStringFromStream(direction);
+
+                return JsonConvert.DeserializeObject<List<Category>>(result);
+            }
+
+            #endregion MockData
         }
     }
 }
