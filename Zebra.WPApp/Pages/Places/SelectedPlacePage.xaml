@@ -16,7 +16,7 @@
     xmlns:clases="clr-namespace:Zebra.WPApp"
     shell:SystemTray.IsVisible="False"
     xmlns:map="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps">
-    <phone:Panorama Title="{Binding TargetNullValue=Category}">
+    <phone:Panorama Title="{Binding name}">
         <phone:PanoramaItem x:Name="panItemName" Header="{Binding  Path=name, TargetNullValue=placeName}">
             <ScrollViewer>
                 <Grid>
@@ -65,7 +65,9 @@
                 </Grid>
             </ScrollViewer>
         </phone:PanoramaItem>
-        
+        <phone:PanoramaItem Header="{Binding}">
+            
+        </phone:PanoramaItem>
     </phone:Panorama>
     
 </phone:PhoneApplicationPage>
