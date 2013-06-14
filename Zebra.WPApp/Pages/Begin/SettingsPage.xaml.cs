@@ -21,14 +21,14 @@ namespace Zebra.WPApp.Pages.Begin
             this.Loaded += SettingsPage_Loaded;
         }
 
-        async void borderNextButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        void borderNextButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (pivotMain.SelectedIndex == 2)
             {
-                List<Category> categories = lstCategories.SelectedItems as List<Category>;
-                List<Place> lstDownloadedPlaces;
-                if(categories.Count>0)
-                    lstDownloadedPlaces = await PlacesMethods.DownloadAllPlacesFromThisCategories(categories);
+                //List<Category> categories = lstCategories.SelectedItems as List<Category>;
+                //List<Place> lstDownloadedPlaces;
+                //if(categories.Count>0)
+                //    lstDownloadedPlaces = await PlacesMethods.DownloadAllPlacesFromThisCategories(categories);
                 NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
             }
             else pivotMain.SelectedIndex++;
@@ -36,7 +36,7 @@ namespace Zebra.WPApp.Pages.Begin
 
         private async void SettingsPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            lstCategories.ItemsSource = await PlacesMethods.MockDataGetCategories();
+            lstCategories.ItemsSource = await MockData.MockDataGetCategories();
             lstCategories.DisplayMemberPath = "name";
         }
 

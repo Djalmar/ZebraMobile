@@ -65,40 +65,6 @@ namespace ZebrasLib
 
                 return getPlacesOrderedByDistance(latitude, longitude, lstPlaces);
             }
-
-            #region MockData
-
-            public static Task<List<Category>> MockDataGetCategories()
-            {
-                string direction = "MockData/CategoriesResult.json";
-
-                return GetCategoriesForThisJson(direction);
-            }
-
-            public static Task<List<Category>> MockDataGetSubCategories()
-            {
-                string direction = "MockData/SubCategoriesResult.json";
-
-                return GetCategoriesForThisJson(direction);
-            }
-
-            public static async Task<PlacesResult> MockDataGetPlaces()
-            {
-                string direction = "MockData/PlacesResult.json";
-                string result = await Main.GetStringFromStream(direction);
-
-                PlacesResult res = JsonConvert.DeserializeObject<PlacesResult>(result);
-                return res;
-            }
-
-            private static async Task<List<Category>> GetCategoriesForThisJson(string direction)
-            {
-                string result = await Main.GetStringFromStream(direction);
-
-                return JsonConvert.DeserializeObject<List<Category>>(result);
-            }
-
-            #endregion MockData
         }
     }
 }

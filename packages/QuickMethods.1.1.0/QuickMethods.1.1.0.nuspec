@@ -12,8 +12,5 @@
     <releaseNotes>This is an alpha release, just to test how it's working</releaseNotes>
     <language>en-US</language>
     <tags>windows phone; quick methods; helpful methods</tags>
-    <references>
-      <reference file="QuickMethods.dll" />
-    </references>
   </metadata>
 </package>

@@ -29,7 +29,7 @@ namespace Zebra.WPApp.Pages.Begin
             {
                 #region Uso de mock data y descarga de informacion de facebook de los reporteros de un evento dado
 
-                EventResult result = await EventsMethods.MockDataGetEvents();
+                EventResult result = await MockData.MockDataGetEvents();
                 if (Main.thereIsNoProblemo(result.status))
                     result.eventsList = EventsMethods.formatedList(result.eventsList);
                 foreach (Event E in result.eventsList)

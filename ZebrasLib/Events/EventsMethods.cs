@@ -71,16 +71,6 @@ namespace ZebrasLib
                                            select E;
                 return query.ToList();
             }
-
-            public static async Task<EventResult> MockDataGetEvents()
-            {
-                string direction = "MockData/EventsResult.json";
-
-                string result = await Main.GetStringFromStream(direction);
-
-                EventResult eventResult = JsonConvert.DeserializeObject<EventResult>(result);
-                return eventResult;
-            }
         }
     }
 }

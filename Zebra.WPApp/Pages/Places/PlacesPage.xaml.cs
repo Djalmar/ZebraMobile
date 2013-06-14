@@ -33,7 +33,7 @@ namespace Zebra.WPApp.Pages.Places
         {
             watcher.Start();
             watcher.MovementThreshold = 200;
-            result = await PlacesMethods.MockDataGetPlaces();
+            result = await MockData.MockDataGetPlaces();
             lstbAllPlaces.ItemsSource = await getDajaCategories(result.placesList);
         }
 
@@ -45,7 +45,7 @@ namespace Zebra.WPApp.Pages.Places
 
         private async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            result = await PlacesMethods.MockDataGetPlaces();
+            result = await MockData.MockDataGetPlaces();
             noProblemo = Main.thereIsNoProblemo(result.status);
             if (noProblemo)
             {
@@ -91,7 +91,7 @@ namespace Zebra.WPApp.Pages.Places
         private async Task<List<bindingCategory>> getDajaCategories(List<Place> lstPlaces)
         {
             List<bindingCategory> lstCategoriesDaja = new List<bindingCategory>();
-            List<Category> lstSubCategories = await PlacesMethods.MockDataGetSubCategories();
+            List<Category> lstSubCategories = await MockData.MockDataGetSubCategories();
             bindingCategory categoryDaja;
 
             foreach (Category subCategory in lstSubCategories)

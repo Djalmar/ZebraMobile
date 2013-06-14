@@ -1,7 +1,6 @@
 ﻿using Microsoft.Phone.Controls;
-using QuickMethods;
 using System;
-
+using QuickMethods;
 namespace Zebra.WPApp.Pages
 {
     public partial class Share : PhoneApplicationPage

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using PCLStorage;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -55,12 +54,6 @@ namespace ZebrasLib
             double x = 69.1 * (latB - latA);
             double y = 53.0 * (lonB - lonA);
             return Math.Sqrt(x * x + y * y);
-        }
-
-        public static async Task<string> GetStringFromStream(string direction)
-        {
-            IFile file = await PCLStorage.FileSystem.Current.GetFileFromPathAsync(direction);
-            return await file.ReadAllTextAsync();
         }
     }
 }
