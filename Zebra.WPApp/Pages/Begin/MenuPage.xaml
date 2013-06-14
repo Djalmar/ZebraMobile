@@ -12,7 +12,6 @@
     tool:TiltEffect.IsTiltEnabled="True"
     shell:SystemTray.IsVisible="False"
     xmlns:tk="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
-    
     <tool:TransitionService.NavigationInTransition>
         <tool:NavigationInTransition>
             <tool:NavigationInTransition.Backward>
@@ -101,9 +100,6 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <Button Width="186" Height="185" Content="Button" 
-              HorizontalAlignment="Left" VerticalAlignment="Top"
-              Margin="284,529,0,0" />
         </Grid>
     </Grid>
 </phone:PhoneApplicationPage>

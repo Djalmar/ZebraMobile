@@ -10,15 +10,32 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    xmlns:tool="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    tool:TiltEffect.IsTiltEnabled="True"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
     <Grid>
+        <tool:TransitionService.NavigationInTransition>
+            <tool:NavigationInTransition>
+                <tool:NavigationInTransition.Backward>
+                    <tool:TurnstileTransition Mode="BackwardIn"/>
+                </tool:NavigationInTransition.Backward>
+                <tool:NavigationInTransition.Forward>
+                    <tool:TurnstileTransition Mode="ForwardIn"/>
+                </tool:NavigationInTransition.Forward>
+            </tool:NavigationInTransition>
+        </tool:TransitionService.NavigationInTransition>
+        <tool:TransitionService.NavigationOutTransition>
+            <tool:NavigationOutTransition>
+                <tool:NavigationOutTransition.Backward>
+                    <tool:TurnstileTransition Mode="BackwardOut"/>
+                </tool:NavigationOutTransition.Backward>
+                <tool:NavigationOutTransition.Forward>
+                    <tool:TurnstileTransition Mode="ForwardOut"/>
+                </tool:NavigationOutTransition.Forward>
+            </tool:NavigationOutTransition>
+        </tool:TransitionService.NavigationOutTransition>
         <phone:Pivot>
-            <!--<phone:Pivot.TitleTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding TargetNullValue=Places}" FontSize="38" Width="440" TextAlignment="Center"></TextBlock>
-                </DataTemplate>
-            </phone:Pivot.TitleTemplate>-->
             <phone:PivotItem Header="{Binding TargetNullValue=Categories}">
                 <Grid>
                     <ScrollViewer Grid.Row="2">

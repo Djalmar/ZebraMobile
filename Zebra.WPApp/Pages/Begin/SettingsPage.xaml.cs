@@ -29,6 +29,7 @@ namespace Zebra.WPApp.Pages.Begin
                 //List<Place> lstDownloadedPlaces;
                 //if(categories.Count>0)
                 //    lstDownloadedPlaces = await PlacesMethods.DownloadAllPlacesFromThisCategories(categories);
+                App.FirstTimeLaunch = true;
                 NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
             }
             else pivotMain.SelectedIndex++;

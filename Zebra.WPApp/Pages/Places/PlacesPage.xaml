@@ -13,6 +13,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     xmlns:tk="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    tk:TiltEffect.IsTiltEnabled="True"
     shell:SystemTray.IsVisible="False">
 
     <Grid x:Name="LayoutRoot">
