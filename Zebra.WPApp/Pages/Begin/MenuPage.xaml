@@ -12,6 +12,7 @@
     tool:TiltEffect.IsTiltEnabled="True"
     shell:SystemTray.IsVisible="False"
     xmlns:tk="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+    
     <tool:TransitionService.NavigationInTransition>
         <tool:NavigationInTransition>
             <tool:NavigationInTransition.Backward>
@@ -32,6 +33,8 @@
             </tool:NavigationOutTransition.Forward>
         </tool:NavigationOutTransition>
     </tool:TransitionService.NavigationOutTransition>
+    
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -100,6 +103,7 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
+
         </Grid>
     </Grid>
 </phone:PhoneApplicationPage>
