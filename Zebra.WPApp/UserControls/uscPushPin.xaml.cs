@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using ZebrasLib.Classes;
 
 namespace Zebra.WPApp.UserControls
 {
@@ -11,14 +12,31 @@ namespace Zebra.WPApp.UserControls
         {
             InitializeComponent();
         }
-
         //aqui llenamos el push pin
-        public uscPushPin(string category, SolidColorBrush color, Uri direccion)
+        public uscPushPin(Event evento)
         {
             InitializeComponent();
-            txbCategory.Text = category;
-            elpPush.Fill = color;
-            imgIconCategory.Source = new BitmapImage(direccion);
+            txbCategory.Text = evento.importance+"";
+            if (evento.isVerified)
+                elpPush.Fill = new SolidColorBrush(Colors.Red);
+            else
+                elpPush.Fill = GetColor(evento.reporters);
+            imgIconCategory.Source = new BitmapImage(GetIcon(evento.type));
+        }
+
+        private Uri GetIcon(int p)
+        {
+            return new Uri("/images/Icons/cine.png", UriKind.Relative);
+        }
+
+        private Brush GetColor(System.Collections.Generic.List<Reporter> list)
+        {
+            Color color = new Color();
+            color.R = 100;
+            color.G = 200;
+            color.B = 150;
+            SolidColorBrush brocha = new SolidColorBrush(color);
+            return brocha;
         }
     }
 }

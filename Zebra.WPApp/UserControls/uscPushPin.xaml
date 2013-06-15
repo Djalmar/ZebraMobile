@@ -6,7 +6,7 @@
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}" Width="100" Height="100">
+    Foreground="{StaticResource PhoneForegroundBrush}" Width="50" Height="50">
 
     <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
@@ -27,7 +27,7 @@
                 <SolidColorBrush Color="{StaticResource PhoneContrastBackgroundColor}" />
             </Ellipse.Stroke>
         </Ellipse>
-        <Image Name="imgIconCategory" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="/Assets/ApplicationIcon.png" Stretch="Fill"></Image>
-        <TextBlock Name="txbCategory" Text="{Binding TargetNullValue=category}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" FontSize="12" Foreground="{StaticResource PhoneBackgroundBrush}" />
+        <Image Name="imgIconCategory" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="/Assets/ApplicationIcon.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+        <TextBlock Name="txbCategory" Text="{Binding TargetNullValue=5}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="9,0,10,6" Grid.RowSpan="3" />
     </Grid>
 </UserControl>

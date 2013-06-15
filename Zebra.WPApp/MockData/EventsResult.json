@@ -6,7 +6,7 @@
 		{
 			facebookCode:"121801836",
 			importance:2,
-			verified:false,
+			verified:true,
 			latitude:-16.482208,
 			longitude:-68.123117,
 			reportedAt:"1369941361",

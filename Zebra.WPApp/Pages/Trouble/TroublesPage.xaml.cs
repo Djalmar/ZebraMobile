@@ -57,7 +57,7 @@ namespace Zebra.WPApp.Pages.Trouble
             {
                 
                 overlay = new MapOverlay();
-                uscPushPin pushPin = new uscPushPin();
+                uscPushPin pushPin = new uscPushPin(item);
                 pushPin.txbCategory.Text = item.type + "";
                 overlay.Content = pushPin;
                 overlay.GeoCoordinate = new GeoCoordinate(item.latitude, item.longitude);
