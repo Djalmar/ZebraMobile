@@ -6,7 +6,7 @@
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}" Width="50" Height="50">
+    Foreground="{StaticResource PhoneForegroundBrush}" Width="70" Height="70">
 
     <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
@@ -28,6 +28,6 @@
             </Ellipse.Stroke>
         </Ellipse>
         <Image Name="imgIconCategory" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="/Assets/ApplicationIcon.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
-        <TextBlock Name="txbCategory" Text="{Binding TargetNullValue=5}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="9,0,10,6" Grid.RowSpan="3" />
+        <TextBlock Name="txbCategory" Text="{Binding TargetNullValue=555}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="9,0,10,6" Grid.RowSpan="3" FontFamily="{StaticResource PhoneFontFamilySemiBold}" />
     </Grid>
 </UserControl>

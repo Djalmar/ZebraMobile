@@ -8,6 +8,8 @@ namespace Zebra.WPApp.UserControls
 {
     public partial class uscPushPin : UserControl
     {
+        public Event evento;
+        public Place place;
         public uscPushPin()
         {
             InitializeComponent();
@@ -16,7 +18,16 @@ namespace Zebra.WPApp.UserControls
         public uscPushPin(Event evento)
         {
             InitializeComponent();
-            txbCategory.Text = evento.importance+"";
+            this.evento = evento;
+            this.Loaded += uscPushPin_Loaded;
+        }
+        public uscPushPin(Place place)
+        {
+            this.place = place;
+        }
+        void uscPushPin_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            txbCategory.Text = evento.reporters.Count+"";
             if (evento.isVerified)
                 elpPush.Fill = new SolidColorBrush(Colors.Red);
             else
@@ -31,10 +42,17 @@ namespace Zebra.WPApp.UserControls
 
         private Brush GetColor(System.Collections.Generic.List<Reporter> list)
         {
+
             Color color = new Color();
             color.R = 100;
-            color.G = 200;
-            color.B = 150;
+            color.B = 200;
+            color.G = 100;
+            for (int i = 0; i < list.Count; i++)
+            {
+                color.R += 10;
+                color.G += 20;
+            }
+            color.A = 255;
             SolidColorBrush brocha = new SolidColorBrush(color);
             return brocha;
         }

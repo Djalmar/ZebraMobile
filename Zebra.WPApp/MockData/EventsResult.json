@@ -56,7 +56,7 @@
 		},
 		{
 			facebookCode:"506756866",
-			importance:3,
+			importance:5,
 			verified:false,
 			latitude:-16.498463, 
 			longitude:-68.147622,
@@ -74,6 +74,79 @@
 					facebookCode:"528013762",
 					reportedAt:"1369941780",
 					description:"No hay subida al cementerio, calles bloqueadas",					
+				},
+				{
+					facebookCode:"506756866",
+					reportedAt:"1369941703",
+					description:"Gran Poder!!!",					
+				},
+				{
+					facebookCode:"528013762",
+					reportedAt:"1369941780",
+					description:"No hay subida al cementerio, calles bloqueadas",					
+				},
+				{
+					facebookCode:"550850696",
+					reportedAt:"1369941826",
+					description:"Ya comenzaron a aparecer los borrachos en las calles, conduzcan con cuidado",					
+				}
+			]
+		},
+		{
+			facebookCode:"506756867",
+			importance:10,
+			verified:false,
+			latitude:-16.478192, 
+			longitude:-68.157651,
+			reportedAt:"1369941703",
+			type:1,
+			description:"Gran Poder!!!",
+			reporters:
+			[
+				{
+					facebookCode:"506756866",
+					reportedAt:"1369941703",
+					description:"Gran Poder!!!",					
+				},
+				{
+					facebookCode:"528013762",
+					reportedAt:"1369941780",
+					description:"No hay subida al cementerio, calles bloqueadas",					
+				},
+				{
+					facebookCode:"506756866",
+					reportedAt:"1369941703",
+					description:"Gran Poder!!!",					
+				},
+				{
+					facebookCode:"528013762",
+					reportedAt:"1369941780",
+					description:"No hay subida al cementerio, calles bloqueadas",					
+				},
+				{
+					facebookCode:"506756866",
+					reportedAt:"1369941703",
+					description:"Gran Poder!!!",					
+				},
+				{
+					facebookCode:"528013762",
+					reportedAt:"1369941780",
+					description:"No hay subida al cementerio, calles bloqueadas",					
+				},
+				{
+					facebookCode:"506756866",
+					reportedAt:"1369941703",
+					description:"Gran Poder!!!",					
+				},
+				{
+					facebookCode:"528013762",
+					reportedAt:"1369941780",
+					description:"No hay subida al cementerio, calles bloqueadas",					
+				},
+				{
+					facebookCode:"506756866",
+					reportedAt:"1369941703",
+					description:"Gran Poder!!!",					
 				},
 				{
 					facebookCode:"550850696",

@@ -63,6 +63,7 @@ namespace Zebra.WPApp.Pages.Trouble
                 overlay.GeoCoordinate = new GeoCoordinate(item.latitude, item.longitude);
                 layers.Add(overlay);
             }
+            mapTroubles.CartographicMode = MapCartographicMode.Hybrid;
             mapTroubles.Center = new GeoCoordinate(-16.482208, -68.123117);
             mapTroubles.Layers.Add(layers);
         }
