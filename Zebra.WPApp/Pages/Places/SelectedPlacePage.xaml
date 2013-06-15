@@ -11,8 +11,8 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    xmlns:tool="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    tool:TiltEffect.IsTiltEnabled="True"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    toolkit:TiltEffect.IsTiltEnabled="True"
     xmlns:clases="clr-namespace:Zebra.WPApp"
     shell:SystemTray.IsVisible="False"
     xmlns:map="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps">
@@ -24,8 +24,14 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Margin="24,0" Text="Address" Opacity="0.7"/>
-                <TextBlock Grid.Row="1" Text="{Binding address}" FontSize="{StaticResource PhoneFontSizeLarge}" TextWrapping="Wrap" Margin="24,0" />
+                <TextBlock
+                    Margin="24,0" 
+                    Text="Address" 
+                    Opacity="0.7"/>
+                <TextBlock Grid.Row="1" 
+                           Text="{Binding address}" 
+                           FontSize="{StaticResource PhoneFontSizeLarge}" 
+                           TextWrapping="Wrap" Margin="24,0" />
                 <map:Map Grid.Row="2" Margin="24,12,12,12"/>
             </Grid>
         </phone:PanoramaItem>
@@ -37,7 +43,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel>
                     <TextBlock Text="Rating" Margin="12,0" FontSize="{StaticResource PhoneFontSizeLarge}" FontFamily="{StaticResource PhoneFontFamilyLight}" Opacity="0.7"/>
-                    <tool:Rating x:Name="rtnRating" Value="{Binding rating}"/>
+                    <toolkit:Rating x:Name="rtnRating" Value="{Binding rating}"/>
                     <TextBlock Text="Prices_beetween" Opacity="0.7" Margin="12" FontSize="{StaticResource PhoneFontSizeLarge}" FontFamily="{StaticResource PhoneFontFamilyLight}"></TextBlock>
                     <TextBlock x:Name="txbPrecio" Margin="24,0" FontSize="32" HorizontalAlignment="Left" >
                             <Run Text="{Binding minPrice}"/>
@@ -46,7 +52,7 @@
                     </TextBlock>
                     <TextBlock Text="Features" Margin="12" FontSize="{StaticResource PhoneFontSizeLarge}" FontFamily="{StaticResource PhoneFontFamilyLight}" Opacity="0.7"/>
                 </StackPanel>
-                <ListBox Grid.Row="1" Margin="12" x:Name="lstFeatures">
+                <ListBox Grid.Row="1" Margin="12" x:Name="lstFeatures" toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

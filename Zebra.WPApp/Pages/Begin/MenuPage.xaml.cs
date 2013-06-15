@@ -17,10 +17,6 @@ namespace Zebra.WPApp.Pages.Begin
         public MenuPage()
         {
             InitializeComponent();
-            btnZebra.Tap += btnZebra_Tap;
-            btnWallet.Tap += btnWallet_Tap;
-            btnPlaces.Tap += btnPlaces_Tap;
-            btnTraffic.Tap += btnTraffic_Tap;
         }
 
         private async void btnWallet_Tap(object sender, System.Windows.Input.GestureEventArgs e)

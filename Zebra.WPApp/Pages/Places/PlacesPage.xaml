@@ -12,10 +12,29 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    xmlns:tk="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    tk:TiltEffect.IsTiltEnabled="True"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    toolkit:TiltEffect.IsTiltEnabled="True"
     shell:SystemTray.IsVisible="False">
-
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileFeatherTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileFeatherTransition Mode="ForwardIn" BeginTime="0:0:0.7"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileFeatherTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileFeatherTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>
             <DataTemplate x:Key="expanderList">
@@ -86,7 +105,7 @@
                         Name="txbCategory">
             
             <phone:PanoramaItem Header="{Binding TargetNullValue=All}">
-                <ListBox Grid.Row="0" x:Name="lstbAllPlaces"
+                <ListBox Grid.Row="0" x:Name="lstbAllPlaces" toolkit:TurnstileFeatherEffect.FeatheringIndex="0"
                          ItemTemplate="{StaticResource expanderList}"
                          ItemContainerStyle="{StaticResource expanderListItem}">
                     <ListBox.ItemsPanel>
@@ -98,7 +117,7 @@
             </phone:PanoramaItem>
             
             <phone:PanoramaItem Header="{Binding TargetNullValue=Popular}">
-                <ListBox Grid.Row="0" x:Name="lstbPopularPlaces"
+                <ListBox Grid.Row="0" x:Name="lstbPopularPlaces" toolkit:TurnstileFeatherEffect.FeatheringIndex="1"
                          ItemTemplate="{StaticResource expanderList}"
                          ItemContainerStyle="{StaticResource expanderListItem}">
                          <ListBox.ItemsPanel>
@@ -110,7 +129,7 @@
             </phone:PanoramaItem>
             
             <phone:PanoramaItem Header="{Binding TargetNullValue=Near}">
-                <ListBox Grid.Row="0" x:Name="lstbNearPlaces"
+                <ListBox Grid.Row="0" x:Name="lstbNearPlaces" toolkit:TurnstileFeatherEffect.FeatheringIndex="2"
                          ItemTemplate="{StaticResource expanderList}"
                          ItemContainerStyle="{StaticResource expanderListItem}">
                     <ListBox.ItemsPanel>

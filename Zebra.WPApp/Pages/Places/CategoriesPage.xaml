@@ -10,37 +10,37 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    xmlns:tool="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    tool:TiltEffect.IsTiltEnabled="True"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    toolkit:TiltEffect.IsTiltEnabled="True"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileFeatherTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileFeatherTransition Mode="ForwardIn" BeginTime="0:0:0.7"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileFeatherTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileFeatherTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
     <Grid>
-        <tool:TransitionService.NavigationInTransition>
-            <tool:NavigationInTransition>
-                <tool:NavigationInTransition.Backward>
-                    <tool:TurnstileTransition Mode="BackwardIn"/>
-                </tool:NavigationInTransition.Backward>
-                <tool:NavigationInTransition.Forward>
-                    <tool:TurnstileTransition Mode="ForwardIn"/>
-                </tool:NavigationInTransition.Forward>
-            </tool:NavigationInTransition>
-        </tool:TransitionService.NavigationInTransition>
-        <tool:TransitionService.NavigationOutTransition>
-            <tool:NavigationOutTransition>
-                <tool:NavigationOutTransition.Backward>
-                    <tool:TurnstileTransition Mode="BackwardOut"/>
-                </tool:NavigationOutTransition.Backward>
-                <tool:NavigationOutTransition.Forward>
-                    <tool:TurnstileTransition Mode="ForwardOut"/>
-                </tool:NavigationOutTransition.Forward>
-            </tool:NavigationOutTransition>
-        </tool:TransitionService.NavigationOutTransition>
-        <phone:Pivot>
+        <phone:Pivot toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
             <phone:PivotItem Header="{Binding TargetNullValue=Categories}">
                 <Grid>
                     <ScrollViewer Grid.Row="2">
                         <Grid>
-                            <ListBox Name="lstCategoryList">
+                            <ListBox Name="lstCategoryList" toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" Margin="12">
