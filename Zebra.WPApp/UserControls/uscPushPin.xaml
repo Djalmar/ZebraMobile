@@ -28,6 +28,15 @@
             </Ellipse.Stroke>
         </Ellipse>
         <Image Name="imgIconCategory" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="/Assets/ApplicationIcon.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
-        <TextBlock Name="txbCategory" Text="{Binding TargetNullValue=555}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="9,0,10,6" Grid.RowSpan="3" FontFamily="{StaticResource PhoneFontFamilySemiBold}" />
+        <TextBlock Name="txbCategory" 
+                   Text="{Binding TargetNullValue=555}" 
+                   Grid.Column="1" 
+                   Grid.Row="2"
+                   Grid.RowSpan="3"
+                   Grid.ColumnSpan="2" 
+                   FontSize="18" 
+                   FontFamily="{StaticResource PhoneFontFamilySemiBold}" 
+                   MaxWidth="29.9799995422363" 
+                   TextWrapping="Wrap" Margin="3,11,2,7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

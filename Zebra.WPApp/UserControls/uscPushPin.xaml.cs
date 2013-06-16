@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Zebra.WPApp.Pages.Places;
 using ZebrasLib.Classes;
 
 namespace Zebra.WPApp.UserControls
@@ -9,10 +11,10 @@ namespace Zebra.WPApp.UserControls
     public partial class uscPushPin : UserControl
     {
         public Event evento;
-        public Place place;
         public uscPushPin()
         {
             InitializeComponent();
+            this.Loaded+=uscPushPin_Loaded2;
         }
         //aqui llenamos el push pin
         public uscPushPin(Event evento)
@@ -21,13 +23,17 @@ namespace Zebra.WPApp.UserControls
             this.evento = evento;
             this.Loaded += uscPushPin_Loaded;
         }
-        public uscPushPin(Place place)
+
+        void uscPushPin_Loaded2(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.place = place;
+            txbCategory.Text = staticClasses.selectedPlace.distance + "Km";
+            LayoutRoot.Children.Remove(imgIconCategory);
+            Grid.SetRow(txbCategory, 1);
+            Grid.SetColumnSpan(txbCategory, 2);
         }
         void uscPushPin_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            txbCategory.Text = evento.reporters.Count+"";
+            txbCategory.Text = evento.reporters.Count + "";
             if (evento.isVerified)
                 elpPush.Fill = new SolidColorBrush(Colors.Red);
             else

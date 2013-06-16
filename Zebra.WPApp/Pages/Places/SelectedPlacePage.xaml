@@ -32,7 +32,7 @@
                            Text="{Binding address}" 
                            FontSize="{StaticResource PhoneFontSizeLarge}" 
                            TextWrapping="Wrap" Margin="24,0" />
-                <map:Map Grid.Row="2" Margin="24,12,12,12" ZoomLevel="14"/>
+                <map:Map x:Name="mapPlace" Grid.Row="2" Margin="24,12,12,12" ZoomLevel="14"/>
             </Grid>
         </phone:PanoramaItem>
         <phone:PanoramaItem>

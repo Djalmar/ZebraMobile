@@ -8,6 +8,9 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Zebra.WPApp;
+using Zebra.WPApp.UserControls;
+using Microsoft.Phone.Maps.Controls;
+using System.Device.Location;
 
 namespace Zebra.WPApp.Pages.Places
 {
@@ -21,6 +24,13 @@ namespace Zebra.WPApp.Pages.Places
 
         void SelectedPlacePage_Loaded(object sender, RoutedEventArgs e)
         {
+            uscPushPin pushPin = new uscPushPin();
+            MapLayer layer = new MapLayer();
+            MapOverlay overlay = new MapOverlay();
+            overlay.Content = pushPin;
+            overlay.GeoCoordinate=new GeoCoordinate(staticClasses.selectedPlace.latitude, staticClasses.selectedPlace.longitude);
+            layer.Add(overlay);
+            mapPlace.Layers.Add(layer);
             staticClasses.selectedPlace.rating /= 2;
             panorama.DataContext = staticClasses.selectedPlace;
             List<Service> listaServicios=CrearListadeServicios();
