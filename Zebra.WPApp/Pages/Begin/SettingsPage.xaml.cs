@@ -7,6 +7,7 @@ using ZebrasLib.Places;
 using ZebrasLib.Classes;
 using System.Collections.Generic;
 using OurFacebook;
+using Zebra.WPApp.Resources;
 namespace Zebra.WPApp.Pages.Begin
 {
     public partial class SettingsPage : PhoneApplicationPage
@@ -18,18 +19,47 @@ namespace Zebra.WPApp.Pages.Begin
             lstCategories.SelectionMode = SelectionMode.Multiple;
             borderFacebook.Tap += borderFacebook_Tap;
             borderNextButton.Tap += borderNextButton_Tap;
+            tglSwitchDistanceUnit.Checked += tglSwitchDistanceUnit_Checked;
+            tglSwitchDistanceUnit.Unchecked += tglSwitchDistanceUnit_Unchecked;
+            tglSwitchDistanceUnit.IsChecked = true;
             this.Loaded += SettingsPage_Loaded;
         }
+
+        #region Toggle
+        void tglSwitchDistanceUnit_Unchecked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            tglSwitchDistanceUnit.Content = AppResources.TxtbMiles;
+        }
+
+        void tglSwitchDistanceUnit_Checked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            tglSwitchDistanceUnit.Content = AppResources.TxtbKilometers;
+        }
+        #endregion
 
         void borderNextButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (pivotMain.SelectedIndex == 2)
             {
+                stackWait.Visibility = System.Windows.Visibility.Visible;
+                pivotMain.Visibility = System.Windows.Visibility.Collapsed;
+                #region Download Places
                 //List<Category> categories = lstCategories.SelectedItems as List<Category>;
                 //List<Place> lstDownloadedPlaces;
                 //if(categories.Count>0)
                 //    lstDownloadedPlaces = await PlacesMethods.DownloadAllPlacesFromThisCategories(categories);
+                #endregion
+                #region SaveSettings
+                if (tglSwitchDistanceUnit.IsChecked == true)
+                    App.usesKilometers = true;
+                else App.usesKilometers = false;
+
+                App.nearDistance = sldNearDistance.Value;
+                if (sldNearDistance.Value == 0)
+                    App.nearDistance++;
+
                 App.FirstTimeLaunch = true;
+                #endregion
                 NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
             }
             else pivotMain.SelectedIndex++;
@@ -51,8 +81,7 @@ namespace Zebra.WPApp.Pages.Begin
                 App.facebookAccessToken = Main.AccessToken;
                 App.facebookId = Main.FacebookId;
             }
-            prgLoginFacebook.Visibility = System.Windows.Visibility.Visible;
-            //cambiar el texto a ya esta logueado o algo asi
+            txtbLoggedIn.Visibility = System.Windows.Visibility.Visible;
         }
     }
 }

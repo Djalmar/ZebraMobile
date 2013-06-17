@@ -19,34 +19,50 @@
             <RowDefinition Height="8*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+
+        <StackPanel Visibility="Collapsed"
+                    VerticalAlignment="Center"
+                    Name="stackWait">
+            <TextBlock Text="{Binding LocalizedResources.TxbDownloadingInfo, 
+                Mode=OneWay, 
+                Source={StaticResource LocalizedStrings}}"
+                       TextWrapping="Wrap"
+                       FontSize="32"/>
+            <ProgressBar Name="prgLoginFacebook" Margin="12" 
+                                 IsIndeterminate="True" 
+                     VerticalAlignment="Center"/>
+        </StackPanel>
         <controls:Pivot Name="pivotMain">
             <controls:PivotItem 
                 Name="pivotCategoriesSelection"
-                Header="Places">
+                Header="{Binding LocalizedResources.TxbSettingsPlace, 
+                Mode=OneWay, 
+                Source={StaticResource LocalizedStrings}}">
                 <ListBox Name="lstCategories"/>
             </controls:PivotItem>
             
             <controls:PivotItem
                 Name="pivotSettings"
-                Header="Settings">
+                Header="{Binding LocalizedResources.TxbSettingsDistance, 
+                Mode=OneWay, 
+                Source={StaticResource LocalizedStrings}}">
                 <Grid x:Name="grdMain">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{
-                        Binding LocalizedResources.TxbSettingsTitle, 
-                        Mode=OneWay, 
-                        Source={StaticResource LocalizedStrings}}" 
-                               Style="{StaticResource stlTituloPagina}"/>
                     <Grid Grid.Row="1">
                         <ScrollViewer>
                             <StackPanel>
                                 <StackPanel>
-                                    <TextBlock Margin="12" Text="{Binding LocalizedResources.TxbSettingsDistance, Mode=OneWay, Source={StaticResource LocalizedStrings}}" ></TextBlock>
-                                    <Slider Margin="24,0,24,-32"></Slider>
+                                    <TextBlock Margin="12" 
+                                               Text="{Binding LocalizedResources.TxbSettingsDistanceDetail, 
+                                        Mode=OneWay, 
+                                        Source={StaticResource LocalizedStrings}}" 
+                                               TextWrapping="Wrap"/>
+                                    <Slider Margin="24,0,24,-32"
+                                            Name="sldNearDistance"/>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition />
@@ -55,15 +71,17 @@
                                             <ColumnDefinition />
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="100" HorizontalAlignment="Center"></TextBlock>
-                                        <TextBlock Text="200" Grid.Column="1" HorizontalAlignment="Center"></TextBlock>
-                                        <TextBlock Text="500" Grid.Column="2" HorizontalAlignment="Center" />
-                                        <TextBlock Text="1k" Grid.Column="3" HorizontalAlignment="Center"></TextBlock>
-                                        <TextBlock Text="3k" Grid.Column="4" HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="1" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="2" Grid.Column="1" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="5" Grid.Column="2" HorizontalAlignment="Center" />
+                                        <TextBlock Text="7" Grid.Column="3" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="10+" Grid.Column="4" HorizontalAlignment="Center"/>
                                     </Grid>
                                     <tool:ToggleSwitch Name="tglSwitchDistanceUnit" 
-                                                       SwitchForeground="{x:Null}" 
-                                                       Content=""/>
+                                                       IsChecked="true"
+                                                       Content="{Binding LocalizedResources.TxtbKilometers,
+                                                                Mode=OneWay, 
+                                                                Source={StaticResource LocalizedStrings}}"/>
                                 </StackPanel>
                             </StackPanel>
                         </ScrollViewer>
@@ -74,34 +92,41 @@
             <controls:PivotItem
                 Name="pivotLogIn"
                 Header="Facebook">
-                <StackPanel>
-                    <Border HorizontalAlignment="Center" 
-                            VerticalAlignment="Center">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <Run Text="{Binding LocalizedResources.TxbFacebookLogin, Mode=OneWay, Source={StaticResource LocalizedStrings}}" FontSize="36"/>
-                                        <Run Text="    "/>
-                            </TextBlock>
-                            <Grid HorizontalAlignment="Center" 
-                                  VerticalAlignment="Center" 
-                                  Background="#FF3B5998">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                            <TextBlock HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center"
+                                       Grid.Row="0"
+                                       Text="{Binding LocalizedResources.TxbFacebookLogin, 
+                                            Mode=OneWay, 
+                                            Source={StaticResource LocalizedStrings}}" 
+                                        FontSize="36"/>
                                 <Border BorderThickness="0,0,2,2" 
-                                        Name="borderFacebook">
-                                    <Border.BorderBrush>
-                                        <SolidColorBrush Opacity="0.5" 
-                                                         Color="{StaticResource PhoneContrastBackgroundColor}" />
-                                    </Border.BorderBrush>
+                                        Name="borderFacebook"
+                                        Background="#FF3B5998"
+                                        Margin="150,15,150,15"
+                                        Grid.Row="1">
                                     <TextBlock Text=" f " 
                                                HorizontalAlignment="Center" 
                                                VerticalAlignment="Center" 
                                                FontSize="72" 
                                                Foreground="White"/>
                                 </Border>
-                            </Grid>
-                        </StackPanel>
-                    </Border>
-                    <ProgressBar Name="prgLoginFacebook" Margin="12" IsIndeterminate="True" Visibility="Collapsed" />
-                </StackPanel>
+                            <TextBlock HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center"
+                                       Grid.Row="2"
+                                       Name="txtbLoggedIn"
+                                       Text="{Binding LocalizedResources.TxbFacebookLoggedIn, 
+                                            Mode=OneWay, 
+                                            Source={StaticResource LocalizedStrings}}" 
+                                             FontSize="36"
+                                       Visibility="Collapsed"
+                                       TextWrapping="Wrap"/>
+                </Grid>
             </controls:PivotItem>
         </controls:Pivot>
         

@@ -106,6 +106,24 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hold on a second while we set up your settings and download the places you chosed..
+        /// </summary>
+        public static string TxbDownloadingInfo {
+            get {
+                return ResourceManager.GetString("TxbDownloadingInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;re logged in and ready to go..
+        /// </summary>
+        public static string TxbFacebookLoggedIn {
+            get {
+                return ResourceManager.GetString("TxbFacebookLoggedIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login with.
         /// </summary>
         public static string TxbFacebookLogin {
@@ -124,11 +142,29 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose your minimal distance.
+        ///   Looks up a localized string similar to Distance.
         /// </summary>
         public static string TxbSettingsDistance {
             get {
                 return ResourceManager.GetString("TxbSettingsDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a distance you thinks is near enough for you.
+        /// </summary>
+        public static string TxbSettingsDistanceDetail {
+            get {
+                return ResourceManager.GetString("TxbSettingsDistanceDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Places.
+        /// </summary>
+        public static string TxbSettingsPlace {
+            get {
+                return ResourceManager.GetString("TxbSettingsPlace", resourceCulture);
             }
         }
         
@@ -138,6 +174,24 @@ namespace Zebra.WPApp.Resources {
         public static string TxbSettingsTitle {
             get {
                 return ResourceManager.GetString("TxbSettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kilometers.
+        /// </summary>
+        public static string TxtbKilometers {
+            get {
+                return ResourceManager.GetString("TxtbKilometers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Miles.
+        /// </summary>
+        public static string TxtbMiles {
+            get {
+                return ResourceManager.GetString("TxtbMiles", resourceCulture);
             }
         }
     }

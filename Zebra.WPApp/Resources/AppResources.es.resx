@@ -138,12 +138,30 @@
     <value>A "normal" day</value>
   </data>
   <data name="TxbSettingsDistance" xml:space="preserve">
-    <value>Choose your minimal distance</value>
+    <value>Distancias</value>
   </data>
   <data name="TxbSettingsTitle" xml:space="preserve">
     <value>Settings</value>
   </data>
   <data name="TxbFacebookLogin" xml:space="preserve">
-    <value>Login with</value>
+    <value>Iniciar sesion con</value>
+  </data>
+  <data name="TxtbKilometers" xml:space="preserve">
+    <value>Kilometros</value>
+  </data>
+  <data name="TxtbMiles" xml:space="preserve">
+    <value>Millas</value>
+  </data>
+  <data name="TxbDownloadingInfo" xml:space="preserve">
+    <value>Espera un segundo mientras descargamos los lugares que escogiste y guardamos tu configuracion.</value>
+  </data>
+  <data name="TxbFacebookLoggedIn" xml:space="preserve">
+    <value>Has iniciado sesion exitosamente, estas listo para comenzar.</value>
+  </data>
+  <data name="TxbSettingsDistanceDetail" xml:space="preserve">
+    <value>¿Que distancia consideras minima?</value>
+  </data>
+  <data name="TxbSettingsPlace" xml:space="preserve">
+    <value>Lugares</value>
   </data>
 </root>

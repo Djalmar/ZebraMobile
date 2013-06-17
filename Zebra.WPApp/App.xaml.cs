@@ -29,6 +29,40 @@ namespace Zebra.WPApp
             }
         }
 
+        public static bool usesKilometers
+        {
+            get
+            {
+                if (IsolatedStorageSettings.ApplicationSettings.Contains("usesKilometers"))
+                {
+                    return (bool)(IsolatedStorageSettings.ApplicationSettings["usesKilometers"]);
+                }
+                else return false;
+            }
+            set
+            {
+                IsolatedStorageSettings.ApplicationSettings["usesKilometers"] = value;
+                IsolatedStorageSettings.ApplicationSettings.Save();
+            }
+        }
+
+        public static double nearDistance
+        {
+            get
+            {
+                if (IsolatedStorageSettings.ApplicationSettings.Contains("nearDistance"))
+                {
+                    return Double.Parse(IsolatedStorageSettings.ApplicationSettings["nearDistance"].ToString());
+                }
+                else return 0;
+            }
+            set
+            {
+                IsolatedStorageSettings.ApplicationSettings["nearDistance"] = value;
+                IsolatedStorageSettings.ApplicationSettings.Save();
+            }
+        }
+
         public static bool isAuthenticated
         {
             get
