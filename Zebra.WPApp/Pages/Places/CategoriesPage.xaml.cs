@@ -34,5 +34,10 @@ namespace Zebra.WPApp.Pages.Places
                 if (selectedcategory.name != "")
                     NavigationService.Navigate(new Uri("/Pages/Places/PlacesPage.xaml?category=" + selectedcategory.name, UriKind.Relative));
         }
+
+        private void PhoneTextBox_ActionIconTapped(object sender, EventArgs e)
+        {
+            //SEARCH PLACE
+        }
     }
 }

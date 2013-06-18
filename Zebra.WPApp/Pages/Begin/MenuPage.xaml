@@ -84,7 +84,9 @@
                         GroupTag="Sizes"
                          Tap="btnZebra_Tap"
                         Size="Small" Background="#FFFA6800"/>
-        <toolkit:HubTile Grid.Row="2" Grid.Column="1" 
+        <toolkit:HubTile Grid.Row="2" Grid.Column="1"
+                         x:Name="btnSettings"
+                         Tap="btnSettings_Tap"
                          toolkit:TurnstileFeatherEffect.FeatheringIndex="3"
                         Margin="12,-21,0,0"
                         Source="/Assets/AppBar/add.png"
