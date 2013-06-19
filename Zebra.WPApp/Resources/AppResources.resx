@@ -164,4 +164,16 @@
   <data name="TxbDownloadingInfo" xml:space="preserve">
     <value>Hold on a second while we set up your settings and download the places you chosed.</value>
   </data>
+  <data name="TxtbAuto" xml:space="preserve">
+    <value>Automatic</value>
+  </data>
+  <data name="TxtbDownloadPlaces" xml:space="preserve">
+    <value>Download the latest places around you</value>
+  </data>
+  <data name="TxtbDownloadPlacesAuto" xml:space="preserve">
+    <value>Zebritas will check for new places everytime you open the app and have a connection to the Internet. This only takes some seconds and doesn't affect your data plan dramatically, you're welcome.</value>
+  </data>
+  <data name="TxtbDownloadPlacesManual" xml:space="preserve">
+    <value>Zebritas will display the places you choose to download a few moments ago. Don't worry, you can update this list anytime.</value>
+  </data>
 </root>

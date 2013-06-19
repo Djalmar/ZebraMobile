@@ -141,7 +141,7 @@
     <value>Distancias</value>
   </data>
   <data name="TxbSettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Configuracion</value>
   </data>
   <data name="TxbFacebookLogin" xml:space="preserve">
     <value>Iniciar sesion con</value>
@@ -163,5 +163,17 @@
   </data>
   <data name="TxbSettingsPlace" xml:space="preserve">
     <value>Lugares</value>
+  </data>
+  <data name="TxtbAuto" xml:space="preserve">
+    <value>Automatica</value>
+  </data>
+  <data name="TxtbDownloadPlaces" xml:space="preserve">
+    <value>Descargar la lista mas actualizada de lugares cerca de ti</value>
+  </data>
+  <data name="TxtbDownloadPlacesAuto" xml:space="preserve">
+    <value>Las Zebritas buscaran nuevos lugares y los descargaran cada vez que abras esta aplicacion, solo toma unos segundos.</value>
+  </data>
+  <data name="TxtbDownloadPlacesManual" xml:space="preserve">
+    <value>Las Zebritas descargaran todos los lugares de las categorias que escogiste hace un momento. No te preocupes, puedes actualizar esta lista cualquier momento.</value>
   </data>
 </root>

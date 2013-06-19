@@ -43,49 +43,61 @@
             
             <controls:PivotItem
                 Name="pivotSettings"
-                Header="{Binding LocalizedResources.TxbSettingsDistance, 
+                Header="{Binding LocalizedResources.TxbSettingsTitle, 
                 Mode=OneWay, 
                 Source={StaticResource LocalizedStrings}}">
                 <Grid x:Name="grdMain">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
                         <RowDefinition />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="1">
-                        <ScrollViewer>
-                            <StackPanel>
-                                <StackPanel>
-                                    <TextBlock Margin="12" 
-                                               Text="{Binding LocalizedResources.TxbSettingsDistanceDetail, 
-                                        Mode=OneWay, 
-                                        Source={StaticResource LocalizedStrings}}" 
-                                               TextWrapping="Wrap"/>
-                                    <Slider Margin="24,0,24,-32"
-                                            Name="sldNearDistance"/>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="1" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="2" Grid.Column="1" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="5" Grid.Column="2" HorizontalAlignment="Center" />
-                                        <TextBlock Text="7" Grid.Column="3" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="10+" Grid.Column="4" HorizontalAlignment="Center"/>
-                                    </Grid>
-                                    <tool:ToggleSwitch Name="tglSwitchDistanceUnit" 
-                                                       IsChecked="true"
-                                                       Content="{Binding LocalizedResources.TxtbKilometers,
-                                                                Mode=OneWay, 
-                                                                Source={StaticResource LocalizedStrings}}"/>
-                                </StackPanel>
-                            </StackPanel>
-                        </ScrollViewer>
-                    </Grid>
+                        <StackPanel>
+                            <TextBlock Margin="12,0,12,0" 
+                                        Text="{Binding LocalizedResources.TxbSettingsDistanceDetail, 
+                                Mode=OneWay, 
+                                Source={StaticResource LocalizedStrings}}" 
+                                        TextWrapping="Wrap"/>
+                            <Slider Margin="24,0,24,-32"
+                                    Name="sldNearDistance"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="1" HorizontalAlignment="Center"/>
+                                <TextBlock Text="2" Grid.Column="1" HorizontalAlignment="Center"/>
+                                <TextBlock Text="5" Grid.Column="2" HorizontalAlignment="Center" />
+                                <TextBlock Text="7" Grid.Column="3" HorizontalAlignment="Center"/>
+                                <TextBlock Text="10+" Grid.Column="4" HorizontalAlignment="Center"/>
+                            </Grid>
+                            <tool:ToggleSwitch Name="tglSwitchDistanceUnit" 
+                                                IsChecked="true"
+                                                Content="{Binding LocalizedResources.TxtbKilometers,
+                                                        Mode=OneWay, 
+                                                        Source={StaticResource LocalizedStrings}}"/>
+                        </StackPanel>
+                    <StackPanel Grid.Row="2">
+                        <TextBlock Margin="12,0,12,0" 
+                                        Text="{Binding LocalizedResources.TxtbDownloadPlaces, 
+                                Mode=OneWay, 
+                                Source={StaticResource LocalizedStrings}}" 
+                                        TextWrapping="Wrap"/>
+                        <tool:ToggleSwitch Name="tglSwitchDownloadSetting" 
+                                                IsChecked="true"
+                                                Content="{Binding LocalizedResources.TxtbAuto,
+                                                        Mode=OneWay, 
+                                                        Source={StaticResource LocalizedStrings}}"/>
+                        <TextBlock Margin="12,0,12,0"
+                                   Name="txtDownloadPlacesDetail"
+                                    Text="{Binding LocalizedResources.TxtbDownloadPlacesAuto, 
+                                Mode=OneWay, 
+                                Source={StaticResource LocalizedStrings}}" 
+                                        TextWrapping="Wrap"/>
+                    </StackPanel>
                 </Grid>
             </controls:PivotItem>
             

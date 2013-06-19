@@ -22,8 +22,22 @@ namespace Zebra.WPApp.Pages.Begin
             borderNextButton.Tap += borderNextButton_Tap;
             tglSwitchDistanceUnit.Checked += tglSwitchDistanceUnit_Checked;
             tglSwitchDistanceUnit.Unchecked += tglSwitchDistanceUnit_Unchecked;
-            tglSwitchDistanceUnit.IsChecked = true;
+            tglSwitchDownloadSetting.Checked += tglSwitchDownloadSetting_Checked;
+            tglSwitchDownloadSetting.Unchecked += tglSwitchDownloadSetting_Unchecked;
             this.Loaded += SettingsPage_Loaded;
+        }
+
+        void tglSwitchDownloadSetting_Unchecked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            tglSwitchDownloadSetting.Content = "Manual";
+            txtDownloadPlacesDetail.Text = AppResources.TxtbDownloadPlacesManual;
+        }
+
+        void tglSwitchDownloadSetting_Checked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            tglSwitchDownloadSetting.Content = AppResources.TxtbAuto;
+            txtDownloadPlacesDetail.Text = AppResources.TxtbDownloadPlacesAuto;
+            
         }
 
         #region Toggle
@@ -48,15 +62,20 @@ namespace Zebra.WPApp.Pages.Begin
                 //List<Category> categories = lstCategories.SelectedItems as List<Category>;
                 //List<Place> lstDownloadedPlaces;
                 //if(categories.Count>0)
+                //{
                 //    lstDownloadedPlaces = await PlacesMethods.DownloadAllPlacesFromThisCategories(categories);
-                //DBPhone.Methods.AddPlaces(lstDownloadedPlaces);
-
-                
+                //    DBPhone.Methods.AddPlaces(lstDownloadedPlaces);
+                //}
                 #endregion
+
                 #region SaveSettings
                 if (tglSwitchDistanceUnit.IsChecked == true)
                     App.usesKilometers = true;
                 else App.usesKilometers = false;
+
+                if (tglSwitchDownloadSetting.IsChecked == true)
+                    App.ManuallyDownloadPlaces = false;
+                else App.ManuallyDownloadPlaces = true;
 
                 App.nearDistance = sldNearDistance.Value;
                 if (sldNearDistance.Value == 0)
@@ -65,6 +84,7 @@ namespace Zebra.WPApp.Pages.Begin
                 App.FirstTimeLaunch = true;
                 #endregion
                 NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
+
             }
             else pivotMain.SelectedIndex++;
         }

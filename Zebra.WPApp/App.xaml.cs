@@ -115,6 +115,24 @@ namespace Zebra.WPApp
             }
         }
 
+
+        public static bool ManuallyDownloadPlaces
+        {
+            get
+            {
+                if (IsolatedStorageSettings.ApplicationSettings.Contains("manuallyDownload"))
+                {
+                    return (bool)(IsolatedStorageSettings.ApplicationSettings["manuallyDownload"]);
+                }
+                else return false;
+            }
+            set
+            {
+                IsolatedStorageSettings.ApplicationSettings["manuallyDownload"] = value;
+                IsolatedStorageSettings.ApplicationSettings.Save();
+            }
+        }
+
         public static PhoneApplicationFrame RootFrame { get; private set; }
 
         public App()

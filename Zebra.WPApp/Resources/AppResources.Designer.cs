@@ -178,6 +178,42 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatic.
+        /// </summary>
+        public static string TxtbAuto {
+            get {
+                return ResourceManager.GetString("TxtbAuto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download the latest places around you.
+        /// </summary>
+        public static string TxtbDownloadPlaces {
+            get {
+                return ResourceManager.GetString("TxtbDownloadPlaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zebritas will check for new places everytime you open the app and have a connection to the Internet. This only takes some seconds and doesn&apos;t affect your data plan dramatically, you&apos;re welcome..
+        /// </summary>
+        public static string TxtbDownloadPlacesAuto {
+            get {
+                return ResourceManager.GetString("TxtbDownloadPlacesAuto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zebritas will display the places you choose to download a few moments ago. Don&apos;t worry, you can update this list anytime..
+        /// </summary>
+        public static string TxtbDownloadPlacesManual {
+            get {
+                return ResourceManager.GetString("TxtbDownloadPlacesManual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kilometers.
         /// </summary>
         public static string TxtbKilometers {

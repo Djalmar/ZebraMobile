@@ -285,6 +285,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DBPhone\DBPhone.csproj">
+      <Project>{D0070A3E-2377-4912-8CAB-52C3C76CF7ED}</Project>
+      <Name>DBPhone</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ZebrasLib\ZebrasLib.csproj">
       <Project>{CE42BA4F-97A0-41F4-9CFA-01F734E1A2E7}</Project>
       <Name>ZebrasLib</Name>

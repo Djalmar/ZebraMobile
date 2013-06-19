@@ -3,7 +3,7 @@
 namespace DBPhone
 {
     [Table]
-    internal class Place
+    public class Place
     {
         [Column(IsDbGenerated = true, IsPrimaryKey = true)]
         public int DBid { get; set; }
