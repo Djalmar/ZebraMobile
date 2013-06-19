@@ -8,6 +8,7 @@ using ZebrasLib.Classes;
 using System.Collections.Generic;
 using OurFacebook;
 using Zebra.WPApp.Resources;
+using DBPhone;
 namespace Zebra.WPApp.Pages.Begin
 {
     public partial class SettingsPage : PhoneApplicationPage
@@ -48,6 +49,9 @@ namespace Zebra.WPApp.Pages.Begin
                 //List<Place> lstDownloadedPlaces;
                 //if(categories.Count>0)
                 //    lstDownloadedPlaces = await PlacesMethods.DownloadAllPlacesFromThisCategories(categories);
+                //DBPhone.Methods.AddPlaces(lstDownloadedPlaces);
+
+                
                 #endregion
                 #region SaveSettings
                 if (tglSwitchDistanceUnit.IsChecked == true)

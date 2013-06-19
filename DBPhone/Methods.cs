@@ -3,13 +3,13 @@ using System.Linq;
 
 namespace DBPhone
 {
-    internal class Methods
+    public class Methods
     {
         private static Context context;
 
         private static Context GetDatabase()
         {
-            context = new Context("isostore:/Ringtones.sdf");
+            context = new Context("isostore:/Zebritas.sdf");
 
             if (!context.DatabaseExists())
                 context.CreateDatabase();
