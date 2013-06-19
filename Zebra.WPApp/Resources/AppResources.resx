@@ -176,4 +176,7 @@
   <data name="TxtbDownloadPlacesManual" xml:space="preserve">
     <value>Zebritas will display the places you choose to download a few moments ago. Don't worry, you can update this list anytime.</value>
   </data>
+  <data name="AppBarDownload" xml:space="preserve">
+    <value>Update</value>
+  </data>
 </root>

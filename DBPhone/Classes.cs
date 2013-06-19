@@ -1,5 +1,4 @@
 ﻿using System.Data.Linq.Mapping;
-
 namespace DBPhone
 {
     [Table]

@@ -176,4 +176,7 @@
   <data name="TxtbDownloadPlacesManual" xml:space="preserve">
     <value>Las Zebritas descargaran todos los lugares de las categorias que escogiste hace un momento. No te preocupes, puedes actualizar esta lista cualquier momento.</value>
   </data>
+  <data name="AppBarDownload" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
 using System;
 using System.Collections.Generic;
 using System.Device.Location;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using Zebra.WPApp.Resources;
 using ZebrasLib;
 using ZebrasLib.Classes;
 using ZebrasLib.Places;
@@ -29,11 +31,42 @@ namespace Zebra.WPApp.Pages.Places
             watcher.PositionChanged += watcher_PositionChanged;
         }
 
-        private async void PlacesPage_Loaded(object sender, RoutedEventArgs e)
+        private void PlacesPage_Loaded(object sender, RoutedEventArgs e)
         {
+            LoadAppBar();
+
             watcher.Start();
             watcher.MovementThreshold = 200;
+
+            DownloadOrGetPlacesFromDataBase();
+        }
+
+        private void LoadAppBar()
+        {
+            ApplicationBar = new ApplicationBar();
+
+            ApplicationBarIconButton btnUpdatePlaces = new ApplicationBarIconButton();
+            btnUpdatePlaces.IconUri = new Uri("/Assets/download.png", UriKind.Relative);
+            btnUpdatePlaces.Text = AppResources.AppBarDownload;
+            btnUpdatePlaces.Click += btnUpdatePlaces_Click;
+            ApplicationBar.Buttons.Add(btnUpdatePlaces);
+        }
+
+        async void btnUpdatePlaces_Click(object sender, EventArgs e)
+        {
             result = await MockData.MockDataGetPlaces();
+            lstbAllPlaces.ItemsSource = await getDajaCategories(result.placesList);
+
+            DBPhone.Methods.RemovePlaces();
+            DBPhone.Methods.AddPlaces(result.placesList);
+        }
+
+        private async void DownloadOrGetPlacesFromDataBase()
+        {
+            if (App.ManuallyDownloadPlaces == false)
+                result = await MockData.MockDataGetPlaces();
+            else result.placesList = DBPhone.Methods.GetPlaces();
+
             lstbAllPlaces.ItemsSource = await getDajaCategories(result.placesList);
         }
 

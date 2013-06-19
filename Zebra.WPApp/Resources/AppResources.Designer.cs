@@ -70,6 +70,15 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string AppBarDownload {
+            get {
+                return ResourceManager.GetString("AppBarDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Menu Item.
         /// </summary>
         public static string AppBarMenuItemText {
