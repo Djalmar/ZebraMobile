@@ -5,11 +5,10 @@ namespace DBPhone
 {
     public class Methods
     {
-        private static Context context;
 
         private static Context GetDatabase()
         {
-            context = new Context("isostore:/Zebritas.sdf");
+            Context context = new Context("isostore:/Zebritas.sdf");
 
             if (!context.DatabaseExists())
                 context.CreateDatabase();
@@ -19,7 +18,7 @@ namespace DBPhone
         public static void AddPlaces(List<ZebrasLib.Classes.Place> lstPlaces)
         {
             List<Place> listToAdd = ConvertToDBPlaces(lstPlaces);
-            context = GetDatabase();
+            Context context = GetDatabase();
             context.places.InsertAllOnSubmit(listToAdd);
             context.SubmitChanges();
             context.Dispose();
@@ -27,13 +26,13 @@ namespace DBPhone
 
         public static void RemovePlaces()
         {
-            context = GetDatabase();
+            Context context = GetDatabase();
             context.DeleteDatabase();
         }
 
         public static List<ZebrasLib.Classes.Place> GetPlaces()
         {
-            context = GetDatabase();
+            Context context = GetDatabase();
             IEnumerable<Place> queryResult = from selectedPlace
                                              in context.places
                                              select selectedPlace;
@@ -64,7 +63,6 @@ namespace DBPhone
                     smokingArea = P.smokingArea,
                     webSite = P.webSite
                 });
-                
             }
             return listToReturn;
         }

@@ -35,9 +35,9 @@ namespace Zebra.WPApp.Pages.Begin
 
         void tglSwitchDownloadSetting_Checked(object sender, System.Windows.RoutedEventArgs e)
         {
-            tglSwitchDownloadSetting.Content = AppResources.TxtbAuto;
+
+            tglSwitchDownloadSetting.Content = "Auto";
             txtDownloadPlacesDetail.Text = AppResources.TxtbDownloadPlacesAuto;
-            
         }
 
         #region Toggle
@@ -52,20 +52,23 @@ namespace Zebra.WPApp.Pages.Begin
         }
         #endregion
 
-        void borderNextButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        async void borderNextButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (pivotMain.SelectedIndex == 2)
             {
                 stackWait.Visibility = System.Windows.Visibility.Visible;
                 pivotMain.Visibility = System.Windows.Visibility.Collapsed;
                 #region Download Places
-                //List<Category> categories = lstCategories.SelectedItems as List<Category>;
-                //List<Place> lstDownloadedPlaces;
-                //if(categories.Count>0)
-                //{
-                //    lstDownloadedPlaces = await PlacesMethods.DownloadAllPlacesFromThisCategories(categories);
-                //    DBPhone.Methods.AddPlaces(lstDownloadedPlaces);
-                //}
+                if (lstCategories.SelectedItems.Count > 0)
+                {
+                    List<Category> categories = lstCategories.SelectedItems as List<Category>;
+                    List<ZebrasLib.Classes.Place> lstDownloadedPlaces;
+                    if (categories.Count > 0)
+                    {
+                        lstDownloadedPlaces = await PlacesMethods.DownloadAllPlacesFromThisCategories(categories);
+                        DBPhone.Methods.AddPlaces(lstDownloadedPlaces);
+                    }
+                }
                 #endregion
 
                 #region SaveSettings
@@ -74,8 +77,8 @@ namespace Zebra.WPApp.Pages.Begin
                 else App.usesKilometers = false;
 
                 if (tglSwitchDownloadSetting.IsChecked == true)
-                    App.ManuallyDownloadPlaces = false;
-                else App.ManuallyDownloadPlaces = true;
+                    App.AutoDownloadsPlaces = true;
+                else App.AutoDownloadsPlaces = false;
 
                 App.nearDistance = sldNearDistance.Value;
                 if (sldNearDistance.Value == 0)

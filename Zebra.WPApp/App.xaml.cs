@@ -116,7 +116,7 @@ namespace Zebra.WPApp
         }
 
 
-        public static bool ManuallyDownloadPlaces
+        public static bool AutoDownloadsPlaces
         {
             get
             {

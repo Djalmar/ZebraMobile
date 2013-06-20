@@ -14,16 +14,23 @@ namespace Zebra.WPApp.Pages.Places
 {
     public partial class CategoriesPage : PhoneApplicationPage
     {
+        bool comingBack;
         public CategoriesPage()
         {
             InitializeComponent();
             this.Loaded += CategoriesPage_Loaded;
+            comingBack = false;
             lstCategoryList.SelectionChanged += lstCategoryList_SelectionChanged;
         }
 
         async void CategoriesPage_Loaded(object sender, RoutedEventArgs e)
         {
-            lstCategoryList.ItemsSource = await MockData.MockDataGetCategories();   
+            if (!comingBack)
+            {
+                lstCategoryList.ItemsSource = await MockData.MockDataGetCategories();
+                comingBack = true;
+            }
+            
         }
 
         void lstCategoryList_SelectionChanged(object sender, SelectionChangedEventArgs e)

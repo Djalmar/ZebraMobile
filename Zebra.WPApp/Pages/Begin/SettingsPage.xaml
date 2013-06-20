@@ -88,9 +88,9 @@
                                         TextWrapping="Wrap"/>
                         <tool:ToggleSwitch Name="tglSwitchDownloadSetting" 
                                                 IsChecked="true"
-                                                Content="{Binding LocalizedResources.TxtbAuto,
-                                                        Mode=OneWay, 
-                                                        Source={StaticResource LocalizedStrings}}"/>
+                                                Content="{Binding LocalizedResources.TxtbAuto, 
+                                Mode=OneWay, 
+                                Source={StaticResource LocalizedStrings}}"/>
                         <TextBlock Margin="12,0,12,0"
                                    Name="txtDownloadPlacesDetail"
                                     Text="{Binding LocalizedResources.TxtbDownloadPlacesAuto, 

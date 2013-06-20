@@ -20,25 +20,35 @@ namespace Zebra.WPApp.Pages.Places
         private PlacesResult result;
         private GeoCoordinateWatcher watcher;
         private bool noProblemo;
-
+        List<Place> lstAllPlaces;
+        double latitude;
+        double longitude;
+        bool comingBack;
         public PlacesPage()
         {
             InitializeComponent();
-            this.Loaded += PlacesPage_Loaded;
             result = new PlacesResult();
             watcher = new GeoCoordinateWatcher();
+            watcher.MovementThreshold = 200;
+            noProblemo = true;
+            latitude = 150;
+            longitude = 150;
             watcher.StatusChanged += watcher_StatusChanged;
             watcher.PositionChanged += watcher_PositionChanged;
+            comingBack = false;
         }
 
-        private void PlacesPage_Loaded(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            LoadAppBar();
-
-            watcher.Start();
-            watcher.MovementThreshold = 200;
-
-            DownloadOrGetPlacesFromDataBase();
+            base.OnNavigatedTo(e);
+            txbCategory.Title = NavigationContext.QueryString["category"];
+            if(!comingBack)
+            {
+                LoadAppBar();
+                DownloadOrGetPlacesFromDataBase();
+                watcher.Start();
+                comingBack = true;
+            }
         }
 
         private void LoadAppBar()
@@ -46,56 +56,66 @@ namespace Zebra.WPApp.Pages.Places
             ApplicationBar = new ApplicationBar();
 
             ApplicationBarIconButton btnUpdatePlaces = new ApplicationBarIconButton();
-            btnUpdatePlaces.IconUri = new Uri("/Assets/download.png", UriKind.Relative);
+            btnUpdatePlaces.IconUri = new Uri("/Assets/AppBar/download.png", UriKind.Relative);
             btnUpdatePlaces.Text = AppResources.AppBarDownload;
             btnUpdatePlaces.Click += btnUpdatePlaces_Click;
             ApplicationBar.Buttons.Add(btnUpdatePlaces);
         }
 
-        async void btnUpdatePlaces_Click(object sender, EventArgs e)
+        private async void btnUpdatePlaces_Click(object sender, EventArgs e)
         {
-            result = await MockData.MockDataGetPlaces();
-            lstbAllPlaces.ItemsSource = await getDajaCategories(result.placesList);
-
-            DBPhone.Methods.RemovePlaces();
-            DBPhone.Methods.AddPlaces(result.placesList);
+            lstAllPlaces = await DownloadPlacesFromTheInternet();
+            watcher.Start();
         }
 
         private async void DownloadOrGetPlacesFromDataBase()
         {
-            if (App.ManuallyDownloadPlaces == false)
-                result = await MockData.MockDataGetPlaces();
-            else result.placesList = DBPhone.Methods.GetPlaces();
-
-            lstbAllPlaces.ItemsSource = await getDajaCategories(result.placesList);
+            if (App.AutoDownloadsPlaces)
+                lstAllPlaces = await DownloadPlacesFromTheInternet();
+            else
+                lstAllPlaces = DBPhone.Methods.GetPlaces();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            txbCategory.Title = NavigationContext.QueryString["category"];
-        }
-
-        private async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        private async Task<List<Place>> DownloadPlacesFromTheInternet()
         {
             result = await MockData.MockDataGetPlaces();
             noProblemo = Main.thereIsNoProblemo(result.status);
             if (noProblemo)
             {
-                result.placesList = PlacesMethods.getDistancesForEachPlace(
-                    e.Position.Location.Latitude,
-                    e.Position.Location.Longitude,
-                    result.placesList);
-
-                lstbAllPlaces.ItemsSource = await getDajaCategories(result.placesList);
-                lstbPopularPlaces.ItemsSource = await getDajaCategories(PlacesMethods.getPlacesOrderedByPopularity(result.placesList));
-                lstbNearPlaces.ItemsSource =
-                    await getDajaCategories(PlacesMethods.getPlacesOrderedByDistance(
-                        e.Position.Location.Latitude,
-                        e.Position.Location.Longitude,
-                        result.placesList));
+                UpdateDataBase(result.placesList);
+                return result.placesList;
             }
-                
+            return null;
+        }
+
+        private void UpdateDataBase(List<Place> list)
+        {
+            DBPhone.Methods.RemovePlaces();
+            DBPhone.Methods.AddPlaces(list);
+        }
+
+        private void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            latitude = e.Position.Location.Latitude;
+            longitude = e.Position.Location.Longitude;
+            if (lstAllPlaces.Count > 0)
+            {
+                lstAllPlaces = PlacesMethods.getDistancesForEachPlace(latitude, longitude, lstAllPlaces);
+                PopulateLists(lstAllPlaces);
+            }
+            watcher.Stop();
+        }
+
+        private async void PopulateLists(List<Place> lstAllPlaces)
+        {
+            lstbAllPlaces.ItemsSource = await getDajaCategories(lstAllPlaces);
+            lstbPopularPlaces.ItemsSource = await getDajaCategories(PlacesMethods.getPlacesOrderedByPopularity(lstAllPlaces));
+            if (latitude != 150)
+            {
+                lstbNearPlaces.ItemsSource =
+                    await getDajaCategories(PlacesMethods.getPlacesOrderedByDistance(latitude,longitude,lstAllPlaces));
+            }
+            
         }
 
         private void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
@@ -118,7 +138,7 @@ namespace Zebra.WPApp.Pages.Places
         private void placeSelected(object sender, System.Windows.Input.GestureEventArgs e)
         {
             staticClasses.selectedPlace = (((sender as StackPanel).Tag) as Place);
-            NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml",UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml", UriKind.Relative));
         }
 
         private async Task<List<bindingCategory>> getDajaCategories(List<Place> lstPlaces)
