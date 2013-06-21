@@ -78,7 +78,11 @@ namespace Zebra.WPApp.Pages.Begin
 
                 if (tglSwitchDownloadSetting.IsChecked == true)
                     App.AutoDownloadsPlaces = true;
-                else App.AutoDownloadsPlaces = false;
+
+                else {
+                    App.AutoDownloadsPlaces = false;
+                    App.FirstTimeDataBase = true;
+                }
 
                 App.nearDistance = sldNearDistance.Value;
                 if (sldNearDistance.Value == 0)

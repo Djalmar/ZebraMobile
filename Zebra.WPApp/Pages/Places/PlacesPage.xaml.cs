@@ -38,14 +38,14 @@ namespace Zebra.WPApp.Pages.Places
             comingBack = false;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             txbCategory.Title = NavigationContext.QueryString["category"];
             if(!comingBack)
             {
                 LoadAppBar();
-                DownloadOrGetPlacesFromDataBase();
+                lstAllPlaces = await DownloadOrGetPlacesFromDataBase();
                 watcher.Start();
                 comingBack = true;
             }
@@ -68,12 +68,23 @@ namespace Zebra.WPApp.Pages.Places
             watcher.Start();
         }
 
-        private async void DownloadOrGetPlacesFromDataBase()
+        private async Task<List<Place>>DownloadOrGetPlacesFromDataBase()
         {
             if (App.AutoDownloadsPlaces)
-                lstAllPlaces = await DownloadPlacesFromTheInternet();
+                return await DownloadPlacesFromTheInternet();
             else
-                lstAllPlaces = DBPhone.Methods.GetPlaces();
+            {
+                if (App.FirstTimeDataBase)
+                {
+                    App.FirstTimeDataBase = false;
+                    return new List<Place>();
+                }
+                
+                else
+                    return DBPhone.Methods.GetPlaces();
+            }
+            
+            
         }
 
         private async Task<List<Place>> DownloadPlacesFromTheInternet()

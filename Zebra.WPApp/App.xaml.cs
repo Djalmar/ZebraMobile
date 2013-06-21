@@ -29,6 +29,23 @@ namespace Zebra.WPApp
             }
         }
 
+        public static bool FirstTimeDataBase
+        {
+            get
+            {
+                if (IsolatedStorageSettings.ApplicationSettings.Contains("firstTimeDB"))
+                {
+                    return (bool)(IsolatedStorageSettings.ApplicationSettings["firstTimeDB"]);
+                }
+                else return false;
+            }
+            set
+            {
+                IsolatedStorageSettings.ApplicationSettings["firstTimeDB"] = value;
+                IsolatedStorageSettings.ApplicationSettings.Save();
+            }
+        }
+
         public static bool usesKilometers
         {
             get
