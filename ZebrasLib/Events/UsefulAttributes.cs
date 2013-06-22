@@ -10,10 +10,6 @@ namespace ZebrasLib
     {
         public static partial class EventsMethods
         {
-            public static string ReportProblemUri = "http://stcbolivia.net/api/problems/report";
-            public static string GetProblemsUri = "http://stcbolivia.net/api/problems/get";
-            public static string GetProblemsByFriendsUri = "http://stcbolivia.net/api/problems/getbyfriends";
-
             private static async Task<EventResult> downloadedInfo(string uriAddress)
             {
                 string result = await Internet.DownloadStringAsync(uriAddress);
@@ -52,11 +48,8 @@ namespace ZebrasLib
                 {
                     E.reportedAt = UnixTimeToDateTime(Double.Parse(E.reportedAt));
                     foreach (Reporter R in E.reporters)
-                    {
                         R.reportedAt = UnixTimeToDateTime(Double.Parse(R.reportedAt));
-                    }
                 }
-
                 return unformatedList;
             }
         }

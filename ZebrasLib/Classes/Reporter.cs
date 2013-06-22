@@ -6,14 +6,23 @@ namespace ZebrasLib
     {
         public class Reporter
         {
-            [JsonProperty("facebookCode")]
+            [JsonProperty("FacebookCode")]
             public string facebookCode { get; set; }
 
-            [JsonProperty("reportedAt")]
-            public string reportedAt { get; set; }
+            [JsonProperty("Latitude")]
+            public double latitude { get; set; }
 
-            [JsonProperty("description")]
+            [JsonProperty("Longitude")]
+            public double longitude { get; set; }
+
+            [JsonProperty("Type")]
+            public int type { get; set; }
+
+            [JsonProperty("Description")]
             public string description { get; set; }
+
+            [JsonProperty("ReportedAt")]
+            public string reportedAt { get; set; }
 
             [JsonProperty("name")]
             public string name { get; set; }

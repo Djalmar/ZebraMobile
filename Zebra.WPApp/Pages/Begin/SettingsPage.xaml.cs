@@ -65,7 +65,7 @@ namespace Zebra.WPApp.Pages.Begin
                     List<ZebrasLib.Classes.Place> lstDownloadedPlaces;
                     if (categories.Count > 0)
                     {
-                        lstDownloadedPlaces = await PlacesMethods.DownloadAllPlacesFromThisCategories(categories);
+                        lstDownloadedPlaces = await PlacesMethods.downloadAllPlacesFromThisCategories(categories);
                         DBPhone.Methods.AddPlaces(lstDownloadedPlaces);
                     }
                 }

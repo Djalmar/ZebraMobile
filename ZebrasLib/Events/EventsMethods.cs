@@ -19,19 +19,19 @@ namespace ZebrasLib
                     int type)
             {
                 string data =
-                    "fbUserCode=" + facebookCode +
+                    "facebookcode=" + facebookCode +
                     "&latitude=" + latitude +
                     "&longitude=" + longitude +
                     "&description=" + description +
                     "&type=" + type;
-                string result = await Internet.UploadStringAsync(ReportProblemUri, data);
+                string result = await Internet.UploadStringAsync(Main.urlReportProblem, data);
                 return JsonConvert.DeserializeObject<EventResult>(result);
             }
 
             public static async Task<EventResult> GetEvents(double latitude, double longitude)
             {
-                string url = GetProblemsUri +
-                    "?latitude=" + latitude +
+                string url = Main.urlGetProblems +
+                    "latitude=" + latitude +
                     "&longitude=" + longitude;
                 return await downloadedInfo(url);
             }
@@ -42,8 +42,8 @@ namespace ZebrasLib
                 foreach (string friend in fbFriendList)
                     friendsList += friend + ",";
 
-                string uriAddress = GetProblemsByFriendsUri +
-                    "?friends=" + friendsList;
+                string uriAddress = Main.urlGetProblemsByFriends +
+                    "friends=" + friendsList;
 
                 return await downloadedInfo(uriAddress);
             }

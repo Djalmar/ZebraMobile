@@ -7,31 +7,34 @@ namespace ZebrasLib
     {
         public class Event
         {
-            [JsonProperty("facebookCode")]
+            [JsonProperty("Code")]
+            public string eventCode{ get; set; }
+
+            [JsonProperty("FacebookCode")]
             public string facebookUserCode { get; set; }
 
-            [JsonProperty("importance")]
+            [JsonProperty("Importance")]
             public int importance { get; set; }
 
-            [JsonProperty("verified")]
+            [JsonProperty("Verified")]
             public bool isVerified { get; set; }
 
-            [JsonProperty("latitude")]
+            [JsonProperty("Latitude")]
             public double latitude { get; set; }
 
-            [JsonProperty("longitude")]
+            [JsonProperty("Longitude")]
             public double longitude { get; set; }
 
-            [JsonProperty("reportedAt")]
-            public string reportedAt { get; set; }
-
-            [JsonProperty("type")]
+            [JsonProperty("Type")]
             public int type { get; set; }
 
-            [JsonProperty("description")]
+            [JsonProperty("Description")]
             public string description { get; set; }
 
-            [JsonProperty("reporters")]
+            [JsonProperty("ReportedAt")]
+            public string reportedAt { get; set; }
+            
+            [JsonProperty("Reporters")]
             public List<Reporter> reporters { get; set; }
         }
 

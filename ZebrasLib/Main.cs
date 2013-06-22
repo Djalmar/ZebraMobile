@@ -8,9 +8,13 @@ namespace ZebrasLib
 {
     public class Main
     {
-        public static string urlWallet = "https://cebritas.com/wallet/getPlaces?";
-        public static string urlCategories = "https://cebritas.com/places/getCategories?";
-        public static string urlPlaces = "https://cebritas.com/places/getPlaces?";
+        public static string urlGetProblems = "http://cebritas.azurewebsites.net/api/problems/get?";
+        public static string urlGetProblemsByFriends = "http://cebritas.azurewebsites.net/api/problems/getbyfriends?";
+        public static string urlReportProblem = "http://cebritas.azurewebsites.net/api/problems/report";
+
+        public static string urlWallet = "http://cebritas.azurewebsites.net/api/wallet/getPlaces?";
+        public static string urlCategories = "http://cebritas.azurewebsites.net/api/places/getCategories?";
+        public static string urlPlaces = "http://cebritas.azurewebsites.net/api/places/getPlaces?";
 
         public static readonly string FacebookAppId = "316949918437312";
         public static string AccessToken = String.Empty;

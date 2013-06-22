@@ -22,7 +22,7 @@ namespace ZebrasLib
                 return await Main.GetPlacesList(url);
             }
 
-            public static async Task<List<Place>> DownloadAllPlacesFromThisCategories(List<Category> list)
+            public static async Task<List<Place>> downloadAllPlacesFromThisCategories(List<Category> list)
             {
                 List<Place> allPlaces = new List<Place>();
                 foreach (Category category in list)
