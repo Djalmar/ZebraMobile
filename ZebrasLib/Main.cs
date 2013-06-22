@@ -16,7 +16,8 @@ namespace ZebrasLib
         public static string urlPlacesByCategory = "http://cebritas.azurewebsites.net/api/places/getbycategory?";
         public static string urlPlacesByQuery = "http://cebritas.azurewebsites.net/api/places//getbyquery?";
 
-        public static string urlWallet = "http://cebritas.azurewebsites.net/api/wallet/getPlaces?";
+        public static string urlWalletBetween = "http://cebritas.azurewebsites.net/api/wallet/getplacesbetween?";
+        public static string urlWalletBelow = "http://cebritas.azurewebsites.net/api/wallet/getplacesBelow?";
 
         public static readonly string FacebookAppId = "316949918437312";
         public static string AccessToken = String.Empty;
