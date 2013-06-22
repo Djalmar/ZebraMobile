@@ -12,25 +12,15 @@ namespace ZebrasLib
         public static string urlGetProblemsByFriends = "http://cebritas.azurewebsites.net/api/problems/getbyfriends?";
         public static string urlReportProblem = "http://cebritas.azurewebsites.net/api/problems/report";
 
+        public static string urlCategories = "http://cebritas.azurewebsites.net/api/places/getcategories";
+        public static string urlPlacesByCategory = "http://cebritas.azurewebsites.net/api/places/getbycategory?";
+        public static string urlPlacesByQuery = "http://cebritas.azurewebsites.net/api/places//getbyquery?";
+
         public static string urlWallet = "http://cebritas.azurewebsites.net/api/wallet/getPlaces?";
-        public static string urlCategories = "http://cebritas.azurewebsites.net/api/places/getCategories?";
-        public static string urlPlaces = "http://cebritas.azurewebsites.net/api/places/getPlaces?";
 
         public static readonly string FacebookAppId = "316949918437312";
         public static string AccessToken = String.Empty;
         public static string FacebookId = String.Empty;
-
-        public static async Task<List<Place>> GetPlacesList(string url)
-        {
-            string downloadedInfo = await DownloadInfo(url);
-            return JsonConvert.DeserializeObject<List<Place>>(downloadedInfo);
-        }
-
-        public static async Task<List<Category>> GetCategoriesList(string url)
-        {
-            string downloadedInfo = await DownloadInfo(url);
-            return JsonConvert.DeserializeObject<List<Category>>(downloadedInfo);
-        }
 
         public static async Task<string> DownloadInfo(string url)
         {
@@ -59,5 +49,17 @@ namespace ZebrasLib
             double y = 53.0 * (lonB - lonA);
             return Math.Sqrt(x * x + y * y);
         }
+
+        #region Traffic and Wallet methods
+        public static async Task<List<Place>> GetPlaces(string url)
+        {
+            string downloadedInfo = await Main.DownloadInfo(url);
+            PlacesResult result = JsonConvert.DeserializeObject<PlacesResult>(downloadedInfo);
+            if (Main.thereIsNoProblemo(result.status))
+                return result.placesList;
+            else return null;
+
+        }
+        #endregion
     }
 }

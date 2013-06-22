@@ -124,7 +124,7 @@ namespace Zebra.WPApp.Pages.Places
             if (latitude != 150)
             {
                 lstbNearPlaces.ItemsSource =
-                    await getDajaCategories(PlacesMethods.getPlacesOrderedByDistance(latitude,longitude,lstAllPlaces));
+                    await getDajaCategories(PlacesMethods.getPlacesNear(lstAllPlaces,App.nearDistance));
             }
             
         }

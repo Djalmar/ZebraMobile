@@ -9,10 +9,15 @@ using System.Collections.Generic;
 using OurFacebook;
 using Zebra.WPApp.Resources;
 using DBPhone;
+using System.Device.Location;
 namespace Zebra.WPApp.Pages.Begin
 {
     public partial class SettingsPage : PhoneApplicationPage
     {
+        double latitude;
+        double longitude;
+        GeoCoordinateWatcher watcher;
+        List<Category> categories;
         public SettingsPage()
         {
             InitializeComponent();
@@ -24,7 +29,19 @@ namespace Zebra.WPApp.Pages.Begin
             tglSwitchDistanceUnit.Unchecked += tglSwitchDistanceUnit_Unchecked;
             tglSwitchDownloadSetting.Checked += tglSwitchDownloadSetting_Checked;
             tglSwitchDownloadSetting.Unchecked += tglSwitchDownloadSetting_Unchecked;
+            watcher = new GeoCoordinateWatcher();
+            watcher.MovementThreshold = 200;
+            watcher.PositionChanged += watcher_PositionChanged;
             this.Loaded += SettingsPage_Loaded;
+        }
+
+        async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            List<ZebrasLib.Classes.Place> lstDownloadedPlaces;
+            lstDownloadedPlaces = await PlacesMethods.getAllPlacesFromThisCategories(categories, 
+                e.Position.Location.Latitude, 
+                e.Position.Location.Longitude);
+            DBPhone.Methods.AddPlaces(lstDownloadedPlaces);
         }
 
         void tglSwitchDownloadSetting_Unchecked(object sender, System.Windows.RoutedEventArgs e)
@@ -61,13 +78,9 @@ namespace Zebra.WPApp.Pages.Begin
                 #region Download Places
                 if (lstCategories.SelectedItems.Count > 0)
                 {
-                    List<Category> categories = lstCategories.SelectedItems as List<Category>;
-                    List<ZebrasLib.Classes.Place> lstDownloadedPlaces;
+                    categories = lstCategories.SelectedItems as List<Category>;
                     if (categories.Count > 0)
-                    {
-                        lstDownloadedPlaces = await PlacesMethods.downloadAllPlacesFromThisCategories(categories);
-                        DBPhone.Methods.AddPlaces(lstDownloadedPlaces);
-                    }
+                        watcher.Start();
                 }
                 #endregion
 

@@ -47,6 +47,7 @@
     <Compile Include="Internet.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Places\PlacesMethods.cs" />
+    <Compile Include="Places\UsefulMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Wallet\TrafficMethods.cs" />
   </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace ZebrasLib
 {
@@ -6,23 +7,37 @@ namespace ZebrasLib
     {
         public class Category
         {
-            [JsonProperty("code")]
+            [JsonProperty("Code")]
             public string code { get; set; }
 
-            [JsonProperty("name")]
+            [JsonProperty("Name")]
             public string name { get; set; }
 
-            [JsonProperty("spanishName")]
+            [JsonProperty("SpanishName")]
             public string spanishName { get; set; }
 
-            [JsonProperty("icon")]
+            [JsonProperty("ParentCode")]
+            public string parentCode { get; set; }
+
+            [JsonProperty("Icon")]
             public string icon { get; set; }
 
-            [JsonProperty("parentId")]
-            public string parentId { get; set; }
+            [JsonProperty("SubCategories")]
+            public List<Category> subCategories{ get; set; }
+            
 
-            [JsonProperty("parent")]
-            public Category parent { get; set; }
+        }
+
+        public class CategoryResult
+        {
+            [JsonProperty("Status")]
+            public string status { get; set; }
+
+            [JsonProperty("Message")]
+            public string message { get; set; }
+
+            [JsonProperty("Data")]
+            public List<Category> categoriesList { get; set; }
         }
     }
 }

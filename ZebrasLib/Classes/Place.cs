@@ -7,11 +7,8 @@ namespace ZebrasLib
     {
         public class Place
         {
-            [JsonProperty("Id")]
-            public long id { get; set; }
-
             [JsonProperty("Code")]
-            public string categoryCode { get; set; }
+            public long code { get; set; }
 
             [JsonProperty("Name")]
             public string name { get; set; }
@@ -23,10 +20,10 @@ namespace ZebrasLib
             public string webSite { get; set; }
 
             [JsonProperty("MinPrice")]
-            public double minPrice { get; set; }
+            public int minPrice { get; set; }
 
             [JsonProperty("MaxPrice")]
-            public double maxPrice { get; set; }
+            public int maxPrice { get; set; }
 
             [JsonProperty("Parking")]
             public bool parking { get; set; }
@@ -44,13 +41,16 @@ namespace ZebrasLib
             public bool delivery { get; set; }
 
             [JsonProperty("Rating")]
-            public double rating { get; set; }
+            public int rating { get; set; }
 
             [JsonProperty("Latitude")]
             public double latitude { get; set; }
 
             [JsonProperty("Longitude")]
             public double longitude { get; set; }
+
+            [JsonProperty("CategoryCode")]
+            public string categoryCode { get; set; }
 
             public double distance { get; set; }
         }

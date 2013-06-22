@@ -23,10 +23,10 @@ namespace DBPhone
         public string webSite { get; set; }
 
         [Column]
-        public double minPrice { get; set; }
+        public int minPrice { get; set; }
 
         [Column]
-        public double maxPrice { get; set; }
+        public int maxPrice { get; set; }
 
         [Column]
         public bool parking { get; set; }
@@ -44,7 +44,7 @@ namespace DBPhone
         public bool delivery { get; set; }
 
         [Column]
-        public double rating { get; set; }
+        public int rating { get; set; }
 
         [Column]
         public double latitude { get; set; }
