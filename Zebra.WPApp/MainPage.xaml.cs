@@ -12,13 +12,13 @@ namespace Zebra.WPApp
         {
             InitializeComponent();
             this.Loaded += MainPage_Loaded;
-            (Resources["stbZebraWalking"] as Storyboard).Completed += MainPage_Completed;
+            (Resources["stbCrossings"] as Storyboard).Completed += MainPage_Completed;
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             //la animacion va a tener un tiempo de duracion aleatorio
-            (Resources["stbZebraWalking"] as Storyboard).Begin();
+            (Resources["stbCrossings"] as Storyboard).Begin();
         }
 
         private void MainPage_Completed(object sender, EventArgs e)

@@ -13,6 +13,14 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False" Margin="0,2,0,-2">
+	<phone:PhoneApplicationPage.Resources>
+		<Storyboard x:Name="stbCrossings">
+			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+				<EasingColorKeyFrame KeyTime="0" Value="{StaticResource PhoneContrastBackgroundColor}"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="{StaticResource PhoneAccentColor}"/>
+			</ColorAnimationUsingKeyFrames>
+		</Storyboard>
+	</phone:PhoneApplicationPage.Resources>
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
@@ -33,15 +41,6 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-    <phone:PhoneApplicationPage.Resources>
-        <Storyboard x:Name="stbZebraWalking">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="grdAnimation">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-450" />
-                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="453" />
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-    </phone:PhoneApplicationPage.Resources>
-
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="grdSplash" Background="Black">
         <Grid.RowDefinitions>
@@ -49,16 +48,40 @@
             <RowDefinition Height="0.2*" />
         </Grid.RowDefinitions>
         <TextBlock Text="Zebra" Grid.Row="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <Grid Name="grdAnimation" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
-            <Grid.RenderTransform>
-                <CompositeTransform />
-            </Grid.RenderTransform>
-            <Image Name="Head" Source="/Assets/Tiles/FlipCycleTileSmall.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-90,0,90"></Image>
-            <Image Name="Body" Source="/Assets/Tiles/FlipCycleTileSmall.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,69,0,-69"></Image>
-            <Image Name="LeftArm" Source="/Assets/Tiles/FlipCycleTileSmall.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-111,69,111,-69"></Image>
-            <Image Name="RightArm" Source="/Assets/Tiles/FlipCycleTileSmall.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="132,69,-132,-69"></Image>
-            <Image Name="LeftLeg" Source="/Assets/Tiles/FlipCycleTileSmall.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-81,183,81,-183"></Image>
-            <Image Name="RightLeg" Source="/Assets/Tiles/FlipCycleTileSmall.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="78,183,-78,-183"></Image>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="2" RenderTransformOrigin="0.5,0.5">
+            	<Grid.Projection>
+            		<PlaneProjection RotationX="-69"/>
+            	</Grid.Projection>
+                <Rectangle x:Name="rectangle" Width="50" Height="200" Margin="60,0,370,0" RenderTransformOrigin="0.5,0.5">
+                	<Rectangle.Fill>
+                		<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                	</Rectangle.Fill>
+                	<Rectangle.RenderTransform>
+                		<CompositeTransform SkewX="-10"/>
+                	</Rectangle.RenderTransform></Rectangle>
+                <Rectangle Width="50" Height="200" Fill="White" Margin="370,0,60,0" RenderTransformOrigin="0.5,0.5">
+                	<Rectangle.RenderTransform>
+                		<CompositeTransform SkewX="10"/>
+                	</Rectangle.RenderTransform></Rectangle>
+                <Rectangle Width="50" Height="200" Fill="White" Margin="295,11,135,11" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                	<Rectangle.RenderTransform>
+                		<CompositeTransform SkewX="7"/>
+                	</Rectangle.RenderTransform></Rectangle>
+                <Rectangle Width="50" Height="200" Fill="White" Margin="135,11,295,11" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                	<Rectangle.RenderTransform>
+                		<CompositeTransform SkewX="-7"/>
+                	</Rectangle.RenderTransform></Rectangle>
+					<Rectangle Width="50" Height="200" Fill="White">
+						<Rectangle.Projection>
+							<PlaneProjection RotationX="-10"/>
+						</Rectangle.Projection></Rectangle>
+            </Grid>
         </Grid>
     </Grid>
 </phone:PhoneApplicationPage>
