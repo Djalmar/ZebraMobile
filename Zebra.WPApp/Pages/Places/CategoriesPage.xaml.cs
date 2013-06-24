@@ -27,7 +27,7 @@ namespace Zebra.WPApp.Pages.Places
         {
             if (!comingBack)
             {
-                lstCategoryList.ItemsSource = await MockData.MockDataGetCategories();
+                lstCategoryList.ItemsSource = await PlacesMethods.getCategories();
                 comingBack = true;
             }
             
@@ -36,10 +36,13 @@ namespace Zebra.WPApp.Pages.Places
         void lstCategoryList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Category selectedcategory = lstCategoryList.SelectedItem as Category;
-
             if (selectedcategory != null)
                 if (selectedcategory.name != "")
-                    NavigationService.Navigate(new Uri("/Pages/Places/PlacesPage.xaml?category=" + selectedcategory.name, UriKind.Relative));
+                {
+                    staticClasses.selectedCategory = selectedcategory;
+                    NavigationService.Navigate(new Uri("/Pages/Places/PlacesPage.xaml",UriKind.Relative));
+                }
+                
         }
 
         private void PhoneTextBox_ActionIconTapped(object sender, EventArgs e)

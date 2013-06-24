@@ -12,5 +12,6 @@ namespace Zebra.WPApp.Pages.Places
     public class staticClasses
     { 
         public static Place selectedPlace{ get; set; }
+        public static Category selectedCategory{ get; set; }
     }
 }

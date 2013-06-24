@@ -17,7 +17,6 @@ namespace Zebra.WPApp.Pages.Places
 {
     public partial class PlacesPage : PhoneApplicationPage
     {
-        private PlacesResult result;
         private GeoCoordinateWatcher watcher;
         private bool noProblemo;
         List<Place> lstAllPlaces;
@@ -27,7 +26,6 @@ namespace Zebra.WPApp.Pages.Places
         public PlacesPage()
         {
             InitializeComponent();
-            result = new PlacesResult();
             watcher = new GeoCoordinateWatcher();
             watcher.MovementThreshold = 200;
             noProblemo = true;
@@ -41,7 +39,7 @@ namespace Zebra.WPApp.Pages.Places
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            txbCategory.Title = NavigationContext.QueryString["category"];
+            txbCategory.Title = staticClasses.selectedCategory.name;
             if(!comingBack)
             {
                 LoadAppBar();
@@ -73,28 +71,18 @@ namespace Zebra.WPApp.Pages.Places
             if (App.AutoDownloadsPlaces)
                 return await DownloadPlacesFromTheInternet();
             else
-            {
-                if (App.FirstTimeDataBase)
-                {
-                    App.FirstTimeDataBase = false;
-                    return new List<Place>();
-                }
-                
-                else
-                    return DBPhone.Methods.GetPlaces();
-            }
+                return DBPhone.Methods.GetPlaces();
             
             
         }
 
         private async Task<List<Place>> DownloadPlacesFromTheInternet()
         {
-            result = await MockData.MockDataGetPlaces();
-            noProblemo = Main.thereIsNoProblemo(result.status);
-            if (noProblemo)
+            List<Place> lstFromTheInternet = await PlacesMethods.getAllPlacesByCategory(staticClasses.selectedCategory.code, -16.5013, -68.1207);
+            if (lstFromTheInternet.Count>0)
             {
-                UpdateDataBase(result.placesList);
-                return result.placesList;
+                UpdateDataBase(lstFromTheInternet);
+                return lstFromTheInternet;
             }
             return null;
         }
@@ -109,22 +97,24 @@ namespace Zebra.WPApp.Pages.Places
         {
             latitude = e.Position.Location.Latitude;
             longitude = e.Position.Location.Longitude;
-            if (lstAllPlaces.Count > 0)
+            if (lstAllPlaces != null)
             {
-                lstAllPlaces = PlacesMethods.getDistancesForEachPlace(latitude, longitude, lstAllPlaces);
-                PopulateLists(lstAllPlaces);
+                if (lstAllPlaces.Count > 0)
+                {
+                    lstAllPlaces = PlacesMethods.getDistancesForEachPlace(-16.5013, -68.1207, lstAllPlaces);
+                    PopulateLists(lstAllPlaces);
+                }
             }
             watcher.Stop();
         }
 
-        private async void PopulateLists(List<Place> lstAllPlaces)
+        private void PopulateLists(List<Place> lstAllPlaces)
         {
-            lstbAllPlaces.ItemsSource = await getDajaCategories(lstAllPlaces);
-            lstbPopularPlaces.ItemsSource = await getDajaCategories(PlacesMethods.getPlacesOrderedByPopularity(lstAllPlaces));
+            lstbAllPlaces.ItemsSource = getDajaCategories(lstAllPlaces);
+            lstbPopularPlaces.ItemsSource = getDajaCategories(PlacesMethods.getPlacesOrderedByPopularity(lstAllPlaces));
             if (latitude != 150)
             {
-                lstbNearPlaces.ItemsSource =
-                    await getDajaCategories(PlacesMethods.getPlacesNear(lstAllPlaces,App.nearDistance));
+                lstbNearPlaces.ItemsSource = getDajaCategories(PlacesMethods.getPlacesNear(lstAllPlaces,App.nearDistance));
             }
             
         }
@@ -152,10 +142,10 @@ namespace Zebra.WPApp.Pages.Places
             NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml", UriKind.Relative));
         }
 
-        private async Task<List<bindingCategory>> getDajaCategories(List<Place> lstPlaces)
+        private List<bindingCategory> getDajaCategories(List<Place> lstPlaces)
         {
             List<bindingCategory> lstCategoriesDaja = new List<bindingCategory>();
-            List<Category> lstSubCategories = await MockData.MockDataGetSubCategories();
+            List<Category> lstSubCategories = staticClasses.selectedCategory.subCategories;
             bindingCategory categoryDaja;
 
             foreach (Category subCategory in lstSubCategories)

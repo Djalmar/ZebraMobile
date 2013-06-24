@@ -8,7 +8,7 @@ namespace DBPhone
         public int DBid { get; set; }
 
         [Column]
-        public long id { get; set; }
+        public string placecode{ get; set; }
 
         [Column]
         public string categoryCode { get; set; }

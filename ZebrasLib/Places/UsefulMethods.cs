@@ -12,7 +12,7 @@ namespace ZebrasLib
     {
         public partial class PlacesMethods
         {
-            public static async Task<List<Category>> GetCategories(string url)
+            private static async Task<List<Category>> GetCategories(string url)
             {
                 string downloadedInfo = await Main.DownloadInfo(url);
                 CategoryResult result = JsonConvert.DeserializeObject<CategoryResult>(downloadedInfo);

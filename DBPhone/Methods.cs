@@ -26,8 +26,9 @@ namespace DBPhone
 
         public static void RemovePlaces()
         {
-            Context context = GetDatabase();
+            Context context = GetDatabase(); 
             context.DeleteDatabase();
+            context.Dispose();
         }
 
         public static List<ZebrasLib.Classes.Place> GetPlaces()
@@ -36,7 +37,6 @@ namespace DBPhone
             IEnumerable<Place> queryResult = from selectedPlace
                                              in context.places
                                              select selectedPlace;
-
             return ConvertToZebraPlaces(queryResult.ToList());
         }
 
@@ -51,7 +51,7 @@ namespace DBPhone
                     delivery = P.delivery,
                     distance = P.distance,
                     holidays = P.holidays,
-                    code = P.id,
+                    code = P.placecode,
                     kidsArea = P.kidsArea,
                     latitude = P.latitude,
                     longitude = P.longitude,
@@ -79,7 +79,7 @@ namespace DBPhone
                     delivery = P.delivery,
                     distance = P.distance,
                     holidays = P.holidays,
-                    id = P.code,
+                    placecode = P.code,
                     kidsArea = P.kidsArea,
                     latitude = P.latitude,
                     longitude = P.longitude,

@@ -40,7 +40,10 @@ namespace ZebrasLib
             {
                 List<Place> allPlaces = new List<Place>();
                 foreach (Category category in list)
-                    allPlaces.AddRange(await getAllPlacesByCategory(category.code, latitude, longitude));
+                {
+                    List<Place> placesFromThisCategory = await getAllPlacesByCategory(category.code, latitude, longitude);
+                    allPlaces.AddRange(placesFromThisCategory);
+                }
                 return allPlaces;
             }
 

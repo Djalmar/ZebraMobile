@@ -8,7 +8,7 @@ namespace ZebrasLib
         public class Place
         {
             [JsonProperty("Code")]
-            public long code { get; set; }
+            public string code { get; set; }
 
             [JsonProperty("Name")]
             public string name { get; set; }

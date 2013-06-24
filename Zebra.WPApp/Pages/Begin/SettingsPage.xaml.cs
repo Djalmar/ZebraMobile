@@ -14,8 +14,6 @@ namespace Zebra.WPApp.Pages.Begin
 {
     public partial class SettingsPage : PhoneApplicationPage
     {
-        double latitude;
-        double longitude;
         GeoCoordinateWatcher watcher;
         List<Category> categories;
         public SettingsPage()
@@ -38,10 +36,11 @@ namespace Zebra.WPApp.Pages.Begin
         async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             List<ZebrasLib.Classes.Place> lstDownloadedPlaces;
-            lstDownloadedPlaces = await PlacesMethods.getAllPlacesFromThisCategories(categories, 
-                e.Position.Location.Latitude, 
-                e.Position.Location.Longitude);
+            lstDownloadedPlaces = await PlacesMethods.getAllPlacesFromThisCategories(categories,
+                -16.5013,
+- 68.1207);
             DBPhone.Methods.AddPlaces(lstDownloadedPlaces);
+            NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
         }
 
         void tglSwitchDownloadSetting_Unchecked(object sender, System.Windows.RoutedEventArgs e)
@@ -69,20 +68,12 @@ namespace Zebra.WPApp.Pages.Begin
         }
         #endregion
 
-        async void borderNextButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        void borderNextButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (pivotMain.SelectedIndex == 2)
             {
                 stackWait.Visibility = System.Windows.Visibility.Visible;
                 pivotMain.Visibility = System.Windows.Visibility.Collapsed;
-                #region Download Places
-                if (lstCategories.SelectedItems.Count > 0)
-                {
-                    categories = lstCategories.SelectedItems as List<Category>;
-                    if (categories.Count > 0)
-                        watcher.Start();
-                }
-                #endregion
 
                 #region SaveSettings
                 if (tglSwitchDistanceUnit.IsChecked == true)
@@ -103,7 +94,19 @@ namespace Zebra.WPApp.Pages.Begin
 
                 App.FirstTimeLaunch = true;
                 #endregion
-                NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
+
+                #region Download Places
+                if (lstCategories.SelectedItems.Count > 0)
+                {
+                    categories = new List<Category>();
+                    foreach (Object SelectedItem in lstCategories.SelectedItems)
+                        categories.Add(SelectedItem as Category);
+                    if (categories.Count > 0)
+                        watcher.Start();
+                }
+                #endregion
+                else 
+                    NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
 
             }
             else pivotMain.SelectedIndex++;
@@ -111,7 +114,7 @@ namespace Zebra.WPApp.Pages.Begin
 
         private async void SettingsPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            lstCategories.ItemsSource = await MockData.MockDataGetCategories();
+            lstCategories.ItemsSource = await PlacesMethods.getCategories();
             lstCategories.DisplayMemberPath = "name";
         }
 
