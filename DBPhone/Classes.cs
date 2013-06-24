@@ -1,4 +1,5 @@
-﻿using System.Data.Linq.Mapping;
+﻿using System.Collections.Generic;
+using System.Data.Linq.Mapping;
 namespace DBPhone
 {
     [Table]
@@ -54,5 +55,27 @@ namespace DBPhone
 
         [Column]
         public double distance { get; set; }
+    }
+
+    [Table]
+    public class Category
+    {
+        [Column(IsDbGenerated = true, IsPrimaryKey = true)]
+        public int DBid { get; set; }
+
+        [Column]
+        public string categoryCode { get; set; }
+
+        [Column]
+        public string name { get; set; }
+
+        [Column]
+        public string spanishName { get; set; }
+
+        [Column]
+        public string parentCode { get; set; }
+
+        [Column]
+        public string icon { get; set; }
     }
 }

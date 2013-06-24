@@ -1,51 +1,54 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ZebrasLib.Classes;
 namespace DBPhone
 {
-    public class Methods
+    public class PlacesMethods
     {
-
-        private static Context GetDatabase()
+        public static void AddItems(List<ZebrasLib.Classes.Place> lstItems)
         {
-            Context context = new Context("isostore:/Zebritas.sdf");
-
-            if (!context.DatabaseExists())
-                context.CreateDatabase();
-            return context;
-        }
-
-        public static void AddPlaces(List<ZebrasLib.Classes.Place> lstPlaces)
-        {
-            List<Place> listToAdd = ConvertToDBPlaces(lstPlaces);
-            Context context = GetDatabase();
+            List<Place> listToAdd = ConvertToDBItems(lstItems);
+            Context context = Context.GetDatabase();
             context.places.InsertAllOnSubmit(listToAdd);
             context.SubmitChanges();
             context.Dispose();
         }
 
-        public static void RemovePlaces()
+        public static void RemoveItems(string code)
         {
-            Context context = GetDatabase(); 
-            context.DeleteDatabase();
-            context.Dispose();
+            Context context = Context.GetDatabase();
+            List<string> codes = CategoriesMethods.GetSubCategoriesCodes(code);
+
+            IEnumerable < Place > queryResult = from selectedPlace
+                                                in context.places
+                                                where codes.Contains(selectedPlace.categoryCode)
+                                                select selectedPlace;
+
+            foreach (Place P in queryResult)
+                context.places.DeleteOnSubmit(P);
+            context.SubmitChanges();
         }
 
-        public static List<ZebrasLib.Classes.Place> GetPlaces()
+        public static List<ZebrasLib.Classes.Place> GetItems(List<string> codes)
         {
-            Context context = GetDatabase();
+            Context context = Context.GetDatabase();
             IEnumerable<Place> queryResult = from selectedPlace
                                              in context.places
+                                             where codes.Contains(selectedPlace.categoryCode)
                                              select selectedPlace;
-            return ConvertToZebraPlaces(queryResult.ToList());
+            List<Place> listToReturn = queryResult.ToList();
+            context.Dispose();
+            return ConvertToZebraItems(listToReturn);
         }
 
-        private static List<ZebrasLib.Classes.Place> ConvertToZebraPlaces(List<Place> list)
+        private static List<ZebrasLib.Classes.Place> ConvertToZebraItems(List<Place> lstItems)
         {
             List<ZebrasLib.Classes.Place> listToReturn = new List<ZebrasLib.Classes.Place>();
-            foreach (Place P in list)
+            foreach (Place P in lstItems)
             {
-                listToReturn.Add(new ZebrasLib.Classes.Place { 
+                listToReturn.Add(new ZebrasLib.Classes.Place
+                {
                     address = P.address,
                     categoryCode = P.categoryCode,
                     delivery = P.delivery,
@@ -67,10 +70,10 @@ namespace DBPhone
             return listToReturn;
         }
 
-        private static List<Place> ConvertToDBPlaces(List<ZebrasLib.Classes.Place> list)
+        private static List<Place> ConvertToDBItems(List<ZebrasLib.Classes.Place> lstItems)
         {
             List<Place> listToReturn = new List<Place>();
-            foreach (ZebrasLib.Classes.Place P in list)
+            foreach (ZebrasLib.Classes.Place P in lstItems)
             {
                 listToReturn.Add(new Place
                 {

@@ -18,17 +18,16 @@ namespace Zebra.WPApp.Pages.Places
     public partial class PlacesPage : PhoneApplicationPage
     {
         private GeoCoordinateWatcher watcher;
-        private bool noProblemo;
         List<Place> lstAllPlaces;
         double latitude;
         double longitude;
         bool comingBack;
+        string categoryCode;
         public PlacesPage()
         {
             InitializeComponent();
             watcher = new GeoCoordinateWatcher();
             watcher.MovementThreshold = 200;
-            noProblemo = true;
             latitude = 150;
             longitude = 150;
             watcher.StatusChanged += watcher_StatusChanged;
@@ -40,6 +39,7 @@ namespace Zebra.WPApp.Pages.Places
         {
             base.OnNavigatedTo(e);
             txbCategory.Title = staticClasses.selectedCategory.name;
+            categoryCode = staticClasses.selectedCategory.code;
             if(!comingBack)
             {
                 LoadAppBar();
@@ -71,14 +71,12 @@ namespace Zebra.WPApp.Pages.Places
             if (App.AutoDownloadsPlaces)
                 return await DownloadPlacesFromTheInternet();
             else
-                return DBPhone.Methods.GetPlaces();
-            
-            
+                return DBPhone.PlacesMethods.GetItems(DBPhone.CategoriesMethods.GetSubCategoriesCodes(categoryCode)); 
         }
 
         private async Task<List<Place>> DownloadPlacesFromTheInternet()
         {
-            List<Place> lstFromTheInternet = await PlacesMethods.getAllPlacesByCategory(staticClasses.selectedCategory.code, -16.5013, -68.1207);
+            List<Place> lstFromTheInternet = await PlacesMethods.getAllPlacesByCategory(categoryCode, -16.5013, -68.1207);
             if (lstFromTheInternet.Count>0)
             {
                 UpdateDataBase(lstFromTheInternet);
@@ -87,10 +85,10 @@ namespace Zebra.WPApp.Pages.Places
             return null;
         }
 
-        private void UpdateDataBase(List<Place> list)
-        {
-            DBPhone.Methods.RemovePlaces();
-            DBPhone.Methods.AddPlaces(list);
+        private void UpdateDataBase(List<Place> toAddList)
+        {   
+            DBPhone.PlacesMethods.RemoveItems(categoryCode);
+            DBPhone.PlacesMethods.AddItems(toAddList);
         }
 
         private void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)

@@ -1,21 +1,21 @@
 ﻿using Microsoft.Phone.Controls;
+using OurFacebook;
 using System;
+using System.Collections.Generic;
+using System.Device.Location;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using ZebrasLib;
-using ZebrasLib.Places;
-using ZebrasLib.Classes;
-using System.Collections.Generic;
-using OurFacebook;
 using Zebra.WPApp.Resources;
-using DBPhone;
-using System.Device.Location;
+using ZebrasLib;
+
 namespace Zebra.WPApp.Pages.Begin
 {
     public partial class SettingsPage : PhoneApplicationPage
     {
-        GeoCoordinateWatcher watcher;
-        List<Category> categories;
+        private GeoCoordinateWatcher watcher;
+        private List<ZebrasLib.Classes.Category> categories;
+        private List<ZebrasLib.Classes.Category> selectedCategories;
+
         public SettingsPage()
         {
             InitializeComponent();
@@ -33,42 +33,40 @@ namespace Zebra.WPApp.Pages.Begin
             this.Loaded += SettingsPage_Loaded;
         }
 
-        async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        private async void SettingsPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            List<ZebrasLib.Classes.Place> lstDownloadedPlaces;
-            lstDownloadedPlaces = await PlacesMethods.getAllPlacesFromThisCategories(categories,
-                -16.5013,
-- 68.1207);
-            DBPhone.Methods.AddPlaces(lstDownloadedPlaces);
-            NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
+            categories = await ZebrasLib.Places.PlacesMethods.getCategories();
+            DBPhone.CategoriesMethods.AddItems(categories);
+            lstCategories.ItemsSource = categories;
+            lstCategories.DisplayMemberPath = "name";
         }
 
-        void tglSwitchDownloadSetting_Unchecked(object sender, System.Windows.RoutedEventArgs e)
+        #region Toggle
+        private void tglSwitchDownloadSetting_Unchecked(object sender, System.Windows.RoutedEventArgs e)
         {
             tglSwitchDownloadSetting.Content = "Manual";
             txtDownloadPlacesDetail.Text = AppResources.TxtbDownloadPlacesManual;
         }
 
-        void tglSwitchDownloadSetting_Checked(object sender, System.Windows.RoutedEventArgs e)
+        private void tglSwitchDownloadSetting_Checked(object sender, System.Windows.RoutedEventArgs e)
         {
-
             tglSwitchDownloadSetting.Content = "Auto";
             txtDownloadPlacesDetail.Text = AppResources.TxtbDownloadPlacesAuto;
         }
 
-        #region Toggle
-        void tglSwitchDistanceUnit_Unchecked(object sender, System.Windows.RoutedEventArgs e)
+        private void tglSwitchDistanceUnit_Unchecked(object sender, System.Windows.RoutedEventArgs e)
         {
             tglSwitchDistanceUnit.Content = AppResources.TxtbMiles;
         }
 
-        void tglSwitchDistanceUnit_Checked(object sender, System.Windows.RoutedEventArgs e)
+        private void tglSwitchDistanceUnit_Checked(object sender, System.Windows.RoutedEventArgs e)
         {
             tglSwitchDistanceUnit.Content = AppResources.TxtbKilometers;
         }
-        #endregion
 
-        void borderNextButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        #endregion Toggle
+
+        private void borderNextButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (pivotMain.SelectedIndex == 2)
             {
@@ -76,6 +74,7 @@ namespace Zebra.WPApp.Pages.Begin
                 pivotMain.Visibility = System.Windows.Visibility.Collapsed;
 
                 #region SaveSettings
+
                 if (tglSwitchDistanceUnit.IsChecked == true)
                     App.usesKilometers = true;
                 else App.usesKilometers = false;
@@ -83,7 +82,8 @@ namespace Zebra.WPApp.Pages.Begin
                 if (tglSwitchDownloadSetting.IsChecked == true)
                     App.AutoDownloadsPlaces = true;
 
-                else {
+                else
+                {
                     App.AutoDownloadsPlaces = false;
                     App.FirstTimeDataBase = true;
                 }
@@ -93,29 +93,27 @@ namespace Zebra.WPApp.Pages.Begin
                     App.nearDistance++;
 
                 App.FirstTimeLaunch = true;
-                #endregion
 
-                #region Download Places
+                #endregion SaveSettings
+
+                #region Download Places and Categories
+
                 if (lstCategories.SelectedItems.Count > 0)
                 {
-                    categories = new List<Category>();
+                    selectedCategories = new List<ZebrasLib.Classes.Category>();
                     foreach (Object SelectedItem in lstCategories.SelectedItems)
-                        categories.Add(SelectedItem as Category);
-                    if (categories.Count > 0)
+                        selectedCategories.Add(SelectedItem as ZebrasLib.Classes.Category);
+                    if (selectedCategories.Count > 0)
                         watcher.Start();
+                    
                 }
-                #endregion
-                else 
-                    NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
 
+                #endregion Download Places
+
+                else
+                    NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
             }
             else pivotMain.SelectedIndex++;
-        }
-
-        private async void SettingsPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            lstCategories.ItemsSource = await PlacesMethods.getCategories();
-            lstCategories.DisplayMemberPath = "name";
         }
 
         private async void borderFacebook_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -130,5 +128,15 @@ namespace Zebra.WPApp.Pages.Begin
             }
             txtbLoggedIn.Visibility = System.Windows.Visibility.Visible;
         }
+
+        private async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            List<ZebrasLib.Classes.Place> lstDownloadedPlaces;
+            lstDownloadedPlaces = await ZebrasLib.Places.PlacesMethods.getAllPlacesFromThisCategories(categories,
+                -16.5013, -68.1207);
+            DBPhone.PlacesMethods.AddItems(lstDownloadedPlaces);
+            NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
+        }
+
     }
 }

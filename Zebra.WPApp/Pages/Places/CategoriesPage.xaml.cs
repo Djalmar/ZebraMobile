@@ -23,11 +23,11 @@ namespace Zebra.WPApp.Pages.Places
             lstCategoryList.SelectionChanged += lstCategoryList_SelectionChanged;
         }
 
-        async void CategoriesPage_Loaded(object sender, RoutedEventArgs e)
+        void CategoriesPage_Loaded(object sender, RoutedEventArgs e)
         {
             if (!comingBack)
             {
-                lstCategoryList.ItemsSource = await PlacesMethods.getCategories();
+                lstCategoryList.ItemsSource = DBPhone.CategoriesMethods.GetItems();
                 comingBack = true;
             }
             
