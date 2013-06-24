@@ -67,24 +67,27 @@
             <phone:PivotItem Header="{Binding TargetNullValue=Search}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="7*"/>
                     </Grid.RowDefinitions>
-                    <Grid>
                         <toolkit:PhoneTextBox 
                             ActionIcon="/images/Icons/Search.png"
                             Hint="{Binding TargetNullValue=Search}" 
-                            ActionIconTapped="PhoneTextBox_ActionIconTapped"
-                            x:Name="txtSearch"   
+                            x:Name="txtSearch"
+                            Grid.Row="0"
                             />
-                        <ListBox x:Name="lstSearchResults">
+                        <ListBox x:Name="lstSearchResults"
+                                 Grid.Row="1">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"/>
-                                </DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding name}"/>
+                                    <TextBlock Text="{Binding address}"/>
+                                    <TextBlock Text="{Binding categoryCode}"/>
+                                </StackPanel>
+                            </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                    </Grid>
                 </Grid>
             </phone:PivotItem>
         </phone:Pivot>
