@@ -179,4 +179,10 @@
   <data name="AppBarDownload" xml:space="preserve">
     <value>Update</value>
   </data>
+  <data name="TxtReport" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="TxtShare" xml:space="preserve">
+    <value>Share</value>
+  </data>
 </root>

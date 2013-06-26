@@ -28,12 +28,15 @@ namespace ZebrasLib
                 return JsonConvert.DeserializeObject<EventResult>(result);
             }
 
-            public static async Task<EventResult> GetEvents(double latitude, double longitude)
+            public static async Task<List<Event>> GetEvents(double latitude, double longitude)
             {
                 string url = Main.urlGetProblems +
                     "latitude=" + latitude +
                     "&longitude=" + longitude;
-                return await downloadedInfo(url);
+                EventResult result = await downloadedInfo(url);
+                if(Main.thereIsNoProblemo(result.status))
+                    return result.eventsList;
+                else return null;
             }
 
             public static async Task<EventResult> GetEvents(List<string> fbFriendList)

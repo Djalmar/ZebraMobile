@@ -20,7 +20,8 @@ namespace ZebrasLib
                     "code=" + categoryCode +
                     "&latitude= " + latitude +
                     "&longitude=" + longitude;
-                return await Main.GetPlaces(url);
+                List<Place> lstPlace = await Main.GetPlaces(url);
+                return lstPlace;
             }
 
             public static async Task<List<Place>> getPlacesByQuery(string query, double latitude, double longitude)

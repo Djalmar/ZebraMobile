@@ -239,5 +239,23 @@ namespace Zebra.WPApp.Resources {
                 return ResourceManager.GetString("TxtbMiles", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report.
+        /// </summary>
+        public static string TxtReport {
+            get {
+                return ResourceManager.GetString("TxtReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share.
+        /// </summary>
+        public static string TxtShare {
+            get {
+                return ResourceManager.GetString("TxtShare", resourceCulture);
+            }
+        }
     }
 }

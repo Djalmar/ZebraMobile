@@ -12,34 +12,28 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
-    <!--LayoutRoot is the root grid where all page content is placed-->
+    shell:SystemTray.IsVisible="False">
+    
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding TargetNullValue=Report_trouble}" Margin="12" Style="{StaticResource stlTituloPagina}" />
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentReport" Grid.Row="1" Margin="12">
+        <TextBlock 
+            Text="{Binding TargetNullValue=Report_trouble}" 
+            Margin="12" 
+            Style="{StaticResource stlTituloPagina}" />
+    
+        <Grid x:Name="ContentReport" 
+              Grid.Row="1" 
+              Margin="12">
             <StackPanel>
-                <TextBlock Text="{Binding TargetNullValue=Choose_one}"></TextBlock>
-                <tools:ListPicker Name="lspTroubleCategory">
-                    <tools:ListPicker.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding}"></TextBlock>
-                        </DataTemplate>
-                    </tools:ListPicker.ItemTemplate>
-                </tools:ListPicker>
-                <TextBlock Text="{Binding TargetNullValue=What_is_going_on}"></TextBlock>
-                <TextBox Name="txtDescription"></TextBox>
+                <TextBlock Text="{Binding TargetNullValue=Choose_one}"/>
+                <tools:ListPicker Name="lspTroubleCategory"/>
+                <TextBlock 
+                    Text="{Binding TargetNullValue=What_is_going_on}"/>
+                <TextBox Name="txtDescription"/>
             </StackPanel>
         </Grid>
     </Grid>
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar>
-            <shell:ApplicationBarIconButton Text="Report" IconUri="/Assets/AppBar/upload.png" Click="btnReportClick"></shell:ApplicationBarIconButton>
-            <shell:ApplicationBarIconButton Text="Share" IconUri="/Assets/AppBar/share.png" Click="btnShareClick"></shell:ApplicationBarIconButton>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

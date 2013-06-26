@@ -1,85 +1,137 @@
-﻿using System;
+﻿using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using System;
 using System.Collections.Generic;
+using System.Device.Location;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using ZebrasLib.Events;
-using System.Device.Location;
 using Zebra.WPApp.Resources;
-using ZebrasLib.Classes;
 using ZebrasLib;
-
+using ZebrasLib.Classes;
+using ZebrasLib.Events;
 namespace Zebra.WPApp.Pages.Trouble
 {
     public partial class ReportPage : PhoneApplicationPage
     {
-
-        List<string> troubleCategoryList;
+        private List<string> troubleCategoryList;
         public GeoCoordinateWatcher watcher { get; set; }
         public EventResult result { get; set; }
+        double latitude;
+        double longitude;
+
         public ReportPage()
         {
             InitializeComponent();
             this.Loaded += ReportPage_Loaded;
-        }
-
-        void ReportPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            //aqui el metodo que solo me retorna las categorias
-
-            troubleCategoryList=new List<string>();
-            troubleCategoryList.Add("Parade");
-            troubleCategoryList.Add("Bloqueo");
-            troubleCategoryList.Add("Parade");
-            troubleCategoryList.Add("Bloqueo");
-            lspTroubleCategory.ItemsSource = troubleCategoryList;
-             
-        }
-
-        private void btnReportClick(object sender, EventArgs e)
-        {
-            StartGps();            
-        }
-
-        private void StartGps()
-        {
             watcher = new GeoCoordinateWatcher();
+            watcher.MovementThreshold = 200;
             watcher.PositionChanged += watcher_PositionChanged;
-            watcher.StatusChanged += watcher_StatusChanged;
-            watcher.MovementThreshold = 300;
+        }
+
+        private void ReportPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadAppBar();
             watcher.Start();
+            LoadProblemsList();
         }
 
-        void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
+        #region AppBar
+        private void LoadAppBar()
         {
-            //if (e.Status == GeoPositionStatus.Disabled)
-            //    MessageBox.Show(AppResources.messageGpsDisabled);
-            //if (e.Status == GeoPositionStatus.NoData)
-            //    MessageBox.Show(AppResources.messageGpsNoData);
+            ApplicationBar = new ApplicationBar();
+
+            ApplicationBarIconButton btnShare = new ApplicationBarIconButton();
+            btnShare.IconUri = new Uri("/Assets/AppBar/share.png",UriKind.Relative);
+            btnShare.Text = AppResources.TxtShare;
+            btnShare.Click += btnShare_Click;
+            ApplicationBar.Buttons.Add(btnShare);
+
+            ApplicationBarIconButton btnReport = new ApplicationBarIconButton();
+            btnReport.IconUri = new Uri("/Assets/AppBar/report.png",UriKind.Relative);
+            btnReport.Text = AppResources.TxtReport;
+            btnReport.Click += btnReport_Click;
+            ApplicationBar.Buttons.Add(btnReport);
         }
 
-        void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        void btnReport_Click(object sender, EventArgs e)
         {
-            double latitude = e.Position.Location.Latitude;
-            double longitude = e.Position.Location.Longitude;
-            int type = lspTroubleCategory.SelectedIndex;
+            EventResult result = new EventResult();
             string description = txtDescription.Text;
-            //result = await EventsMethods.ReportEvent(App.facebookId, latitude, longitude, description, type);
-            //if (Main.thereIsNoProblemo(result.status,result.message))
-            //    MessageBox.Show("Se ha hecho el reporte");
+            int reportType = lspTroubleCategory.SelectedIndex + 1;
+            if (description.Length > 0 && reportType > 0)
+                ReportEvent(App.facebookId,
+                    latitude,
+                    longitude,
+                    txtDescription.Text,
+                    reportType);
+        }
+        async void ReportEvent(string facebookCode,
+                    double latitude,
+                    double longitude,
+                    string description,
+                    int type)
+        { 
+            string data =
+                    "facebookcode=" + App.facebookId +
+                    "&latitude=" + latitude +
+                    "&longitude=" + longitude +
+                    "&description=" + description +
+                    "&type=" + type;
+            string message = await UploadStringAsyncUsingPUT(new Uri(Main.urlReportProblem,UriKind.Absolute), data);
+            MessageBox.Show(message);
+        }
+        void btnShare_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/OtherPages/Share.xaml" +
+                "?message=" + txtDescription.Text +
+                "&title=" + lspTroubleCategory.SelectedIndex, UriKind.Relative));
+        }
+        #endregion
+
+        private void LoadProblemsList()
+        {
+            troubleCategoryList = new List<string>();
+            troubleCategoryList.Add("Traffic");
+            troubleCategoryList.Add("Manifestation");
+            troubleCategoryList.Add("Parade");
+            troubleCategoryList.Add("Blockade");
+            troubleCategoryList.Add("Accident");
+            troubleCategoryList.Add("Others");
+            lspTroubleCategory.ItemsSource = troubleCategoryList;
+        }
+        private void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            latitude = e.Position.Location.Latitude;
+            longitude = e.Position.Location.Longitude;
             watcher.Stop();
         }
 
-        private void btnShareClick(object sender, EventArgs e)
+        public static Task<string> UploadStringAsyncUsingPUT(Uri uri, string data)
         {
-            StartGps();
-            #region share
-            NavigationService.Navigate(new Uri("/Pages/OtherPages/Share.xaml?message="+txtDescription.Text+"&&title="+lspTroubleCategory.SelectedIndex, UriKind.Relative));
-            #endregion
+            WebClient client = new SharpGIS.GZipWebClient();
+            client.Encoding = System.Text.Encoding.UTF8;
+            client.Headers["Accept"] = "*/*";
+            client.Headers["User-Agent"] = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.116 Safari/537.36";
+            client.Headers["Content-Type"] = "application/x-www-form-urlencoded";
+            client.Headers["Accept-Encoding"] = "gzip,deflate,sdch";
+            client.Headers["Accept-Language"] = "en-US,en;q=0.8";
+            var resultFromUpload = new TaskCompletionSource<string>();
+
+            client.UploadStringCompleted += (s, e) =>
+            {
+                if (e.Error != null)
+                    resultFromUpload.SetException(e.Error);
+                else
+                    resultFromUpload.SetResult(e.Result);
+            };
+
+            client.UploadStringAsync(uri, "POST", data);
+
+            return resultFromUpload.Task;
         }
     }
 }

@@ -16,43 +16,52 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="False">
     
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.Resources>
-        </Grid.Resources>
+    <Grid x:Name="LayoutRoot" 
+          Background="Transparent">
         <phone:Panorama Title="{Binding}">
             <phone:Panorama.TitleTemplate>
                 <DataTemplate>
-                    <TextBlock Margin="12,40" Text="{Binding TargetNullValue=wht_s_gng_n}" FontSize="60"></TextBlock>
+                    <TextBlock Margin="12,40" 
+                               Text="{Binding TargetNullValue=WhatsGoingOn}" 
+                               FontSize="60"/>
                 </DataTemplate>
             </phone:Panorama.TitleTemplate>
+            
             <phone:PanoramaItem Header="{Binding}">
                 <phone:PanoramaItem.HeaderTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding TargetNullValue=map}" FontSize="50"></TextBlock>
+                        <TextBlock Text="{Binding TargetNullValue=map}" 
+                                   FontSize="50"/>
                     </DataTemplate>
                 </phone:PanoramaItem.HeaderTemplate>
                 <Grid>
-                    <maps:Map Margin="12" Name="mapTroubles" ZoomLevel="14">
-                    </maps:Map>
+                    <maps:Map Margin="12" 
+                              Name="mapTroubles" 
+                              ZoomLevel="14"/>
                 </Grid>
             </phone:PanoramaItem>
             <phone:PanoramaItem Header="{Binding}">
                 <phone:PanoramaItem.HeaderTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding TargetNullValue=troubles}" FontSize="50"></TextBlock>
+                        <TextBlock Text="{Binding TargetNullValue=troubles}" 
+                                   FontSize="50"/>
                     </DataTemplate>
                 </phone:PanoramaItem.HeaderTemplate>
                 <ListBox Name="lstTroubles">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Border Background="{StaticResource PhoneAccentBrush}" Margin="12">
-                                    <Image Height="100" Width="100" Source="/images/Icons/coffee.png"></Image>
+                                <Border Background="{StaticResource PhoneAccentBrush}" 
+                                        Margin="12">
+                                    <Image Height="100" 
+                                           Width="100" 
+                                           Source="/images/Icons/coffee.png"/>
                                 </Border>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding reportedAt}" FontSize="32"></TextBlock>
-                                    <TextBlock Text="{Binding description}" FontSize="24"></TextBlock>
+                                    <TextBlock Text="{Binding reportedAt}" 
+                                               FontSize="32"/>
+                                    <TextBlock Text="{Binding description}" 
+                                               FontSize="24"/>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -62,9 +71,4 @@
         </phone:Panorama>
         
     </Grid>
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar>
-            <shell:ApplicationBarIconButton Text="Report" IconUri="/Assets/AppBar/edit.png" Click="ApplicationBarIconButton_Click"></shell:ApplicationBarIconButton>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

@@ -121,9 +121,6 @@
       <DependentUpon>SelectedPlacePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Places\CategoriesPage.xaml.cs" />
-    <Compile Include="Pages\Trouble\ProblemsPage.xaml.cs">
-      <DependentUpon>ProblemsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Trouble\ReportPage.xaml.cs">
       <DependentUpon>ReportPage.xaml</DependentUpon>
     </Compile>
@@ -183,10 +180,6 @@
     <Page Include="Pages\Places\CategoriesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Pages\Trouble\ProblemsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Trouble\ReportPage.xaml">
       <SubType>Designer</SubType>
@@ -310,6 +303,9 @@
     <Reference Include="QuickMethods, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\QuickMethods.1.1.0\lib\QuickMethods.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGIS.GZipWebClient">
+      <HintPath>..\packages\SharpGIS.GZipWebClient.1.4.0.0\lib\wp71\SharpGIS.GZipWebClient.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

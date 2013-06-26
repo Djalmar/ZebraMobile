@@ -132,7 +132,7 @@ namespace Zebra.WPApp.Pages.Begin
         private async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             List<ZebrasLib.Classes.Place> lstDownloadedPlaces;
-            lstDownloadedPlaces = await ZebrasLib.Places.PlacesMethods.getAllPlacesFromThisCategories(categories,
+            lstDownloadedPlaces = await ZebrasLib.Places.PlacesMethods.getAllPlacesFromThisCategories(selectedCategories,
                 -16.5013, -68.1207);
             DBPhone.PlacesMethods.AddItems(lstDownloadedPlaces);
             NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
