@@ -219,7 +219,9 @@
     <Content Include="Assets\Icons\Categories\internet.png" />
     <Content Include="Assets\Icons\Categories\night.png" />
     <Content Include="Assets\Icons\Categories\restaurant.png" />
-    <Content Include="Assets\Icons\Categories\Search.png" />
+    <Content Include="Assets\Icons\Search.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Icons\Categories\sports.png" />
     <Content Include="Assets\Icons\Categories\transport.png" />
     <Content Include="Assets\Icons\next.png">
