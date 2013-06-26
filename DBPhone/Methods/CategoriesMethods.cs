@@ -22,6 +22,7 @@ namespace DBPhone
             Context context = Context.GetDatabase();
             IEnumerable<Category> queryResult = from selectedItem
                                              in context.categories
+                                             orderby selectedItem.name ascending
                                              select selectedItem;
             return ConvertToZebraItems(queryResult.ToList());
         }

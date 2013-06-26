@@ -17,8 +17,15 @@ namespace ZebrasLib
                 string downloadedInfo = await Main.DownloadInfo(url);
                 CategoryResult result = JsonConvert.DeserializeObject<CategoryResult>(downloadedInfo);
                 if (Main.thereIsNoProblemo(result.status))
-                    return result.categoriesList;
+                    return FormatedCategories(result.categoriesList);
                 else return null;
+            }
+
+            private static List<Category> FormatedCategories(List<Category> list)
+            {
+                foreach (Category C in list)
+                    C.icon = "/Assets/Icons/Categories/" + C.icon;
+                return list;
             }
         }
     }
