@@ -38,32 +38,27 @@
         <phone:Pivot toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
             <phone:PivotItem Header="{Binding TargetNullValue=Categories}">
                 <Grid>
-                    <ScrollViewer Grid.Row="2">
-                        <Grid>
-                            <ListBox Name="lstCategoryList" toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" Margin="12">
-                                            <Border Background="{StaticResource PhoneAccentBrush}" Width="100" Height="100">
-                                                <Image 
-                                                Source="{Binding icon}" 
-                                                Width="70" 
-                                                Height="70"/>
-                                            </Border>
-                                            <TextBlock 
-                                                Text="{Binding name}" 
-                                                VerticalAlignment="Center" 
-                                                Margin="12" 
-                                                FontSize="32"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                        </Grid>
-                    </ScrollViewer>
+                    <ListBox Name="lstCategoryList" toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="12">
+                                    <Border Background="{StaticResource PhoneAccentBrush}" Width="100" Height="100">
+                                        <Image 
+                                        Source="{Binding icon}" 
+                                        Width="70" 
+                                        Height="70"/>
+                                    </Border>
+                                    <TextBlock 
+                                        Text="{Binding name}" 
+                                        VerticalAlignment="Center" 
+                                        Margin="12" 
+                                        FontSize="32"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
             </phone:PivotItem>
-            
             <phone:PivotItem Header="{Binding TargetNullValue=Search}">
                 <Grid>
                     <Grid.RowDefinitions>

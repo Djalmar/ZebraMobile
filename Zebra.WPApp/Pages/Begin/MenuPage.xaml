@@ -52,6 +52,7 @@
             HorizontalAlignment="Center" 
             Text="menu" 
             Margin="24"
+            Opacity="0.7"
             FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"/>
         <toolkit:HubTile Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
                          toolkit:TurnstileFeatherEffect.FeatheringIndex="1"
