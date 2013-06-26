@@ -210,19 +210,19 @@
     <Content Include="Assets\AppBar\edit.png" />
     <Content Include="Assets\AppBar\share.png" />
     <Content Include="Assets\AppBar\upload.png" />
-    <Content Include="images\Icons\ApplicationBar.settings.png" />
-    <Content Include="images\Icons\banc.png" />
-    <Content Include="images\Icons\build.png" />
-    <Content Include="images\Icons\cine.png" />
-    <Content Include="images\Icons\coffee.png" />
-    <Content Include="images\Icons\hospital.png" />
-    <Content Include="images\Icons\internet.png" />
-    <Content Include="images\Icons\night.png" />
-    <Content Include="images\Icons\restaurant.png" />
-    <Content Include="images\Icons\Search.png" />
-    <Content Include="images\Icons\sports.png" />
-    <Content Include="images\Icons\transport.png" />
-    <Content Include="images\next.png">
+    <Content Include="Assets\Icons\ApplicationBar.settings.png" />
+    <Content Include="Assets\Icons\Categories\banc.png" />
+    <Content Include="Assets\Icons\Categories\build.png" />
+    <Content Include="Assets\Icons\Categories\cine.png" />
+    <Content Include="Assets\Icons\Categories\coffee.png" />
+    <Content Include="Assets\Icons\Categories\hospital.png" />
+    <Content Include="Assets\Icons\Categories\internet.png" />
+    <Content Include="Assets\Icons\Categories\night.png" />
+    <Content Include="Assets\Icons\Categories\restaurant.png" />
+    <Content Include="Assets\Icons\Categories\Search.png" />
+    <Content Include="Assets\Icons\Categories\sports.png" />
+    <Content Include="Assets\Icons\Categories\transport.png" />
+    <Content Include="Assets\Icons\next.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Videos\bmtdk.mp3" />
@@ -319,9 +319,7 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\Icons\Categories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -148,7 +148,7 @@
                 Width="60" 
                 Height="60" 
                 HorizontalAlignment="Right">
-            <Image Source="/images/next.png"/>
+            <Image Source="/Assets/Icons/next.png"/>
         </Border>
     </Grid>
 </phone:PhoneApplicationPage>
