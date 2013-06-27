@@ -15,7 +15,7 @@
     shell:SystemTray.IsVisible="False">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <phone:Pivot>
+    <phone:Pivot Name="pivotMain">
         <phone:PivotItem Header="{Binding TargetNullValue=Find_me_a_place}">
             <Grid x:Name="LayoutRoot">
                 <StackPanel>
@@ -24,7 +24,11 @@
                     <toolkit:PhoneTextBox Name="txtPeople" Hint="{Binding TargetNullValue=people}"/>
                     <TextBlock Margin="0,12" Text="how_much_money"
                            Style="{StaticResource PhoneTextGroupHeaderStyle}" />
-                    <toolkit:PhoneTextBox x:Name="txtMoney" Hint="{Binding TargetNullValue=money}"/>
+                    <toolkit:PhoneTextBox x:Name="txtMinMoney" Hint="{Binding TargetNullValue=money}"/>
+
+                    <TextBlock Margin="0,12" Text="how_much_money"
+                           Style="{StaticResource PhoneTextGroupHeaderStyle}" />
+                    <toolkit:PhoneTextBox x:Name="txtMaxMoney" Hint="{Binding TargetNullValue=money}"/>
                 </StackPanel>
             </Grid>
         </phone:PivotItem>
@@ -48,7 +52,6 @@
                             </DataTemplate>
                         </toolkit:ListPicker.FullModeItemTemplate>
                     </toolkit:ListPicker>
-                    <Button Click="Button_Click_1">adas</Button>
                 </StackPanel>
             </Grid>
         </phone:PivotItem>

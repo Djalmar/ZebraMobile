@@ -232,7 +232,7 @@
     </Content>
     <Content Include="Assets\Icons\Categories\sports.png" />
     <Content Include="Assets\Icons\Categories\transport.png" />
-    <Content Include="Assets\Icons\next.png">
+    <Content Include="Assets\AppBar\next.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Videos\bmtdk.mp3" />

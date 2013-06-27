@@ -216,7 +216,7 @@
                 Height="60" 
                 toolkit:TurnstileFeatherEffect.FeatheringIndex="15"
                 HorizontalAlignment="Right">
-            <Image Source="/Assets/Icons/next.png"/>
+            <Image Source="/Assets/AppBar/next.png"/>
         </Border>
     </Grid>
 </phone:PhoneApplicationPage>

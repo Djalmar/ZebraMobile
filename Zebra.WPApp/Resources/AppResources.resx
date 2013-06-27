@@ -185,4 +185,7 @@
   <data name="TxtShare" xml:space="preserve">
     <value>Share</value>
   </data>
+  <data name="TxtFind" xml:space="preserve">
+    <value>Find</value>
+  </data>
 </root>

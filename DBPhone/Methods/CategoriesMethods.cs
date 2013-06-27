@@ -9,7 +9,7 @@ namespace DBPhone
     public class CategoriesMethods
     {
         public static void AddItems(List<ZebrasLib.Classes.Category> lstItems)
-        {
+        {   
             List<Category> listToAdd = ConvertToDBItems(lstItems);
             Context context = Context.GetDatabase();
             context.categories.InsertAllOnSubmit(listToAdd);
