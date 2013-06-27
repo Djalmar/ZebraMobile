@@ -52,7 +52,8 @@
                                         Text="{Binding name}" 
                                         VerticalAlignment="Center" 
                                         Margin="12" 
-                                        FontSize="32"/>
+                                        FontSize="38"
+                                        Opacity="0.8"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -65,24 +66,23 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="7*"/>
                     </Grid.RowDefinitions>
-                        <toolkit:PhoneTextBox 
-                            ActionIcon="/images/Icons/Search.png"
-                            Hint="{Binding TargetNullValue=Search}" 
-                            x:Name="txtSearch"
-                            Grid.Row="0"
-                            />
-                        <ListBox x:Name="lstSearchResults"
-                                 Grid.Row="1">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding name}"/>
-                                    <TextBlock Text="{Binding address}"/>
-                                    <TextBlock Text="{Binding categoryCode}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                    <toolkit:PhoneTextBox 
+                        ActionIcon="/images/Icons/Search.png"
+                        Hint="{Binding TargetNullValue=name_of_place}" 
+                        x:Name="txtSearch"
+                        Grid.Row="0"/>
+                    <ListBox x:Name="lstSearchResults"
+                                Grid.Row="1">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding name}"/>
+                                <TextBlock Text="{Binding address}"/>
+                                <TextBlock Text="{Binding categoryCode}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
             </phone:PivotItem>
         </phone:Pivot>

@@ -53,8 +53,7 @@ namespace Zebra.WPApp.Pages.Places
             {
                 lstCategoryList.ItemsSource = DBPhone.CategoriesMethods.GetItems();
                 comingBack = true;
-            }
-            
+            }   
         }
 
         void lstCategoryList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -64,9 +63,8 @@ namespace Zebra.WPApp.Pages.Places
                 if (selectedcategory.name != "")
                 {
                     staticClasses.selectedCategory = selectedcategory;
-                    NavigationService.Navigate(new Uri("/Pages/Places/PlacesPage.xaml",UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/Pages/Places/PlacesPage.xaml", UriKind.Relative));
                 }
-                
         }
     }
 }

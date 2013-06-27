@@ -15,26 +15,12 @@ namespace Zebra.WPApp.Pages.Wallet
         public GetDataPage()
         {
             InitializeComponent();
+            lspCategory.ItemsSource = DBPhone.CategoriesMethods.GetItems();
         }
 
-        private void sldMoney_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (sldMoney != null)
-            {
-                double resta = e.NewValue % 10;
-                if (resta > 5)
-                    sldMoney.Value = e.NewValue + resta;
-                else
-                    sldMoney.Value = e.NewValue - resta;
-            }
-        }
-
-        private void sldPeople_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            if (sldPeople != null)
-            {
-                sldPeople.Value = Math.Truncate(e.NewValue);
-            }
+            NavigationService.Navigate(new Uri("/Pages/Wallet/ResultPage.xaml", UriKind.Relative));
         }
     }
 }

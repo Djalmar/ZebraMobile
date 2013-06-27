@@ -156,7 +156,6 @@ namespace Zebra.WPApp.Pages.Places
                             select variable;
 
                 categoryDaja.lstPlaces = query.ToList();
-
                 lstCategoriesDaja.Add(categoryDaja);
             }
             return lstCategoriesDaja;

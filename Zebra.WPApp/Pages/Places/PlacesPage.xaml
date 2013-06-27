@@ -43,13 +43,13 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Border VerticalAlignment="Top" Margin="12" 
+                    <!--<Border VerticalAlignment="Top" Margin="12" 
                             Background="{StaticResource PhoneAccentBrush}" 
                             Width="100" Height="100">
                         <Image Source="{Binding Path=category.icon}" 
                                Width="70" 
                                Height="70"/>
-                    </Border>
+                    </Border>-->
                     <tool:ExpanderView Header="{Binding}" Grid.Column="1"
                                                Expander="{Binding}"
                                                ItemsSource="{Binding lstPlaces}"
@@ -72,9 +72,13 @@
                                                 Tag="{Binding}">
                                         <TextBlock Name="txbName" Text="{Binding Path=name}" 
                                                    FontSize="{StaticResource PhoneFontSizeLarge}" 
-                                                   FontFamily="{StaticResource PhoneFontFamilyLight}"/>
+                                                   FontFamily="{StaticResource PhoneFontFamilyLight}"
+                                                   TextWrapping="Wrap"/>
                                         <TextBlock Text="{Binding Path=address}" 
-                                                   FontSize="{StaticResource PhoneFontSizeNormal}"/>
+                                                   FontSize="{StaticResource PhoneFontSizeNormal}"
+                                                   Opacity="0.7"
+                                                   Margin="12,6,12,12"
+                                                   TextWrapping="Wrap"/>
                                     </StackPanel>
                                 </ListBoxItem>
                             </DataTemplate>
@@ -88,6 +92,13 @@
                                             <Setter Property="Opacity" Value="0.5"/>
                                         </Style>
                                     </StackPanel.Resources>
+                                    <Border VerticalAlignment="Top" Margin="12" 
+                                            Background="{StaticResource PhoneAccentBrush}" 
+                                            Width="100" Height="100">
+                                            <Image Source="{Binding Path=category.icon}" 
+                                                Width="70" 
+                                                Height="70"/>
+                                     </Border>
                                     <TextBlock Text="{Binding Path=lstPlaces.Count}"/>
                                     <TextBlock Text="  places found"/>
                                 </StackPanel>
@@ -101,10 +112,10 @@
                                     Value="Stretch"/>
             </Style>
         </Grid.Resources>
-        <phone:Panorama Title="{Binding TargetNullValue=Category}" 
+        <phone:Pivot Title="{Binding TargetNullValue=Category}" 
                         Name="txbCategory">
             
-            <phone:PanoramaItem Header="{Binding TargetNullValue=All}">
+            <phone:PivotItem Header="{Binding TargetNullValue=All}">
                 <ListBox Grid.Row="0" x:Name="lstbAllPlaces" toolkit:TurnstileFeatherEffect.FeatheringIndex="0"
                          ItemTemplate="{StaticResource expanderList}"
                          ItemContainerStyle="{StaticResource expanderListItem}">
@@ -114,9 +125,9 @@
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                 </ListBox>
-            </phone:PanoramaItem>
+            </phone:PivotItem>
             
-            <phone:PanoramaItem Header="{Binding TargetNullValue=Popular}">
+            <phone:PivotItem Header="{Binding TargetNullValue=Popular}">
                 <ListBox Grid.Row="0" x:Name="lstbPopularPlaces" toolkit:TurnstileFeatherEffect.FeatheringIndex="1"
                          ItemTemplate="{StaticResource expanderList}"
                          ItemContainerStyle="{StaticResource expanderListItem}">
@@ -126,9 +137,9 @@
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
                 </ListBox>
-            </phone:PanoramaItem>
+            </phone:PivotItem>
             
-            <phone:PanoramaItem Header="{Binding TargetNullValue=Near}">
+            <phone:PivotItem Header="{Binding TargetNullValue=Near}">
                 <ListBox Grid.Row="0" x:Name="lstbNearPlaces" toolkit:TurnstileFeatherEffect.FeatheringIndex="2"
                          ItemTemplate="{StaticResource expanderList}"
                          ItemContainerStyle="{StaticResource expanderListItem}">
@@ -138,7 +149,7 @@
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                 </ListBox>
-            </phone:PanoramaItem>
-        </phone:Panorama>
+            </phone:PivotItem>
+        </phone:Pivot>
     </Grid>
 </phone:PhoneApplicationPage>

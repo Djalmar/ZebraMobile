@@ -15,31 +15,42 @@
     shell:SystemTray.IsVisible="False">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <TextBlock Text="{Binding TargetNullValue=Find_me_a_place}" Style="{StaticResource stlTituloPagina}"/>
-        <StackPanel Grid.Row="1" Margin="0,24">
-            <TextBlock Margin="12,0,0,-12" Text="{Binding TargetNullValue=$$$$}" FontSize="{StaticResource PhoneFontSizeLarge}" Opacity="0.7"></TextBlock>
-            <StackPanel Orientation="Horizontal">
-                <Slider SmallChange="10" Margin="0,0,0,-36" Minimum="10" Maximum="1000" x:Name="sldMoney" ValueChanged="sldMoney_ValueChanged" Value="500" MinWidth="400"></Slider>
-                <TextBlock Text="{Binding Value, ElementName=sldMoney,StringFormat=0$}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            </StackPanel>
-            <TextBlock Margin="12" Text="{Binding TargetNullValue=People}" FontSize="{StaticResource PhoneFontSizeLarge}" Opacity="0.7"></TextBlock>
-            <StackPanel Orientation="Horizontal">
-                <Slider SmallChange="10" MinWidth="400" Margin="0,0,0,-36" Minimum="1" Maximum="100" x:Name="sldPeople" ValueChanged="sldPeople_ValueChanged" Value="5"></Slider>
-                <TextBlock Text="{Binding Value, ElementName=sldPeople,StringFormat=0:)}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </StackPanel>
-            <TextBlock Margin="12" Text="{Binding TargetNullValue=A_category}" FontSize="{StaticResource PhoneFontSizeLarge}" Opacity="0.7"></TextBlock>
-            <toolkit:ListPicker>
-                <toolkit:ListPickerItem>Coffe</toolkit:ListPickerItem>
-                <toolkit:ListPickerItem>Coffe</toolkit:ListPickerItem>
-                <toolkit:ListPickerItem>Coffe</toolkit:ListPickerItem>
-                <toolkit:ListPickerItem>Coffe</toolkit:ListPickerItem>
-                <toolkit:ListPickerItem>Coffe</toolkit:ListPickerItem>
-            </toolkit:ListPicker>
-        </StackPanel>
-    </Grid>
+    <phone:Pivot>
+        <phone:PivotItem Header="{Binding TargetNullValue=Find_me_a_place}">
+            <Grid x:Name="LayoutRoot">
+                <StackPanel>
+                    <TextBlock Text="how_many_people"
+                           Style="{StaticResource PhoneTextGroupHeaderStyle}" />
+                    <toolkit:PhoneTextBox Name="txtPeople" Hint="{Binding TargetNullValue=people}"/>
+                    <TextBlock Margin="0,12" Text="how_much_money"
+                           Style="{StaticResource PhoneTextGroupHeaderStyle}" />
+                    <toolkit:PhoneTextBox x:Name="txtMoney" Hint="{Binding TargetNullValue=money}"/>
+                </StackPanel>
+            </Grid>
+        </phone:PivotItem>
+        <phone:PivotItem>
+            <Grid>
+                <StackPanel>
+                    <TextBlock Margin="12" Text="{Binding TargetNullValue=Write_something}" FontSize="{StaticResource PhoneFontSizeLarge}" Opacity="0.7"></TextBlock>
+                    <toolkit:PhoneTextBox x:Name="txtSearch"
+                                          Hint="Search"
+                                          ActionIcon="/Assets/Icons/Search.png"></toolkit:PhoneTextBox>
+                    <TextBlock Margin="24" Text="{Binding TargetNullValue=or}" FontSize="{StaticResource PhoneFontSizeLarge}" Opacity="0.7" HorizontalAlignment="Center"></TextBlock>
+                    <toolkit:ListPicker  x:Name="lspCategory" Header="{Binding}" DisplayMemberPath="name">
+                        <toolkit:ListPicker.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="0,12,12,12" Text="{Binding TargetNullValue=select_a_category}" FontSize="{StaticResource PhoneFontSizeLarge}"></TextBlock>
+                            </DataTemplate>
+                        </toolkit:ListPicker.HeaderTemplate>
+                        <toolkit:ListPicker.FullModeItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding name}" Margin="12" FontSize="38"/>
+                            </DataTemplate>
+                        </toolkit:ListPicker.FullModeItemTemplate>
+                    </toolkit:ListPicker>
+                    <Button Click="Button_Click_1">adas</Button>
+                </StackPanel>
+            </Grid>
+        </phone:PivotItem>
+    </phone:Pivot>
 </phone:PhoneApplicationPage>
