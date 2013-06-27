@@ -38,7 +38,6 @@ namespace Zebra.WPApp.Pages.Begin
             categories = await ZebrasLib.Places.PlacesMethods.getCategories();
             DBPhone.CategoriesMethods.AddItems(categories);
             lstCategories.ItemsSource = categories;
-            lstCategories.DisplayMemberPath = "name";
         }
 
         #region Toggle

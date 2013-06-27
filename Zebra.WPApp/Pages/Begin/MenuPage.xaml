@@ -31,87 +31,92 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-    <Grid Width="432" HorizontalAlignment="Left" Margin="12,0,0,12">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock 
-            toolkit:TurnstileFeatherEffect.FeatheringIndex="0"
-            Foreground="{StaticResource PhoneForegroundBrush}" 
-            Grid.ColumnSpan="4" 
-            HorizontalAlignment="Center" 
-            Text="menu" 
-            Margin="24"
-            Opacity="0.7"
-            FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"/>
-        <toolkit:HubTile Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
-                         toolkit:TurnstileFeatherEffect.FeatheringIndex="1"
-                        Tap="btnTraffic_Tap"
-                        Margin="12,12,0,0"
-                        Title="{Binding TargetNullValue=Whats_going_on}"
-                        GroupTag="Sizes"
-                        Size="Large" Background="#FF009E00"/>
-        <toolkit:HubTile Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                         toolkit:TurnstileFeatherEffect.FeatheringIndex="7"
-                        Tap="btnPlaces_Tap"
-                        Margin="12,-24,0,0"
-                        Title="{Binding TargetNullValue=Places}"
-                        GroupTag="Sizes"
-                        Size="Medium" Background="#FFA300AB"/>
-        <toolkit:HubTile Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                         toolkit:TurnstileFeatherEffect.FeatheringIndex="2"
-                        Tap="btnWallet_Tap"
-                        Margin="12,12,0,0"
-                        Title="{Binding TargetNullValue=Wallet}"
-                        Notification="w/fixings"
-                        DisplayNotification="True"
-                        GroupTag="Sizes"
-                        Size="Medium" Background="#FFE51400"/>
-        <toolkit:HubTile Grid.Row="2" Grid.Column="0" 
-                         toolkit:TurnstileFeatherEffect.FeatheringIndex="4"
-                        Margin="12,-21,0,0"
-                        Title="Zebra"
-                        Message="&quot;Just an amazing work by the chef&quot;"
-                        GroupTag="Sizes"
-                         Tap="btnZebra_Tap"
-                        Size="Small" Background="#FFFA6800"/>
-        <toolkit:HubTile Grid.Row="2" Grid.Column="1"
-                         x:Name="btnSettings"
-                         Tap="btnSettings_Tap"
-                         toolkit:TurnstileFeatherEffect.FeatheringIndex="3"
-                        Margin="12,-21,0,0"
-                        Source="/Assets/AppBar/add.png"
-                        Title="Steak&#x0d;&#x0a;Sandwich"
-                        Message="@ a great cafe"
-                        GroupTag="Sizes"
-                        Size="Small" Background="#FF007ACC"/>
-        <toolkit:HubTile Grid.Row="4" Grid.Column="2" 
-                         toolkit:TurnstileFeatherEffect.FeatheringIndex="6"
-                        Margin="12,10,0,0"
-                        Source="/Images/Beignets.jpg"
-                        Title="Beignets"
-                        Notification="New&#x0d;&#x0a;Orleans"
-                        DisplayNotification="True"
-                        GroupTag="Sizes"
-                        Size="Small"/>
-        <toolkit:HubTile Grid.Row="4" Grid.Column="3" 
-                         toolkit:TurnstileFeatherEffect.FeatheringIndex="5"
-                        Margin="12,10,0,0"
-                        Source="/Images/Dessert.jpg"
-                        Title="Beignets"
-                        Notification="New&#x0d;&#x0a;Orleans"
-                        DisplayNotification="True"
-                        GroupTag="Sizes"
-                        Size="Small" Background="#FF007ACC"/>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.35"></ImageBrush>
+        </Grid.Background>
+        <Grid Width="432" HorizontalAlignment="Left" Margin="12,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock 
+                toolkit:TurnstileFeatherEffect.FeatheringIndex="0"
+                Foreground="{StaticResource PhoneForegroundBrush}" 
+                Grid.ColumnSpan="4" 
+                HorizontalAlignment="Center" 
+                Text="menu" 
+                Margin="24"
+                Opacity="0.7"
+                FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"/>
+            <toolkit:HubTile Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
+                             toolkit:TurnstileFeatherEffect.FeatheringIndex="1"
+                            Tap="btnTraffic_Tap"
+                            Margin="12,12,0,0"
+                            Title="{Binding TargetNullValue=Whats_going_on}"
+                            GroupTag="Sizes"
+                            Size="Large" Background="#FF009E00"/>
+            <toolkit:HubTile Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                             toolkit:TurnstileFeatherEffect.FeatheringIndex="7"
+                            Tap="btnPlaces_Tap"
+                            Margin="12,-24,0,0"
+                            Title="{Binding TargetNullValue=Places}"
+                            GroupTag="Sizes"
+                            Size="Medium" Background="#FFA300AB"/>
+            <toolkit:HubTile Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                             toolkit:TurnstileFeatherEffect.FeatheringIndex="2"
+                            Tap="btnWallet_Tap"
+                            Margin="12,12,0,0"
+                            Title="{Binding TargetNullValue=Wallet}"
+                            Notification="w/fixings"
+                            DisplayNotification="True"
+                            GroupTag="Sizes"
+                            Size="Medium" Background="#FFE51400"/>
+            <toolkit:HubTile Grid.Row="2" Grid.Column="0" 
+                             toolkit:TurnstileFeatherEffect.FeatheringIndex="4"
+                            Margin="12,-21,0,0"
+                            Title="Zebra"
+                            Message="&quot;Just an amazing work by the chef&quot;"
+                            GroupTag="Sizes"
+                             Tap="btnZebra_Tap"
+                            Size="Small" Background="#FFFA6800"/>
+            <toolkit:HubTile Grid.Row="2" Grid.Column="1"
+                             x:Name="btnSettings"
+                             Tap="btnSettings_Tap"
+                             toolkit:TurnstileFeatherEffect.FeatheringIndex="3"
+                            Margin="12,-21,0,0"
+                            Source="/Assets/AppBar/add.png"
+                            Title="Steak&#x0d;&#x0a;Sandwich"
+                            Message="@ a great cafe"
+                            GroupTag="Sizes"
+                            Size="Small" Background="#FF007ACC"/>
+            <toolkit:HubTile Grid.Row="4" Grid.Column="2" 
+                             toolkit:TurnstileFeatherEffect.FeatheringIndex="6"
+                            Margin="12,10,0,0"
+                            Source="/Images/Beignets.jpg"
+                            Title="Beignets"
+                            Notification="New&#x0d;&#x0a;Orleans"
+                            DisplayNotification="True"
+                            GroupTag="Sizes"
+                            Size="Small"/>
+            <toolkit:HubTile Grid.Row="4" Grid.Column="3" 
+                             toolkit:TurnstileFeatherEffect.FeatheringIndex="5"
+                            Margin="12,10,0,0"
+                            Source="/Images/Dessert.jpg"
+                            Title="Beignets"
+                            Notification="New&#x0d;&#x0a;Orleans"
+                            DisplayNotification="True"
+                            GroupTag="Sizes"
+                            Size="Small" Background="#FF007ACC"/>
+        </Grid>
     </Grid>
 </phone:PhoneApplicationPage>
