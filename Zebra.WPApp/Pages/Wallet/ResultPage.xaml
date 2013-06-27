@@ -12,16 +12,17 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding TargetNullValue=Result}" Margin="12" FontSize="38" Opacity="0.7"></TextBlock>
+        <TextBlock Text="{Binding TargetNullValue=Result}" Margin="12" 
+                   FontSize="38" 
+                   Opacity="0.7"/>
         <Grid Grid.Row="1" Margin="12">
             <toolkit:ExpanderView Name="expFilters" Header="{Binding}" Expander="{Binding}">
                 <toolkit:ExpanderView.HeaderTemplate>
@@ -31,7 +32,8 @@
                 </toolkit:ExpanderView.HeaderTemplate>
                 <toolkit:ExpanderView.ExpanderTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding TargetNullValue=Select_some}" Opacity="0.7" FontSize="22"/>
+                        <TextBlock Text="{Binding TargetNullValue=Select_some}" Opacity="0.7" 
+                                   FontSize="22"/>
                     </DataTemplate>
                 </toolkit:ExpanderView.ExpanderTemplate>
                 <toolkit:ExpanderView.Resources>
@@ -47,13 +49,13 @@
                     <CheckBox x:Name="cbxDelivery" Content="{Binding TargetNullValue=Delivery}"></CheckBox>
                     <StackPanel>
                         <TextBlock Text="{Binding TargetNullValue=Rating}" Opacity="0.7"/>
-                        <toolkit:Rating x:Name="rtnRating" Value="4"></toolkit:Rating>
+                        <toolkit:Rating x:Name="rtnRating" Value="4"/>
                     </StackPanel>
                 </toolkit:ExpanderView.Items>
             </toolkit:ExpanderView>
         </Grid>
         <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
-            <ListBox>
+            <ListBox Name="lstResults">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>

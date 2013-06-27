@@ -21,14 +21,20 @@
                 <StackPanel>
                     <TextBlock Text="how_many_people"
                            Style="{StaticResource PhoneTextGroupHeaderStyle}" />
-                    <toolkit:PhoneTextBox Name="txtPeople" Hint="{Binding TargetNullValue=people}"/>
+                    <toolkit:PhoneTextBox Name="txtPeople" 
+                                          Hint="{Binding TargetNullValue=people}"
+                                          InputScope="Number"/>
                     <TextBlock Margin="0,12" Text="how_much_money"
                            Style="{StaticResource PhoneTextGroupHeaderStyle}" />
-                    <toolkit:PhoneTextBox x:Name="txtMinMoney" Hint="{Binding TargetNullValue=money}"/>
+                    <toolkit:PhoneTextBox x:Name="txtMinMoney" 
+                                          Hint="{Binding TargetNullValue=money}"
+                                          InputScope="Number"/>
 
                     <TextBlock Margin="0,12" Text="how_much_money"
                            Style="{StaticResource PhoneTextGroupHeaderStyle}" />
-                    <toolkit:PhoneTextBox x:Name="txtMaxMoney" Hint="{Binding TargetNullValue=money}"/>
+                    <toolkit:PhoneTextBox x:Name="txtMaxMoney" 
+                                          Hint="{Binding TargetNullValue=money}"
+                                          InputScope="Number"/>
                 </StackPanel>
             </Grid>
         </phone:PivotItem>
