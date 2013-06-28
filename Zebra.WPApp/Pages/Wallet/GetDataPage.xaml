@@ -15,46 +15,62 @@
     shell:SystemTray.IsVisible="False">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <phone:Pivot Name="pivotMain">
-        <phone:PivotItem Header="{Binding TargetNullValue=Find_me_a_place}">
-            <Grid x:Name="LayoutRoot">
+    <phone:Pivot Name="pivotMain" 
+                 Title="{Binding LocalizedResources.TxbFindHeader, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
+        <phone:Pivot.Background>
+            <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.35"></ImageBrush>
+        </phone:Pivot.Background>
+        <phone:PivotItem>
+            <Grid Margin="0,24">
                 <StackPanel>
-                    <TextBlock Text="how_many_people"
+                    <TextBlock Text="{Binding LocalizedResources.TxbFindItemPeople, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource PhoneTextGroupHeaderStyle}" />
                     <toolkit:PhoneTextBox Name="txtPeople" 
-                                          Hint="{Binding TargetNullValue=people}"
+                                          Hint="{Binding LocalizedResources.TxbFindItemPeopleHint, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                                           InputScope="Number"/>
-                    <TextBlock Margin="0,12" Text="how_much_money"
+                    <TextBlock Margin="12" Text="{Binding LocalizedResources.TxbFindItemMinMoney, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource PhoneTextGroupHeaderStyle}" />
                     <toolkit:PhoneTextBox x:Name="txtMinMoney" 
-                                          Hint="{Binding TargetNullValue=money}"
+                                          Hint="{Binding LocalizedResources.TxbFindItemMinMoneyHint, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                                           InputScope="Number"/>
 
-                    <TextBlock Margin="0,12" Text="how_much_money"
+                    <TextBlock Margin="12" Text="{Binding LocalizedResources.TxbFindItemMaxMoney, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource PhoneTextGroupHeaderStyle}" />
                     <toolkit:PhoneTextBox x:Name="txtMaxMoney" 
-                                          Hint="{Binding TargetNullValue=money}"
+                                          Hint="{Binding LocalizedResources.TxbFindItemMinMoneyHint, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                                           InputScope="Number"/>
                 </StackPanel>
             </Grid>
         </phone:PivotItem>
         <phone:PivotItem>
-            <Grid>
+            <Grid Margin="0,24">
                 <StackPanel>
-                    <TextBlock Margin="12" Text="{Binding TargetNullValue=Write_something}" FontSize="{StaticResource PhoneFontSizeLarge}" Opacity="0.7"></TextBlock>
+                    <TextBlock Margin="12" 
+                               Text="{Binding LocalizedResources.TxbFindSearch, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
+                               Opacity="0.7"
+                               FontSize="{StaticResource PhoneFontSizeLarge}" 
+                               FontFamily="{StaticResource PhoneFontFamilyLight}"/>
                     <toolkit:PhoneTextBox x:Name="txtSearch"
-                                          Hint="Search"
+                                          Hint="{Binding LocalizedResources.TxbFindSearchBoxHint, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                                           ActionIcon="/Assets/Icons/Search.png"></toolkit:PhoneTextBox>
-                    <TextBlock Margin="24" Text="{Binding TargetNullValue=or}" FontSize="{StaticResource PhoneFontSizeLarge}" Opacity="0.7" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Margin="24" 
+                               Text="{Binding LocalizedResources.TxbFindOr, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
+                               FontSize="{StaticResource PhoneFontSizeLarge}" Opacity="0.7" HorizontalAlignment="Center"></TextBlock>
                     <toolkit:ListPicker  x:Name="lspCategory" Header="{Binding}" DisplayMemberPath="name">
                         <toolkit:ListPicker.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Margin="0,12,12,12" Text="{Binding TargetNullValue=select_a_category}" FontSize="{StaticResource PhoneFontSizeLarge}"></TextBlock>
+                                <TextBlock Margin="0,12,12,12" 
+                                           Text="{Binding LocalizedResources.TxbFindCategory, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
+                                           FontSize="{StaticResource PhoneFontSizeLarge}" 
+                                           FontFamily="{StaticResource PhoneFontFamilyLight}"/>
                             </DataTemplate>
                         </toolkit:ListPicker.HeaderTemplate>
                         <toolkit:ListPicker.FullModeItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding name}" Margin="12" FontSize="38"/>
+                                <TextBlock Text="{Binding name}" 
+                                           Margin="12" 
+                                           FontSize="{StaticResource PhoneFontSizeLarge}" 
+                                           FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
                             </DataTemplate>
                         </toolkit:ListPicker.FullModeItemTemplate>
                     </toolkit:ListPicker>

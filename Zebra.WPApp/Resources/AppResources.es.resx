@@ -287,4 +287,34 @@
   <data name="TxbTroublesTroubles" xml:space="preserve">
     <value>Problemas</value>
   </data>
+  <data name="TxbFindCategory" xml:space="preserve">
+    <value>Escoja una categoria</value>
+  </data>
+  <data name="TxbFindHeader" xml:space="preserve">
+    <value>ENCUENTRA UN LUGAR</value>
+  </data>
+  <data name="TxbFindItemMaxMoney" xml:space="preserve">
+    <value>Tu limite</value>
+  </data>
+  <data name="TxbFindItemMinMoney" xml:space="preserve">
+    <value>Cuanto vas a gastar</value>
+  </data>
+  <data name="TxbFindItemMinMoneyHint" xml:space="preserve">
+    <value>use su moneda local</value>
+  </data>
+  <data name="TxbFindItemPeople" xml:space="preserve">
+    <value>Cuantas personas estan ahi</value>
+  </data>
+  <data name="TxbFindItemPeopleHint" xml:space="preserve">
+    <value>pon un numero</value>
+  </data>
+  <data name="TxbFindOr" xml:space="preserve">
+    <value>o</value>
+  </data>
+  <data name="TxbFindSearch" xml:space="preserve">
+    <value>Escribe algo</value>
+  </data>
+  <data name="TxbFindSearchBoxHint" xml:space="preserve">
+    <value>buscar</value>
+  </data>
 </root>

@@ -14,7 +14,10 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="False">
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" Opacity="0.35"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
