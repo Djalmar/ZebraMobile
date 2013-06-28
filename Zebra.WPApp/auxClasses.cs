@@ -13,5 +13,7 @@ namespace Zebra.WPApp.Pages.Places
     { 
         public static Place selectedPlace{ get; set; }
         public static Category selectedCategory{ get; set; }
+        public static Event selectedEvent { get; set; }
     }
+    
 }

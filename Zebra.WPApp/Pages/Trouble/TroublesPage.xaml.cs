@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Device.Location;
 using System.Windows;
 using System.Windows.Navigation;
+using Zebra.WPApp.Pages.Places;
 using Zebra.WPApp.Resources;
 using Zebra.WPApp.UserControls;
 using ZebrasLib.Classes;
@@ -40,8 +41,7 @@ namespace Zebra.WPApp.Pages.Trouble
         private void TroublesPage_Loaded(object sender, RoutedEventArgs e)
         {
             LoadAppBar();
-            watcher.Start();
-            
+            watcher.Start(); 
         }
 
         #region AppBar
@@ -67,7 +67,9 @@ namespace Zebra.WPApp.Pages.Trouble
         {
             latitude = e.Position.Location.Latitude;
             longitude = e.Position.Location.Longitude;
+            prgEvents.Visibility = System.Windows.Visibility.Visible;
             lstEvents = await EventsMethods.GetEvents(-16.5013, -68.1207);
+            prgEvents.Visibility = System.Windows.Visibility.Collapsed;
             if(lstEvents!=null)
                 LoadPushPins();
             // else Display a message saying something got fucked up
@@ -91,6 +93,18 @@ namespace Zebra.WPApp.Pages.Trouble
             mapTroubles.Center = new GeoCoordinate(-16.482208, -68.123117);
             mapTroubles.Layers.Add(layers);
             lstTroubles.ItemsSource = lstEvents;
+        }
+
+        private void lstTroubles_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            Event problem = lstTroubles.SelectedItem as Event;
+            if (problem != null)
+            {
+                staticClasses.selectedEvent = problem;
+                NavigationService.Navigate(new Uri("/Pages/Trouble/EventReportersPage.xaml", UriKind.Relative));
+                lstTroubles.SelectedItem = null;
+                lstTroubles.SelectedIndex = -1;
+            }
         }
     }
 }

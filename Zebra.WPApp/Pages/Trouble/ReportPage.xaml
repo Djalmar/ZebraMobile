@@ -6,7 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:tools="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -14,13 +14,16 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="False">
     
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.35"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock 
-            Text="{Binding TargetNullValue=Report_trouble}" 
+            Text="{Binding LocalizedResources.TxtReport, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
             Margin="12" 
             Style="{StaticResource stlTituloPagina}" />
     
@@ -28,11 +31,27 @@
               Grid.Row="1" 
               Margin="12">
             <StackPanel>
-                <TextBlock Text="{Binding TargetNullValue=Choose_one}"/>
-                <tools:ListPicker Name="lspTroubleCategory"/>
-                <TextBlock 
-                    Text="{Binding TargetNullValue=What_is_going_on}"/>
-                <TextBox Name="txtDescription"/>
+                <toolkit:ListPicker Name="lspTroubleCategory" 
+                                    Header="{Binding LocalizedResources.TxbReportChoose, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
+                    <toolkit:ListPicker.FullModeItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"
+                                       Margin="12"
+                                       FontSize="{StaticResource PhoneFontSizeLarge}" 
+                                       FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
+                        </DataTemplate>
+                    </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
+                <TextBlock Text="{Binding LocalizedResources.TxbReportDescription, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
+                           Margin="12" 
+                           Opacity="0.7"/>
+                <toolkit:PhoneTextBox Name="txtDescription"
+                                      MinHeight="100"
+                                      DisplayedMaxLength="140"
+                                      MaxLength="140"
+                                      LengthIndicatorVisible="True"
+                                      TextWrapping="Wrap" 
+                                      AcceptsReturn="True"/>
             </StackPanel>
         </Grid>
     </Grid>

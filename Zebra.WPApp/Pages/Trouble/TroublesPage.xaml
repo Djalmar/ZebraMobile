@@ -9,15 +9,45 @@
     xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
     xmlns:zebraLib="clr-namespace:ZebrasLib.Classes;assembly=ZebrasLib"
     xmlns:collections="clr-namespace:System.Collections.Generic;assembly=System.Collections"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    toolkit:TiltEffect.IsTiltEnabled="True"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="False">
-    
-    <Grid x:Name="LayoutRoot" 
-          Background="Transparent">
+    <phone:PhoneApplicationPage.Resources>
+        <Style x:Key="ListBoxStyle" TargetType="ListBox">
+            <Setter Property="Margin" Value="12,0,0,12"/>
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
+        </Style>
+        <toolkit:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
+    </phone:PhoneApplicationPage.Resources>
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.35"/>
+        </Grid.Background>
         <phone:Panorama Title="{Binding LocalizedResources.TileWhatsGoingOn, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
             <phone:Panorama.TitleTemplate>
                 <DataTemplate>
@@ -30,7 +60,7 @@
             <phone:PanoramaItem Header="{Binding}">
                 <phone:PanoramaItem.HeaderTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding TargetNullValue=map}" 
+                        <TextBlock Text="{Binding LocalizedResources.TxbTroublesMap, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
                                    FontSize="50"/>
                     </DataTemplate>
                 </phone:PanoramaItem.HeaderTemplate>
@@ -43,25 +73,47 @@
             <phone:PanoramaItem Header="{Binding}">
                 <phone:PanoramaItem.HeaderTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding TargetNullValue=troubles}" 
+                        <TextBlock Text="{Binding LocalizedResources.TxbTroublesTroubles, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
                                    FontSize="50"/>
                     </DataTemplate>
                 </phone:PanoramaItem.HeaderTemplate>
-                <ListBox Name="lstTroubles">
+                <ListBox Name="lstTroubles" SelectionChanged="lstTroubles_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Border Background="{StaticResource PhoneAccentBrush}" 
-                                        Margin="12">
-                                    <Image Height="100" 
-                                           Width="100" 
-                                           Source="{Binding icon}"/>
-                                </Border>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding reportedAt}" 
-                                               FontSize="32"/>
+                            <StackPanel Orientation="Horizontal" Margin="12">
+                                <Border Background="{StaticResource PhoneAccentBrush}"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Center" 
+                                        Width="100"
+                                        Height="100"
+                                        Margin="0,12,12,0">
+                                    <Image Height="20" 
+                                           Width="20" 
+                                           Source="{Binding icon}"
+                                           />
+                                </Border> 
+                                <StackPanel MaxWidth="250">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextWrapping" Value="Wrap"/>
+                                        </Style>
+                                    </StackPanel.Resources>
                                     <TextBlock Text="{Binding description}" 
-                                               FontSize="24"/>
+                                               FontSize="{StaticResource PhoneFontSizeMedium}" 
+                                               FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
+                                    <TextBlock FontSize="{StaticResource PhoneFontSizeNormal}" 
+                                               FontFamily="{StaticResource PhoneFontFamilyLight}">
+                                        <Run Text="You are at"/>
+                                        <Run Text="100"
+                                             FontSize="{StaticResource PhoneFontSizeMedium}" 
+                                             FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
+                                        <Run Text="units of distance"/>
+                                    </TextBlock>
+                                    <!--<TextBlock Text="{Binding reportedAt, Converter={StaticResource RelativeTimeConverter}}" 
+                                               FontSize="32"/>-->
+                                    <TextBlock Text="{Binding reportedAt}"
+                                        FontSize="{StaticResource PhoneFontSizeNormal}" 
+                                        FontFamily="{StaticResource PhoneFontFamilyLight}" />
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -69,6 +121,6 @@
                 </ListBox>
             </phone:PanoramaItem>
         </phone:Panorama>
-        
+        <ProgressBar x:Name="prgEvents" VerticalAlignment="Top" IsIndeterminate="True" Margin="6" Visibility="Collapsed"/>
     </Grid>
 </phone:PhoneApplicationPage>

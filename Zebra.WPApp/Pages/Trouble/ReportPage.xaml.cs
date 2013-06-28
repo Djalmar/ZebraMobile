@@ -51,7 +51,7 @@ namespace Zebra.WPApp.Pages.Trouble
             ApplicationBar.Buttons.Add(btnShare);
 
             ApplicationBarIconButton btnReport = new ApplicationBarIconButton();
-            btnReport.IconUri = new Uri("/Assets/AppBar/report.png",UriKind.Relative);
+            btnReport.IconUri = new Uri("/Assets/AppBar/edit.png",UriKind.Relative);
             btnReport.Text = AppResources.TxtReport;
             btnReport.Click += btnReport_Click;
             ApplicationBar.Buttons.Add(btnReport);

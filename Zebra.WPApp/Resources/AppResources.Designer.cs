@@ -178,6 +178,15 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reporters.
+        /// </summary>
+        public static string TxbEventReportersReporters {
+            get {
+                return ResourceManager.GetString("TxbEventReportersReporters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You&apos;re logged in and ready to go..
         /// </summary>
         public static string TxbFacebookLoggedIn {
@@ -286,6 +295,24 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose one.
+        /// </summary>
+        public static string TxbReportChoose {
+            get {
+                return ResourceManager.GetString("TxbReportChoose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Give us a short descrption.
+        /// </summary>
+        public static string TxbReportDescription {
+            get {
+                return ResourceManager.GetString("TxbReportDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Distance.
         /// </summary>
         public static string TxbSettingsDistance {
@@ -345,6 +372,24 @@ namespace Zebra.WPApp.Resources {
         public static string TxbSubCategoriesPopular {
             get {
                 return ResourceManager.GetString("TxbSubCategoriesPopular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map.
+        /// </summary>
+        public static string TxbTroublesMap {
+            get {
+                return ResourceManager.GetString("TxbTroublesMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Troubles.
+        /// </summary>
+        public static string TxbTroublesTroubles {
+            get {
+                return ResourceManager.GetString("TxbTroublesTroubles", resourceCulture);
             }
         }
         

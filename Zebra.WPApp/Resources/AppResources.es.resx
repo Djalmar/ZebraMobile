@@ -248,4 +248,19 @@
   <data name="TxtSubCategoriesPlacesFound" xml:space="preserve">
     <value> lugares encontrados</value>
   </data>
+  <data name="TxbEventReportersReporters" xml:space="preserve">
+    <value>Reporteros</value>
+  </data>
+  <data name="TxbReportChoose" xml:space="preserve">
+    <value>Escoge una</value>
+  </data>
+  <data name="TxbReportDescription" xml:space="preserve">
+    <value>Danos una pequeña descripcion</value>
+  </data>
+  <data name="TxbTroublesMap" xml:space="preserve">
+    <value>Mapa</value>
+  </data>
+  <data name="TxbTroublesTroubles" xml:space="preserve">
+    <value>Problemas</value>
+  </data>
 </root>
