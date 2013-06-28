@@ -37,6 +37,13 @@
     </toolkit:TransitionService.NavigationOutTransition>
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>
+            <Style TargetType="TextBlock" x:Key="txtNotFound">
+                <Setter Property="Visibility" Value="Collapsed"/>
+                <Setter Property="FontSize" Value="23"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
             <DataTemplate x:Key="expanderList">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -111,41 +118,45 @@
                 <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.3"/>
             </phone:Pivot.Background>
             <phone:PivotItem Header="{Binding LocalizedResources.TxbSubCategoriesAll, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
-                <ListBox Grid.Row="0" x:Name="lstbAllPlaces" toolkit:TurnstileFeatherEffect.FeatheringIndex="0"
+                <Grid>
+                    <ListBox Grid.Row="0" x:Name="lstbAllPlaces" 
+                         toolkit:TurnstileFeatherEffect.FeatheringIndex="0"
                          ItemTemplate="{StaticResource expanderList}"
                          ItemContainerStyle="{StaticResource expanderListItem}">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                </ListBox>
+                    </ListBox>
+                    <TextBlock Name="txtNoPlacesFound"
+                               Style="{StaticResource txtNotFound}"/>
+                </Grid>
             </phone:PivotItem>
 
             <phone:PivotItem Header="{Binding LocalizedResources.TxbSubCategoriesPopular, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
-                <ListBox Grid.Row="0" x:Name="lstbPopularPlaces" toolkit:TurnstileFeatherEffect.FeatheringIndex="1"
+                <Grid>
+                    <ListBox Grid.Row="0" x:Name="lstbPopularPlaces" 
+                         toolkit:TurnstileFeatherEffect.FeatheringIndex="1"
                          ItemTemplate="{StaticResource expanderList}"
                          ItemContainerStyle="{StaticResource expanderListItem}">
-                         <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel/>
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
-                </ListBox>
+                    </ListBox>
+                    <TextBlock Name="txtNoPopularPlacesFound"
+                               Style="{StaticResource txtNotFound}"/>
+                </Grid>
             </phone:PivotItem>
 
             <phone:PivotItem Header="{Binding LocalizedResources.TxbSubCategoriesNear, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
-                <ListBox Grid.Row="0" x:Name="lstbNearPlaces" toolkit:TurnstileFeatherEffect.FeatheringIndex="2"
+                <Grid>
+                    <ListBox Grid.Row="0" x:Name="lstbNearPlaces" 
+                         toolkit:TurnstileFeatherEffect.FeatheringIndex="2"
                          ItemTemplate="{StaticResource expanderList}"
                          ItemContainerStyle="{StaticResource expanderListItem}">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                </ListBox>
+                    </ListBox>
+                    <TextBlock Name="txtNoNearPlacesFound"
+                               Style="{StaticResource txtNotFound}"/>
+                </Grid>
             </phone:PivotItem>
         </phone:Pivot>
-        <ProgressBar x:Name="prgPlaces" Visibility="Collapsed" VerticalAlignment="Top" Margin="2" IsIndeterminate="True"></ProgressBar>
+        <ProgressBar x:Name="prgPlaces" 
+                     Visibility="Collapsed" 
+                     VerticalAlignment="Top" 
+                     Margin="2" 
+                     IsIndeterminate="True"/>
     </Grid>
 </phone:PhoneApplicationPage>

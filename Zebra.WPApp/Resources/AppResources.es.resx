@@ -204,7 +204,7 @@
     <value>Buscar</value>
   </data>
   <data name="TxbCategoriesSearchBox" xml:space="preserve">
-    <value>Que esta buscando</value>
+    <value>¿Que estas buscando?</value>
   </data>
   <data name="TxbMenu" xml:space="preserve">
     <value>zebritas</value>
@@ -246,7 +246,31 @@
     <value>Seleccione las categorias que mas le interesan</value>
   </data>
   <data name="TxtSubCategoriesPlacesFound" xml:space="preserve">
-    <value> lugares encontrados</value>
+    <value>lugares encontrados</value>
+  </data>
+  <data name="TxtSearchFailed" xml:space="preserve">
+    <value>Por favor escribe aquello que quieres que busquemos.</value>
+  </data>
+  <data name="TxtInternetConnectionProblem" xml:space="preserve">
+    <value>No estas conectado a Internet. Verifica tu conexion a una red WiFi o si tu plan de datos esta activado.</value>
+  </data>
+  <data name="TxtSelectedItemFailed" xml:space="preserve">
+    <value>Por favor selecciona un item de la lista.</value>
+  </data>
+  <data name="TxtGPSDisabled" xml:space="preserve">
+    <value>Tu GPS esta inhabilitado. Activalo en en el menu de Opciones del celular y vuelve aca para continuar.</value>
+  </data>
+  <data name="TxtGPSNoData" xml:space="preserve">
+    <value>¡Vaya que estas lejos de la civilizacion! No pudimos determinar tu localizacion, intentalo mas tarde por favor.</value>
+  </data>
+  <data name="TxtNoNearPlaces" xml:space="preserve">
+    <value>No se encontraron lugares cercanos a ti, revisa tus preferencias para reconsiderar que consideras que esta "cerca a ti".</value>
+  </data>
+  <data name="TxtNoPlaces" xml:space="preserve">
+    <value>No se encontraron lugares para esta categoria.</value>
+  </data>
+  <data name="TxtNoPopularPlaces" xml:space="preserve">
+    <value>No se encontraron lugares populares de acuerdo a tus preferencias. Revisa esto en la configuracion de la aplicacion.</value>
   </data>
   <data name="TxbEventReportersReporters" xml:space="preserve">
     <value>Reporteros</value>

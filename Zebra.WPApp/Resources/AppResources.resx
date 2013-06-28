@@ -204,7 +204,7 @@
     <value>Search</value>
   </data>
   <data name="TxbCategoriesSearchBox" xml:space="preserve">
-    <value>What're you looking for</value>
+    <value>What are you looking for?</value>
   </data>
   <data name="TxbMenu" xml:space="preserve">
     <value>zebritas</value>
@@ -246,7 +246,31 @@
     <value>Select the categories you are most interesed in</value>
   </data>
   <data name="TxtSubCategoriesPlacesFound" xml:space="preserve">
-    <value> places found</value>
+    <value>places found</value>
+  </data>
+  <data name="TxtSearchFailed" xml:space="preserve">
+    <value>Please write the thing you want us to search for you.</value>
+  </data>
+  <data name="TxtInternetConnectionProblem" xml:space="preserve">
+    <value>You're not connected to the Internet. Verify your WiFi connection or if your data plan is activaded.</value>
+  </data>
+  <data name="TxtSelectedItemFailed" xml:space="preserve">
+    <value>Please select an item from the list.</value>
+  </data>
+  <data name="TxtGPSDisabled" xml:space="preserve">
+    <value>The GPS on your device is disabled. Please activate it and return here.</value>
+  </data>
+  <data name="TxtGPSNoData" xml:space="preserve">
+    <value>Boy, you're really far away from civilization! We couldn't locate you, please try again later.</value>
+  </data>
+  <data name="TxtNoNearPlaces" xml:space="preserve">
+    <value>No places found near you. Check your application settings to see when you consider a place is near you.</value>
+  </data>
+  <data name="TxtNoPlaces" xml:space="preserve">
+    <value>No places found for this category</value>
+  </data>
+  <data name="TxtNoPopularPlaces" xml:space="preserve">
+    <value>No popular places found. Check your application settings to see what you consider popular.</value>
   </data>
   <data name="TxbEventReportersReporters" xml:space="preserve">
     <value>Reporters</value>

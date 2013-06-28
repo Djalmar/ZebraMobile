@@ -36,21 +36,21 @@ namespace Zebra.WPApp.Pages.Places
             prgPlaces.Visibility = System.Windows.Visibility.Visible;
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             txbCategory.Title = staticClasses.selectedCategory.name;
             categoryCode = staticClasses.selectedCategory.code;
+            prgPlaces.Visibility = System.Windows.Visibility.Collapsed;
             if(!comingBack)
             {
                 LoadAppBar();
-                lstAllPlaces = await DownloadOrGetPlacesFromDataBase();
                 watcher.Start();
                 comingBack = true;
             }
-            prgPlaces.Visibility = System.Windows.Visibility.Collapsed;
         }
 
+        #region AppBar
         private void LoadAppBar()
         {
             ApplicationBar = new ApplicationBar();
@@ -67,30 +67,84 @@ namespace Zebra.WPApp.Pages.Places
             prgPlaces.IsIndeterminate = false;
             prgPlaces.IsIndeterminate = true;
             prgPlaces.Visibility = System.Windows.Visibility.Visible;
-            lstAllPlaces = await DownloadPlacesFromTheInternet();
+            lstAllPlaces = await DownloadPlacesFromTheInternet(latitude,longitude);
             prgPlaces.Visibility = System.Windows.Visibility.Collapsed;
-            watcher.Start();
         }
+        #endregion
+
+        #region GPS
+        private void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
+        {
+            switch (e.Status)
+            {
+                case GeoPositionStatus.Disabled:
+                    MessageBox.Show(AppResources.TxtGPSDisabled);
+                    NavigationService.GoBack();
+                    break;
+
+                case GeoPositionStatus.NoData:
+                    MessageBox.Show(AppResources.TxtGPSNoData);
+                    NavigationService.GoBack();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            latitude = e.Position.Location.Latitude;
+            longitude = e.Position.Location.Longitude;
+            lstAllPlaces = await DownloadOrGetPlacesFromDataBase();
+            if (lstAllPlaces != null)
+            {
+                lstAllPlaces = PlacesMethods.getDistancesForEachPlace(latitude,longitude, lstAllPlaces);
+                PopulateLists(lstAllPlaces);
+            }
+            watcher.Stop();
+        }
+        #endregion
 
         private async Task<List<Place>>DownloadOrGetPlacesFromDataBase()
         {
+            List<Place> lstToReturn;
             if (App.AutoDownloadsPlaces)
-                return await DownloadPlacesFromTheInternet();
+                lstToReturn = await DownloadPlacesFromTheInternet(latitude,longitude);
             else
-            {
-                return DBPhone.PlacesMethods.GetItems(DBPhone.CategoriesMethods.GetSubCategoriesCodes(categoryCode));
-            }
+                lstToReturn = DBPhone.PlacesMethods.GetItems(DBPhone.CategoriesMethods.GetSubCategoriesCodes(categoryCode));
+            
+            if (lstToReturn != null)
+                    return lstToReturn;
+            else return null;
         }
 
-        private async Task<List<Place>> DownloadPlacesFromTheInternet()
+        private async Task<List<Place>> DownloadPlacesFromTheInternet(double latitude, double longitude)
         {
-            List<Place> lstFromTheInternet = await PlacesMethods.getAllPlacesByCategory(categoryCode, -16.5013, -68.1207);
-            if (lstFromTheInternet.Count>0)
+            List<Place> lstFromTheInternet = await PlacesMethods.getAllPlacesByCategory(categoryCode, latitude,longitude);
+            if (lstFromTheInternet != null)
             {
-                UpdateDataBase(lstFromTheInternet);
-                return lstFromTheInternet;
+                if (lstFromTheInternet.Count > 0)
+                {
+                    UpdateDataBase(lstFromTheInternet);
+                    return lstFromTheInternet;
+                }
+                else SetVisibilities(AppResources.TxtNoPlaces,Visibility.Visible,Visibility.Collapsed);
             }
+            else SetVisibilities(AppResources.TxtInternetConnectionProblem,Visibility.Visible, Visibility.Collapsed);
             return null;
+        }
+
+        private void SetVisibilities(string message, Visibility forTheMessages, Visibility forTheLists)
+        {
+            txtNoPlacesFound.Text = message;
+            txtNoNearPlacesFound.Text = message;
+            txtNoPopularPlacesFound.Text = message;
+            txtNoPlacesFound.Visibility = forTheMessages;
+            txtNoNearPlacesFound.Visibility = forTheMessages;
+            txtNoPopularPlacesFound.Visibility = forTheMessages;
+            lstbAllPlaces.Visibility = forTheLists;
+
         }
 
         private void UpdateDataBase(List<Place> toAddList)
@@ -99,47 +153,40 @@ namespace Zebra.WPApp.Pages.Places
             DBPhone.PlacesMethods.AddItems(toAddList);
         }
 
-        private void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
-        {
-            latitude = e.Position.Location.Latitude;
-            longitude = e.Position.Location.Longitude;
-            if (lstAllPlaces != null)
-            {
-                if (lstAllPlaces.Count > 0)
-                {
-                    lstAllPlaces = PlacesMethods.getDistancesForEachPlace(-16.5013, -68.1207, lstAllPlaces);
-                    PopulateLists(lstAllPlaces);
-                }
-            }
-            watcher.Stop();
-        }
-
         private void PopulateLists(List<Place> lstAllPlaces)
         {
+            List<Place> lstTempPlaces;
             lstbAllPlaces.ItemsSource = getDajaCategories(lstAllPlaces);
-            lstbPopularPlaces.ItemsSource = getDajaCategories(PlacesMethods.getPlacesOrderedByPopularity(lstAllPlaces));
-            if (latitude != 150)
+            lstbAllPlaces.Visibility = Visibility.Visible;
+            txtNoPlacesFound.Visibility = Visibility.Collapsed;
+
+            lstTempPlaces = PlacesMethods.getPlacesOrderedByPopularity(lstAllPlaces);
+            if (lstTempPlaces.Count > 0)
             {
-                lstbNearPlaces.ItemsSource = getDajaCategories(PlacesMethods.getPlacesNear(lstAllPlaces,App.nearDistance));
+                lstbPopularPlaces.ItemsSource = getDajaCategories(lstTempPlaces);
+                txtNoPopularPlacesFound.Visibility = Visibility.Collapsed;
+                lstbPopularPlaces.Visibility = Visibility.Visible;
             }
-            
-        }
-
-        private void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
-        {
-            switch (e.Status)
+            else
             {
-                case GeoPositionStatus.Disabled:
-                    MessageBox.Show("GPS Disabled");
-                    break;
+                txtNoPopularPlacesFound.Text = AppResources.TxtNoPopularPlaces;
+                txtNoPopularPlacesFound.Visibility = Visibility.Visible;
+                lstbPopularPlaces.Visibility = Visibility.Collapsed;
+            } 
 
-                case GeoPositionStatus.NoData:
-                    MessageBox.Show("No GPS Data");
-                    break;
-
-                default:
-                    break;
+            lstTempPlaces = PlacesMethods.getPlacesNear(lstAllPlaces,App.nearDistance);
+            if (lstTempPlaces.Count > 0)
+            {
+                lstbNearPlaces.ItemsSource = getDajaCategories(lstTempPlaces);
+                lstbNearPlaces.Visibility = Visibility.Visible;
+                txtNoNearPlacesFound.Visibility = Visibility.Collapsed;
             }
+            else
+            {
+                txtNoNearPlacesFound.Text = AppResources.TxtNoNearPlaces;
+                lstbNearPlaces.Visibility = Visibility.Collapsed;
+                txtNoNearPlacesFound.Visibility = Visibility.Visible;
+            } 
         }
 
         private void placeSelected(object sender, System.Windows.Input.GestureEventArgs e)

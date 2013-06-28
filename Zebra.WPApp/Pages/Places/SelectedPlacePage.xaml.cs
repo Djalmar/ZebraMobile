@@ -29,7 +29,6 @@ namespace Zebra.WPApp.Pages.Places
 
         void SelectedPlacePage_Loaded(object sender, RoutedEventArgs e)
         {
-            
             uscPushPin pushPin = new uscPushPin();
             MapLayer layer = new MapLayer();
             MapOverlay overlay = new MapOverlay();

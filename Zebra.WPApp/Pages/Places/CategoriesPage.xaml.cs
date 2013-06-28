@@ -1,73 +1,102 @@
-﻿using System;
+﻿using Microsoft.Phone.Controls;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+using System.Device.Location;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using System.Windows.Media.Imaging;
-using ZebrasLib.Places;
+using Zebra.WPApp.Resources;
 using ZebrasLib.Classes;
-using System.Windows.Input;
-using System.Device.Location;
+using ZebrasLib.Places;
+
 namespace Zebra.WPApp.Pages.Places
 {
     public partial class CategoriesPage : PhoneApplicationPage
     {
-        bool comingBack;
-        GeoCoordinateWatcher watcher;
+        private bool comingBack;
+        private GeoCoordinateWatcher watcher;
+
         public CategoriesPage()
         {
             InitializeComponent();
             this.Loaded += CategoriesPage_Loaded;
             comingBack = false;
             lstCategoryList.SelectionChanged += lstCategoryList_SelectionChanged;
-            txtSearch.ActionIconTapped+=txtSearch_ActionIconTapped;
+            txtSearch.ActionIconTapped += txtSearch_ActionIconTapped;
             watcher = new GeoCoordinateWatcher();
             watcher.MovementThreshold = 200;
             watcher.PositionChanged += watcher_PositionChanged;
+            watcher.StatusChanged += watcher_StatusChanged;
         }
 
-        async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
         {
-            double latitude =e.Position.Location.Latitude;
-            double longitude = e.Position.Location.Longitude;
-            lstSearchResults.ItemsSource = await PlacesMethods.getPlacesByQuery(txtSearch.Text, -16.5013, -68.1207);
-            prgSearchProgress.Visibility = System.Windows.Visibility.Collapsed;
-            //Cuando ya hayan mas datos se podra hacer la prueba con datos del GPS, por ahora solo con valores por Default
-            //lstSearchResults.ItemsSource = await PlacesMethods.getPlacesByQuery(txtSearch.Text, latitude, longitude);
-        }
-
-        void txtSearch_ActionIconTapped(object sender, EventArgs e)
-        {
-            lstSearchResults.Focus();
-            if (txtSearch.Text.Length > 0)
+            switch (e.Status)
             {
-                prgSearchProgress.Visibility = System.Windows.Visibility.Visible;
-                watcher.Start();
+                case GeoPositionStatus.Disabled:
+                    MessageBox.Show(AppResources.TxtGPSDisabled);
+                    NavigationService.GoBack();
+                    break;
+                case GeoPositionStatus.NoData:
+                    MessageBox.Show(AppResources.TxtGPSNoData);
+                    NavigationService.GoBack();
+                    break;
+                default:
+                    break;
             }
         }
 
-        void CategoriesPage_Loaded(object sender, RoutedEventArgs e)
+        private void CategoriesPage_Loaded(object sender, RoutedEventArgs e)
         {
             if (!comingBack)
             {
                 lstCategoryList.ItemsSource = DBPhone.CategoriesMethods.GetItems();
                 comingBack = true;
-            }   
+            }
         }
 
-        void lstCategoryList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        private void lstCategoryList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {            
             Category selectedcategory = lstCategoryList.SelectedItem as Category;
             if (selectedcategory != null)
+            {
                 if (selectedcategory.name != "")
                 {
                     staticClasses.selectedCategory = selectedcategory;
                     NavigationService.Navigate(new Uri("/Pages/Places/PlacesPage.xaml", UriKind.Relative));
                 }
+            }
+            else MessageBox.Show(AppResources.TxtSelectedItemFailed);
+        }
+
+        #region Search
+        private void txtSearch_ActionIconTapped(object sender, EventArgs e)
+        {
+            lstSearchResults.Focus();
+            if (txtSearch.Text.Length > 0)
+                watcher.Start();
+            else MessageBox.Show(AppResources.TxtSearchFailed);
+        }
+
+        private async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            try
+            {
+                double latitude = e.Position.Location.Latitude;
+                double longitude = e.Position.Location.Longitude;
+                lstSearchResults.Items.Clear();
+                prgSearchProgress.Visibility = System.Windows.Visibility.Visible;
+                List<Place> lstReturned = await PlacesMethods.getPlacesByQuery(txtSearch.Text, -16.5013, -68.1207);
+                //Cuando ya hayan mas datos se podra hacer la prueba con datos del GPS, por ahora solo con valores por Default
+                //lstSearchResults.ItemsSource = await PlacesMethods.getPlacesByQuery(txtSearch.Text, latitude, longitude);
+                if (lstReturned != null)
+                    lstSearchResults.ItemsSource = lstReturned;
+                else MessageBox.Show(AppResources.TxtInternetConnectionProblem);
+                prgSearchProgress.Visibility = System.Windows.Visibility.Collapsed;
+                watcher.Stop();
+            }
+            catch (Exception)
+            { /*Don't worry, be happy.*/}
         }
 
         private void lstSearchResults_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -79,5 +108,6 @@ namespace Zebra.WPApp.Pages.Places
                 NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml", UriKind.Relative));
             }
         }
+        #endregion
     }
 }

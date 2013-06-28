@@ -33,8 +33,13 @@ namespace ZebrasLib
                     "&longitude=" + longitude;
 
                 List<Place> lstPlaces = await Main.GetPlaces(url);
-                lstPlaces = getDistancesForEachPlace(latitude, longitude, lstPlaces);
-                return getPlacesOrderedByDistance(lstPlaces);
+                if (lstPlaces != null)
+                {
+                    lstPlaces = getDistancesForEachPlace(latitude, longitude, lstPlaces);
+                    return getPlacesOrderedByDistance(lstPlaces);
+                }
+                else return null;
+                
             }
 
             public static async Task<List<Place>> getAllPlacesFromThisCategories(List<Category> list, double latitude, double longitude)

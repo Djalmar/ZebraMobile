@@ -55,10 +55,13 @@ namespace ZebrasLib
         {
             string downloadedInfo = await Main.DownloadInfo(url);
             PlacesResult result = JsonConvert.DeserializeObject<PlacesResult>(downloadedInfo);
-            if (Main.thereIsNoProblemo(result.status))
-                return result.placesList;
-            else return null;
-
+            if (result != null)
+            {
+                if (Main.thereIsNoProblemo(result.status))
+                    return result.placesList;
+                else return null; // There was a problemo jefe
+            }
+            else return null; //Internet is down :(
         }
         #endregion
     }
