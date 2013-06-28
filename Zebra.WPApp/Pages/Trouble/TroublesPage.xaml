@@ -18,7 +18,7 @@
     
     <Grid x:Name="LayoutRoot" 
           Background="Transparent">
-        <phone:Panorama Title="{Binding}">
+        <phone:Panorama Title="{Binding LocalizedResources.TileWhatsGoingOn, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
             <phone:Panorama.TitleTemplate>
                 <DataTemplate>
                     <TextBlock Margin="12,40" 
@@ -55,7 +55,7 @@
                                         Margin="12">
                                     <Image Height="100" 
                                            Width="100" 
-                                           Source="/images/Icons/coffee.png"/>
+                                           Source="{Binding icon}"/>
                                 </Border>
                                 <StackPanel>
                                     <TextBlock Text="{Binding reportedAt}" 

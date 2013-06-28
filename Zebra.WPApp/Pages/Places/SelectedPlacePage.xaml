@@ -44,7 +44,7 @@
                 </Grid.RowDefinitions>
                 <TextBlock
                     Margin="24,-40,0,12" 
-                    Text="Address"
+                    Text="{Binding LocalizedResources.TxbPlaceAddress, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                     FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
                     FontFamily="{StaticResource PhoneFontFamilyLight}"
                     Opacity="0.7"/>
@@ -62,22 +62,25 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <StackPanel>
-                    <TextBlock Text="Rating" 
+                    <TextBlock Text="{Binding LocalizedResources.TxbPlaceRating, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
                                Margin="12,0" 
                                FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
                                FontFamily="{StaticResource PhoneFontFamilyLight}" 
                                Opacity="0.7"/>
                     <toolkit:Rating x:Name="rtnRating" Value="{Binding rating}"/>
-                    <TextBlock Margin="12" TextWrapping="Wrap" FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
-                               FontFamily="{StaticResource PhoneFontFamilyLight}" Opacity="0.7">
-                        <Run Text="In this place you can find things or services that go from" />
+                    <TextBlock Margin="12" 
+                               TextWrapping="Wrap" 
+                               FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
+                               FontFamily="{StaticResource PhoneFontFamilyLight}" 
+                               Opacity="0.7">
+                        <Run Text="{Binding LocalizedResources.TxbPlacePriceDescription, Mode=OneWay, Source={StaticResource LocalizedStrings}}" />
                         <Run Text="{Binding minPrice}" 
                              FontSize="{StaticResource PhoneFontSizeLarge}" 
                              FontFamily="{StaticResource PhoneFontFamilyNormal}" />
                         <Run x:Name="run2"
                              FontSize="{StaticResource PhoneFontSizeLarge}" 
                              FontFamily="{StaticResource PhoneFontFamilyNormal}"></Run>
-                        <Run Text="to"/>
+                        <Run Text="{Binding LocalizedResources.TxbPlacePriceTo, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
                         <Run Text="{Binding maxPrice}"
                              FontSize="{StaticResource PhoneFontSizeLarge}" 
                                FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
@@ -85,7 +88,12 @@
                              FontSize="{StaticResource PhoneFontSizeLarge}" 
                              FontFamily="{StaticResource PhoneFontFamilyNormal}"></Run>
                     </TextBlock>
-                    <TextBlock Text="Features" Margin="12" FontSize="{StaticResource PhoneFontSizeMediumLarge}" FontFamily="{StaticResource PhoneFontFamilyLight}" Opacity="0.7"/>
+                    <TextBlock 
+                        Text="{Binding LocalizedResources.TxbPlaceFeatures, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
+                        Margin="12" 
+                        FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
+                        FontFamily="{StaticResource PhoneFontFamilyLight}" 
+                        Opacity="0.7"/>
                 </StackPanel>
                 <ListBox Grid.Row="1" Margin="12" x:Name="lstFeatures">
                     <ListBox.ItemTemplate>  
@@ -105,9 +113,9 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <StackPanel>
-                    <TextBlock Text="Related"
+                    <TextBlock Text="{Binding LocalizedResources.TxbPlaceRelated, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                            FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                    <TextBlock Text="by prices"
+                    <TextBlock Text="{Binding LocalizedResources.TxbPlaceRelatedByPrice, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                                Opacity="0.7"
                                Margin="12,0"
                                FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
@@ -128,9 +136,9 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <StackPanel>
-                    <TextBlock Text="Related"
+                    <TextBlock Text="{Binding LocalizedResources.TxbPlaceRelated, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                            FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                    <TextBlock Text="by features"
+                    <TextBlock Text="{Binding LocalizedResources.TxbPlaceRelatedByFeatures, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                                Opacity="0.7"
                                Margin="12,0"
                                FontSize="{StaticResource PhoneFontSizeMediumLarge}" 

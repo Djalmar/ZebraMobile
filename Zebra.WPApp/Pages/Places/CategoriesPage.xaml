@@ -39,7 +39,7 @@
             <phone:Pivot.Background>
                 <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.3"/>
             </phone:Pivot.Background>
-            <phone:PivotItem Header="{Binding TargetNullValue=Categories}">
+            <phone:PivotItem Header="{Binding LocalizedResources.TxbCategoriesCategories, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
                 <Grid>
                     <ListBox Name="lstCategoryList" toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                         <ListBox.ItemTemplate>
@@ -63,7 +63,7 @@
                     </ListBox>
                 </Grid>
             </phone:PivotItem>
-            <phone:PivotItem Header="{Binding TargetNullValue=Search}">
+            <phone:PivotItem Header="{Binding LocalizedResources.TxbCategoriesSearch, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -71,7 +71,7 @@
                     </Grid.RowDefinitions>
                     <toolkit:PhoneTextBox 
                         ActionIcon="/Assets/Icons/Search.png"
-                        Hint="{Binding TargetNullValue=name_of_place}" 
+                        Hint="{Binding LocalizedResources.TxbCategoriesSearchBox, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
                         x:Name="txtSearch"
                         Grid.Row="0"/>
                     <ProgressBar Grid.Row="1" IsIndeterminate="True" Visibility="Collapsed" x:Name="prgSearchProgress"></ProgressBar>

@@ -66,10 +66,11 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding TargetNullValue=choose_what_to_download}" 
+                    <TextBlock Text="{Binding LocalizedResources.TxbWhatDownload, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
                                toolkit:TurnstileFeatherEffect.FeatheringIndex="0"
                                Margin="12,0" 
                                FontSize="28" 
+                               TextWrapping="Wrap"
                                Opacity="0.7"/>
                     <ListBox Name="lstCategories" Grid.Row="1" toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                         <ListBox.ItemTemplate>

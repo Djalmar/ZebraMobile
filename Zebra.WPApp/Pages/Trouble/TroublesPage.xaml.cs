@@ -41,6 +41,7 @@ namespace Zebra.WPApp.Pages.Trouble
         {
             LoadAppBar();
             watcher.Start();
+            
         }
 
         #region AppBar
@@ -89,6 +90,7 @@ namespace Zebra.WPApp.Pages.Trouble
             mapTroubles.CartographicMode = MapCartographicMode.Hybrid;
             mapTroubles.Center = new GeoCoordinate(-16.482208, -68.123117);
             mapTroubles.Layers.Add(layers);
+            lstTroubles.ItemsSource = lstEvents;
         }
     }
 }

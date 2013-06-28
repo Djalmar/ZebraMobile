@@ -188,4 +188,64 @@
   <data name="TxtFind" xml:space="preserve">
     <value>Find</value>
   </data>
+  <data name="TilePlaces" xml:space="preserve">
+    <value>Places</value>
+  </data>
+  <data name="TileWallet" xml:space="preserve">
+    <value>Wallet</value>
+  </data>
+  <data name="TileWhatsGoingOn" xml:space="preserve">
+    <value>What's going on</value>
+  </data>
+  <data name="TxbCategoriesCategories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="TxbCategoriesSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="TxbCategoriesSearchBox" xml:space="preserve">
+    <value>What're you looking for</value>
+  </data>
+  <data name="TxbMenu" xml:space="preserve">
+    <value>zebritas</value>
+  </data>
+  <data name="TxbPlaceAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="TxbPlaceFeatures" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="TxbPlacePriceDescription" xml:space="preserve">
+    <value>In this place you can find things or services that go from</value>
+  </data>
+  <data name="TxbPlacePriceTo" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="TxbPlaceRating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="TxbPlaceRelated" xml:space="preserve">
+    <value>Related</value>
+  </data>
+  <data name="TxbPlaceRelatedByFeatures" xml:space="preserve">
+    <value>by features</value>
+  </data>
+  <data name="TxbPlaceRelatedByPrice" xml:space="preserve">
+    <value>by prices</value>
+  </data>
+  <data name="TxbSubCategoriesAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="TxbSubCategoriesNear" xml:space="preserve">
+    <value>Near</value>
+  </data>
+  <data name="TxbSubCategoriesPopular" xml:space="preserve">
+    <value>Popular</value>
+  </data>
+  <data name="TxbWhatDownload" xml:space="preserve">
+    <value>Select the categories you are most interesed in</value>
+  </data>
+  <data name="TxtSubCategoriesPlacesFound" xml:space="preserve">
+    <value> places found</value>
+  </data>
 </root>

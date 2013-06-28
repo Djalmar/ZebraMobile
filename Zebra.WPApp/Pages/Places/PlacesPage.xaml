@@ -93,7 +93,7 @@
                                                 Height="70"/>
                                      </Border>
                                     <TextBlock Text="{Binding Path=lstPlaces.Count}"/>
-                                    <TextBlock Text="  places found"/>
+                                    <TextBlock Text="{Binding LocalizedResources.TxbSubCategoriesPlacesFound, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </tool:ExpanderView.ExpanderTemplate>
@@ -110,7 +110,7 @@
             <phone:Pivot.Background>
                 <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.3"/>
             </phone:Pivot.Background>
-            <phone:PivotItem Header="{Binding TargetNullValue=All}">
+            <phone:PivotItem Header="{Binding LocalizedResources.TxbSubCategoriesAll, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
                 <ListBox Grid.Row="0" x:Name="lstbAllPlaces" toolkit:TurnstileFeatherEffect.FeatheringIndex="0"
                          ItemTemplate="{StaticResource expanderList}"
                          ItemContainerStyle="{StaticResource expanderListItem}">
@@ -121,8 +121,8 @@
                     </ListBox.ItemsPanel>
                 </ListBox>
             </phone:PivotItem>
-            
-            <phone:PivotItem Header="{Binding TargetNullValue=Popular}">
+
+            <phone:PivotItem Header="{Binding LocalizedResources.TxbSubCategoriesPopular, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
                 <ListBox Grid.Row="0" x:Name="lstbPopularPlaces" toolkit:TurnstileFeatherEffect.FeatheringIndex="1"
                          ItemTemplate="{StaticResource expanderList}"
                          ItemContainerStyle="{StaticResource expanderListItem}">
@@ -133,8 +133,8 @@
                         </ListBox.ItemsPanel>
                 </ListBox>
             </phone:PivotItem>
-            
-            <phone:PivotItem Header="{Binding TargetNullValue=Near}">
+
+            <phone:PivotItem Header="{Binding LocalizedResources.TxbSubCategoriesNear, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
                 <ListBox Grid.Row="0" x:Name="lstbNearPlaces" toolkit:TurnstileFeatherEffect.FeatheringIndex="2"
                          ItemTemplate="{StaticResource expanderList}"
                          ItemContainerStyle="{StaticResource expanderListItem}">
