@@ -36,6 +36,9 @@
     </toolkit:TransitionService.NavigationOutTransition>
     <Grid>
         <phone:Pivot toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
+            <phone:Pivot.Background>
+                <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.3"/>
+            </phone:Pivot.Background>
             <phone:PivotItem Header="{Binding TargetNullValue=Categories}">
                 <Grid>
                     <ListBox Name="lstCategoryList" toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
@@ -53,7 +56,7 @@
                                         VerticalAlignment="Center" 
                                         Margin="12" 
                                         FontSize="38"
-                                        Opacity="0.8"/>
+                                        Opacity="0.7"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -67,19 +70,28 @@
                         <RowDefinition Height="7*"/>
                     </Grid.RowDefinitions>
                     <toolkit:PhoneTextBox 
-                        ActionIcon="/images/Icons/Search.png"
+                        ActionIcon="/Assets/Icons/Search.png"
                         Hint="{Binding TargetNullValue=name_of_place}" 
                         x:Name="txtSearch"
                         Grid.Row="0"/>
+                    <ProgressBar Grid.Row="1" IsIndeterminate="True" Visibility="Collapsed" x:Name="prgSearchProgress"></ProgressBar>
                     <ListBox x:Name="lstSearchResults"
-                                Grid.Row="1">
+                                Grid.Row="1"
+                             Margin="12"
+                             SelectionChanged="lstSearchResults_SelectionChanged_1">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding name}"/>
-                                <TextBlock Text="{Binding address}"/>
-                                <TextBlock Text="{Binding categoryCode}"/>
-                            </StackPanel>
+                            <StackPanel >
+								<TextBlock Name="txbName" Text="{Binding Path=name}" 
+											FontSize="{StaticResource PhoneFontSizeLarge}" 
+											FontFamily="{StaticResource PhoneFontFamilyLight}"
+											TextWrapping="Wrap"/>
+								<TextBlock Text="{Binding Path=address}" 
+											FontSize="{StaticResource PhoneFontSizeNormal}"
+											Opacity="0.7"
+											Margin="0,0,0,12"
+											TextWrapping="Wrap"/>
+							</StackPanel>
                         </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>

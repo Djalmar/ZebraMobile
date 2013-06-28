@@ -43,13 +43,6 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <!--<Border VerticalAlignment="Top" Margin="12" 
-                            Background="{StaticResource PhoneAccentBrush}" 
-                            Width="100" Height="100">
-                        <Image Source="{Binding Path=category.icon}" 
-                               Width="70" 
-                               Height="70"/>
-                    </Border>-->
                     <tool:ExpanderView Header="{Binding}" Grid.Column="1"
                                                Expander="{Binding}"
                                                ItemsSource="{Binding lstPlaces}"
@@ -114,7 +107,9 @@
         </Grid.Resources>
         <phone:Pivot Title="{Binding TargetNullValue=Category}" 
                         Name="txbCategory">
-            
+            <phone:Pivot.Background>
+                <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.3"/>
+            </phone:Pivot.Background>
             <phone:PivotItem Header="{Binding TargetNullValue=All}">
                 <ListBox Grid.Row="0" x:Name="lstbAllPlaces" toolkit:TurnstileFeatherEffect.FeatheringIndex="0"
                          ItemTemplate="{StaticResource expanderList}"
@@ -151,5 +146,6 @@
                 </ListBox>
             </phone:PivotItem>
         </phone:Pivot>
+        <ProgressBar x:Name="prgPlaces" Visibility="Collapsed" VerticalAlignment="Top" Margin="2" IsIndeterminate="True"></ProgressBar>
     </Grid>
 </phone:PhoneApplicationPage>

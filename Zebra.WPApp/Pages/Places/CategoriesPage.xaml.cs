@@ -35,7 +35,7 @@ namespace Zebra.WPApp.Pages.Places
             double latitude =e.Position.Location.Latitude;
             double longitude = e.Position.Location.Longitude;
             lstSearchResults.ItemsSource = await PlacesMethods.getPlacesByQuery(txtSearch.Text, -16.5013, -68.1207);
-
+            prgSearchProgress.Visibility = System.Windows.Visibility.Collapsed;
             //Cuando ya hayan mas datos se podra hacer la prueba con datos del GPS, por ahora solo con valores por Default
             //lstSearchResults.ItemsSource = await PlacesMethods.getPlacesByQuery(txtSearch.Text, latitude, longitude);
         }
@@ -44,7 +44,10 @@ namespace Zebra.WPApp.Pages.Places
         {
             lstSearchResults.Focus();
             if (txtSearch.Text.Length > 0)
+            {
+                prgSearchProgress.Visibility = System.Windows.Visibility.Visible;
                 watcher.Start();
+            }
         }
 
         void CategoriesPage_Loaded(object sender, RoutedEventArgs e)
@@ -65,6 +68,16 @@ namespace Zebra.WPApp.Pages.Places
                     staticClasses.selectedCategory = selectedcategory;
                     NavigationService.Navigate(new Uri("/Pages/Places/PlacesPage.xaml", UriKind.Relative));
                 }
+        }
+
+        private void lstSearchResults_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            Place place = lstSearchResults.SelectedItem as Place;
+            if (place != null)
+            {
+                staticClasses.selectedPlace = place;
+                NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml", UriKind.Relative));
+            }
         }
     }
 }

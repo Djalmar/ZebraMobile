@@ -33,6 +33,7 @@ namespace Zebra.WPApp.Pages.Places
             watcher.StatusChanged += watcher_StatusChanged;
             watcher.PositionChanged += watcher_PositionChanged;
             comingBack = false;
+            prgPlaces.Visibility = System.Windows.Visibility.Visible;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -47,6 +48,7 @@ namespace Zebra.WPApp.Pages.Places
                 watcher.Start();
                 comingBack = true;
             }
+            prgPlaces.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void LoadAppBar()
@@ -62,7 +64,11 @@ namespace Zebra.WPApp.Pages.Places
 
         private async void btnUpdatePlaces_Click(object sender, EventArgs e)
         {
+            prgPlaces.IsIndeterminate = false;
+            prgPlaces.IsIndeterminate = true;
+            prgPlaces.Visibility = System.Windows.Visibility.Visible;
             lstAllPlaces = await DownloadPlacesFromTheInternet();
+            prgPlaces.Visibility = System.Windows.Visibility.Collapsed;
             watcher.Start();
         }
 
@@ -71,7 +77,9 @@ namespace Zebra.WPApp.Pages.Places
             if (App.AutoDownloadsPlaces)
                 return await DownloadPlacesFromTheInternet();
             else
-                return DBPhone.PlacesMethods.GetItems(DBPhone.CategoriesMethods.GetSubCategoriesCodes(categoryCode)); 
+            {
+                return DBPhone.PlacesMethods.GetItems(DBPhone.CategoriesMethods.GetSubCategoriesCodes(categoryCode));
+            }
         }
 
         private async Task<List<Place>> DownloadPlacesFromTheInternet()
