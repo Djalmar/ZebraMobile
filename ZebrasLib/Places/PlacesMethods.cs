@@ -42,10 +42,10 @@ namespace ZebrasLib
                 
             }
 
-            public static async Task<List<Place>> getAllPlacesFromThisCategories(List<Category> list, double latitude, double longitude)
+            public static async Task<List<Place>> getAllPlacesFromThisCategories(List<Category> lstCategories, double latitude, double longitude)
             {
                 List<Place> allPlaces = new List<Place>();
-                foreach (Category category in list)
+                foreach (Category category in lstCategories)
                 {
                     List<Place> placesFromThisCategory = await getAllPlacesByCategory(category.code, latitude, longitude);
                     allPlaces.AddRange(placesFromThisCategory);

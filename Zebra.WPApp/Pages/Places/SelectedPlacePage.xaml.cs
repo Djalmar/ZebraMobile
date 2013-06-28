@@ -29,21 +29,42 @@ namespace Zebra.WPApp.Pages.Places
 
         void SelectedPlacePage_Loaded(object sender, RoutedEventArgs e)
         {
+            LoadMap();
+            LoadPlace();
+            LoadRelatedPlaces();
+        }
+
+        private void LoadRelatedPlaces()
+        {
+            lstRelatedByFeatures.ItemsSource = DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.minPrice,
+                staticClasses.selectedPlace.maxPrice,
+                staticClasses.selectedPlace.categoryCode);
+
+            lstRelatedByPrices.ItemsSource = DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.kidsArea,
+                staticClasses.selectedPlace.smokingArea,
+                staticClasses.selectedPlace.categoryCode);
+        }
+
+        private void LoadPlace()
+        {
+            panorama.DataContext = staticClasses.selectedPlace;
+            List<Service> listaServicios = CrearListadeServicios();
+            lstFeatures.ItemsSource = listaServicios;
+            run.Text = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
+            run2.Text = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
+        }
+
+        private void LoadMap()
+        {
             uscPushPin pushPin = new uscPushPin();
             MapLayer layer = new MapLayer();
             MapOverlay overlay = new MapOverlay();
             overlay.Content = pushPin;
-            overlay.GeoCoordinate=new GeoCoordinate(staticClasses.selectedPlace.latitude, staticClasses.selectedPlace.longitude);
+            overlay.GeoCoordinate = new GeoCoordinate(staticClasses.selectedPlace.latitude, staticClasses.selectedPlace.longitude);
             layer.Add(overlay);
             mapPlace.Layers.Add(layer);
             mapPlace.Center = new GeoCoordinate(-16.5013, -68.1207);
             mapPlace.ZoomLevel = 14;
-            staticClasses.selectedPlace.rating /= 2;
-            panorama.DataContext = staticClasses.selectedPlace;
-            List<Service> listaServicios=CrearListadeServicios();
-            lstFeatures.ItemsSource = listaServicios;
-            run.Text = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
-            run2.Text = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
         }
 
         private List<Service> CrearListadeServicios()

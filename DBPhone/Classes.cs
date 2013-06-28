@@ -15,6 +15,9 @@ namespace DBPhone
         public string categoryCode { get; set; }
 
         [Column]
+        public string parentCategoryCode { get; set; }
+
+        [Column]
         public string name { get; set; }
 
         [Column]

@@ -101,5 +101,31 @@ namespace DBPhone
             }
             return listToReturn;
         }
+
+        public static string GetParentCode(string categoryCodeForThisPlace)
+        {
+            Context context = Context.GetDatabase();
+            IEnumerable<string> categorie = from thiscategory
+                                              in context.categories
+                                            where thiscategory.categoryCode == categoryCodeForThisPlace
+                                            select thiscategory.parentCode;
+            if (categorie.Count() > 0)
+                return categorie.First().ToString();
+            else return null;
+        }
+
+        public static bool isChildForThisCategory(string categoryCode,string parentCategory)
+        {
+            Context context = Context.GetDatabase();
+            IEnumerable<Category> categorie = from thiscategory
+                                              in context.categories
+                                            where thiscategory.categoryCode == categoryCode
+                                            && thiscategory.parentCode == parentCategory
+                                            select thiscategory;
+            List<Category> results = categorie.ToList();
+            if (results.Count() > 0)
+                return true;
+            else return false;
+        }
     }
 }

@@ -53,6 +53,8 @@ namespace ZebrasLib
             public string categoryCode { get; set; }
 
             public double distance { get; set; }
+
+            public string parentCategoryCode { get; set; }
         }
 
         public class PlacesResult

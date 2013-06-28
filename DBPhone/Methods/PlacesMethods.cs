@@ -51,6 +51,7 @@ namespace DBPhone
                 {
                     address = P.address,
                     categoryCode = P.categoryCode,
+                    parentCategoryCode = P.parentCategoryCode,
                     delivery = P.delivery,
                     distance = P.distance,
                     holidays = P.holidays,
@@ -79,6 +80,7 @@ namespace DBPhone
                 {
                     address = P.address,
                     categoryCode = P.categoryCode,
+                    parentCategoryCode = P.parentCategoryCode,
                     delivery = P.delivery,
                     distance = P.distance,
                     holidays = P.holidays,
@@ -97,6 +99,36 @@ namespace DBPhone
 
             }
             return listToReturn;
+        }
+
+        public static List<Place> getRelatedPlacesBasedOn(int minPrice, int maxPrice, string parentCategoryCode)
+        {
+            int minRateHigh = (minPrice * 20 / 100) + minPrice;
+            int minRateLow = minPrice - (minPrice * 20 / 100);
+            int maxRateHigh = (maxPrice * 20 / 100) + maxPrice;
+            int maxRateLow = maxPrice - (maxPrice * 20 / 100);
+            Context context = Context.GetDatabase();
+            IEnumerable<Place> newList = from allPlaces
+                                            in context.places
+                                            where allPlaces.minPrice <= minRateHigh
+                                            && allPlaces.minPrice >= minRateLow
+                                            && allPlaces.maxPrice <= maxRateHigh
+                                            && allPlaces.maxPrice >= maxRateLow
+                                            //&& allPlaces.parentCategory == categoryCodeForThisPlace
+                                            select allPlaces;
+            return newList.ToList();
+        }
+
+        public static List<Place> getRelatedPlacesBasedOn(bool childsArea, bool smokingArea, string parentCategoryCode)
+        {
+            Context context = Context.GetDatabase();
+            IEnumerable<Place> newList =    from allPlaces
+                                            in context.places
+                                            where allPlaces.smokingArea == smokingArea
+                                            && allPlaces.kidsArea == childsArea
+                                            //&& allPlaces.parentCategory == categoryCodeForThisPlace
+                                            select allPlaces;
+            return newList.ToList();
         }
     }
 }
