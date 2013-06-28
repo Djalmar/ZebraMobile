@@ -37,13 +37,6 @@
     </toolkit:TransitionService.NavigationOutTransition>
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>
-            <Style TargetType="TextBlock" x:Key="txtNotFound">
-                <Setter Property="Visibility" Value="Collapsed"/>
-                <Setter Property="FontSize" Value="23"/>
-                <Setter Property="TextWrapping" Value="Wrap"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-            </Style>
             <DataTemplate x:Key="expanderList">
                 <Grid>
                     <Grid.ColumnDefinitions>

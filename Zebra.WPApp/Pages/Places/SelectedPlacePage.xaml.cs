@@ -12,6 +12,7 @@ using Zebra.WPApp.UserControls;
 using Microsoft.Phone.Maps.Controls;
 using System.Device.Location;
 using ZebrasLib.Classes;
+using Zebra.WPApp.Resources;
 
 namespace Zebra.WPApp.Pages.Places
 {
@@ -38,11 +39,25 @@ namespace Zebra.WPApp.Pages.Places
         {
             lstRelatedByFeatures.ItemsSource = DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.minPrice,
                 staticClasses.selectedPlace.maxPrice,
-                staticClasses.selectedPlace.categoryCode);
+                staticClasses.selectedPlace.categoryCode,
+                staticClasses.selectedPlace.code);
 
+            if (lstRelatedByFeatures.Items.Count == 0)
+            {
+                lstRelatedByFeatures.Visibility = Visibility.Collapsed;
+                txtNoPlacesRelatedByFeature.Text = AppResources.TxtNoPlacesRelated;
+                txtNoPlacesRelatedByFeature.Visibility = Visibility.Visible;
+            }
             lstRelatedByPrices.ItemsSource = DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.kidsArea,
                 staticClasses.selectedPlace.smokingArea,
-                staticClasses.selectedPlace.categoryCode);
+                staticClasses.selectedPlace.categoryCode,
+                staticClasses.selectedPlace.code);
+            if (lstRelatedByPrices.Items.Count == 0)
+            {
+                lstRelatedByPrices.Visibility = Visibility.Collapsed;
+                txtNoPlacesRelatedByPrice.Text = AppResources.TxtNoPlacesRelated;
+                txtNoPlacesRelatedByPrice.Visibility = Visibility.Visible;
+            }
         }
 
         private void LoadPlace()
@@ -84,15 +99,6 @@ namespace Zebra.WPApp.Pages.Places
             public string Name { get; set; }
             public bool Exist { get; set; }
         }
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-
-            //panPlace.Title = staticClasses.selectedPlace.name;
-            //txtLocationAddress.Text = staticClasses.selectedPlace.address;
-            //txtLocationDistance.Text = staticClasses.selectedPlace.distance.ToString();
-        }
-
         private void lstRelatedByPrices_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Place place = lstRelatedByPrices.SelectedItem as Place;

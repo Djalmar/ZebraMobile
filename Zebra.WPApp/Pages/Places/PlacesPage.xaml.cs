@@ -68,6 +68,8 @@ namespace Zebra.WPApp.Pages.Places
             prgPlaces.IsIndeterminate = true;
             prgPlaces.Visibility = System.Windows.Visibility.Visible;
             lstAllPlaces = await DownloadPlacesFromTheInternet(latitude,longitude);
+            lstAllPlaces = PlacesMethods.getDistancesForEachPlace(latitude, longitude, lstAllPlaces);
+            PopulateLists(lstAllPlaces);
             prgPlaces.Visibility = System.Windows.Visibility.Collapsed;
         }
         #endregion
@@ -108,15 +110,21 @@ namespace Zebra.WPApp.Pages.Places
 
         private async Task<List<Place>>DownloadOrGetPlacesFromDataBase()
         {
-            List<Place> lstToReturn;
+            List<Place> lstToReturn = new List<Place>();
             if (App.AutoDownloadsPlaces)
-                lstToReturn = await DownloadPlacesFromTheInternet(latitude,longitude);
-            else
-                lstToReturn = DBPhone.PlacesMethods.GetItems(DBPhone.CategoriesMethods.GetSubCategoriesCodes(categoryCode));
-            
+                lstToReturn = await DownloadPlacesFromTheInternet(latitude, longitude);
+
             if (lstToReturn != null)
-                    return lstToReturn;
-            else return null;
+                return lstToReturn;
+            lstToReturn = DBPhone.PlacesMethods.GetItems(DBPhone.CategoriesMethods.GetSubCategoriesCodes(categoryCode));
+
+            if (lstToReturn != null)
+                return lstToReturn;
+            else {
+                SetVisibilities(AppResources.TxtNoPlaces, Visibility.Visible, Visibility.Collapsed);
+                return null;
+            }
+                
         }
 
         private async Task<List<Place>> DownloadPlacesFromTheInternet(double latitude, double longitude)
@@ -129,9 +137,7 @@ namespace Zebra.WPApp.Pages.Places
                     UpdateDataBase(lstFromTheInternet);
                     return lstFromTheInternet;
                 }
-                else SetVisibilities(AppResources.TxtNoPlaces,Visibility.Visible,Visibility.Collapsed);
             }
-            else SetVisibilities(AppResources.TxtInternetConnectionProblem,Visibility.Visible, Visibility.Collapsed);
             return null;
         }
 
@@ -144,7 +150,6 @@ namespace Zebra.WPApp.Pages.Places
             txtNoNearPlacesFound.Visibility = forTheMessages;
             txtNoPopularPlacesFound.Visibility = forTheMessages;
             lstbAllPlaces.Visibility = forTheLists;
-
         }
 
         private void UpdateDataBase(List<Place> toAddList)

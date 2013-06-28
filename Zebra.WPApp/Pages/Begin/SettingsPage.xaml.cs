@@ -6,12 +6,14 @@ using System.Device.Location;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using Zebra.WPApp.Resources;
+using System.Windows;
 using ZebrasLib;
 
 namespace Zebra.WPApp.Pages.Begin
 {
     public partial class SettingsPage : PhoneApplicationPage
     {
+        private bool categoriesDownloaded, isLoggedOnFacebook, firstTime;
         private GeoCoordinateWatcher watcher;
         private List<ZebrasLib.Classes.Category> categories;
         private List<ZebrasLib.Classes.Category> selectedCategories;
@@ -27,6 +29,7 @@ namespace Zebra.WPApp.Pages.Begin
             tglSwitchDistanceUnit.Unchecked += tglSwitchDistanceUnit_Unchecked;
             tglSwitchDownloadSetting.Checked += tglSwitchDownloadSetting_Checked;
             tglSwitchDownloadSetting.Unchecked += tglSwitchDownloadSetting_Unchecked;
+            firstTime = true;
             watcher = new GeoCoordinateWatcher();
             watcher.MovementThreshold = 200;
             watcher.PositionChanged += watcher_PositionChanged;
@@ -36,8 +39,21 @@ namespace Zebra.WPApp.Pages.Begin
         private async void SettingsPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             categories = await ZebrasLib.Places.PlacesMethods.getCategories();
-            DBPhone.CategoriesMethods.AddItems(categories);
-            lstCategories.ItemsSource = categories;
+            if (categories != null)
+            {
+                if (firstTime)
+                {
+                    DBPhone.CategoriesMethods.AddItems(categories);
+                    firstTime = false;
+                }
+                categoriesDownloaded = true;
+                lstCategories.ItemsSource = categories;
+            }
+            else {
+                txtInternetError.Visibility = Visibility.Visible;
+                txtInternetError.Text = AppResources.TxtInternetConnectionProblem;
+                lstCategories.Visibility = Visibility.Collapsed;
+            }
         }
 
         #region Toggle
@@ -71,7 +87,7 @@ namespace Zebra.WPApp.Pages.Begin
             {
                 stackWait.Visibility = System.Windows.Visibility.Visible;
                 pivotMain.Visibility = System.Windows.Visibility.Collapsed;
-
+                    
                 #region SaveSettings
 
                 if (tglSwitchDistanceUnit.IsChecked == true)
@@ -91,12 +107,7 @@ namespace Zebra.WPApp.Pages.Begin
                 if (sldNearDistance.Value == 0)
                     App.nearDistance++;
 
-                App.FirstTimeLaunch = true;
-
                 #endregion SaveSettings
-
-                #region Download Places and Categories
-
                 if (lstCategories.SelectedItems.Count > 0)
                 {
                     selectedCategories = new List<ZebrasLib.Classes.Category>();
@@ -104,19 +115,42 @@ namespace Zebra.WPApp.Pages.Begin
                         selectedCategories.Add(SelectedItem as ZebrasLib.Classes.Category);
                     if (selectedCategories.Count > 0)
                         watcher.Start();
-                    
                 }
-
-                #endregion Download Places
-
-                else
-                    NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
+                else FinishSettings();
             }
             else pivotMain.SelectedIndex++;
         }
 
+        private void FinishSettings()
+        {
+            if (categoriesDownloaded)
+            {
+                if (isLoggedOnFacebook)
+                {
+                    App.FirstTimeLaunch = true;
+                    NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
+                    txtbLoggedIn.Text = AppResources.TxbFacebookLogin;
+                }
+                else
+                {
+                    stackWait.Visibility = System.Windows.Visibility.Collapsed;
+                    pivotMain.Visibility = System.Windows.Visibility.Visible;
+                    txtbLoggedIn.Text = AppResources.TxtFacebookNeeded;
+                }
+            }
+            else
+            {
+                txtbLoggedIn.Text = AppResources.TxtInternetConnectionProblem;
+                stackWait.Visibility = System.Windows.Visibility.Collapsed;
+                pivotMain.Visibility = System.Windows.Visibility.Visible;
+            }
+                
+            
+        }
+
         private async void borderFacebook_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            txtbLoggedIn.Visibility = System.Windows.Visibility.Visible;
             prgLoginFacebook.Visibility = System.Windows.Visibility.Collapsed;
             bool isAuthenticated = await FacebookMethods.canAuthenticate();
             if (isAuthenticated)
@@ -124,17 +158,28 @@ namespace Zebra.WPApp.Pages.Begin
                 App.isAuthenticated = true;
                 App.facebookAccessToken = Main.AccessToken;
                 App.facebookId = Main.FacebookId;
+                isLoggedOnFacebook = true;
+                txtbLoggedIn.Text = AppResources.TxbFacebookLoggedIn;
             }
-            txtbLoggedIn.Visibility = System.Windows.Visibility.Visible;
+            else
+            {
+                txtbLoggedIn.Text = AppResources.TxtInternetConnectionProblem;
+            }
         }
 
         private async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             List<ZebrasLib.Classes.Place> lstDownloadedPlaces;
             lstDownloadedPlaces = await ZebrasLib.Places.PlacesMethods.getAllPlacesFromThisCategories(selectedCategories,
-                -16.5013, -68.1207);
-            DBPhone.PlacesMethods.AddItems(lstDownloadedPlaces);
-            NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
+                e.Position.Location.Latitude,e.Position.Location.Longitude);
+            if (lstDownloadedPlaces != null)
+            {
+                DBPhone.PlacesMethods.AddItems(lstDownloadedPlaces);
+                FinishSettings();
+            }
+            else txtbLoggedIn.Text = AppResources.TxtInternetConnectionProblem;
+            
+            watcher.Stop();
         }
 
     }

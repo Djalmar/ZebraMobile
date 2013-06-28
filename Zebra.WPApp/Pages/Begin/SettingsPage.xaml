@@ -92,6 +92,9 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+                    <TextBlock Name="txtInternetError"
+                               Style="{StaticResource txtNotFound}"
+                               Grid.Row="1"/>
                 </Grid>
             </controls:PivotItem>
             
@@ -199,11 +202,7 @@
                                        VerticalAlignment="Center"
                                        Grid.Row="2"
                                        Name="txtbLoggedIn"
-                                       Text="{Binding LocalizedResources.TxbFacebookLoggedIn, 
-                                            Mode=OneWay, 
-                                            Source={StaticResource LocalizedStrings}}" 
                                              FontSize="36"
-                                       Visibility="Collapsed"
                                        toolkit:TurnstileFeatherEffect.FeatheringIndex="14"
                                        TextWrapping="Wrap"/>
                 </Grid>

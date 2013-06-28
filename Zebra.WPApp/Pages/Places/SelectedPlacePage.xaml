@@ -126,6 +126,8 @@
                              Margin="12" 
                              ItemTemplate="{StaticResource tmpPlace}"
                              SelectionChanged="lstRelatedByPrices_SelectionChanged"/>
+                    <TextBlock Name="txtNoPlacesRelatedByPrice"
+                               Style="{StaticResource txtNotFound}"/>
                 </Grid>
             </Grid>
         </phone:PanoramaItem>
@@ -150,6 +152,8 @@
                              ItemTemplate="{StaticResource tmpPlace}"
                              SelectionChanged="lstRelatedByFeatures_SelectionChanged">
                     </ListBox>
+                    <TextBlock Name="txtNoPlacesRelatedByFeature"
+                               Style="{StaticResource txtNotFound}"/>
                 </Grid>
             </Grid>
         </phone:PanoramaItem>

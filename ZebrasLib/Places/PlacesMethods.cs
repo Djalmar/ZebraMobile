@@ -21,6 +21,9 @@ namespace ZebrasLib
                     "&latitude= " + latitude +
                     "&longitude=" + longitude;
                 List<Place> lstPlace = await Main.GetPlaces(url);
+                if (lstPlace != null)
+                    foreach (Place P in lstPlace)
+                        P.parentCategoryCode = categoryCode;
                 return lstPlace;
             }
 

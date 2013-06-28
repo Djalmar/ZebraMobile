@@ -16,9 +16,12 @@ namespace ZebrasLib
             {
                 string downloadedInfo = await Main.DownloadInfo(url);
                 CategoryResult result = JsonConvert.DeserializeObject<CategoryResult>(downloadedInfo);
-                if (Main.thereIsNoProblemo(result.status))
-                    return FormatedCategories(result.categoriesList);
-                else return null;
+                if (result != null)
+                {
+                    if (Main.thereIsNoProblemo(result.status))
+                        return FormatedCategories(result.categoriesList);
+                }
+                return null;
             }
 
             private static List<Category> FormatedCategories(List<Category> list)

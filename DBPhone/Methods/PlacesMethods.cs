@@ -101,7 +101,7 @@ namespace DBPhone
             return listToReturn;
         }
 
-        public static List<Place> getRelatedPlacesBasedOn(int minPrice, int maxPrice, string parentCategoryCode)
+        public static List<Place> getRelatedPlacesBasedOn(int minPrice, int maxPrice, string parentCategoryCode,string placeCode)
         {
             int minRateHigh = (minPrice * 20 / 100) + minPrice;
             int minRateLow = minPrice - (minPrice * 20 / 100);
@@ -114,19 +114,21 @@ namespace DBPhone
                                             && allPlaces.minPrice >= minRateLow
                                             && allPlaces.maxPrice <= maxRateHigh
                                             && allPlaces.maxPrice >= maxRateLow
-                                            //&& allPlaces.parentCategory == categoryCodeForThisPlace
+                                            && allPlaces.placecode != placeCode
+                                            //&& allPlaces.parentCategoryCode == parentCategoryCode
                                             select allPlaces;
             return newList.ToList();
         }
 
-        public static List<Place> getRelatedPlacesBasedOn(bool childsArea, bool smokingArea, string parentCategoryCode)
+        public static List<Place> getRelatedPlacesBasedOn(bool childsArea, bool smokingArea, string parentCategoryCode, string placeCode)
         {
             Context context = Context.GetDatabase();
             IEnumerable<Place> newList =    from allPlaces
                                             in context.places
                                             where allPlaces.smokingArea == smokingArea
                                             && allPlaces.kidsArea == childsArea
-                                            //&& allPlaces.parentCategory == categoryCodeForThisPlace
+                                            && allPlaces.placecode != placeCode
+                                            //&& allPlaces.parentCategoryCode == parentCategoryCode
                                             select allPlaces;
             return newList.ToList();
         }

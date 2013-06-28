@@ -29,7 +29,6 @@ namespace OurFacebook
 
             catch
             {
-                MessageBox.Show("No se pudo iniciar la sesion, intentalo de nuevo por favor");
                 session = new FacebookSession();
                 return false;
             }

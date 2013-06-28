@@ -317,4 +317,10 @@
   <data name="TxbFindSearchBoxHint" xml:space="preserve">
     <value>buscar</value>
   </data>
+  <data name="TxtFacebookNeeded" xml:space="preserve">
+    <value>Necesitas iniciar sesion en Facebook para comenzar a usar la aplicacion.</value>
+  </data>
+  <data name="TxtNoPlacesRelated" xml:space="preserve">
+    <value>No se encontraron lugares relacionados a este.</value>
+  </data>
 </root>
