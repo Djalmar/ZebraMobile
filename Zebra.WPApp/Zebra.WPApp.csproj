@@ -145,6 +145,12 @@
     <Compile Include="UserControls\uscPushPin.xaml.cs">
       <DependentUpon>uscPushPin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\uscPushPinPlace.xaml.cs">
+      <DependentUpon>uscPushPinPlace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\uscUserPosition.xaml.cs">
+      <DependentUpon>uscUserPosition.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -211,6 +217,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\uscPushPinPlace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\uscUserPosition.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AppBar\add.png" />
@@ -254,6 +268,7 @@
     <Content Include="Assets\MenuTile\Cebras6.jpg" />
     <Content Include="Assets\MenuTile\Z.png" />
     <Content Include="Assets\MenuTile\ZebrasTile.png" />
+    <Content Include="Assets\user.png" />
     <Content Include="Videos\bmtdk.mp3" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />

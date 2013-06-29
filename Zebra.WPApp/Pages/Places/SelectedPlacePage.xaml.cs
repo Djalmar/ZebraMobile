@@ -30,13 +30,18 @@ namespace Zebra.WPApp.Pages.Places
 
         void SelectedPlacePage_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadMap();
+            watcher.Start();
             LoadPlace();
             LoadRelatedPlaces();
+            watcher.PositionChanged += watcher_PositionChanged;
+            watcher.StatusChanged += watcher_StatusChanged;
         }
 
         private void LoadRelatedPlaces()
-        {
+        { 
+            lstRelatedByFeatures.ItemsSource = null;
+            lstRelatedByFeatures.Visibility = System.Windows.Visibility.Visible;
+            txtNoPlacesRelatedByFeature.Visibility = System.Windows.Visibility.Collapsed;
             lstRelatedByFeatures.ItemsSource = DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.minPrice,
                 staticClasses.selectedPlace.maxPrice,
                 staticClasses.selectedPlace.categoryCode,
@@ -44,10 +49,13 @@ namespace Zebra.WPApp.Pages.Places
 
             if (lstRelatedByFeatures.Items.Count == 0)
             {
-                //lstRelatedByFeatures.Visibility = Visibility.Collapsed;
-                //txtNoPlacesRelatedByFeature.Text = AppResources.TxtNoPlacesRelated;
-                //txtNoPlacesRelatedByFeature.Visibility = Visibility.Visible;
+                lstRelatedByFeatures.Visibility = Visibility.Collapsed;
+                txtNoPlacesRelatedByFeature.Text = AppResources.TxtNoPlacesRelated;
+                txtNoPlacesRelatedByFeature.Visibility = Visibility.Visible;
             }
+            lstRelatedByPrices.ItemsSource = null;
+            lstRelatedByPrices.Visibility = System.Windows.Visibility.Visible;
+            txtNoPlacesRelatedByPrice.Visibility = System.Windows.Visibility.Collapsed;
             lstRelatedByPrices.ItemsSource = DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.kidsArea,
                 staticClasses.selectedPlace.smokingArea,
                 staticClasses.selectedPlace.categoryCode,
@@ -71,16 +79,50 @@ namespace Zebra.WPApp.Pages.Places
 
         private void LoadMap()
         {
-            uscPushPin pushPin = new uscPushPin();
+            uscPushPinPlace pushPin = new uscPushPinPlace();
             MapLayer layer = new MapLayer();
             MapOverlay overlay = new MapOverlay();
+            MapOverlay myPosition = new MapOverlay();
+            uscUserPosition myPush = new uscUserPosition();
+            myPosition.Content = myPush;
+            myPosition.GeoCoordinate = new GeoCoordinate(Latitude, Longitude);
             overlay.Content = pushPin;
             overlay.GeoCoordinate = new GeoCoordinate(staticClasses.selectedPlace.latitude, staticClasses.selectedPlace.longitude);
             layer.Add(overlay);
+            layer.Add(myPosition);
             mapPlace.Layers.Add(layer);
-            mapPlace.Center = new GeoCoordinate(-16.5013, -68.1207);
+            mapPlace.Center = new GeoCoordinate(staticClasses.selectedPlace.latitude,staticClasses.selectedPlace.longitude);
             mapPlace.ZoomLevel = 14;
         }
+        #region GPS
+        private void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
+        {
+            switch (e.Status)
+            {
+                case GeoPositionStatus.Disabled:
+                    MessageBox.Show(AppResources.TxtGPSDisabled);
+                    NavigationService.GoBack();
+                    break;
+
+                case GeoPositionStatus.NoData:
+                    MessageBox.Show(AppResources.TxtGPSNoData);
+                    NavigationService.GoBack();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            Latitude = e.Position.Location.Latitude;
+            Longitude = e.Position.Location.Longitude;
+            LoadMap();
+            watcher.Stop();
+        }
+        #endregion
+
 
         private List<Service> CrearListadeServicios()
         {
@@ -94,12 +136,12 @@ namespace Zebra.WPApp.Pages.Places
         }
         private void lstRelatedByPrices_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Place place = new Place();
-            place = lstRelatedByPrices.SelectedItem as Place;
+            Place place = lstRelatedByPrices.SelectedItem as Place;
             if (place != null)
             {
                 staticClasses.selectedPlace = place;
-                NavigationService.Navigate(new Uri("/Pages/Places/SelectedPage.xaml", UriKind.Relative));
+                mapPlace.Layers.Clear();
+                this.SelectedPlacePage_Loaded(sender, e);
             }
         }
 
@@ -109,7 +151,8 @@ namespace Zebra.WPApp.Pages.Places
             if (place != null)
             {
                 staticClasses.selectedPlace = place;
-                NavigationService.Navigate(new Uri("/Pages/Places/SelectedPage.xaml", UriKind.Relative));
+                mapPlace.Layers.Clear();
+                this.SelectedPlacePage_Loaded(sender, e);
             }
         } 
         

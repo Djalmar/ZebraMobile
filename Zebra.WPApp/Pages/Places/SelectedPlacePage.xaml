@@ -152,8 +152,8 @@
                             ItemTemplate="{StaticResource tmpPlace}"
                             SelectionChanged="lstRelatedByFeatures_SelectionChanged">
                 </ListBox>
-                <!--<TextBlock Name="txtNoPlacesRelatedByFeature"
-                            Style="{StaticResource txtNotFound}" Visibility="Collapsed"/>-->
+                <TextBlock Name="txtNoPlacesRelatedByFeature"
+                            Style="{StaticResource txtNotFound}" Visibility="Collapsed"/>
             </Grid>
         </phone:PanoramaItem>
     </phone:Panorama>

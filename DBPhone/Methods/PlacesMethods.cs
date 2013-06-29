@@ -101,7 +101,7 @@ namespace DBPhone
             return listToReturn;
         }
 
-        public static List<Place> getRelatedPlacesBasedOn(int minPrice, int maxPrice, string parentCategoryCode,string placeCode)
+        public static List<ZebrasLib.Classes.Place> getRelatedPlacesBasedOn(int minPrice, int maxPrice, string parentCategoryCode,string placeCode)
         {
             int minRateHigh = (minPrice * 20 / 100) + minPrice;
             int minRateLow = minPrice - (minPrice * 20 / 100);
@@ -117,10 +117,10 @@ namespace DBPhone
                                             && allPlaces.placecode != placeCode
                                             //&& allPlaces.parentCategoryCode == parentCategoryCode
                                             select allPlaces;
-            return newList.ToList();
+            return ConvertToZebraItems(newList.ToList());
         }
 
-        public static List<Place> getRelatedPlacesBasedOn(bool childsArea, bool smokingArea, string parentCategoryCode, string placeCode)
+        public static List<ZebrasLib.Classes.Place> getRelatedPlacesBasedOn(bool childsArea, bool smokingArea, string parentCategoryCode, string placeCode)
         {
             Context context = Context.GetDatabase();
             IEnumerable<Place> newList =    from allPlaces
@@ -130,7 +130,7 @@ namespace DBPhone
                                             && allPlaces.placecode != placeCode
                                             //&& allPlaces.parentCategoryCode == parentCategoryCode
                                             select allPlaces;
-            return newList.ToList();
+            return ConvertToZebraItems(newList.ToList());
         }
     }
 }

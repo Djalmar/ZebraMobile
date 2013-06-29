@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Zebra.WPApp.UserControls.uscUserPosition"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}" Width="70" Height="70">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="12"  />
+            <RowDefinition/>
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Ellipse Name="elpPush" Grid.ColumnSpan="4" Grid.RowSpan="5" StrokeThickness="4" Fill="{StaticResource PhoneAccentBrush}">
+            <Ellipse.Stroke>
+                <SolidColorBrush Color="{StaticResource PhoneContrastBackgroundColor}" />
+            </Ellipse.Stroke>
+        </Ellipse>
+        <Image Grid.Column="1"
+               Grid.Row="1"
+               Source="/Assets/user.png"/>
+    </Grid>
+</UserControl>
