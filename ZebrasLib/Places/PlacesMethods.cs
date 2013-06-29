@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using ZebrasLib.Classes;
@@ -16,33 +18,41 @@ namespace ZebrasLib
 
             public static async Task<List<Place>> getAllPlacesByCategory(string categoryCode, double latitude, double longitude)
             {
+                string strlatitude = Convert.ToString(latitude, new CultureInfo("en-US"));
+                string strlongitude = Convert.ToString(longitude, new CultureInfo("en-US"));
                 string url = Main.urlPlacesByCategory +
                     "code=" + categoryCode +
-                    "&latitude= " + latitude +
-                    "&longitude=" + longitude;
-                List<Place> lstPlace = await Main.GetPlaces(url);
-                if (lstPlace != null)
-                    foreach (Place P in lstPlace)
-                        P.parentCategoryCode = categoryCode;
-                return lstPlace;
+                    "&latitude= " + strlatitude +
+                    "&longitude=" + strlongitude;
+                return await FormatLocalizationAndGetDistances(latitude, longitude, url);
             }
 
             public static async Task<List<Place>> getPlacesByQuery(string query, double latitude, double longitude)
             {
-                //tienen que estar ordenados por distancia
+                string strlatitude = Convert.ToString(latitude, new CultureInfo("en-US"));
+                string strlongitude = Convert.ToString(longitude, new CultureInfo("en-US"));
                 string url = Main.urlPlacesByQuery +
                     "query=" + query +
-                    "&latitude= " + latitude +
-                    "&longitude=" + longitude;
+                    "&latitude= " + strlatitude +
+                    "&longitude=" + strlongitude;
 
+                return await FormatLocalizationAndGetDistances(latitude, longitude, url);
+            }
+
+            private static async Task<List<Place>> FormatLocalizationAndGetDistances(double latitude, double longitude, string url)
+            {
                 List<Place> lstPlaces = await Main.GetPlaces(url);
                 if (lstPlaces != null)
                 {
+                    foreach (Place P in lstPlaces)
+                    {
+                        P.latitude = Convert.ToDouble(P.strlatitude, new CultureInfo("en-US"));
+                        P.longitude = Convert.ToDouble(P.strlongitude, new CultureInfo("en-US"));
+                    }
                     lstPlaces = getDistancesForEachPlace(latitude, longitude, lstPlaces);
                     return getPlacesOrderedByDistance(lstPlaces);
                 }
                 else return null;
-                
             }
 
             public static async Task<List<Place>> getAllPlacesFromThisCategories(List<Category> lstCategories, double latitude, double longitude)

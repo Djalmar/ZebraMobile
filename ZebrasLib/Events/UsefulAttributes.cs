@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using ZebrasLib.Classes;
 
@@ -48,6 +49,8 @@ namespace ZebrasLib
             {
                 foreach (Problem E in unformatedList)
                 {
+                    E.latitude = Convert.ToDouble(E.strlatitude, new CultureInfo("en-US"));
+                    E.longitude= Convert.ToDouble(E.strlongitude, new CultureInfo("en-US"));
                     E.reportedAt = UnixTimeToDateTime(Double.Parse(E.reportedAt));
                     E.dtReportedAt = DateTime.Parse(E.reportedAt).ToUniversalTime();
                     E.icon = GetIconForThisType(E.type);
@@ -57,6 +60,8 @@ namespace ZebrasLib
                         {
                             R.reportedAt = UnixTimeToDateTime(Double.Parse(R.reportedAt));
                             R.dtReportedAt = DateTime.Parse(R.reportedAt).ToUniversalTime();
+                            R.latitude = Convert.ToDouble(R.strlatitude, new CultureInfo("en-US"));
+                            R.longitude= Convert.ToDouble(R.strlongitude, new CultureInfo("en-US"));
                         }
                     }
                     else {
@@ -66,8 +71,8 @@ namespace ZebrasLib
                             description = E.description,
                             dtReportedAt = E.dtReportedAt,
                             facebookCode = E.facebookUserCode,
-                            latitude = E.latitude,
-                            longitude = E.longitude,
+                            latitude = Convert.ToDouble(E.strlatitude, new CultureInfo("en-US")),
+                            longitude = Convert.ToDouble(E.strlongitude, new CultureInfo("en-US")),
                             reportedAt = E.reportedAt,
                             type = E.type
                         }); 

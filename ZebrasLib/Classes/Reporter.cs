@@ -10,10 +10,10 @@ namespace ZebrasLib
             public string facebookCode { get; set; }
 
             [JsonProperty("Latitude")]
-            public double latitude { get; set; }
+            public string strlatitude { get; set; }
 
             [JsonProperty("Longitude")]
-            public double longitude { get; set; }
+            public string strlongitude { get; set; }
 
             [JsonProperty("Type")]
             public int type { get; set; }
@@ -30,6 +30,8 @@ namespace ZebrasLib
             [JsonProperty("picture")]
             public string picture { get; set; }
 
+            public double latitude { get; set; }
+            public double longitude { get; set; }
             public DateTime dtReportedAt { get; set; }
         }
     }

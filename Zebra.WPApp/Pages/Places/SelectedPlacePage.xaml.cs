@@ -13,6 +13,7 @@ using Microsoft.Phone.Maps.Controls;
 using System.Device.Location;
 using ZebrasLib.Classes;
 using Zebra.WPApp.Resources;
+using System.Globalization;
 
 namespace Zebra.WPApp.Pages.Places
 {
@@ -26,13 +27,13 @@ namespace Zebra.WPApp.Pages.Places
             InitializeComponent();
             this.Loaded += SelectedPlacePage_Loaded;
             watcher = new GeoCoordinateWatcher();
+            watcher.PositionChanged += watcher_PositionChanged;
+            watcher.StatusChanged += watcher_StatusChanged;
         }
 
         void SelectedPlacePage_Loaded(object sender, RoutedEventArgs e)
         {
             watcher.Start();
-            watcher.PositionChanged += watcher_PositionChanged;
-            watcher.StatusChanged += watcher_StatusChanged;
         }
 
         private void LoadRelatedPlaces()
@@ -97,9 +98,10 @@ namespace Zebra.WPApp.Pages.Places
             layer.Add(overlay);
             layer.Add(myPosition);
             mapPlace.Layers.Add(layer);
-            mapPlace.Center = new GeoCoordinate(staticClasses.selectedPlace.latitude,staticClasses.selectedPlace.longitude);
+            mapPlace.Center = new GeoCoordinate(staticClasses.selectedPlace.latitude, staticClasses.selectedPlace.longitude);
             mapPlace.ZoomLevel = 14;
         }
+       
         #region GPS
         private void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
         {

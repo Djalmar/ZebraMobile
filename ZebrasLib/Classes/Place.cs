@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace ZebrasLib
 {
@@ -44,10 +46,10 @@ namespace ZebrasLib
             public int rating { get; set; }
 
             [JsonProperty("Latitude")]
-            public double latitude { get; set; }
-
+            public string strlatitude{get;set;}
+            
             [JsonProperty("Longitude")]
-            public double longitude { get; set; }
+            public string strlongitude { get; set; }
 
             [JsonProperty("CategoryCode")]
             public string categoryCode { get; set; }
@@ -55,6 +57,8 @@ namespace ZebrasLib
             public double distance { get; set; }
 
             public string parentCategoryCode { get; set; }
+            public double latitude{ get; set; }
+            public double longitude{ get; set; }
         }
 
         public class PlacesResult

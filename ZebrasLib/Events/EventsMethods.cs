@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using ZebrasLib.Classes;
@@ -11,28 +12,32 @@ namespace ZebrasLib
     {
         public static partial class ProblemsMethods
         {
-            public static async Task<ProblemsResult> ReportProblem(
-                    string facebookCode,
-                    double latitude,
-                    double longitude,
-                    string description,
-                    int type)
-            {
-                string data =
-                    "facebookcode=" + facebookCode +
-                    "&latitude=" + latitude +
-                    "&longitude=" + longitude +
-                    "&description=" + description +
-                    "&type=" + type;
-                string result = await Internet.UploadStringAsync(Main.urlReportProblem, data);
-                return JsonConvert.DeserializeObject<ProblemsResult>(result);
-            }
+            //public static async Task<ProblemsResult> ReportProblem(
+            //        string facebookCode,
+            //        double latitude,
+            //        double longitude,
+            //        string description,
+            //        int type)
+            //{
+            //    string strlatitude = Convert.ToString(latitude, new CultureInfo("en-US"));
+            //    string strlongitude = Convert.ToString(longitude, new CultureInfo("en-US"));
+            //    string data =
+            //        "facebookcode=" + facebookCode +
+            //        "&latitude=" + strlatitude +
+            //        "&longitude=" + strlongitude +
+            //        "&description=" + description +
+            //        "&type=" + type;
+            //    string result = await Internet.UploadStringAsync(Main.urlReportProblem, data);
+            //    return JsonConvert.DeserializeObject<ProblemsResult>(result);
+            //}
 
             public static async Task<List<Problem>> GetProblems(double latitude, double longitude)
             {
+                string strlatitude = Convert.ToString(latitude, new CultureInfo("en-US"));
+                string strlongitude = Convert.ToString(longitude, new CultureInfo("en-US"));
                 string url = Main.urlGetProblems +
-                    "latitude=" + latitude +
-                    "&longitude=" + longitude;
+                    "latitude=" + strlatitude +
+                    "&longitude=" + strlongitude;
                 ProblemsResult result = await downloadedInfo(url);
                 if (result != null)
                 {

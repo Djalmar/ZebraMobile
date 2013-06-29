@@ -21,10 +21,10 @@ namespace ZebrasLib
             public bool isVerified { get; set; }
 
             [JsonProperty("Latitude")]
-            public double latitude { get; set; }
+            public string strlatitude { get; set; }
 
             [JsonProperty("Longitude")]
-            public double longitude { get; set; }
+            public string strlongitude { get; set; }
 
             [JsonProperty("Type")]
             public int type { get; set; }
@@ -40,6 +40,8 @@ namespace ZebrasLib
 
             public DateTime dtReportedAt{ get; set; }
             public string icon { get; set; }
+            public double latitude { get; set; }
+            public double longitude { get; set; }
         }
 
         public class ProblemsResult

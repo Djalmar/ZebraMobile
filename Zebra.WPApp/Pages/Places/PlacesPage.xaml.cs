@@ -68,8 +68,12 @@ namespace Zebra.WPApp.Pages.Places
             prgPlaces.IsIndeterminate = true;
             prgPlaces.Visibility = System.Windows.Visibility.Visible;
             lstAllPlaces = await DownloadPlacesFromTheInternet(latitude,longitude);
-            lstAllPlaces = PlacesMethods.getDistancesForEachPlace(latitude, longitude, lstAllPlaces);
-            PopulateLists(lstAllPlaces);
+            if (lstAllPlaces != null)
+            {
+                lstAllPlaces = PlacesMethods.getDistancesForEachPlace(latitude, longitude, lstAllPlaces);
+                PopulateLists(lstAllPlaces);
+                UpdateDataBase(lstAllPlaces);
+            }
             prgPlaces.Visibility = System.Windows.Visibility.Collapsed;
         }
         #endregion
