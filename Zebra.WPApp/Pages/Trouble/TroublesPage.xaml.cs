@@ -16,7 +16,7 @@ namespace Zebra.WPApp.Pages.Trouble
 {
     public partial class TroublesPage : PhoneApplicationPage
     {
-        public List<Event> lstEvents { get; set; }
+        public List<Problem> lstEvents { get; set; }
 
         private GeoCoordinateWatcher watcher;
         private double latitude;
@@ -31,13 +31,6 @@ namespace Zebra.WPApp.Pages.Trouble
             watcher.PositionChanged += watcher_PositionChanged;
         }
 
-        /// <summary>
-        /// This method launches everytime this page is loaded.
-        /// We should check for internet connection, just for now we're
-        /// using mock data.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void TroublesPage_Loaded(object sender, RoutedEventArgs e)
         {
             LoadAppBar();
@@ -68,11 +61,12 @@ namespace Zebra.WPApp.Pages.Trouble
             latitude = e.Position.Location.Latitude;
             longitude = e.Position.Location.Longitude;
             prgEvents.Visibility = System.Windows.Visibility.Visible;
-            lstEvents = await EventsMethods.GetEvents(-16.5013, -68.1207);
+            lstEvents = await ProblemsMethods.GetProblems(latitude,longitude);
+            lstEvents = await OurFacebook.FacebookMethods.GetFbInfoForTheseReporters(lstEvents, App.facebookAccessToken);
             prgEvents.Visibility = System.Windows.Visibility.Collapsed;
-            if(lstEvents!=null)
+            if (lstEvents != null)
                 LoadPushPins();
-            // else Display a message saying something got fucked up
+            else MessageBox.Show(AppResources.TxtInternetConnectionProblem);
         }
 
         private void LoadPushPins()
@@ -97,7 +91,7 @@ namespace Zebra.WPApp.Pages.Trouble
 
         private void lstTroubles_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            Event problem = lstTroubles.SelectedItem as Event;
+            Problem problem = lstTroubles.SelectedItem as Problem;
             if (problem != null)
             {
                 staticClasses.selectedEvent = problem;

@@ -10,14 +10,14 @@ namespace Zebra.WPApp.UserControls
 {
     public partial class uscPushPin : UserControl
     {
-        public Event evento;
+        public Problem evento;
         public uscPushPin()
         {
             InitializeComponent();
             this.Loaded+=uscPushPin_Loaded2;
         }
         //aqui llenamos el push pin
-        public uscPushPin(Event evento)
+        public uscPushPin(Problem evento)
         {
             InitializeComponent();
             this.evento = evento;

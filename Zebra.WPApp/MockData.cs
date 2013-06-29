@@ -20,13 +20,13 @@ namespace Zebra.WPApp
             return await reader.ReadToEndAsync();
         }
 
-        public static async Task<EventResult> MockDataGetEvents()
+        public static async Task<ProblemsResult> MockDataGetEvents()
         {
             string direction = "MockData/EventsResult.json";
 
             string result = await GetStringFromStream(direction);
 
-            EventResult eventResult = JsonConvert.DeserializeObject<EventResult>(result);
+            ProblemsResult eventResult = JsonConvert.DeserializeObject<ProblemsResult>(result);
             return eventResult;
         }
 

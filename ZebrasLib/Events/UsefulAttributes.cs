@@ -8,15 +8,15 @@ namespace ZebrasLib
 {
     namespace Events
     {
-        public static partial class EventsMethods
+        public static partial class ProblemsMethods
         {
-            private static async Task<EventResult> downloadedInfo(string uriAddress)
+            private static async Task<ProblemsResult> downloadedInfo(string uriAddress)
             {
                 string result = await Internet.DownloadStringAsync(uriAddress);
 
-                EventResult eventResult = JsonConvert.DeserializeObject<EventResult>(result);
+                ProblemsResult eventResult = JsonConvert.DeserializeObject<ProblemsResult>(result);
                 if (Main.thereIsNoProblemo(eventResult.status))
-                    eventResult.eventsList = formatedList(eventResult.eventsList);
+                    eventResult.problemsList = formatedList(eventResult.problemsList);
 
                 return eventResult;
             }
@@ -42,9 +42,9 @@ namespace ZebrasLib
                 return false;
             }
 
-            public static List<Event> formatedList(List<Event> unformatedList)
+            public static List<Problem> formatedList(List<Problem> unformatedList)
             {
-                foreach (Event E in unformatedList)
+                foreach (Problem E in unformatedList)
                 {
                     E.reportedAt = UnixTimeToDateTime(Double.Parse(E.reportedAt));
                     foreach (Reporter R in E.reporters)

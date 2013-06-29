@@ -60,14 +60,17 @@ namespace OurFacebook
             return downloadedList.Task;
         }
 
-        public static async Task<List<Reporter>> GetFbInfoForTheseReporters(List<Reporter> list, string accessToken)
+        public static async Task<List<Problem>> GetFbInfoForTheseReporters(List<Problem> list, string accessToken)
         {
             facebookUser user = new facebookUser();
-            foreach (Reporter reporter in list)
+            foreach (Problem P in list)
             {
-                user = await FacebookMethods.getUserInfo(accessToken, reporter.facebookCode);
-                reporter.name = user.Name;
-                reporter.picture = user.picture.data.url;
+                foreach (Reporter reporter in P.reporters)
+                {
+                    user = await FacebookMethods.getUserInfo(accessToken, reporter.facebookCode);
+                    reporter.name = user.Name;
+                    reporter.picture = user.picture.data.url;
+                }
             }
             return list;
         }

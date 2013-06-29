@@ -9,9 +9,9 @@ namespace ZebrasLib
 {
     namespace Events
     {
-        public static partial class EventsMethods
+        public static partial class ProblemsMethods
         {
-            public static async Task<EventResult> ReportEvent(
+            public static async Task<ProblemsResult> ReportProblem(
                     string facebookCode,
                     double latitude,
                     double longitude,
@@ -25,51 +25,57 @@ namespace ZebrasLib
                     "&description=" + description +
                     "&type=" + type;
                 string result = await Internet.UploadStringAsync(Main.urlReportProblem, data);
-                return JsonConvert.DeserializeObject<EventResult>(result);
+                return JsonConvert.DeserializeObject<ProblemsResult>(result);
             }
 
-            public static async Task<List<Event>> GetEvents(double latitude, double longitude)
+            public static async Task<List<Problem>> GetProblems(double latitude, double longitude)
             {
                 string url = Main.urlGetProblems +
                     "latitude=" + latitude +
                     "&longitude=" + longitude;
-                EventResult result = await downloadedInfo(url);
+                ProblemsResult result = await downloadedInfo(url);
                 if(Main.thereIsNoProblemo(result.status))
-                    return result.eventsList;
+                    return result.problemsList;
                 else return null;
             }
 
-            public static async Task<EventResult> GetEvents(List<string> fbFriendList)
+            public static async Task<List<Problem>> GetEvents(List<string> fbFriendList)
             {
                 string friendsList = String.Empty;
                 foreach (string friend in fbFriendList)
                     friendsList += friend + ",";
 
-                string uriAddress = Main.urlGetProblemsByFriends +
+                string url= Main.urlGetProblemsByFriends +
                     "friends=" + friendsList;
 
-                return await downloadedInfo(uriAddress);
+                ProblemsResult result = await downloadedInfo(url);
+                if (Main.thereIsNoProblemo(result.status))
+                    return result.problemsList;
+                else return null;
             }
 
-            public static List<Event> GetEventsVerified(List<Event> lstEventsSource)
+            public static List<Problem> GetProblemsVerified(List<Problem> lstEventsSource)
             {
-                IEnumerable<Event> query = from E in lstEventsSource
+                IEnumerable<Problem> query = from E in lstEventsSource
                                            where E.isVerified
                                            select E;
                 return query.ToList();
             }
 
-            public static List<Event> GetEventsReportedByType(List<Event> lstEventsSource, int type)
+            public static List<Problem> GetProblemsReportedByType(List<Problem> lstProblemsSource, int type)
             {
-                IEnumerable<Event> query = from E in lstEventsSource
+                IEnumerable<Problem> query = from E in lstProblemsSource
                                            where E.type == type
                                            select E;
                 return query.ToList();
             }
 
-            public static List<Event> GetEventsReportedNear(List<Event> lstEventsSource, double latitude, double longitude, int distanceFromUser)
+            public static List<Problem> GetProblemsReportedNear(List<Problem> lstProblemsSource, 
+                double latitude, 
+                double longitude, 
+                int distanceFromUser)
             {
-                IEnumerable<Event> query = from E in lstEventsSource
+                IEnumerable<Problem> query = from E in lstProblemsSource
                                            where isNear(E.latitude, E.longitude, latitude, longitude, distanceFromUser)
                                            select E;
                 return query.ToList();

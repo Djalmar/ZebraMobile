@@ -5,7 +5,7 @@ namespace ZebrasLib
 {
     namespace Classes
     {
-        public class Event
+        public class Problem
         {
             [JsonProperty("Code")]
             public string eventCode{ get; set; }
@@ -38,7 +38,7 @@ namespace ZebrasLib
             public List<Reporter> reporters { get; set; }
         }
 
-        public class EventResult
+        public class ProblemsResult
         {
             [JsonProperty("Status")]
             public string status { get; set; }
@@ -47,7 +47,7 @@ namespace ZebrasLib
             public string message { get; set; }
 
             [JsonProperty("Data")]
-            public List<Event> eventsList { get; set; }
+            public List<Problem> problemsList { get; set; }
         }
     }
 }

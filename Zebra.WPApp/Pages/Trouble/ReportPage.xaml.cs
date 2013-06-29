@@ -19,7 +19,7 @@ namespace Zebra.WPApp.Pages.Trouble
     {
         private List<string> troubleCategoryList;
         public GeoCoordinateWatcher watcher { get; set; }
-        public EventResult result { get; set; }
+        public ProblemsResult result { get; set; }
         double latitude;
         double longitude;
 
@@ -59,7 +59,7 @@ namespace Zebra.WPApp.Pages.Trouble
 
         void btnReport_Click(object sender, EventArgs e)
         {
-            EventResult result = new EventResult();
+            ProblemsResult result = new ProblemsResult();
             string description = txtDescription.Text;
             int reportType = lspTroubleCategory.SelectedIndex + 1;
             if (description.Length > 0 && reportType > 0)
