@@ -31,13 +31,15 @@ namespace Zebra.WPApp.Pages.Trouble
             watcher.MovementThreshold = 200;
             watcher.PositionChanged += watcher_PositionChanged;
             watcher.StatusChanged += watcher_StatusChanged;
+            lstTroubles.SelectionChanged+=lstTroubles_SelectionChanged;
+            lstTroublesByFriends.SelectionChanged += lstTroublesByFriends_SelectionChanged;
         }
 
         private void TroublesPage_Loaded(object sender, RoutedEventArgs e)
         {
             LoadAppBar();
             watcher.Start();
-            //GetFriendsProblems();
+            GetFriendsProblems();
         }
 
         private async void GetFriendsProblems()
@@ -46,7 +48,9 @@ namespace Zebra.WPApp.Pages.Trouble
             List<string> friendsCodes = new List<string>();
             foreach (facebookUser user in facebookFriends)
                 friendsCodes.Add(user.id);
+            
             lstEventsByFriends = await ProblemsMethods.GetProblems(friendsCodes);
+            lstEventsByFriends= await OurFacebook.FacebookMethods.GetFbInfoForTheseReporters(lstEventsByFriends, App.facebookAccessToken);
             lstTroublesByFriends.ItemsSource = lstEventsByFriends;
         }
 
@@ -121,13 +125,24 @@ namespace Zebra.WPApp.Pages.Trouble
                 overlay.GeoCoordinate = new GeoCoordinate(item.latitude, item.longitude);
                 layers.Add(overlay);
             }
+            
             mapTroubles.CartographicMode = MapCartographicMode.Hybrid;
-            mapTroubles.Center = new GeoCoordinate(-16.482208, -68.123117);
+            mapTroubles.Center = new GeoCoordinate(latitude,longitude);
             mapTroubles.Layers.Add(layers);
             lstTroubles.ItemsSource = lstEvents;
         }
 
         private void lstTroubles_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            NavigateToReportersPage(lstTroubles);
+        }
+
+        void lstTroublesByFriends_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            NavigateToReportersPage(lstTroublesByFriends);
+        }
+
+        private void NavigateToReportersPage(System.Windows.Controls.ListBox lstTroubles)
         {
             Problem problem = lstTroubles.SelectedItem as Problem;
             if (problem != null)

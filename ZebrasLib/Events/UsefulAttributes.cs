@@ -51,12 +51,27 @@ namespace ZebrasLib
                     E.reportedAt = UnixTimeToDateTime(Double.Parse(E.reportedAt));
                     E.dtReportedAt = DateTime.Parse(E.reportedAt).ToUniversalTime();
                     E.icon = GetIconForThisType(E.type);
-                    foreach (Reporter R in E.reporters)
+                    if (E.reporters != null)
                     {
-                        R.reportedAt = UnixTimeToDateTime(Double.Parse(R.reportedAt));
-                        R.dtReportedAt = DateTime.Parse(R.reportedAt).ToUniversalTime();
+                        foreach (Reporter R in E.reporters)
+                        {
+                            R.reportedAt = UnixTimeToDateTime(Double.Parse(R.reportedAt));
+                            R.dtReportedAt = DateTime.Parse(R.reportedAt).ToUniversalTime();
+                        }
                     }
-                        
+                    else {
+                        E.reporters = new List<Reporter>();
+                        E.reporters.Add(new Reporter
+                        {
+                            description = E.description,
+                            dtReportedAt = E.dtReportedAt,
+                            facebookCode = E.facebookUserCode,
+                            latitude = E.latitude,
+                            longitude = E.longitude,
+                            reportedAt = E.reportedAt,
+                            type = E.type
+                        }); 
+                    }
                 }
                 return unformatedList;
             }

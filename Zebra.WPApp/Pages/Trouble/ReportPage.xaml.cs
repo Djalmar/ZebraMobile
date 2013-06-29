@@ -114,6 +114,7 @@ namespace Zebra.WPApp.Pages.Trouble
             troubleCategoryList.Add("Others");
             lspTroubleCategory.ItemsSource = troubleCategoryList;
         }
+
         private void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             latitude = e.Position.Location.Latitude;
