@@ -22,11 +22,22 @@ namespace Zebra.WPApp.Pages.Places
             this.Loaded += CategoriesPage_Loaded;
             comingBack = false;
             lstCategoryList.SelectionChanged += lstCategoryList_SelectionChanged;
-            txtSearch.ActionIconTapped += txtSearch_ActionIconTapped;
+            lstSearchResults.SelectionChanged += lstSearchResults_SelectionChanged;
+            txtSearch.ActionIconTapped+=txtSearch_ActionIconTapped;
             watcher = new GeoCoordinateWatcher();
             watcher.MovementThreshold = 200;
-            watcher.PositionChanged += watcher_PositionChanged;
+            watcher.PositionChanged+=watcher_PositionChanged;
             watcher.StatusChanged += watcher_StatusChanged;
+        }
+
+        void lstSearchResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Place place = lstSearchResults.SelectedItem as Place;
+            if (place != null)
+            {
+                staticClasses.selectedPlace = place;
+                NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml", UriKind.Relative));
+            }
         }
 
         void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
@@ -72,40 +83,41 @@ namespace Zebra.WPApp.Pages.Places
         #region Search
         private void txtSearch_ActionIconTapped(object sender, EventArgs e)
         {
+            lstSearchResults.ItemsSource = new List<Place>(); 
             lstSearchResults.Focus();
             if (txtSearch.Text.Length > 0)
-                watcher.Start();
+            {
+                //Don't touch. SERIOUSLY don't touch.
+                //It's the only GeoCoordinateWatcher that won't work on the whole App.
+                try
+                {
+                    watcher.Start();
+                }
+                catch (Exception ex)
+                { /*Beg so this don't crash again (don't even know why)*/}
+            }
+            
             else MessageBox.Show(AppResources.TxtSearchFailed);
         }
 
         private async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
+            double latitude = e.Position.Location.Latitude;
+            double longitude = e.Position.Location.Longitude;
+            prgSearchProgress.Visibility = System.Windows.Visibility.Visible;
             try
             {
-                double latitude = e.Position.Location.Latitude;
-                double longitude = e.Position.Location.Longitude;
-                lstSearchResults.Items.Clear();
-                prgSearchProgress.Visibility = System.Windows.Visibility.Visible;
-                List<Place> lstReturned = await PlacesMethods.getPlacesByQuery(txtSearch.Text, -16.5013, -68.1207);
-                //Cuando ya hayan mas datos se podra hacer la prueba con datos del GPS, por ahora solo con valores por Default
-                //lstSearchResults.ItemsSource = await PlacesMethods.getPlacesByQuery(txtSearch.Text, latitude, longitude);
+                List<Place> lstReturned = await PlacesMethods.getPlacesByQuery(txtSearch.Text, latitude, longitude);
                 if (lstReturned != null)
                     lstSearchResults.ItemsSource = lstReturned;
                 else MessageBox.Show(AppResources.TxtInternetConnectionProblem);
-                prgSearchProgress.Visibility = System.Windows.Visibility.Collapsed;
-                watcher.Stop();
             }
             catch (Exception)
             { /*Don't worry, be happy.*/}
-        }
-
-        private void lstSearchResults_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-            Place place = lstSearchResults.SelectedItem as Place;
-            if (place != null)
+            finally
             {
-                staticClasses.selectedPlace = place;
-                NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml", UriKind.Relative));
+                prgSearchProgress.Visibility = System.Windows.Visibility.Collapsed;
+                watcher.Stop();
             }
         }
         #endregion

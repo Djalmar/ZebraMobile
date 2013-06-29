@@ -45,7 +45,9 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="12">
-                                    <Border Background="{StaticResource PhoneAccentBrush}" Width="100" Height="100">
+                                    <Border Background="{StaticResource PhoneAccentBrush}" 
+                                            Width="100" 
+                                            Height="100">
                                         <Image 
                                         Source="{Binding icon}" 
                                         Width="70" 
@@ -71,14 +73,16 @@
                     </Grid.RowDefinitions>
                     <toolkit:PhoneTextBox 
                         ActionIcon="/Assets/Icons/Search.png"
-                        Hint="{Binding LocalizedResources.TxbCategoriesSearchBox, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
+                        Hint="{Binding LocalizedResources.TxbCategoriesSearchBox, 
+                        Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
                         x:Name="txtSearch"
                         Grid.Row="0"/>
-                    <ProgressBar Grid.Row="1" IsIndeterminate="True" Visibility="Collapsed" x:Name="prgSearchProgress"></ProgressBar>
+                    <ProgressBar Grid.Row="1" IsIndeterminate="True" 
+                                 Visibility="Collapsed" 
+                                 x:Name="prgSearchProgress"/>
                     <ListBox x:Name="lstSearchResults"
                                 Grid.Row="1"
-                             Margin="12"
-                             SelectionChanged="lstSearchResults_SelectionChanged_1">
+                             Margin="12">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                             <StackPanel >

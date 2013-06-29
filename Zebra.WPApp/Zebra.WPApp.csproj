@@ -253,6 +253,12 @@
     <Content Include="Assets\Icons\Categories\rent.png" />
     <Content Include="Assets\Icons\Categories\restaurant.png" />
     <Content Include="Assets\Icons\Categories\shop.png" />
+    <Content Include="Assets\Icons\Problems\5.png" />
+    <Content Include="Assets\Icons\Problems\4.png" />
+    <Content Include="Assets\Icons\Problems\6.png" />
+    <Content Include="Assets\Icons\Problems\3.png" />
+    <Content Include="Assets\Icons\Problems\2.png" />
+    <Content Include="Assets\Icons\Problems\1.png" />
     <Content Include="Assets\Icons\Search.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
