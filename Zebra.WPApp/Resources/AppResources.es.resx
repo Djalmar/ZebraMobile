@@ -246,7 +246,7 @@
     <value>Seleccione las categorias que mas le interesan</value>
   </data>
   <data name="TxtSubCategoriesPlacesFound" xml:space="preserve">
-    <value>lugares encontrados</value>
+    <value> lugares encontrados</value>
   </data>
   <data name="TxtSearchFailed" xml:space="preserve">
     <value>Por favor escribe aquello que quieres que busquemos.</value>

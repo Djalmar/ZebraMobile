@@ -127,6 +127,7 @@
                             ItemTemplate="{StaticResource tmpPlace}"
                             SelectionChanged="lstRelatedByPrices_SelectionChanged"/>
                 <TextBlock Name="txtNoPlacesRelatedByPrice"
+                           Grid.Row="1"
                             Visibility="Collapsed"
                             Style="{StaticResource txtNotFound}"/>
             </Grid>
@@ -152,8 +153,8 @@
                             ItemTemplate="{StaticResource tmpPlace}"
                             SelectionChanged="lstRelatedByFeatures_SelectionChanged">
                 </ListBox>
-                <TextBlock Name="txtNoPlacesRelatedByFeature"
-                            Style="{StaticResource txtNotFound}" Visibility="Collapsed"/>
+                <TextBlock Grid.Row="1" Name="txtNoPlacesRelatedByFeature"
+                            Style="{StaticResource txtNotFound}"/>
             </Grid>
         </phone:PanoramaItem>
     </phone:Panorama>
