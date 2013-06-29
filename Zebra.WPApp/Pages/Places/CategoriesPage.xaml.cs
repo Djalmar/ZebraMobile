@@ -64,9 +64,9 @@ namespace Zebra.WPApp.Pages.Places
                 {
                     staticClasses.selectedCategory = selectedcategory;
                     NavigationService.Navigate(new Uri("/Pages/Places/PlacesPage.xaml", UriKind.Relative));
+                    lstCategoryList.SelectedIndex = -1;
                 }
             }
-            else MessageBox.Show(AppResources.TxtSelectedItemFailed);
         }
 
         #region Search

@@ -117,6 +117,7 @@ namespace DBPhone
                                             && allPlaces.placecode != placeCode
                                             //&& allPlaces.parentCategoryCode == parentCategoryCode
                                             select allPlaces;
+            
             return ConvertToZebraItems(newList.ToList());
         }
 

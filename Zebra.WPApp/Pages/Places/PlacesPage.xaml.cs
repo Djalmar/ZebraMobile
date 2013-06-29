@@ -98,7 +98,9 @@ namespace Zebra.WPApp.Pages.Places
         {
             latitude = e.Position.Location.Latitude;
             longitude = e.Position.Location.Longitude;
+            prgPlaces.Visibility = System.Windows.Visibility.Visible;
             lstAllPlaces = await DownloadOrGetPlacesFromDataBase();
+            prgPlaces.Visibility = System.Windows.Visibility.Collapsed;
             if (lstAllPlaces != null)
             {
                 lstAllPlaces = PlacesMethods.getDistancesForEachPlace(latitude,longitude, lstAllPlaces);
@@ -112,8 +114,11 @@ namespace Zebra.WPApp.Pages.Places
         {
             List<Place> lstToReturn = new List<Place>();
             if (App.AutoDownloadsPlaces)
+            {
+                prgPlaces.Visibility = System.Windows.Visibility.Visible;
                 lstToReturn = await DownloadPlacesFromTheInternet(latitude, longitude);
-
+                prgPlaces.Visibility = System.Windows.Visibility.Collapsed;
+            }
             if (lstToReturn != null)
                 return lstToReturn;
             lstToReturn = DBPhone.PlacesMethods.GetItems(DBPhone.CategoriesMethods.GetSubCategoriesCodes(categoryCode));
@@ -198,6 +203,7 @@ namespace Zebra.WPApp.Pages.Places
         {
             staticClasses.selectedPlace = (((sender as StackPanel).Tag) as Place);
             NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml", UriKind.Relative));
+
         }
 
         private List<bindingCategory> getDajaCategories(List<Place> lstPlaces)

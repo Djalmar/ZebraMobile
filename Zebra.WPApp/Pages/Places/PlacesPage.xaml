@@ -85,15 +85,15 @@
                                             <Setter Property="Opacity" Value="0.5"/>
                                         </Style>
                                     </StackPanel.Resources>
-                                    <Border VerticalAlignment="Top" Margin="12" 
+                                    <!--<Border VerticalAlignment="Top" Margin="12" 
                                             Background="{StaticResource PhoneAccentBrush}" 
                                             Width="100" Height="100">
                                             <Image Source="{Binding Path=category.icon}" 
                                                 Width="70" 
                                                 Height="70"/>
-                                     </Border>
+                                     </Border>-->
                                     <TextBlock Text="{Binding Path=lstPlaces.Count}"/>
-                                    <TextBlock Text="{Binding LocalizedResources.TxbSubCategoriesPlacesFound, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                                    <TextBlock Text="{Binding LocalizedResources.TxtSubCategoriesPlacesFound, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </tool:ExpanderView.ExpanderTemplate>
@@ -149,7 +149,7 @@
         <ProgressBar x:Name="prgPlaces" 
                      Visibility="Collapsed" 
                      VerticalAlignment="Top" 
-                     Margin="2" 
+                     Margin="3" 
                      IsIndeterminate="True"/>
     </Grid>
 </phone:PhoneApplicationPage>

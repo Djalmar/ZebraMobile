@@ -31,8 +31,6 @@ namespace Zebra.WPApp.Pages.Places
         void SelectedPlacePage_Loaded(object sender, RoutedEventArgs e)
         {
             watcher.Start();
-            LoadPlace();
-            LoadRelatedPlaces();
             watcher.PositionChanged += watcher_PositionChanged;
             watcher.StatusChanged += watcher_StatusChanged;
         }
@@ -42,10 +40,14 @@ namespace Zebra.WPApp.Pages.Places
             lstRelatedByFeatures.ItemsSource = null;
             lstRelatedByFeatures.Visibility = System.Windows.Visibility.Visible;
             txtNoPlacesRelatedByFeature.Visibility = System.Windows.Visibility.Collapsed;
-            lstRelatedByFeatures.ItemsSource = DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.minPrice,
-                staticClasses.selectedPlace.maxPrice,
-                staticClasses.selectedPlace.categoryCode,
-                staticClasses.selectedPlace.code);
+            lstRelatedByFeatures.ItemsSource = ZebrasLib.Places.PlacesMethods.getDistancesForEachPlace(Latitude,
+                Longitude, 
+                (
+                    DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.minPrice,
+                    staticClasses.selectedPlace.maxPrice,
+                    staticClasses.selectedPlace.categoryCode,
+                    staticClasses.selectedPlace.code)
+                    ));
 
             if (lstRelatedByFeatures.Items.Count == 0)
             {
@@ -56,10 +58,14 @@ namespace Zebra.WPApp.Pages.Places
             lstRelatedByPrices.ItemsSource = null;
             lstRelatedByPrices.Visibility = System.Windows.Visibility.Visible;
             txtNoPlacesRelatedByPrice.Visibility = System.Windows.Visibility.Collapsed;
-            lstRelatedByPrices.ItemsSource = DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.kidsArea,
-                staticClasses.selectedPlace.smokingArea,
-                staticClasses.selectedPlace.categoryCode,
-                staticClasses.selectedPlace.code);
+            lstRelatedByPrices.ItemsSource = ZebrasLib.Places.PlacesMethods.getDistancesForEachPlace(Latitude,
+                Longitude,
+                ( 
+                    DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.kidsArea,
+                    staticClasses.selectedPlace.smokingArea,
+                    staticClasses.selectedPlace.categoryCode,
+                    staticClasses.selectedPlace.code)
+                    ));
             if (lstRelatedByPrices.Items.Count == 0)
             {
                 lstRelatedByPrices.Visibility = Visibility.Collapsed;
@@ -119,6 +125,8 @@ namespace Zebra.WPApp.Pages.Places
             Latitude = e.Position.Location.Latitude;
             Longitude = e.Position.Location.Longitude;
             LoadMap();
+            LoadPlace();
+            LoadRelatedPlaces();
             watcher.Stop();
         }
         #endregion
