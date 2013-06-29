@@ -49,20 +49,22 @@
                                Text="{Binding LocalizedResources.TxbFindSearch, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
                                Opacity="0.7"
                                FontSize="{StaticResource PhoneFontSizeLarge}" 
-                               FontFamily="{StaticResource PhoneFontFamilyLight}"/>
+                               FontFamily="{StaticResource PhoneFontFamilySemiLight}"/>
                     <toolkit:PhoneTextBox x:Name="txtSearch"
                                           Hint="{Binding LocalizedResources.TxbFindSearchBoxHint, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                                           ActionIcon="/Assets/Icons/Search.png"></toolkit:PhoneTextBox>
                     <TextBlock Margin="24" 
                                Text="{Binding LocalizedResources.TxbFindOr, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
-                               FontSize="{StaticResource PhoneFontSizeLarge}" Opacity="0.7" HorizontalAlignment="Center"></TextBlock>
+                               FontSize="{StaticResource PhoneFontSizeExtraLarge}" 
+                               FontFamily="{StaticResource PhoneFontFamilySemiLight}" 
+                               Opacity="0.7" HorizontalAlignment="Center"></TextBlock>
                     <toolkit:ListPicker  x:Name="lspCategory" Header="{Binding}" DisplayMemberPath="name">
                         <toolkit:ListPicker.HeaderTemplate>
                             <DataTemplate>
                                 <TextBlock Margin="0,12,12,12" 
                                            Text="{Binding LocalizedResources.TxbFindCategory, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
                                            FontSize="{StaticResource PhoneFontSizeLarge}" 
-                                           FontFamily="{StaticResource PhoneFontFamilyLight}"/>
+                                           FontFamily="{StaticResource PhoneFontFamilySemiLight}"/>
                             </DataTemplate>
                         </toolkit:ListPicker.HeaderTemplate>
                         <toolkit:ListPicker.FullModeItemTemplate>

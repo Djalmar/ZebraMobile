@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using ZebrasLib.Classes;
 using ZebrasLib.Wallet;
 using System.Device.Location;
+using Zebra.WPApp.Pages.Places;
 namespace Zebra.WPApp.Pages.Wallet
 {
     public partial class ResultPage : PhoneApplicationPage
@@ -33,7 +34,7 @@ namespace Zebra.WPApp.Pages.Wallet
         {
             latitude = e.Position.Location.Latitude;
             longitude = e.Position.Location.Longitude;
-
+            prgResults.Visibility = System.Windows.Visibility.Visible;
             if (NavigationContext.QueryString.TryGetValue("content", out content))
                 lstPlace = await WalletMethods.getPlacesBetweenAndQuery(minmoney, maxmoney, latitude, longitude, content);
             else
@@ -42,7 +43,7 @@ namespace Zebra.WPApp.Pages.Wallet
                         -16.5001360633125,-68.1174392219843
                         //latitude, longitude
                         ,categorie);
-                        
+            prgResults.Visibility = System.Windows.Visibility.Collapsed;            
             if (lstPlace != null)
                 lstResults.ItemsSource = lstPlace;
             //else There was a big problemo jefe
@@ -58,6 +59,17 @@ namespace Zebra.WPApp.Pages.Wallet
             maxmoney = maxmoney / people;
 
             watcher.Start();
+        }
+
+        private void lstResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Place place = lstResults.SelectedItem as Place;
+            if (place != null)
+            {
+                staticClasses.selectedPlace = place;
+                lstResults.SelectedItem = null;
+                lstResults.SelectedIndex = -1;
+            }
         }
     }
 }

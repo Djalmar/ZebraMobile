@@ -81,7 +81,6 @@
                              Margin="12,12,0,0"
                              Source="/Assets/MenuTile/Cebras2.jpg"
                              Title="{Binding LocalizedResources.TileWallet, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
-                             Notification="w/fixings"
                              DisplayNotification="True"
                              Size="Medium" 
                              VerticalAlignment="Top"
@@ -102,7 +101,6 @@
                              toolkit:TurnstileFeatherEffect.FeatheringIndex="3"
                              Margin="12,12,0,0"
                              Source="/Assets/Icons/ApplicationBar.settings.png"
-                             Message="@ a great cafe"
                              GroupTag="Sizes"
                              Size="Small" 
                              Background="Gray"/>
