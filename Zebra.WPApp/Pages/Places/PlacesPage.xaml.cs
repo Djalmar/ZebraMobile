@@ -208,7 +208,7 @@ namespace Zebra.WPApp.Pages.Places
         private void placeSelected(object sender, System.Windows.Input.GestureEventArgs e)
         {
             staticClasses.selectedPlace = (((sender as StackPanel).Tag) as Place);
-            NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml?comingFrom=Selected", UriKind.Relative));
 
         }
 

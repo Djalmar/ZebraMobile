@@ -106,7 +106,7 @@
                 </ListBox>
             </Grid>
         </phone:PanoramaItem>
-        <phone:PanoramaItem>
+        <phone:PanoramaItem Name="panItemPrices">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -132,7 +132,7 @@
                             Style="{StaticResource txtNotFound}"/>
             </Grid>
         </phone:PanoramaItem>
-        <phone:PanoramaItem>
+        <phone:PanoramaItem Name="panItemFeatures">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

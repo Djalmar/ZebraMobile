@@ -36,6 +36,16 @@ namespace Zebra.WPApp.Pages.Places
             watcher.Start();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            string comingFrom = NavigationContext.QueryString["comingFrom"];
+            if (comingFrom == "Search")
+            {
+                panItemFeatures.Visibility = Visibility.Collapsed;
+                panItemPrices.Visibility = Visibility.Collapsed;
+            }
+        }
         private void LoadRelatedPlaces()
         { 
             lstRelatedByFeatures.ItemsSource = null;

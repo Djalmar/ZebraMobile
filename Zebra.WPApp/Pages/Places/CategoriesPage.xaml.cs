@@ -36,7 +36,7 @@ namespace Zebra.WPApp.Pages.Places
             if (place != null)
             {
                 staticClasses.selectedPlace = place;
-                NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml?comingFrom=Search", UriKind.Relative));
             }
         }
 
