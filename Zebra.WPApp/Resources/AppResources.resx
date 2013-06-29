@@ -323,4 +323,13 @@
   <data name="TxtNoPlacesRelated" xml:space="preserve">
     <value>We couldn't find related places for this particular place.</value>
   </data>
+  <data name="TxtReportFailed" xml:space="preserve">
+    <value>Something awful happened to our server, please try again later.</value>
+  </data>
+  <data name="TxtReportRepeated" xml:space="preserve">
+    <value>You've already reported something near here. Sorry, we can't let your report more than once in a closed distance.</value>
+  </data>
+  <data name="TxtReportSucceded" xml:space="preserve">
+    <value>You've succesfully reported a problem, thank you.</value>
+  </data>
 </root>

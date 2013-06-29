@@ -637,6 +637,33 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Something awful happened to our server, please try again later..
+        /// </summary>
+        public static string TxtReportFailed {
+            get {
+                return ResourceManager.GetString("TxtReportFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;ve already reported something near here. Sorry, we can&apos;t let your report more than once in a closed distance..
+        /// </summary>
+        public static string TxtReportRepeated {
+            get {
+                return ResourceManager.GetString("TxtReportRepeated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;ve succesfully reported a problem, thank you..
+        /// </summary>
+        public static string TxtReportSucceded {
+            get {
+                return ResourceManager.GetString("TxtReportSucceded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please write the thing you want us to search for you..
         /// </summary>
         public static string TxtSearchFailed {

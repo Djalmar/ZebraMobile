@@ -17,7 +17,8 @@ namespace Zebra.WPApp.Pages.Trouble
     public partial class TroublesPage : PhoneApplicationPage
     {
         public List<Problem> lstEvents { get; set; }
-
+        public List<Problem> lstEventsByFriends { get; set; }
+        ApplicationBarIconButton btnReport;
         private GeoCoordinateWatcher watcher;
         private double latitude;
         private double longitude;
@@ -29,25 +30,35 @@ namespace Zebra.WPApp.Pages.Trouble
             watcher = new GeoCoordinateWatcher();
             watcher.MovementThreshold = 200;
             watcher.PositionChanged += watcher_PositionChanged;
+            watcher.StatusChanged += watcher_StatusChanged;
         }
 
         private void TroublesPage_Loaded(object sender, RoutedEventArgs e)
         {
             LoadAppBar();
-            watcher.Start(); 
+            watcher.Start();
+            //GetFriendsProblems();
+        }
+
+        private async void GetFriendsProblems()
+        {
+            List<facebookUser> facebookFriends = await OurFacebook.FacebookMethods.downloadFriendsList(App.facebookAccessToken);
+            List<string> friendsCodes = new List<string>();
+            foreach (facebookUser user in facebookFriends)
+                friendsCodes.Add(user.id);
+            lstEventsByFriends = await ProblemsMethods.GetProblems(friendsCodes);
+            lstTroublesByFriends.ItemsSource = lstEventsByFriends;
         }
 
         #region AppBar
         private void LoadAppBar()
         {
             ApplicationBar = new ApplicationBar();
-
-            ApplicationBarIconButton btnReport = new ApplicationBarIconButton();
-            btnReport.IconUri = new Uri("/Assets/AppBar/check.png",UriKind.Relative);
+            btnReport = new ApplicationBarIconButton();
+            btnReport.IconUri = new Uri("/Assets/AppBar/upload.png",UriKind.Relative);
             btnReport.Text = AppResources.TxtReport;
             btnReport.Click += btnReport_Click;
             ApplicationBar.Buttons.Add(btnReport);
-            
         }
 
         void btnReport_Click(object sender, EventArgs e)
@@ -56,17 +67,44 @@ namespace Zebra.WPApp.Pages.Trouble
         }
         #endregion
 
+        void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
+        {
+            switch (e.Status)
+            {
+                case GeoPositionStatus.Disabled:
+                    SetTheWorldOnFire(AppResources.TxtGPSDisabled);
+                    break;
+                case GeoPositionStatus.NoData:
+                    SetTheWorldOnFire(AppResources.TxtGPSNoData);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         private async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             latitude = e.Position.Location.Latitude;
             longitude = e.Position.Location.Longitude;
             prgEvents.Visibility = System.Windows.Visibility.Visible;
             lstEvents = await ProblemsMethods.GetProblems(latitude,longitude);
-            lstEvents = await OurFacebook.FacebookMethods.GetFbInfoForTheseReporters(lstEvents, App.facebookAccessToken);
-            prgEvents.Visibility = System.Windows.Visibility.Collapsed;
             if (lstEvents != null)
+            {
+                lstEvents = await OurFacebook.FacebookMethods.GetFbInfoForTheseReporters(lstEvents, App.facebookAccessToken);
                 LoadPushPins();
-            else MessageBox.Show(AppResources.TxtInternetConnectionProblem);
+            }
+            else
+                SetTheWorldOnFire(AppResources.TxtInternetConnectionProblem);
+            prgEvents.Visibility = System.Windows.Visibility.Collapsed;
+            
+        }
+
+        private void SetTheWorldOnFire(string status)
+        {
+            panProblems.Visibility = Visibility.Collapsed;
+            txtNoInternet.Visibility = Visibility.Visible;
+            txtNoInternet.Text = status;
+            btnReport.IsEnabled = false;
         }
 
         private void LoadPushPins()

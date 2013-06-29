@@ -13,12 +13,14 @@ namespace ZebrasLib
             private static async Task<ProblemsResult> downloadedInfo(string uriAddress)
             {
                 string result = await Internet.DownloadStringAsync(uriAddress);
-
                 ProblemsResult eventResult = JsonConvert.DeserializeObject<ProblemsResult>(result);
-                if (Main.thereIsNoProblemo(eventResult.status))
-                    eventResult.problemsList = formatedList(eventResult.problemsList);
-
-                return eventResult;
+                if (eventResult != null)
+                {
+                    if (Main.thereIsNoProblemo(eventResult.status))
+                        eventResult.problemsList = formatedList(eventResult.problemsList);
+                    return eventResult;
+                }
+                return null;
             }
 
             private static string UnixTimeToDateTime(double secondsPastEpoch)
@@ -47,12 +49,12 @@ namespace ZebrasLib
                 foreach (Problem E in unformatedList)
                 {
                     E.reportedAt = UnixTimeToDateTime(Double.Parse(E.reportedAt));
-                    E.dtReportedAt = DateTime.Parse(E.reportedAt);
+                    E.dtReportedAt = DateTime.Parse(E.reportedAt).ToUniversalTime();
                     E.icon = GetIconForThisType(E.type);
                     foreach (Reporter R in E.reporters)
                     {
                         R.reportedAt = UnixTimeToDateTime(Double.Parse(R.reportedAt));
-                        R.dtReportedAt = DateTime.Parse(R.reportedAt);
+                        R.dtReportedAt = DateTime.Parse(R.reportedAt).ToUniversalTime();
                     }
                         
                 }

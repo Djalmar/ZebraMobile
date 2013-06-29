@@ -34,12 +34,17 @@ namespace ZebrasLib
                     "latitude=" + latitude +
                     "&longitude=" + longitude;
                 ProblemsResult result = await downloadedInfo(url);
-                if(Main.thereIsNoProblemo(result.status))
-                    return result.problemsList;
-                else return null;
+                if (result != null)
+                {
+                    if (Main.thereIsNoProblemo(result.status))
+                        return result.problemsList;
+                    else return null;
+                }
+                return null;
+                
             }
 
-            public static async Task<List<Problem>> GetEvents(List<string> fbFriendList)
+            public static async Task<List<Problem>> GetProblems(List<string> fbFriendList)
             {
                 string friendsList = String.Empty;
                 foreach (string friend in fbFriendList)

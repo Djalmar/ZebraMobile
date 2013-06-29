@@ -227,6 +227,7 @@
     <Content Include="Assets\FondoF.png" />
     <Content Include="Assets\FondoFF.png" />
     <Content Include="Assets\Icons\ApplicationBar.settings.png" />
+    <Content Include="Assets\Icons\Categories\art.png" />
     <Content Include="Assets\Icons\Categories\banc.png" />
     <Content Include="Assets\Icons\Categories\build.png" />
     <Content Include="Assets\Icons\Categories\cine.png" />
@@ -234,7 +235,9 @@
     <Content Include="Assets\Icons\Categories\hospital.png" />
     <Content Include="Assets\Icons\Categories\internet.png" />
     <Content Include="Assets\Icons\Categories\night.png" />
+    <Content Include="Assets\Icons\Categories\rent.png" />
     <Content Include="Assets\Icons\Categories\restaurant.png" />
+    <Content Include="Assets\Icons\Categories\shop.png" />
     <Content Include="Assets\Icons\Search.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

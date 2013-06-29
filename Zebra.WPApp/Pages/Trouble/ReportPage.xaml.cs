@@ -13,6 +13,7 @@ using Zebra.WPApp.Resources;
 using ZebrasLib;
 using ZebrasLib.Classes;
 using ZebrasLib.Events;
+using Newtonsoft.Json;
 namespace Zebra.WPApp.Pages.Trouble
 {
     public partial class ReportPage : PhoneApplicationPage
@@ -51,7 +52,7 @@ namespace Zebra.WPApp.Pages.Trouble
             ApplicationBar.Buttons.Add(btnShare);
 
             ApplicationBarIconButton btnReport = new ApplicationBarIconButton();
-            btnReport.IconUri = new Uri("/Assets/AppBar/edit.png",UriKind.Relative);
+            btnReport.IconUri = new Uri("/Assets/AppBar/upload.png",UriKind.Relative);
             btnReport.Text = AppResources.TxtReport;
             btnReport.Click += btnReport_Click;
             ApplicationBar.Buttons.Add(btnReport);
@@ -81,8 +82,18 @@ namespace Zebra.WPApp.Pages.Trouble
                     "&longitude=" + longitude +
                     "&description=" + description +
                     "&type=" + type;
-            string message = await UploadStringAsyncUsingPUT(new Uri(Main.urlReportProblem,UriKind.Absolute), data);
-            MessageBox.Show(message);
+            string resultFromServer = await UploadStringAsyncUsingPUT(new Uri(Main.urlReportProblem,UriKind.Absolute), data);
+            ProblemsResult result = JsonConvert.DeserializeObject<ProblemsResult>(resultFromServer);
+            if (result != null)
+            {
+                if (result.status == "200")
+                    MessageBox.Show(AppResources.TxtReportSucceded);
+                if (result.status == "400")
+                    MessageBox.Show(AppResources.TxtReportRepeated);
+                else MessageBox.Show(AppResources.TxtReportFailed);
+            }
+            else MessageBox.Show(AppResources.TxtInternetConnectionProblem);
+            NavigationService.GoBack();
         }
         void btnShare_Click(object sender, EventArgs e)
         {
