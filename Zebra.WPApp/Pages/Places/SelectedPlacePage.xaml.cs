@@ -44,9 +44,9 @@ namespace Zebra.WPApp.Pages.Places
 
             if (lstRelatedByFeatures.Items.Count == 0)
             {
-                lstRelatedByFeatures.Visibility = Visibility.Collapsed;
-                txtNoPlacesRelatedByFeature.Text = AppResources.TxtNoPlacesRelated;
-                txtNoPlacesRelatedByFeature.Visibility = Visibility.Visible;
+                //lstRelatedByFeatures.Visibility = Visibility.Collapsed;
+                //txtNoPlacesRelatedByFeature.Text = AppResources.TxtNoPlacesRelated;
+                //txtNoPlacesRelatedByFeature.Visibility = Visibility.Visible;
             }
             lstRelatedByPrices.ItemsSource = DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.kidsArea,
                 staticClasses.selectedPlace.smokingArea,
@@ -92,20 +92,13 @@ namespace Zebra.WPApp.Pages.Places
                 new Service(){Name="delivery",Exist=staticClasses.selectedPlace.delivery}
             };
         }
-
-        
-        public class Service
-        {
-            public string Name { get; set; }
-            public bool Exist { get; set; }
-        }
         private void lstRelatedByPrices_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Place place = lstRelatedByPrices.SelectedItem as Place;
             if (place != null)
             {
                 staticClasses.selectedPlace = place;
-                NavigationService.Navigate(new Uri("/Pages/Place/SelectedPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/Places/SelectedPage.xaml", UriKind.Relative));
             }
         }
 
@@ -115,8 +108,14 @@ namespace Zebra.WPApp.Pages.Places
             if (place != null)
             {
                 staticClasses.selectedPlace = place;
-                NavigationService.Navigate(new Uri("/Pages/Place/SelectedPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/Places/SelectedPage.xaml", UriKind.Relative));
             }
+        } 
+        
+        public class Service
+        {
+            public string Name { get; set; }
+            public bool Exist { get; set; }
         }
     }
 }

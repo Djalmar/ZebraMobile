@@ -67,6 +67,7 @@ namespace Zebra.WPApp.Pages.Wallet
             if (place != null)
             {
                 staticClasses.selectedPlace = place;
+                NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml", UriKind.Relative));
                 lstResults.SelectedItem = null;
                 lstResults.SelectedIndex = -1;
             }

@@ -20,14 +20,14 @@
         <DataTemplate x:Name="tmpPlace">
             <StackPanel>
                 <TextBlock Name="txbName" Text="{Binding Path=name}" 
-                                                   FontSize="{StaticResource PhoneFontSizeLarge}" 
-                                                   FontFamily="{StaticResource PhoneFontFamilyLight}"
-                                                   TextWrapping="Wrap"/>
+                           FontSize="{StaticResource PhoneFontSizeLarge}" 
+                           FontFamily="{StaticResource PhoneFontFamilyLight}"
+                           TextWrapping="Wrap"/>
                 <TextBlock Text="{Binding Path=address}" 
-                                                   FontSize="{StaticResource PhoneFontSizeNormal}"
-                                                   Opacity="0.7"
-                                                   Margin="12,6,12,12"
-                                                   TextWrapping="Wrap"/>
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Opacity="0.7"
+                            Margin="12,6,12,12"
+                            TextWrapping="Wrap"/>
             </StackPanel>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
@@ -121,14 +121,14 @@
                                FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
                                FontFamily="{StaticResource PhoneFontFamilyLight}"/>
                 </StackPanel>
-                <Grid Grid.Row="1">
-                    <ListBox x:Name="lstRelatedByPrices" 
-                             Margin="12" 
-                             ItemTemplate="{StaticResource tmpPlace}"
-                             SelectionChanged="lstRelatedByPrices_SelectionChanged"/>
-                    <TextBlock Name="txtNoPlacesRelatedByPrice"
-                               Style="{StaticResource txtNotFound}"/>
-                </Grid>
+                <ListBox x:Name="lstRelatedByPrices" 
+                         Grid.Row="1"
+                            Margin="12" 
+                            ItemTemplate="{StaticResource tmpPlace}"
+                            SelectionChanged="lstRelatedByPrices_SelectionChanged"/>
+                <TextBlock Name="txtNoPlacesRelatedByPrice"
+                            Visibility="Collapsed"
+                            Style="{StaticResource txtNotFound}"/>
             </Grid>
         </phone:PanoramaItem>
         <phone:PanoramaItem>
@@ -146,15 +146,14 @@
                                FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
                                FontFamily="{StaticResource PhoneFontFamilyLight}"/>
                 </StackPanel>
-                <Grid Grid.Row="1">
-                    <ListBox x:Name="lstRelatedByFeatures" 
-                             Margin="12" 
-                             ItemTemplate="{StaticResource tmpPlace}"
-                             SelectionChanged="lstRelatedByFeatures_SelectionChanged">
-                    </ListBox>
-                    <TextBlock Name="txtNoPlacesRelatedByFeature"
-                               Style="{StaticResource txtNotFound}"/>
-                </Grid>
+                <ListBox x:Name="lstRelatedByFeatures" 
+                         Grid.Row="1"
+                            Margin="12" 
+                            ItemTemplate="{StaticResource tmpPlace}"
+                            SelectionChanged="lstRelatedByFeatures_SelectionChanged">
+                </ListBox>
+                <!--<TextBlock Name="txtNoPlacesRelatedByFeature"
+                            Style="{StaticResource txtNotFound}" Visibility="Collapsed"/>-->
             </Grid>
         </phone:PanoramaItem>
     </phone:Panorama>
