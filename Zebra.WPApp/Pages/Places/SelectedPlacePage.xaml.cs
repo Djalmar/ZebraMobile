@@ -94,7 +94,8 @@ namespace Zebra.WPApp.Pages.Places
         }
         private void lstRelatedByPrices_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Place place = lstRelatedByPrices.SelectedItem as Place;
+            Place place = new Place();
+            place = lstRelatedByPrices.SelectedItem as Place;
             if (place != null)
             {
                 staticClasses.selectedPlace = place;

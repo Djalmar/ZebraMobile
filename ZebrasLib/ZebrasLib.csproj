@@ -38,9 +38,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Category.cs" />
-    <Compile Include="Classes\Event.cs" />
     <Compile Include="Classes\FacebookClasses.cs" />
     <Compile Include="Classes\Place.cs" />
+    <Compile Include="Classes\Problem.cs" />
     <Compile Include="Classes\Reporter.cs" />
     <Compile Include="Events\EventsMethods.cs" />
     <Compile Include="Events\UsefulAttributes.cs" />
