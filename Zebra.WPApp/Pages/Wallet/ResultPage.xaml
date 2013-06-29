@@ -13,20 +13,40 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="False">
-
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" Opacity="0.35"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding TargetNullValue=Result}" Margin="12" 
-                   FontSize="38" 
+                   FontSize="38"
+                   FontFamily="{StaticResource PhoneFontFamilyNormal}"
                    Opacity="0.7"/>
-        <Grid Grid.Row="1" Margin="12">
+        <Grid Grid.Row="2" Margin="12">
             <toolkit:ExpanderView Name="expFilters" Header="{Binding}" Expander="{Binding}">
                 <toolkit:ExpanderView.HeaderTemplate>
                     <DataTemplate>
@@ -35,8 +55,10 @@
                 </toolkit:ExpanderView.HeaderTemplate>
                 <toolkit:ExpanderView.ExpanderTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding TargetNullValue=Select_some}" Opacity="0.7" 
-                                   FontSize="22"/>
+                        <TextBlock Text="{Binding TargetNullValue=Select_some}" 
+                                   Opacity="0.7" 
+                                   FontFamily="{StaticResource PhoneFontFamilyLight}"
+                                   FontSize="28"/>
                     </DataTemplate>
                 </toolkit:ExpanderView.ExpanderTemplate>
                 <toolkit:ExpanderView.Resources>
@@ -57,13 +79,21 @@
                 </toolkit:ExpanderView.Items>
             </toolkit:ExpanderView>
         </Grid>
-        <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
-            <ListBox Name="lstResults">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ListBox Name="lstResults" Margin="24,12,0,0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding name}"/>
-                            <TextBlock Text="{Binding address}"/>
+                        <StackPanel Margin="0,0,0,6">
+                            <TextBlock Name="txbName" Text="{Binding Path=name}" 
+                                       FontSize="{StaticResource PhoneFontSizeLarge}" 
+                                       FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                                       TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Path=address}" 
+                                       FontSize="{StaticResource PhoneFontSizeNormal}"
+                                       FontFamily="{StaticResource PhoneFontFamilyLight}"
+                                       Opacity="0.7"
+                                       Margin="12,0,12,12"
+                                       TextWrapping="Wrap"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

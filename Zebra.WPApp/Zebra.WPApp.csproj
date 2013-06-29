@@ -225,6 +225,7 @@
     <Content Include="Assets\AppBar\share.png" />
     <Content Include="Assets\AppBar\upload.png" />
     <Content Include="Assets\FondoF.png" />
+    <Content Include="Assets\FondoFF.png" />
     <Content Include="Assets\Icons\ApplicationBar.settings.png" />
     <Content Include="Assets\Icons\Categories\banc.png" />
     <Content Include="Assets\Icons\Categories\build.png" />
@@ -242,6 +243,14 @@
     <Content Include="Assets\AppBar\next.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\MenuTile\Cebras1.jpg" />
+    <Content Include="Assets\MenuTile\Cebras2.jpg" />
+    <Content Include="Assets\MenuTile\Cebras3.jpg" />
+    <Content Include="Assets\MenuTile\Cebras4.jpg" />
+    <Content Include="Assets\MenuTile\Cebras5.jpg" />
+    <Content Include="Assets\MenuTile\Cebras6.jpg" />
+    <Content Include="Assets\MenuTile\Z.png" />
+    <Content Include="Assets\MenuTile\ZebrasTile.png" />
     <Content Include="Videos\bmtdk.mp3" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />

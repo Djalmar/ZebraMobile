@@ -46,7 +46,7 @@
     </toolkit:TransitionService.NavigationOutTransition>
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.35"/>
+            <ImageBrush ImageSource="/Assets/FondoFF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.2"/>
         </Grid.Background>
         <phone:Panorama Title="{Binding LocalizedResources.TileWhatsGoingOn, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
             <phone:Panorama.TitleTemplate>
@@ -102,7 +102,7 @@
                                                FontSize="{StaticResource PhoneFontSizeMedium}" 
                                                FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
                                     <TextBlock FontSize="{StaticResource PhoneFontSizeNormal}" 
-                                               FontFamily="{StaticResource PhoneFontFamilyLight}">
+                                               FontFamily="{StaticResource PhoneFontFamilySemiLight}">
                                         <Run Text="You are at"/>
                                         <Run Text="100"
                                              FontSize="{StaticResource PhoneFontSizeMedium}" 

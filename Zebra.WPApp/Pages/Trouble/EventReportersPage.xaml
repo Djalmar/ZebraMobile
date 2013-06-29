@@ -43,8 +43,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding LocalizedResources.TxbEventReportersReporters, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
-                   FontSize="{StaticResource PhoneFontSizeLarge}" 
-                   FontFamily="{StaticResource PhoneFontFamilyLight}"
+                   FontSize="{StaticResource PhoneFontSizeExtraLarge}" 
+                   FontFamily="{StaticResource PhoneFontFamilySemiLight}"
                    Margin="12"/>
         <Grid Grid.Row="1">
             <ListBox x:Name="lstReporters" ItemsSource="{Binding reporters}">
@@ -63,11 +63,11 @@
                                            FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
                                 <TextBlock Text="{Binding description}"
                                            FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
-                                           FontFamily="{StaticResource PhoneFontFamilyLight}"
+                                           FontFamily="{StaticResource PhoneFontFamilySemiLight}"
                                            Opacity="0.85"/>
                                 <TextBlock Text="{Binding reportedAt}"
                                            FontSize="{StaticResource PhoneFontSizeNormal}" 
-                                               FontFamily="{StaticResource PhoneFontFamilyLight}"
+                                               FontFamily="{StaticResource PhoneFontFamilySemiLight}"
                                            Opacity="0.7"/>
                             </StackPanel>
                         </StackPanel>
