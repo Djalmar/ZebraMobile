@@ -46,7 +46,7 @@ namespace Zebra.WPApp.Pages.Places
                 (
                     DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.minPrice,
                     staticClasses.selectedPlace.maxPrice,
-                    staticClasses.selectedPlace.categoryCode,
+                    staticClasses.selectedPlace.parentCategoryCode,
                     staticClasses.selectedPlace.code)
                     ));
 
@@ -64,7 +64,7 @@ namespace Zebra.WPApp.Pages.Places
                 ( 
                     DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.kidsArea,
                     staticClasses.selectedPlace.smokingArea,
-                    staticClasses.selectedPlace.categoryCode,
+                    staticClasses.selectedPlace.parentCategoryCode,
                     staticClasses.selectedPlace.code)
                     ));
             if (lstRelatedByPrices.Items.Count == 0)

@@ -143,6 +143,8 @@ namespace Zebra.WPApp.Pages.Places
             {
                 if (lstFromTheInternet.Count > 0)
                 {
+                    foreach (Place P in lstFromTheInternet)
+                        P.parentCategoryCode = categoryCode;
                     UpdateDataBase(lstFromTheInternet);
                     return lstFromTheInternet;
                 }

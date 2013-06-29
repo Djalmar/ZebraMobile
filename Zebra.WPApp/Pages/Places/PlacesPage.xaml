@@ -85,13 +85,6 @@
                                             <Setter Property="Opacity" Value="0.5"/>
                                         </Style>
                                     </StackPanel.Resources>
-                                    <!--<Border VerticalAlignment="Top" Margin="12" 
-                                            Background="{StaticResource PhoneAccentBrush}" 
-                                            Width="100" Height="100">
-                                            <Image Source="{Binding Path=category.icon}" 
-                                                Width="70" 
-                                                Height="70"/>
-                                     </Border>-->
                                     <TextBlock Text="{Binding Path=lstPlaces.Count}"/>
                                     <TextBlock Text="{Binding LocalizedResources.TxtSubCategoriesPlacesFound, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
                                 </StackPanel>

@@ -115,7 +115,7 @@ namespace DBPhone
                                             && allPlaces.maxPrice <= maxRateHigh
                                             && allPlaces.maxPrice >= maxRateLow
                                             && allPlaces.placecode != placeCode
-                                            //&& allPlaces.parentCategoryCode == parentCategoryCode
+                                            && allPlaces.parentCategoryCode == parentCategoryCode
                                             select allPlaces;
             
             return ConvertToZebraItems(newList.ToList());
@@ -129,7 +129,7 @@ namespace DBPhone
                                             where allPlaces.smokingArea == smokingArea
                                             && allPlaces.kidsArea == childsArea
                                             && allPlaces.placecode != placeCode
-                                            //&& allPlaces.parentCategoryCode == parentCategoryCode
+                                            && allPlaces.parentCategoryCode == parentCategoryCode
                                             select allPlaces;
             return ConvertToZebraItems(newList.ToList());
         }
