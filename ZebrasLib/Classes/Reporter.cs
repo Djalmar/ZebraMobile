@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-
+using System;
 namespace ZebrasLib
 {
     namespace Classes
@@ -29,6 +29,8 @@ namespace ZebrasLib
 
             [JsonProperty("picture")]
             public string picture { get; set; }
+
+            public DateTime dtReportedAt { get; set; }
         }
     }
 }

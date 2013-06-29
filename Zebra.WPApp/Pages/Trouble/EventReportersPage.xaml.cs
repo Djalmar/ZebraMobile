@@ -17,8 +17,6 @@ namespace Zebra.WPApp.Pages.Trouble
         {
             InitializeComponent();
             this.Loaded+=EventReportersPage_Loaded;
-            staticClasses.selectedEvent.reporters[0].name = "Pedro Perez Pereira";
-            staticClasses.selectedEvent.reporters[0].picture = "/Assets/ApplicationIcon.png";
             DataContext = staticClasses.selectedEvent;
         }
 

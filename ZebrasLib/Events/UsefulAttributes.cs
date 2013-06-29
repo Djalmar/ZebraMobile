@@ -47,10 +47,36 @@ namespace ZebrasLib
                 foreach (Problem E in unformatedList)
                 {
                     E.reportedAt = UnixTimeToDateTime(Double.Parse(E.reportedAt));
+                    E.dtReportedAt = DateTime.Parse(E.reportedAt);
+                    E.icon = GetIconForThisType(E.type);
                     foreach (Reporter R in E.reporters)
+                    {
                         R.reportedAt = UnixTimeToDateTime(Double.Parse(R.reportedAt));
+                        R.dtReportedAt = DateTime.Parse(R.reportedAt);
+                    }
+                        
                 }
                 return unformatedList;
+            }
+
+            private static string GetIconForThisType(int p)
+            {
+                string path = "/Assets/Icons/Problems/";
+                switch (p)
+                {
+                    case 1:
+                        return path + "1.png";
+                    case 2:
+                        return path + "2.png";
+                    case 3:
+                        return path + "3.png";
+                    case 4:
+                        return path + "4.png";
+                    case 5:
+                        return path + "5.png";
+                    default:
+                        return path + "6.png";
+                }
             }
         }
     }

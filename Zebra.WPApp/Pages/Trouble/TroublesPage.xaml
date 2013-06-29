@@ -109,8 +109,8 @@
                                              FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
                                         <Run Text="units of distance"/>
                                     </TextBlock>
-                                    <!--<TextBlock Text="{Binding reportedAt, Converter={StaticResource RelativeTimeConverter}}" 
-                                               FontSize="32"/>-->
+                                    <TextBlock Text="{Binding dtReportedAt, Converter={StaticResource RelativeTimeConverter}}" 
+                                               FontSize="32"/>
                                     <TextBlock Text="{Binding reportedAt}"
                                         FontSize="{StaticResource PhoneFontSizeNormal}" 
                                         FontFamily="{StaticResource PhoneFontFamilyLight}" />

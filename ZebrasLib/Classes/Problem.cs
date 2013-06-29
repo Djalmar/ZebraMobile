@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ZebrasLib
@@ -36,6 +37,9 @@ namespace ZebrasLib
             
             [JsonProperty("Reporters")]
             public List<Reporter> reporters { get; set; }
+
+            public DateTime dtReportedAt{ get; set; }
+            public string icon { get; set; }
         }
 
         public class ProblemsResult
