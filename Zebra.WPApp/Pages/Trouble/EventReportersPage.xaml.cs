@@ -16,13 +16,7 @@ namespace Zebra.WPApp.Pages.Trouble
         public EventReportersPage()
         {
             InitializeComponent();
-            this.Loaded+=EventReportersPage_Loaded;
             DataContext = staticClasses.selectedEvent;
-        }
-
-        void EventReportersPage_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

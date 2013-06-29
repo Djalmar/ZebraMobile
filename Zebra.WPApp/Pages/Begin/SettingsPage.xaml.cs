@@ -41,19 +41,26 @@ namespace Zebra.WPApp.Pages.Begin
             categories = await ZebrasLib.Places.PlacesMethods.getCategories();
             if (categories != null)
             {
-                if (firstTime)
-                {
-                    DBPhone.CategoriesMethods.AddItems(categories);
-                    firstTime = false;
-                }
                 categoriesDownloaded = true;
                 lstCategories.ItemsSource = categories;
             }
             else {
                 txtInternetError.Visibility = Visibility.Visible;
                 txtInternetError.Text = AppResources.TxtInternetConnectionProblem;
+                txtbLoggedIn.Text = AppResources.TxtInternetConnectionProblem;
                 lstCategories.Visibility = Visibility.Collapsed;
             }
+            if (App.FirstTimeLaunch)
+            {
+                if (categories != null)
+                {
+                    DBPhone.Context.DisposeDataBase();
+                    DBPhone.Context.RemoveDatabase();
+                    txtbLoggedIn.Text = AppResources.TxbFacebookLoggedIn;
+                    isLoggedOnFacebook = true;
+                }
+            }
+            
         }
 
         #region Toggle
@@ -106,7 +113,6 @@ namespace Zebra.WPApp.Pages.Begin
                 App.nearDistance = sldNearDistance.Value;
                 if (sldNearDistance.Value == 0)
                     App.nearDistance++;
-
                 #endregion SaveSettings
                 if (lstCategories.SelectedItems.Count > 0)
                 {
@@ -123,8 +129,13 @@ namespace Zebra.WPApp.Pages.Begin
 
         private void FinishSettings()
         {
+            if (App.FirstTimeLaunch)
+            {
+                NavigationService.GoBack();
+            }
             if (categoriesDownloaded)
             {
+                DBPhone.CategoriesMethods.AddItems(categories);
                 if (isLoggedOnFacebook)
                 {
                     App.FirstTimeLaunch = true;
@@ -181,6 +192,5 @@ namespace Zebra.WPApp.Pages.Begin
             
             watcher.Stop();
         }
-
     }
 }

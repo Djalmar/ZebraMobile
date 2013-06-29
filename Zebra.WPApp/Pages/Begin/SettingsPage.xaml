@@ -47,7 +47,6 @@
                     VerticalAlignment="Center"
                     Name="stackWait">
             <TextBlock Text="{Binding LocalizedResources.TxbDownloadingInfo, 
-                Mode=OneWay, 
                 Source={StaticResource LocalizedStrings}}"
                        TextWrapping="Wrap"
                        FontSize="32"/>
@@ -55,18 +54,59 @@
                                  IsIndeterminate="True" 
                      VerticalAlignment="Center"/>
         </StackPanel>
-        <controls:Pivot Name="pivotMain">
+        <controls:Pivot Name="pivotMain"
+                        Title="{Binding LocalizedResources.TxbSettingsTitle,
+                Source={StaticResource LocalizedStrings}}">
+            <controls:PivotItem
+                Name="pivotLogIn"
+                Header="{Binding LocalizedResources.TxbSettingsFacebook,
+                Source={StaticResource LocalizedStrings}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center"
+                                       Grid.Row="0"
+                                       Text="{Binding LocalizedResources.TxbFacebookLogin, 
+                                            Source={StaticResource LocalizedStrings}}" 
+                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="12"
+                                        FontSize="36"/>
+                    <Border BorderThickness="0,0,2,2" 
+                                        Name="borderFacebook"
+                                        Background="#FF3B5998"
+                                        Margin="150,15,150,15"
+                                        Grid.Row="1">
+                        <TextBlock Text=" f " 
+                                               HorizontalAlignment="Center" 
+                                               VerticalAlignment="Center" 
+                                               FontSize="72" 
+                                               toolkit:TurnstileFeatherEffect.FeatheringIndex="13"
+                                               Foreground="White"/>
+                    </Border>
+                    <TextBlock HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center"
+                                       Grid.Row="2"
+                                       Name="txtbLoggedIn"
+                                             FontSize="36"
+                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="14"
+                                       TextWrapping="Wrap"/>
+                </Grid>
+            </controls:PivotItem>
+
             <controls:PivotItem 
                 Name="pivotCategoriesSelection"
                 Header="{Binding LocalizedResources.TxbSettingsPlace, 
-                Mode=OneWay, 
                 Source={StaticResource LocalizedStrings}}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding LocalizedResources.TxbWhatDownload, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
+                    <TextBlock Text="{Binding LocalizedResources.TxbWhatDownload,
+                        Source={StaticResource LocalizedStrings}}" 
                                toolkit:TurnstileFeatherEffect.FeatheringIndex="0"
                                Margin="12,0" 
                                FontSize="28" 
@@ -76,7 +116,9 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="12">
-                                    <Border Background="{StaticResource PhoneAccentBrush}" Width="100" Height="100">
+                                    <Border Background="{StaticResource PhoneAccentBrush}" 
+                                            Width="100" 
+                                            Height="100">
                                         <Image 
                                                 Source="{Binding icon}" 
                                                 Width="70" 
@@ -97,54 +139,50 @@
                                Grid.Row="1"/>
                 </Grid>
             </controls:PivotItem>
-            
+
             <controls:PivotItem
                 Name="pivotSettings"
-                Header="{Binding LocalizedResources.TxbSettingsTitle, 
-                Mode=OneWay, 
-                Source={StaticResource LocalizedStrings}}">
+                Header="{Binding LocalizedResources.TxbSettingsPreference, 
+                Source={StaticResource LocalizedStrings}}" Margin="11,28,13,0">
                 <Grid x:Name="grdMain">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition Height="Auto"/>
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                        <StackPanel>
-                            <TextBlock Margin="12,0,12,0" 
+                    <StackPanel>
+                        <TextBlock Margin="12,0,12,0" 
                                        FontSize="28"
                                        Opacity="0.7"
                                         Text="{Binding LocalizedResources.TxbSettingsDistanceDetail, 
-                                Mode=OneWay, 
                                 Source={StaticResource LocalizedStrings}}" 
                                        toolkit:TurnstileFeatherEffect.FeatheringIndex="2"
                                         TextWrapping="Wrap"/>
-                            <Slider Margin="24,0,24,-32"
+                        <Slider Margin="24,0,24,-32"
                                     Name="sldNearDistance"/>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
                             <TextBlock Text="1" HorizontalAlignment="Center" toolkit:TurnstileFeatherEffect.FeatheringIndex="3"/>
                             <TextBlock Text="2" Grid.Column="1" HorizontalAlignment="Center" toolkit:TurnstileFeatherEffect.FeatheringIndex="4"/>
                             <TextBlock Text="5" Grid.Column="2" HorizontalAlignment="Center"  toolkit:TurnstileFeatherEffect.FeatheringIndex="5"/>
                             <TextBlock Text="7" Grid.Column="3" HorizontalAlignment="Center" toolkit:TurnstileFeatherEffect.FeatheringIndex="6"/>
                             <TextBlock Text="10+" Grid.Column="4" HorizontalAlignment="Center" toolkit:TurnstileFeatherEffect.FeatheringIndex="7"/>
-                            </Grid>
-                            <toolkit:ToggleSwitch Name="tglSwitchDistanceUnit" 
+                        </Grid>
+                        <toolkit:ToggleSwitch Name="tglSwitchDistanceUnit" 
                                                 IsChecked="true"
                                                 Content="{Binding LocalizedResources.TxtbKilometers,
-                                                        Mode=OneWay, 
                                                         Source={StaticResource LocalizedStrings}}"
                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="8"/>
-                        </StackPanel>
+                    </StackPanel>
                     <StackPanel Grid.Row="2">
                         <TextBlock Margin="12,0,12,0" 
                                         Text="{Binding LocalizedResources.TxtbDownloadPlaces, 
-                                Mode=OneWay, 
                                 Source={StaticResource LocalizedStrings}}" 
                                    toolkit:TurnstileFeatherEffect.FeatheringIndex="9"
                                    FontSize="28"
@@ -153,58 +191,16 @@
                         <toolkit:ToggleSwitch Name="tglSwitchDownloadSetting" 
                                                 IsChecked="true"
                                               toolkit:TurnstileFeatherEffect.FeatheringIndex="10"
-                                                Content="{Binding LocalizedResources.TxtbAuto, 
-                            
-                                Mode=OneWay, 
+                                                Content="{Binding LocalizedResources.TxtbAuto,  
                                 Source={StaticResource LocalizedStrings}}"/>
                         <TextBlock Margin="12,0,12,0"
                                    toolkit:TurnstileFeatherEffect.FeatheringIndex="11"
                                    Name="txtDownloadPlacesDetail"
                                     Text="{Binding LocalizedResources.TxtbDownloadPlacesAuto, 
-                                Mode=OneWay, 
                                 Source={StaticResource LocalizedStrings}}" 
                                    Opacity="0.6"
                                         TextWrapping="Wrap"/>
                     </StackPanel>
-                </Grid>
-            </controls:PivotItem>
-            
-            <controls:PivotItem
-                Name="pivotLogIn"
-                Header="Facebook">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="3*"/>
-                        <RowDefinition Height="4*"/>
-                    </Grid.RowDefinitions>
-                            <TextBlock HorizontalAlignment="Center" 
-                                       VerticalAlignment="Center"
-                                       Grid.Row="0"
-                                       Text="{Binding LocalizedResources.TxbFacebookLogin, 
-                                            Mode=OneWay, 
-                                            Source={StaticResource LocalizedStrings}}" 
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="12"
-                                        FontSize="36"/>
-                                <Border BorderThickness="0,0,2,2" 
-                                        Name="borderFacebook"
-                                        Background="#FF3B5998"
-                                        Margin="150,15,150,15"
-                                        Grid.Row="1">
-                                    <TextBlock Text=" f " 
-                                               HorizontalAlignment="Center" 
-                                               VerticalAlignment="Center" 
-                                               FontSize="72" 
-                                               toolkit:TurnstileFeatherEffect.FeatheringIndex="13"
-                                               Foreground="White"/>
-                                </Border>
-                            <TextBlock HorizontalAlignment="Center" 
-                                       VerticalAlignment="Center"
-                                       Grid.Row="2"
-                                       Name="txtbLoggedIn"
-                                             FontSize="36"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="14"
-                                       TextWrapping="Wrap"/>
                 </Grid>
             </controls:PivotItem>
         </controls:Pivot>

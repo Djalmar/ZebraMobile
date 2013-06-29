@@ -19,5 +19,19 @@ namespace DBPhone
             return context;
         }
 
+        public static void RemoveDatabase()
+        {
+            
+            Context context = new Context("isostore:/Zebritas.sdf");
+            if (context.DatabaseExists())
+                context.DeleteDatabase();
+        }
+
+        public static void DisposeDataBase()
+        {
+            Context context = GetDatabase();
+            context.Dispose();
+        }
+
     }
 }

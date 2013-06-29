@@ -39,7 +39,6 @@ namespace Zebra.WPApp.Pages.Trouble
         {
             LoadAppBar();
             watcher.Start();
-            GetFriendsProblems();
         }
 
         private async void GetFriendsProblems()
@@ -96,10 +95,12 @@ namespace Zebra.WPApp.Pages.Trouble
             {
                 lstEvents = await OurFacebook.FacebookMethods.GetFbInfoForTheseReporters(lstEvents, App.facebookAccessToken);
                 LoadPushPins();
+                GetFriendsProblems();
             }
             else
                 SetTheWorldOnFire(AppResources.TxtInternetConnectionProblem);
             prgEvents.Visibility = System.Windows.Visibility.Collapsed;
+            watcher.Stop();
             
         }
 

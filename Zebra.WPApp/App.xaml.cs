@@ -221,7 +221,7 @@ namespace Zebra.WPApp
             }
         }
 
-        // Code to execute on Unhandled Exceptions
+        // Code to execute on Unhandled Exceptions  
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
             if (Debugger.IsAttached)

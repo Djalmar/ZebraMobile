@@ -332,4 +332,10 @@
   <data name="TxtReportSucceded" xml:space="preserve">
     <value>You've succesfully reported a problem, thank you.</value>
   </data>
+  <data name="TxbSettingsFacebook" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="TxbSettingsPreference" xml:space="preserve">
+    <value>Preferences</value>
+  </data>
 </root>
