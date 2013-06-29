@@ -238,6 +238,7 @@
     <Content Include="Assets\AppBar\edit.png" />
     <Content Include="Assets\AppBar\share.png" />
     <Content Include="Assets\AppBar\upload.png" />
+    <Content Include="Assets\Icons\Categories\beer.png" />
     <Content Include="Assets\FondoF.png" />
     <Content Include="Assets\FondoFF.png" />
     <Content Include="Assets\Icons\ApplicationBar.settings.png" />
