@@ -43,7 +43,7 @@ namespace ZebrasLib
             public bool delivery { get; set; }
 
             [JsonProperty("Rating")]
-            public int rating { get; set; }
+            public float rating { get; set; }
 
             [JsonProperty("Latitude")]
             public string strlatitude{get;set;}

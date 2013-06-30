@@ -48,9 +48,10 @@
                    Opacity="0.7"/>
         <Grid Grid.Row="2" Margin="12">
             <Grid.Background>
-                <SolidColorBrush Color="Gray" Opacity="0.1"></SolidColorBrush>
+                <SolidColorBrush Color="Gray" Opacity="0.1"/>
             </Grid.Background>
-            <toolkit:ExpanderView Name="expFilters" Header="{Binding}" Expander="{Binding}">
+            <toolkit:ExpanderView Name="expFilters" Header="{Binding}" 
+                                  Expander="{Binding}">
                 <toolkit:ExpanderView.HeaderTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding TargetNullValue=Filters}" FontSize="32"/>
@@ -70,20 +71,21 @@
                     </Style>
                 </toolkit:ExpanderView.Resources>
                 <toolkit:ExpanderView.Items>
-                    <CheckBox x:Name="cbxParking" Content="{Binding TargetNullValue=Parking}"></CheckBox>
-                    <CheckBox x:Name="cbxHolidays" Content="{Binding TargetNullValue=Holidays}"></CheckBox>
-                    <CheckBox x:Name="cbxSmokingArea" Content="{Binding TargetNullValue=Smoking_Area}"></CheckBox>
-                    <CheckBox x:Name="cbxKidsArea" Content="{Binding TargetNullValue=Kids_Area}"></CheckBox>
-                    <CheckBox x:Name="cbxDelivery" Content="{Binding TargetNullValue=Delivery}"></CheckBox>
+                    <CheckBox x:Name="cbxParking" Content="{Binding TargetNullValue=Parking}"/>
+                    <CheckBox x:Name="cbxHolidays" Content="{Binding TargetNullValue=Holidays}"/>
+                    <CheckBox x:Name="cbxSmokingArea" Content="{Binding TargetNullValue=Smoking_Area}"/>
+                    <CheckBox x:Name="cbxKidsArea" Content="{Binding TargetNullValue=Kids_Area}"/>
+                    <CheckBox x:Name="cbxDelivery" Content="{Binding TargetNullValue=Delivery}"/>
                     <StackPanel>
-                        <TextBlock Text="{Binding TargetNullValue=Rating}" Opacity="0.7"/>
-                        <toolkit:Rating x:Name="rtnRating" Value="4"/>
+                        <TextBlock Text="{Binding TargetNullValue=Rating}" 
+                                   Opacity="0.7"/>
                     </StackPanel>
                 </toolkit:ExpanderView.Items>
             </toolkit:ExpanderView>
         </Grid>
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Name="lstResults" Margin="32,12,0,0" SelectionChanged="lstResults_SelectionChanged">
+            <ListBox Name="lstResults" 
+                     Margin="32,12,0,0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="0,0,0,6">
@@ -102,7 +104,8 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-        <ProgressBar Grid.Row="1" x:Name="prgResults" IsIndeterminate="True" VerticalAlignment="Center" Margin="3" Visibility="Collapsed"></ProgressBar>
+        <ProgressBar Grid.Row="1" x:Name="prgResults" IsIndeterminate="True" 
+                     VerticalAlignment="Center" Margin="3" Visibility="Collapsed"/>
     </Grid>
 
 </phone:PhoneApplicationPage>
