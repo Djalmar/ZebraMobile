@@ -63,12 +63,14 @@ namespace Zebra.WPApp.Pages.Wallet
                                     urlplusData += "?maxmoney=" + txtMaxMoney.Text +
                                         "&minmoney=" + txtMinMoney.Text + 
                                         "&people=" + txtPeople.Text +
-                                        "&content=" + txtSearch.Text;
+                                        "&content=" + txtSearch.Text+
+                                        "&comingFrom=Search";
                                 else
                                     urlplusData += "?maxmoney=" + txtMaxMoney.Text +
                                         "&minmoney=" + txtMinMoney.Text + 
                                         "&people=" + txtPeople.Text +
-                                        "&categorie=" + (lspCategory.SelectedItem as Category).code;
+                                        "&categorie=" + (lspCategory.SelectedItem as Category).code+
+                                        "&comingFrom=Place";
 
                                 NavigationService.Navigate(new Uri(urlplusData, UriKind.Relative));
                             }
@@ -80,11 +82,6 @@ namespace Zebra.WPApp.Pages.Wallet
                 }
                 //else MessageBox.Show("User hasn't put how much money he wants to spend");
             }
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }

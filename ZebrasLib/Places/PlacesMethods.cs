@@ -99,6 +99,7 @@ namespace ZebrasLib
             {
                 foreach (Place P in lstPlaces)
                     P.distance = Main.findDistance(P.latitude, P.longitude, latitude, longitude);
+                
                 return lstPlaces;
             }
         }

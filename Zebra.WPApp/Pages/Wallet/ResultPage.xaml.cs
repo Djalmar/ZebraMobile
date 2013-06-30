@@ -21,6 +21,7 @@ namespace Zebra.WPApp.Pages.Wallet
         double latitude;
         double longitude;
         GeoCoordinateWatcher watcher;
+        string comingFrom;
         public ResultPage()
         {
             InitializeComponent();
@@ -57,6 +58,7 @@ namespace Zebra.WPApp.Pages.Wallet
             people = int.Parse(NavigationContext.QueryString["people"]);
             minmoney = minmoney / people;
             maxmoney = maxmoney / people;
+            comingFrom = (NavigationContext.QueryString["comingFrom"]);
 
             watcher.Start();
         }
@@ -67,7 +69,7 @@ namespace Zebra.WPApp.Pages.Wallet
             if (place != null)
             {
                 staticClasses.selectedPlace = place;
-                NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/Places/SelectedPlacePage.xaml?comingFrom="+comingFrom, UriKind.Relative));
                 lstResults.SelectedItem = null;
                 lstResults.SelectedIndex = -1;
             }

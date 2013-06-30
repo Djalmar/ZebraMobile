@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ZebrasLib.Classes;
+using ZebrasLib.Places;
 namespace ZebrasLib
 {
     namespace Wallet
@@ -35,7 +36,7 @@ namespace ZebrasLib
                     "&code=" + categorie;
                 List<Place> listToReturn = await Main.GetPlaces(url);
                 
-                return DistancesForThis(listToReturn,latitude,longitude);
+                return DistancesForThis(listToReturn,latitude,longitude,categorie);
             }
 
             public static async Task<List<Place>> getPlacesBetweenAndQuery(int maxPrice, int minPrice, 
@@ -45,14 +46,29 @@ namespace ZebrasLib
                     "maxprice=" + maxPrice +
                     "&minprice" + minPrice +
                     "&query=" + query;
-                return DistancesForThis(await Main.GetPlaces(url),latitude,longitude);
+                return DistancesForThis(await Main.GetPlaces(url),latitude,longitude,"");
             }
 
-            private static List<Place> DistancesForThis(List<Place> lstToReturn, double latitude, double longitude)
+            private static List<Place> DistancesForThis(List<Place> lstToReturn, double latitude, double longitude,string categorie)
             {
+                List<Place> lstToFill = new List<Place>();
+
                 if (lstToReturn != null)
-                    return Places.PlacesMethods.getDistancesForEachPlace(latitude, longitude, lstToReturn);
+                {
+                    lstToFill = PlacesMethods.getDistancesForEachPlace(latitude, longitude, lstToReturn);
+                    if (lstToFill != null)
+                        lstToFill = GetParentCategories(lstToFill, categorie);
+                    return lstToFill;
+                }
+                
                 else return null;
+            }
+
+            private static List<Place> GetParentCategories(List<Place>lstToReturn, string categorie)
+            {
+                foreach (Place P in lstToReturn)
+                    P.parentCategoryCode = categorie;
+                return lstToReturn;
             }
         }
     }
