@@ -87,12 +87,14 @@
                                                Foreground="White"/>
                     </Border>
                     <TextBlock HorizontalAlignment="Center" 
-                                       VerticalAlignment="Center"
-                                       Grid.Row="2"
-                                       Name="txtbLoggedIn"
-                                             FontSize="36"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="14"
-                                       TextWrapping="Wrap"/>
+                               VerticalAlignment="Center"
+                               Grid.Row="2"
+                               Name="txtbLoggedIn"
+                               Margin="12"
+                               FontSize="{StaticResource PhoneFontSizeExtraLarge}" 
+                               FontFamily="{StaticResource PhoneFontFamilyLight}"
+                               toolkit:TurnstileFeatherEffect.FeatheringIndex="14"
+                               TextWrapping="Wrap"/>
                 </Grid>
             </controls:PivotItem>
 
@@ -144,6 +146,7 @@
                 Name="pivotSettings"
                 Header="{Binding LocalizedResources.TxbSettingsPreference, 
                 Source={StaticResource LocalizedStrings}}" Margin="11,28,13,0">
+                <ScrollViewer>
                 <Grid x:Name="grdMain">
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -202,6 +205,7 @@
                                         TextWrapping="Wrap"/>
                     </StackPanel>
                 </Grid>
+                </ScrollViewer>
             </controls:PivotItem>
         </controls:Pivot>
         

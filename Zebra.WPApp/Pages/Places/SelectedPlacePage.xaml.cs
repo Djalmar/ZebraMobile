@@ -22,6 +22,7 @@ namespace Zebra.WPApp.Pages.Places
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public GeoCoordinateWatcher watcher { get; set; }
+        public int Cantidad { get; set; }
         public SelectedPlacePage()
         {
             InitializeComponent();
@@ -89,7 +90,13 @@ namespace Zebra.WPApp.Pages.Places
         {
             panorama.DataContext = staticClasses.selectedPlace;
             List<Service> listaServicios = CrearListadeServicios();
-            lstFeatures.ItemsSource = listaServicios;
+            txbFeatures.Visibility = System.Windows.Visibility.Visible;
+            var query = from variable in listaServicios where variable.Exist.Equals("Visible") select variable;
+            var lista = query.ToList();
+            if (lista.Count!=0)
+                lstFeatures.ItemsSource = listaServicios;
+            else
+                txbFeatures.Visibility = System.Windows.Visibility.Collapsed;
             run.Text = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
             run2.Text = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
         }
@@ -148,10 +155,11 @@ namespace Zebra.WPApp.Pages.Places
         {
             return new List<Service>()
             {
-                new Service(){Name="delivery",Exist=staticClasses.selectedPlace.delivery},
-                new Service(){Name="holidays",Exist=staticClasses.selectedPlace.holidays},
-                new Service(){Name="kids area",Exist=staticClasses.selectedPlace.kidsArea},
-                new Service(){Name="delivery",Exist=staticClasses.selectedPlace.delivery}
+                new Service(){Name=AppResources.TxtParking,Exist=staticClasses.selectedPlace.parking.ToString()},
+                new Service(){Name=AppResources.TxtDelivery,Exist=staticClasses.selectedPlace.delivery.ToString()},
+                new Service(){Name=AppResources.TxtHolidays,Exist=staticClasses.selectedPlace.holidays.ToString()},
+                new Service(){Name=AppResources.TxtSmoking,Exist=staticClasses.selectedPlace.smokingArea.ToString()},
+                new Service(){Name=AppResources.TxtKids,Exist=staticClasses.selectedPlace.kidsArea.ToString()}
             };
         }
         private void lstRelatedByPrices_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -179,7 +187,19 @@ namespace Zebra.WPApp.Pages.Places
         public class Service
         {
             public string Name { get; set; }
-            public bool Exist { get; set; }
+            private string exists;
+
+            public string Exist
+            {
+                get { return exists; }
+                set 
+                {
+                    if (value.Equals("True"))
+                        exists = "Visible";
+                    else
+                        exists = "Collapsed";
+                }
+            }
         }
     }
 }

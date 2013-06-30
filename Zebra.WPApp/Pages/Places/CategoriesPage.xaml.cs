@@ -109,7 +109,7 @@ namespace Zebra.WPApp.Pages.Places
             {
                 List<Place> lstReturned = await PlacesMethods.getPlacesByQuery(txtSearch.Text, latitude, longitude);
                 if (lstReturned != null)
-                    lstSearchResults.ItemsSource = lstReturned;
+                        lstSearchResults.ItemsSource = lstReturned;
                 else MessageBox.Show(AppResources.TxtInternetConnectionProblem);
             }
             catch (Exception)

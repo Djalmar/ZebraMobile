@@ -44,14 +44,14 @@
                     <ListBox Name="lstCategoryList" toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal" Margin="12">
+                                <StackPanel Orientation="Horizontal" Margin="12,0,12,12">
                                     <Border Background="{StaticResource PhoneAccentBrush}" 
-                                            Width="100" 
-                                            Height="100">
+                                            Width="80" 
+                                            Height="80">
                                         <Image 
                                         Source="{Binding icon}" 
-                                        Width="70" 
-                                        Height="70"/>
+                                        Width="65" 
+                                        Height="65"/>
                                     </Border>
                                     <TextBlock 
                                         Text="{Binding name}" 
@@ -75,6 +75,7 @@
                         ActionIcon="/Assets/Icons/Search.png"
                         Hint="{Binding LocalizedResources.TxbCategoriesSearchBox, 
                         Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
+                        toolkit:TurnstileFeatherEffect.FeatheringIndex="2"
                         x:Name="txtSearch"
                         Grid.Row="0"/>
                     <ProgressBar Grid.Row="1" IsIndeterminate="True" 
@@ -82,6 +83,7 @@
                                  x:Name="prgSearchProgress"/>
                     <ListBox x:Name="lstSearchResults"
                                 Grid.Row="1"
+                             toolkit:TurnstileFeatherEffect.FeatheringIndex="3"
                              Margin="12">
                         <ListBox.ItemTemplate>
                             <DataTemplate>

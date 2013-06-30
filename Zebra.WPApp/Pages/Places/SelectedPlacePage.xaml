@@ -91,6 +91,7 @@
                     <TextBlock 
                         Text="{Binding LocalizedResources.TxbPlaceFeatures, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
                         Margin="12" 
+                        Name="txbFeatures"
                         FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
                         FontFamily="{StaticResource PhoneFontFamilyLight}" 
                         Opacity="0.7"/>
@@ -99,7 +100,7 @@
                     <ListBox.ItemTemplate>  
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="24" Text="{Binding Name}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                                <TextBlock Margin="12" TextWrapping="Wrap" Visibility="{Binding Exist}" Text="{Binding Name}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

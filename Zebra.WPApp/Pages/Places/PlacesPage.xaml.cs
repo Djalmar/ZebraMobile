@@ -180,7 +180,7 @@ namespace Zebra.WPApp.Pages.Places
             if (lstTempPlaces.Count > 0)
             {
                 lstbPopularPlaces.ItemsSource = getDajaCategories(lstTempPlaces);
-                txtNoPopularPlacesFound.Visibility = Visibility.Collapsed;
+                txtNoPlacesFound.Visibility = Visibility.Collapsed;
                 lstbPopularPlaces.Visibility = Visibility.Visible;
             }
             else

@@ -338,4 +338,19 @@
   <data name="TxbSettingsPreference" xml:space="preserve">
     <value>Preferences</value>
   </data>
+  <data name="TxtDelivery" xml:space="preserve">
+    <value>delivery</value>
+  </data>
+  <data name="TxtHolidays" xml:space="preserve">
+    <value>holidays</value>
+  </data>
+  <data name="TxtKids" xml:space="preserve">
+    <value>kids area</value>
+  </data>
+  <data name="TxtParking" xml:space="preserve">
+    <value>parking</value>
+  </data>
+  <data name="TxtSmoking" xml:space="preserve">
+    <value>smoking area</value>
+  </data>
 </root>

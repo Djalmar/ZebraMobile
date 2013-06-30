@@ -48,7 +48,7 @@
                                                ItemsSource="{Binding lstPlaces}"
                                                NonExpandableHeader="{Binding}"
                                                IsNonExpandable="{Binding HasNoOptions}" 
-                                               IsExpanded="{Binding IsExpanded, Mode=TwoWay}">
+                                               IsExpanded="True">
                         <tool:ExpanderView.HeaderTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="12">
@@ -105,11 +105,10 @@
             </phone:Pivot.Background>
             <phone:PivotItem Header="{Binding LocalizedResources.TxbSubCategoriesAll, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
                 <Grid>
-                    <ListBox Grid.Row="0" x:Name="lstbAllPlaces" 
+                    <phone:LongListSelector Grid.Row="0" x:Name="lstbAllPlaces" 
                          toolkit:TurnstileFeatherEffect.FeatheringIndex="0"
-                         ItemTemplate="{StaticResource expanderList}"
-                         ItemContainerStyle="{StaticResource expanderListItem}">
-                    </ListBox>
+                         ItemTemplate="{StaticResource expanderList}">
+                    </phone:LongListSelector>
                     <TextBlock Name="txtNoPlacesFound"
                                Style="{StaticResource txtNotFound}"/>
                 </Grid>
@@ -117,11 +116,10 @@
 
             <phone:PivotItem Header="{Binding LocalizedResources.TxbSubCategoriesPopular, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
                 <Grid>
-                    <ListBox Grid.Row="0" x:Name="lstbPopularPlaces" 
+                    <phone:LongListSelector Grid.Row="0" x:Name="lstbPopularPlaces" 
                          toolkit:TurnstileFeatherEffect.FeatheringIndex="1"
-                         ItemTemplate="{StaticResource expanderList}"
-                         ItemContainerStyle="{StaticResource expanderListItem}">
-                    </ListBox>
+                         ItemTemplate="{StaticResource expanderList}">
+                    </phone:LongListSelector>
                     <TextBlock Name="txtNoPopularPlacesFound"
                                Style="{StaticResource txtNotFound}"/>
                 </Grid>
@@ -129,11 +127,10 @@
 
             <phone:PivotItem Header="{Binding LocalizedResources.TxbSubCategoriesNear, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
                 <Grid>
-                    <ListBox Grid.Row="0" x:Name="lstbNearPlaces" 
+                    <phone:LongListSelector Grid.Row="0" x:Name="lstbNearPlaces" 
                          toolkit:TurnstileFeatherEffect.FeatheringIndex="2"
-                         ItemTemplate="{StaticResource expanderList}"
-                         ItemContainerStyle="{StaticResource expanderListItem}">
-                    </ListBox>
+                         ItemTemplate="{StaticResource expanderList}">
+                    </phone:LongListSelector>
                     <TextBlock Name="txtNoNearPlacesFound"
                                Style="{StaticResource txtNotFound}"/>
                 </Grid>
