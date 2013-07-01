@@ -83,7 +83,7 @@ namespace Zebra.WPApp.Pages.Trouble
                     "&description=" + description +
                     "&type=" + type +
                     "&timezone=" + Main.GetValueFromTimeZone();
-            string resultFromServer = await UploadStringAsyncUsingPUT(new Uri(Main.urlReportProblem,UriKind.Absolute), data);
+            string resultFromServer = await Zebra.Utilities.Internet.UploadStringAsyncUsingPUT(new Uri(Main.urlReportProblem,UriKind.Absolute), data);
             ProblemsResult result = JsonConvert.DeserializeObject<ProblemsResult>(resultFromServer);
             if (result != null)
             {
