@@ -31,13 +31,14 @@ namespace ZebrasLib
             //    return JsonConvert.DeserializeObject<ProblemsResult>(result);
             //}
 
-            public static async Task<List<Problem>> GetProblems(double latitude, double longitude)
+            public static async Task<List<Problem>> GetProblems(double latitude, double longitude, int timeZone)
             {
                 string strlatitude = Convert.ToString(latitude, new CultureInfo("en-US"));
                 string strlongitude = Convert.ToString(longitude, new CultureInfo("en-US"));
                 string url = Main.urlGetProblems +
                     "latitude=" + strlatitude +
-                    "&longitude=" + strlongitude;
+                    "&longitude=" + strlongitude +
+                    "&timezone=" + timeZone;
                 ProblemsResult result = await downloadedInfo(url);
                 if (result != null)
                 {
@@ -49,14 +50,15 @@ namespace ZebrasLib
                 
             }
 
-            public static async Task<List<Problem>> GetProblems(List<string> fbFriendList)
+            public static async Task<List<Problem>> GetProblems(List<string> fbFriendList, int timeZone)
             {
                 string friendsList = String.Empty;
                 foreach (string friend in fbFriendList)
                     friendsList += friend + ",";
 
                 string url= Main.urlGetProblemsByFriends +
-                    "friends=" + friendsList;
+                    "friends=" + friendsList +
+                    "&timezone=" + timeZone;
 
                 ProblemsResult result = await downloadedInfo(url);
                 if (Main.thereIsNoProblemo(result.status))

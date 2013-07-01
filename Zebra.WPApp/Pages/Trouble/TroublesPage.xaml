@@ -118,7 +118,9 @@
             <phone:PanoramaItem Header="{Binding}">
                 <phone:PanoramaItem.HeaderTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding LocalizedResources.TxbTroublesTroubles, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
+                        <TextBlock Text="{Binding LocalizedResources.TxbTroublesTroubles, 
+                            Mode=OneWay, 
+                            Source={StaticResource LocalizedStrings}}" 
                                    FontSize="50"/>
                     </DataTemplate>
                 </phone:PanoramaItem.HeaderTemplate>
@@ -129,7 +131,9 @@
             <phone:PanoramaItem Header="{Binding}">
                 <phone:PanoramaItem.HeaderTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding LocalizedResources.TxbTroublesTroubles, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
+                        <TextBlock Text="{Binding LocalizedResources.TxbTroublesTroublesFB, 
+                            Mode=OneWay, 
+                            Source={StaticResource LocalizedStrings}}" 
                                    FontSize="50"/>
                     </DataTemplate>
                 </phone:PanoramaItem.HeaderTemplate>

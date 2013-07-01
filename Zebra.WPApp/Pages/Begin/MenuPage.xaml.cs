@@ -26,7 +26,8 @@ namespace Zebra.WPApp.Pages.Begin
 
         private void btnZebra_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            MessageBox.Show("there was a problemo jefe");
+            MessageBox.Show(TimeZoneInfo.Local.BaseUtcOffset.ToString());
+            MessageBox.Show(Main.GetValueFromTimeZone().ToString());
         }
 
         void btnPlaces_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -43,12 +44,8 @@ namespace Zebra.WPApp.Pages.Begin
         {
             base.OnBackKeyPress(e);
             if (NavigationService.CanGoBack)
-            {
                 while (NavigationService.RemoveBackEntry() != null)
-                {
                     NavigationService.RemoveBackEntry();
-                }
-            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

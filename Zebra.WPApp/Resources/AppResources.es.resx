@@ -353,4 +353,7 @@
   <data name="TxtSmoking" xml:space="preserve">
     <value>area de fumadores</value>
   </data>
+  <data name="TxbTroublesTroublesFB" xml:space="preserve">
+    <value>Amigos en Facebook</value>
+  </data>
 </root>

@@ -68,8 +68,11 @@ namespace OurFacebook
                 foreach (Reporter reporter in P.reporters)
                 {
                     user = await FacebookMethods.getUserInfo(accessToken, reporter.facebookCode);
-                    reporter.name = user.Name;
-                    reporter.picture = user.picture.data.url;
+                    if (user.Name != null)
+                    {
+                        reporter.name = user.Name;
+                        reporter.picture = user.picture.data.url;
+                    }
                 }
             }
             return list;

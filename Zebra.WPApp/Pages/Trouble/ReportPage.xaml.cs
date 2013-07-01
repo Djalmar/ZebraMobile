@@ -81,16 +81,19 @@ namespace Zebra.WPApp.Pages.Trouble
                     "&latitude=" + latitude +
                     "&longitude=" + longitude +
                     "&description=" + description +
-                    "&type=" + type;
+                    "&type=" + type +
+                    "&timezone=" + Main.GetValueFromTimeZone();
             string resultFromServer = await UploadStringAsyncUsingPUT(new Uri(Main.urlReportProblem,UriKind.Absolute), data);
             ProblemsResult result = JsonConvert.DeserializeObject<ProblemsResult>(resultFromServer);
             if (result != null)
             {
                 if (result.status == "200")
                     MessageBox.Show(AppResources.TxtReportSucceded);
-                if (result.status == "400")
-                    MessageBox.Show(AppResources.TxtReportRepeated);
-                else MessageBox.Show(AppResources.TxtReportFailed);
+                else {
+                    if (result.status == "400")
+                        MessageBox.Show(AppResources.TxtReportRepeated);
+                    else MessageBox.Show(AppResources.TxtReportFailed);
+                }
             }
             else MessageBox.Show(AppResources.TxtInternetConnectionProblem);
             NavigationService.GoBack();

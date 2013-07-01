@@ -353,4 +353,7 @@
   <data name="TxtSmoking" xml:space="preserve">
     <value>smoking area</value>
   </data>
+  <data name="TxbTroublesTroublesFB" xml:space="preserve">
+    <value>Facebook friends</value>
+  </data>
 </root>

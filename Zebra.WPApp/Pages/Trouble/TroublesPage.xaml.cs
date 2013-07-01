@@ -9,6 +9,7 @@ using System.Windows.Navigation;
 using Zebra.WPApp.Pages.Places;
 using Zebra.WPApp.Resources;
 using Zebra.WPApp.UserControls;
+using ZebrasLib;
 using ZebrasLib.Classes;
 using ZebrasLib.Events;
 
@@ -48,8 +49,9 @@ namespace Zebra.WPApp.Pages.Trouble
             foreach (facebookUser user in facebookFriends)
                 friendsCodes.Add(user.id);
             
-            lstEventsByFriends = await ProblemsMethods.GetProblems(friendsCodes);
-            lstEventsByFriends= await OurFacebook.FacebookMethods.GetFbInfoForTheseReporters(lstEventsByFriends, App.facebookAccessToken);
+            lstEventsByFriends = await ProblemsMethods.GetProblems(friendsCodes, Main.GetValueFromTimeZone());
+            if(lstEventsByFriends.Count>0)
+                lstEventsByFriends= await OurFacebook.FacebookMethods.GetFbInfoForTheseReporters(lstEventsByFriends, App.facebookAccessToken);
             lstTroublesByFriends.ItemsSource = lstEventsByFriends;
         }
 
@@ -90,7 +92,7 @@ namespace Zebra.WPApp.Pages.Trouble
             latitude = e.Position.Location.Latitude;
             longitude = e.Position.Location.Longitude;
             prgEvents.Visibility = System.Windows.Visibility.Visible;
-            lstEvents = await ProblemsMethods.GetProblems(latitude,longitude);
+            lstEvents = await ProblemsMethods.GetProblems(latitude,longitude, Main.GetValueFromTimeZone());
             if (lstEvents != null)
             {
                 lstEvents = await OurFacebook.FacebookMethods.GetFbInfoForTheseReporters(lstEvents, App.facebookAccessToken);
