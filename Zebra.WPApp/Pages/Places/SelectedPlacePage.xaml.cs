@@ -14,7 +14,10 @@ using System.Device.Location;
 using ZebrasLib.Classes;
 using Zebra.WPApp.Resources;
 using System.Globalization;
-
+using ZebrasLib;
+using ZebrasLib.Classes;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 namespace Zebra.WPApp.Pages.Places
 {
     public partial class SelectedPlacePage : PhoneApplicationPage
@@ -183,6 +186,28 @@ namespace Zebra.WPApp.Pages.Places
                 this.SelectedPlacePage_Loaded(sender, e);
             }
         } 
+
+        /// <summary>
+        /// Method you can use to rate places
+        /// </summary>
+        /// <param name="placeCode">Just the place code, </param>
+        /// <param name="rating">Remember that now rating is an INTEGER, not a float, not a double</param>
+        /// <returns>Returns a bool to say if the rating was succesfull, so you should display an mbox for the user saying 
+        /// what happened, if it was succesful or not.</returns>
+        public static async Task<bool> tryRatePlace(string placeCode, int rating)
+        {
+            string data = "code="+placeCode+
+                "&rating="+rating;
+            string downloadedString = await Zebra.Utilities.Internet.UploadStringAsyncUsingPUT(new Uri(ZebrasLib.Main.urlPlacesRate, UriKind.Absolute), data);
+            PlacesResult result = JsonConvert.DeserializeObject<PlacesResult>(downloadedString);
+            if (result != null)
+            {
+                if (result.status == "200")
+                    return true;
+                else return false;
+            }
+            return false;
+        }
         
         public class Service
         {

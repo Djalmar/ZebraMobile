@@ -49,7 +49,7 @@
     <Compile Include="Places\PlacesMethods.cs" />
     <Compile Include="Places\UsefulMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Wallet\TrafficMethods.cs" />
+    <Compile Include="Wallet\WalletMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

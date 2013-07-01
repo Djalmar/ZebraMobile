@@ -15,6 +15,7 @@ namespace ZebrasLib
         public static string urlCategories = "http://cebritas.azurewebsites.net/api/places/getcategories";
         public static string urlPlacesByCategory = "http://cebritas.azurewebsites.net/api/places/getbycategory?";
         public static string urlPlacesByQuery = "http://cebritas.azurewebsites.net/api/places//getbyquery?";
+        public static string urlPlacesRate = "http://cebritas.azurewebsites.net/api/places/rateplace";
 
         public static string urlWalletBetween = "http://cebritas.azurewebsites.net/api/wallet/getplacesbetween?";
         public static string urlWalletBetweenQuery = "http://cebritas.azurewebsites.net/api/wallet/getplacesbypriceandquery?";
