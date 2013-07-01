@@ -93,7 +93,7 @@ namespace Zebra.WPApp.Pages.Places
                 {
                     watcher.Start();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 { /*Beg so this don't crash again (don't even know why)*/}
             }
             

@@ -57,8 +57,7 @@ namespace Zebra.WPApp.Pages.Wallet
             else
                 if (NavigationContext.QueryString.TryGetValue("categorie", out categorie))
                     lstPlace = await WalletMethods.getPlacesBetween(maxmoney, minmoney,
-                        -16.5001360633125,-68.1174392219843
-                        //latitude, longitude
+                        latitude, longitude
                         ,categorie);
             prgResults.Visibility = System.Windows.Visibility.Collapsed;            
             if (lstPlace != null)

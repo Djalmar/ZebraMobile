@@ -8,7 +8,6 @@ namespace ZebrasLib
     {
         private static HttpClient client;
         private static HttpResponseMessage result;
-        private static HttpContent content;
 
         public static async Task<string> DownloadStringAsync(string uriAddress)
         {

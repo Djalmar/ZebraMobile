@@ -64,6 +64,7 @@ namespace DBPhone
                     name = P.name,
                     parking = P.parking,
                     rating = P.rating,
+                    ratingCount = P.ratingCount,
                     smokingArea = P.smokingArea,
                     webSite = P.webSite
                 });
@@ -93,6 +94,7 @@ namespace DBPhone
                     name = P.name,
                     parking = P.parking,
                     rating = P.rating,
+                    ratingCount = P.ratingCount,
                     smokingArea = P.smokingArea,
                     webSite = P.webSite
                 });

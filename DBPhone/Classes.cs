@@ -48,7 +48,10 @@ namespace DBPhone
         public bool delivery { get; set; }
 
         [Column]
-        public float rating { get; set; }
+        public int rating { get; set; }
+
+        [Column]
+        public int ratingCount { get; set; }
 
         [Column]
         public double latitude { get; set; }

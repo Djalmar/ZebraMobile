@@ -13,7 +13,7 @@ namespace Zebra.WPApp.Pages.Begin
 {
     public partial class SettingsPage : PhoneApplicationPage
     {
-        private bool categoriesDownloaded, isLoggedOnFacebook, firstTime;
+        private bool categoriesDownloaded, isLoggedOnFacebook;
         private GeoCoordinateWatcher watcher;
         private List<ZebrasLib.Classes.Category> categories;
         private List<ZebrasLib.Classes.Category> selectedCategories;
@@ -29,7 +29,6 @@ namespace Zebra.WPApp.Pages.Begin
             tglSwitchDistanceUnit.Unchecked += tglSwitchDistanceUnit_Unchecked;
             tglSwitchDownloadSetting.Checked += tglSwitchDownloadSetting_Checked;
             tglSwitchDownloadSetting.Unchecked += tglSwitchDownloadSetting_Unchecked;
-            firstTime = true;
             watcher = new GeoCoordinateWatcher();
             watcher.MovementThreshold = 200;
             watcher.PositionChanged += watcher_PositionChanged;

@@ -362,6 +362,9 @@
     <Reference Include="SharpGIS.GZipWebClient">
       <HintPath>..\packages\SharpGIS.GZipWebClient.1.4.0.0\lib\wp71\SharpGIS.GZipWebClient.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Compression">
+      <HintPath>..\packages\Microsoft.Bcl.Compression.3.9.66-rc\lib\wp8\System.IO.Compression.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
@@ -385,5 +388,6 @@
   </Target>
   -->
   <ProjectExtensions />
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.5\tools\Microsoft.Bcl.Build.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Compression.3.9.66-rc\tools\Microsoft.Bcl.Compression.targets" />
 </Project>

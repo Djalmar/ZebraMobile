@@ -42,9 +42,11 @@ namespace ZebrasLib
             public static async Task<List<Place>> getPlacesBetweenAndQuery(int maxPrice, int minPrice, 
                 double latitude, double longitude, string query)
             {
-                string url = Main.urlWalletBetween +
-                    "maxprice=" + maxPrice +
-                    "&minprice" + minPrice +
+                string url = Main.urlWalletBetweenQuery +
+                    "longitude=" + longitude +
+                    "&latitude=" + latitude +
+                    "&maxprice=" + maxPrice +
+                    "&minprice=" + minPrice +
                     "&query=" + query;
                 return DistancesForThis(await Main.GetPlaces(url),latitude,longitude,"");
             }
