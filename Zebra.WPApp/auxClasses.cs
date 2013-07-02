@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using ZebrasLib.Classes;
 
-namespace Zebra.WPApp.Pages.Places
+namespace Zebra.WPApp
 {
     public class bindingCategory
     {
@@ -18,10 +18,17 @@ namespace Zebra.WPApp.Pages.Places
         public static Category selectedCategory{ get; set; }
         public static Problem selectedEvent { get; set; }
     }
+
+    public static class ShareContent
+    {
+        public static string message { get; set; }
+        public static string title { get; set; }
+        public static Uri link { get; set; }
+    }
 }
 namespace Zebra.Utilities
-{ 
-public static class Internet
+{
+    public static class Internet
     {
         public static Task<string> UploadStringAsyncUsingPUT(Uri uri, string data)
         {
@@ -46,4 +53,5 @@ public static class Internet
 
             return resultFromUpload.Task;
         }
+    }
 }

@@ -47,7 +47,7 @@ namespace Zebra.WPApp.Pages.Trouble
 
             ApplicationBarIconButton btnShare = new ApplicationBarIconButton();
             btnShare.IconUri = new Uri("/Assets/AppBar/share.png",UriKind.Relative);
-            btnShare.Text = AppResources.TxtShare;
+            btnShare.Text = AppResources.TxtShare + " n " + AppResources.TxtReport;
             btnShare.Click += btnShare_Click;
             ApplicationBar.Buttons.Add(btnShare);
 
@@ -59,6 +59,12 @@ namespace Zebra.WPApp.Pages.Trouble
         }
 
         void btnReport_Click(object sender, EventArgs e)
+        {
+            Report();
+            NavigationService.GoBack();
+        }
+
+        private void Report()
         {
             ProblemsResult result = new ProblemsResult();
             string description = txtDescription.Text;
@@ -96,25 +102,44 @@ namespace Zebra.WPApp.Pages.Trouble
                 }
             }
             else MessageBox.Show(AppResources.TxtInternetConnectionProblem);
-            NavigationService.GoBack();
         }
+
         void btnShare_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Pages/OtherPages/Share.xaml" +
-                "?message=" + txtDescription.Text +
-                "&title=" + lspTroubleCategory.SelectedIndex, UriKind.Relative));
+            #region Report
+            ProblemsResult result = new ProblemsResult();
+            string description = txtDescription.Text;
+            int reportType = lspTroubleCategory.SelectedIndex + 1;
+            if (description.Length > 0 && reportType > 0)
+                ReportEvent(App.facebookId,
+                    latitude,
+                    longitude,
+                    txtDescription.Text,
+                    reportType);
+            #endregion
+            #region Share
+            ShareContent.title = AppResources.TxtShareImAt +" "+ lspTroubleCategory.SelectedItem.ToString();
+            ShareContent.message = txtDescription.Text;
+            ShareContent.link= new Uri("http://bing.com/maps/default.aspx" +
+                "?cp=" + latitude + "~" + longitude+
+                "&lvl=18" +
+                "&style=r",UriKind.Absolute);
+
+            NavigationService.Navigate(new Uri("/Pages/Share.xaml", UriKind.Relative));
+            #endregion
+            NavigationService.GoBack();
         }
         #endregion
 
         private void LoadProblemsList()
         {
             troubleCategoryList = new List<string>();
-            troubleCategoryList.Add("Traffic");
-            troubleCategoryList.Add("Manifestation");
-            troubleCategoryList.Add("Parade");
-            troubleCategoryList.Add("Blockade");
-            troubleCategoryList.Add("Accident");
-            troubleCategoryList.Add("Others");
+            troubleCategoryList.Add("a Traffic jam");
+            troubleCategoryList.Add("a Manifestation");
+            troubleCategoryList.Add("a Parade");
+            troubleCategoryList.Add("a Blockade");
+            troubleCategoryList.Add("an Accident");
+            troubleCategoryList.Add("something");
             lspTroubleCategory.ItemsSource = troubleCategoryList;
         }
 

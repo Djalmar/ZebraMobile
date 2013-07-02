@@ -356,4 +356,22 @@
   <data name="TxbTroublesTroublesFB" xml:space="preserve">
     <value>Facebook friends</value>
   </data>
+  <data name="TxbShareTitle" xml:space="preserve">
+    <value>Sharing is fun</value>
+  </data>
+  <data name="TxtShareImAt" xml:space="preserve">
+    <value>I'm at</value>
+  </data>
+  <data name="TxtSharePlaceIts" xml:space="preserve">
+    <value>Place is at</value>
+  </data>
+  <data name="TxtShareSomebody" xml:space="preserve">
+    <value>Is somebody around?</value>
+  </data>
+  <data name="TxtShareAt" xml:space="preserve">
+    <value>at</value>
+  </data>
+  <data name="TxtShareImAtAn" xml:space="preserve">
+    <value>I'm at an</value>
+  </data>
 </root>

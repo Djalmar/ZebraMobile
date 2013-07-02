@@ -15,7 +15,6 @@ using ZebrasLib.Classes;
 using Zebra.WPApp.Resources;
 using System.Globalization;
 using ZebrasLib;
-using ZebrasLib.Classes;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 namespace Zebra.WPApp.Pages.Places
@@ -37,7 +36,32 @@ namespace Zebra.WPApp.Pages.Places
 
         void SelectedPlacePage_Loaded(object sender, RoutedEventArgs e)
         {
+            LoadAppBar();
             watcher.Start();
+        }
+
+        private void LoadAppBar()
+        {
+            ApplicationBar = new ApplicationBar();
+
+            ApplicationBarIconButton btnShare = new ApplicationBarIconButton();
+            btnShare.IconUri = new Uri("/Assets/AppBar/Share.png",UriKind.Relative);
+            btnShare.Text = AppResources.TxtShare;
+            btnShare.Click+=btnShare_Click;
+            ApplicationBar.Buttons.Add(btnShare);
+        }
+
+        void btnShare_Click(object sender, EventArgs e)
+        {
+            ShareContent.title= AppResources.TxtShareImAt + " " + staticClasses.selectedPlace.name;
+            ShareContent.message = AppResources.TxtShareSomebody + "\n" +
+                AppResources.TxtSharePlaceIts + " " + staticClasses.selectedPlace.address;
+            ShareContent.link = new Uri("http://bing.com/maps/default.aspx" +
+                "?cp=" + staticClasses.selectedPlace.latitude + "~" + staticClasses.selectedPlace.longitude +
+                "&lvl=18" +
+                "&style=r", UriKind.Absolute);
+                
+            NavigationService.Navigate(new Uri("/Pages/Share.xaml",UriKind.Relative));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

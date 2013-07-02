@@ -457,6 +457,15 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sharing is fun.
+        /// </summary>
+        public static string TxbShareTitle {
+            get {
+                return ResourceManager.GetString("TxbShareTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string TxbSubCategoriesAll {
@@ -750,6 +759,51 @@ namespace Zebra.WPApp.Resources {
         public static string TxtShare {
             get {
                 return ResourceManager.GetString("TxtShare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to at.
+        /// </summary>
+        public static string TxtShareAt {
+            get {
+                return ResourceManager.GetString("TxtShareAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I&apos;m at.
+        /// </summary>
+        public static string TxtShareImAt {
+            get {
+                return ResourceManager.GetString("TxtShareImAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I&apos;m at an.
+        /// </summary>
+        public static string TxtShareImAtAn {
+            get {
+                return ResourceManager.GetString("TxtShareImAtAn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Place is at.
+        /// </summary>
+        public static string TxtSharePlaceIts {
+            get {
+                return ResourceManager.GetString("TxtSharePlaceIts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is somebody around?.
+        /// </summary>
+        public static string TxtShareSomebody {
+            get {
+                return ResourceManager.GetString("TxtShareSomebody", resourceCulture);
             }
         }
         
