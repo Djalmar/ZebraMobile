@@ -74,13 +74,13 @@ namespace Zebra.WPApp.Pages.Wallet
 
                                 NavigationService.Navigate(new Uri(urlplusData, UriKind.Relative));
                             }
-                            //else MessageBox.Show("User hasn't put what he/she wants to do");
+                            else MessageBox.Show(AppResources.TxtWalletNoTextIntroduced);
                         }
-                        //else MessageBox.Show("User hasn't put how much people is he/she with");
+                        else MessageBox.Show(AppResources.TxtWalletNoPeople);
                     }
-                    //else MessageBox.Show("User hasn't put how much money he wants to spend");
+                    else MessageBox.Show(AppResources.TxtWalletNoMaxMoney);
                 }
-                //else MessageBox.Show("User hasn't put how much money he wants to spend");
+                else MessageBox.Show(AppResources.TxtWalletNoMinMoney);
             }
         }
     }

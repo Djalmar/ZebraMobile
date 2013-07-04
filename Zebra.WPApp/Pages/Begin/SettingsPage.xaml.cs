@@ -17,7 +17,8 @@ namespace Zebra.WPApp.Pages.Begin
         private GeoCoordinateWatcher watcher;
         private List<ZebrasLib.Classes.Category> categories;
         private List<ZebrasLib.Classes.Category> selectedCategories;
-
+        private double latitude;
+        private double longitude;
         public SettingsPage()
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace Zebra.WPApp.Pages.Begin
 
         private async void SettingsPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            watcher.Start();
             categories = await ZebrasLib.Places.PlacesMethods.getCategories();
             if (categories != null)
             {
@@ -49,12 +51,12 @@ namespace Zebra.WPApp.Pages.Begin
                 txtbLoggedIn.Text = AppResources.TxtInternetConnectionProblem;
                 lstCategories.Visibility = Visibility.Collapsed;
             }
+
             if (App.FirstTimeLaunch)
             {
+                borderNextButton.Visibility = Visibility.Collapsed;
                 if (categories != null)
                 {
-                    DBPhone.Context.DisposeDataBase();
-                    DBPhone.Context.RemoveDatabase();
                     txtbLoggedIn.Text = AppResources.TxbFacebookLoggedIn;
                     isLoggedOnFacebook = true;
                 }
@@ -87,77 +89,6 @@ namespace Zebra.WPApp.Pages.Begin
 
         #endregion Toggle
 
-        private void borderNextButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            if (pivotMain.SelectedIndex == 2)
-            {
-                stackWait.Visibility = System.Windows.Visibility.Visible;
-                pivotMain.Visibility = System.Windows.Visibility.Collapsed;
-                    
-                #region SaveSettings
-
-                if (tglSwitchDistanceUnit.IsChecked == true)
-                    App.usesKilometers = true;
-                else App.usesKilometers = false;
-
-                if (tglSwitchDownloadSetting.IsChecked == true)
-                    App.AutoDownloadsPlaces = true;
-
-                else
-                {
-                    App.AutoDownloadsPlaces = false;
-                    App.FirstTimeDataBase = true;
-                }
-
-                App.nearDistance = sldNearDistance.Value;
-                if (sldNearDistance.Value == 0)
-                    App.nearDistance++;
-                #endregion SaveSettings
-                if (lstCategories.SelectedItems.Count > 0)
-                {
-                    selectedCategories = new List<ZebrasLib.Classes.Category>();
-                    foreach (Object SelectedItem in lstCategories.SelectedItems)
-                        selectedCategories.Add(SelectedItem as ZebrasLib.Classes.Category);
-                    if (selectedCategories.Count > 0)
-                        watcher.Start();
-                }
-                else FinishSettings();
-            }
-            else pivotMain.SelectedIndex++;
-        }
-
-        private void FinishSettings()
-        {
-            if (App.FirstTimeLaunch)
-            {
-                NavigationService.GoBack();
-            }
-            if (categoriesDownloaded)
-            {
-                DBPhone.CategoriesMethods.AddItems(categories);
-                if (isLoggedOnFacebook)
-                {
-                    App.FirstTimeLaunch = true;
-                    NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
-                    txtbLoggedIn.Text = AppResources.TxbFacebookLogin;
-                }
-                else
-                {
-                    stackWait.Visibility = System.Windows.Visibility.Collapsed;
-                    pivotMain.Visibility = System.Windows.Visibility.Visible;
-                    txtbLoggedIn.Text = AppResources.TxtFacebookNeeded;
-                }
-            }
-            else
-            {
-                txtbLoggedIn.Text = AppResources.TxtInternetConnectionProblem;
-                stackWait.Visibility = System.Windows.Visibility.Collapsed;
-                pivotMain.Visibility = System.Windows.Visibility.Visible;
-            }
-                
-            
-        }
-
         private async void borderFacebook_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             txtbLoggedIn.Visibility = System.Windows.Visibility.Visible;
@@ -172,23 +103,114 @@ namespace Zebra.WPApp.Pages.Begin
                 txtbLoggedIn.Text = AppResources.TxbFacebookLoggedIn;
             }
             else
-            {
                 txtbLoggedIn.Text = AppResources.TxtInternetConnectionProblem;
-            }
         }
 
-        private async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        private void borderNextButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (pivotMain.SelectedIndex == 2)
+            {
+                stackWait.Visibility = System.Windows.Visibility.Visible;
+                pivotMain.Visibility = System.Windows.Visibility.Collapsed;
+
+                SaveSettings();
+                SaveCategories();
+            }
+            else pivotMain.SelectedIndex++;
+        }
+
+        private void SaveSettings()
+        {
+            if (tglSwitchDistanceUnit.IsChecked == true)
+                App.usesKilometers = true;
+            else App.usesKilometers = false;
+
+            if (tglSwitchDownloadSetting.IsChecked == true)
+                App.AutoDownloadsPlaces = true;
+
+            else
+            {
+                App.AutoDownloadsPlaces = false;
+                App.FirstTimeDataBase = true;
+            }
+
+            App.Popularity = (int)sldPopularity.Value * 2;
+            if (sldNearDistance.Value == 0)
+                App.Popularity++;
+
+            App.nearDistance = sldNearDistance.Value;
+            if (sldNearDistance.Value == 0)
+                App.nearDistance++;
+        }
+        private void SaveCategories()
+        {
+            if (lstCategories.SelectedItems.Count > 0)
+            {
+                selectedCategories = new List<ZebrasLib.Classes.Category>();
+                foreach (Object SelectedItem in lstCategories.SelectedItems)
+                    selectedCategories.Add(SelectedItem as ZebrasLib.Classes.Category);
+
+                DBPhone.Context.DisposeDataBase();
+                DBPhone.Context.RemoveDatabase();
+                DBPhone.CategoriesMethods.AddItems(categories);
+   
+                SavePlaces();   
+            }
+            else FinishSettings();
+        }
+        private async void SavePlaces()
         {
             List<ZebrasLib.Classes.Place> lstDownloadedPlaces;
             lstDownloadedPlaces = await ZebrasLib.Places.PlacesMethods.getAllPlacesFromThisCategories(selectedCategories,
-                e.Position.Location.Latitude,e.Position.Location.Longitude);
+                latitude, longitude);
             if (lstDownloadedPlaces != null)
             {
                 DBPhone.PlacesMethods.AddItems(lstDownloadedPlaces);
                 FinishSettings();
             }
             else txtbLoggedIn.Text = AppResources.TxtInternetConnectionProblem;
-            
+        }
+        private void FinishSettings()
+        {
+            if (!App.FirstTimeLaunch)
+            {
+                if (categoriesDownloaded)
+                {
+                    if (isLoggedOnFacebook)
+                    {
+                        App.FirstTimeLaunch = true;
+                        NavigationService.Navigate(new Uri("/Pages/Begin/MenuPage.xaml", UriKind.Relative));
+                        txtbLoggedIn.Text = AppResources.TxbFacebookLogin;
+                    }
+                    else
+                    {
+                        stackWait.Visibility = System.Windows.Visibility.Collapsed;
+                        pivotMain.Visibility = System.Windows.Visibility.Visible;
+                        txtbLoggedIn.Text = AppResources.TxtFacebookNeeded;
+                    }
+                }
+                else
+                {
+                    txtbLoggedIn.Text = AppResources.TxtInternetConnectionProblem;
+                    stackWait.Visibility = System.Windows.Visibility.Collapsed;
+                    pivotMain.Visibility = System.Windows.Visibility.Visible;
+                }
+            }
+            else stackWait.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnBackKeyPress(e);
+            stackWait.Visibility = System.Windows.Visibility.Visible;
+            SaveSettings();
+            SaveCategories();
+        }
+
+        private void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            latitude = e.Position.Location.Latitude;
+            longitude = e.Position.Location.Longitude;
             watcher.Stop();
         }
     }

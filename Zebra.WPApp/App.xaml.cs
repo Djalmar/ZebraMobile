@@ -46,6 +46,23 @@ namespace Zebra.WPApp
             }
         }
 
+        public static int Popularity
+        {
+            get
+            {
+                if (IsolatedStorageSettings.ApplicationSettings.Contains("Popularity"))
+                {
+                    return (int)(IsolatedStorageSettings.ApplicationSettings["Popularity"]);
+                }
+                else return 0;
+            }
+            set
+            {
+                IsolatedStorageSettings.ApplicationSettings["Popularity"] = value;
+                IsolatedStorageSettings.ApplicationSettings.Save();
+            }
+        }
+
         public static bool usesKilometers
         {
             get

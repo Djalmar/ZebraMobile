@@ -152,8 +152,40 @@
                         <RowDefinition />
                         <RowDefinition Height="Auto"/>
                         <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <StackPanel>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Rectangle Grid.Row="1"
+                                   Height="50"/>
+                        <Rectangle Grid.Row="3"
+                                   Height="50"/>
+                        <StackPanel Grid.Row="0">
+                            <TextBlock Margin="12,0,12,0" 
+                                       FontSize="28"
+                                       Opacity="0.7"
+                                        Text="{Binding LocalizedResources.TxtbSettingsRating, 
+                                Source={StaticResource LocalizedStrings}}" 
+                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="2"
+                                        TextWrapping="Wrap"/>
+                            <Slider Margin="24,0,24,-32"
+                                    Name="sldPopularity"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="1" HorizontalAlignment="Center" toolkit:TurnstileFeatherEffect.FeatheringIndex="3"/>
+                                <TextBlock Text="2" Grid.Column="1" HorizontalAlignment="Center" toolkit:TurnstileFeatherEffect.FeatheringIndex="4"/>
+                                <TextBlock Text="3" Grid.Column="2" HorizontalAlignment="Center"  toolkit:TurnstileFeatherEffect.FeatheringIndex="5"/>
+                                <TextBlock Text="4" Grid.Column="3" HorizontalAlignment="Center" toolkit:TurnstileFeatherEffect.FeatheringIndex="6"/>
+                                <TextBlock Text="5" Grid.Column="4" HorizontalAlignment="Center" toolkit:TurnstileFeatherEffect.FeatheringIndex="7"/>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Grid.Row="4">
                         <TextBlock Margin="12,0,12,0" 
                                        FontSize="28"
                                        Opacity="0.7"
@@ -192,19 +224,19 @@
                                    Opacity="0.7"
                                         TextWrapping="Wrap"/>
                         <toolkit:ToggleSwitch Name="tglSwitchDownloadSetting" 
-                                                IsChecked="true"
+                                                IsChecked="false"
                                               toolkit:TurnstileFeatherEffect.FeatheringIndex="10"
-                                                Content="{Binding LocalizedResources.TxtbAuto,  
-                                Source={StaticResource LocalizedStrings}}"/>
+                                                Content="Manual"/>
                         <TextBlock Margin="12,0,12,0"
                                    toolkit:TurnstileFeatherEffect.FeatheringIndex="11"
                                    Name="txtDownloadPlacesDetail"
-                                    Text="{Binding LocalizedResources.TxtbDownloadPlacesAuto, 
+                                    Text="{Binding LocalizedResources.TxtbDownloadPlacesManual, 
                                 Source={StaticResource LocalizedStrings}}" 
                                    Opacity="0.6"
                                         TextWrapping="Wrap"/>
                     </StackPanel>
-                </Grid>
+                   
+                    </Grid>
                 </ScrollViewer>
             </controls:PivotItem>
         </controls:Pivot>
@@ -212,8 +244,8 @@
         <Border Grid.Row="1"
                 Name="borderNextButton" 
                 Margin="12"
-                Width="60" 
-                Height="60" 
+                Width="50" 
+                Height="50" 
                 toolkit:TurnstileFeatherEffect.FeatheringIndex="15"
                 HorizontalAlignment="Right">
             <Image Source="/Assets/AppBar/next.png"/>

@@ -36,6 +36,7 @@ namespace Zebra.WPApp.Pages.Wallet
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            prgResults.Visibility = System.Windows.Visibility.Visible; prgResults.Visibility = System.Windows.Visibility.Visible;
 
             minmoney = int.Parse(NavigationContext.QueryString["minmoney"]);
             maxmoney = int.Parse(NavigationContext.QueryString["maxmoney"]);
@@ -51,14 +52,12 @@ namespace Zebra.WPApp.Pages.Wallet
         {
             latitude = e.Position.Location.Latitude;
             longitude = e.Position.Location.Longitude;
-            prgResults.Visibility = System.Windows.Visibility.Visible;
             if (NavigationContext.QueryString.TryGetValue("content", out content))
                 lstPlace = await WalletMethods.getPlacesBetweenAndQuery(minmoney, maxmoney, latitude, longitude, content);
             else
                 if (NavigationContext.QueryString.TryGetValue("categorie", out categorie))
                     lstPlace = await WalletMethods.getPlacesBetween(maxmoney, minmoney,
-                        latitude, longitude
-                        ,categorie);
+                        latitude, longitude,categorie);
             prgResults.Visibility = System.Windows.Visibility.Collapsed;            
             if (lstPlace != null)
                 lstResults.ItemsSource = lstPlace;

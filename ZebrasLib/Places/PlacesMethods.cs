@@ -66,11 +66,11 @@ namespace ZebrasLib
                 return allPlaces;
             }
 
-            public static List<Place> getPlacesOrderedByPopularity(List<Place> lstPlaces)
+            public static List<Place> getPlacesOrderedByPopularity(List<Place> lstPlaces, int popularity)
             {
                 IEnumerable<Place> newList = from allPlaces
                                              in lstPlaces
-                                             where allPlaces.rating >= 7
+                                             where allPlaces.rating >=popularity
                                              orderby allPlaces.distance descending
                                              select allPlaces;
                 return newList.ToList();
@@ -98,8 +98,11 @@ namespace ZebrasLib
             public static List<Place> getDistancesForEachPlace(double latitude, double longitude, List<Place> lstPlaces)
             {
                 foreach (Place P in lstPlaces)
+                {
+                    P.latitude = Convert.ToDouble(P.strlatitude, new CultureInfo("en-US"));
+                    P.longitude = Convert.ToDouble(P.strlongitude, new CultureInfo("en-US"));
                     P.distance = Main.findDistance(P.latitude, P.longitude, latitude, longitude);
-                
+                }
                 return lstPlaces;
             }
         }

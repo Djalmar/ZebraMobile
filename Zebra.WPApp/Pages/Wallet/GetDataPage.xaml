@@ -14,30 +14,39 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     shell:SystemTray.IsVisible="False">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
+    
     <phone:Pivot Name="pivotMain" 
-                 Title="{Binding LocalizedResources.TxbFindHeader, Mode=OneWay, Source={StaticResource LocalizedStrings}}">
+                 Title="{Binding LocalizedResources.TxbFindHeader, 
+        Mode=OneWay, 
+        Source={StaticResource LocalizedStrings}}">
         <phone:Pivot.Background>
-            <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.35"></ImageBrush>
+            <ImageBrush ImageSource="/Assets/FondoF.png" 
+                        Stretch="UniformToFill" 
+                        AlignmentX="Left" 
+                        Opacity="0.35"/>
         </phone:Pivot.Background>
         <phone:PivotItem>
             <Grid Margin="0,24">
                 <StackPanel>
-                    <TextBlock Text="{Binding LocalizedResources.TxbFindItemPeople, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
-                           Style="{StaticResource PhoneTextGroupHeaderStyle}" />
+                    <TextBlock Text="{Binding LocalizedResources.TxbFindItemPeople, Source={StaticResource LocalizedStrings}}"
+                           Style="{StaticResource PhoneTextGroupHeaderStyle}" 
+                               TextWrapping="Wrap"/>
                     <toolkit:PhoneTextBox Name="txtPeople" 
-                                          Hint="{Binding LocalizedResources.TxbFindItemPeopleHint, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
+                                          Hint="{Binding LocalizedResources.TxbFindItemPeopleHint, Source={StaticResource LocalizedStrings}}"
                                           InputScope="Number"/>
-                    <TextBlock Margin="12" Text="{Binding LocalizedResources.TxbFindItemMinMoney, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
-                           Style="{StaticResource PhoneTextGroupHeaderStyle}" />
+                    
+                    <TextBlock  Margin="12" 
+                                Text="{Binding LocalizedResources.TxbFindItemMinMoney, Source={StaticResource LocalizedStrings}}"
+                                Style="{StaticResource PhoneTextGroupHeaderStyle}"
+                                TextWrapping="Wrap"/>
                     <toolkit:PhoneTextBox x:Name="txtMinMoney" 
-                                          Hint="{Binding LocalizedResources.TxbFindItemMinMoneyHint, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
+                                          Hint="{Binding LocalizedResources.TxbFindItemMinMoneyHint, Source={StaticResource LocalizedStrings}}"
                                           InputScope="Number"/>
 
-                    <TextBlock Margin="12" Text="{Binding LocalizedResources.TxbFindItemMaxMoney, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
+                    <TextBlock Margin="12" Text="{Binding LocalizedResources.TxbFindItemMaxMoney, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource PhoneTextGroupHeaderStyle}" />
                     <toolkit:PhoneTextBox x:Name="txtMaxMoney" 
-                                          Hint="{Binding LocalizedResources.TxbFindItemMinMoneyHint, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
+                                          Hint="{Binding LocalizedResources.TxbFindItemMinMoneyHint, Source={StaticResource LocalizedStrings}}"
                                           InputScope="Number"/>
                 </StackPanel>
             </Grid>

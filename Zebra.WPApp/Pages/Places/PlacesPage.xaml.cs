@@ -122,18 +122,14 @@ namespace Zebra.WPApp.Pages.Places
                 prgPlaces.Visibility = System.Windows.Visibility.Visible;
                 lstToReturn = await DownloadPlacesFromTheInternet(latitude, longitude);
                 prgPlaces.Visibility = System.Windows.Visibility.Collapsed;
+                return lstToReturn;
             }
-            if (lstToReturn != null)
-                return lstToReturn;
-            lstToReturn = DBPhone.PlacesMethods.GetItems(DBPhone.CategoriesMethods.GetSubCategoriesCodes(categoryCode));
-
-            if (lstToReturn != null)
-                return lstToReturn;
             else {
-                SetVisibilities(AppResources.TxtNoPlaces, Visibility.Visible, Visibility.Collapsed);
-                return null;
+                lstToReturn = DBPhone.PlacesMethods.GetItems(DBPhone.CategoriesMethods.GetSubCategoriesCodes(categoryCode));
+                if (lstToReturn != null)
+                    return lstToReturn;
+                else return null;
             }
-                
         }
 
         private async Task<List<Place>> DownloadPlacesFromTheInternet(double latitude, double longitude)
@@ -176,7 +172,7 @@ namespace Zebra.WPApp.Pages.Places
             lstbAllPlaces.Visibility = Visibility.Visible;
             txtNoPlacesFound.Visibility = Visibility.Collapsed;
 
-            lstTempPlaces = PlacesMethods.getPlacesOrderedByPopularity(lstAllPlaces);
+            lstTempPlaces = PlacesMethods.getPlacesOrderedByPopularity(lstAllPlaces, App.Popularity);
             if (lstTempPlaces.Count > 0)
             {
                 lstbPopularPlaces.ItemsSource = getDajaCategories(lstTempPlaces);
