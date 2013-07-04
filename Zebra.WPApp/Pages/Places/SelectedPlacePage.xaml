@@ -33,7 +33,10 @@
     </phone:PhoneApplicationPage.Resources>
     <phone:Panorama Title="{Binding name}" x:Name="panorama">
         <phone:Panorama.Background>
-            <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.4"></ImageBrush>
+            <ImageBrush ImageSource="/Assets/FondoF.png" 
+                        Stretch="UniformToFill" 
+                        AlignmentX="Left" 
+                        Opacity="0.4"/>
         </phone:Panorama.Background>
         <phone:PanoramaItem>
             <Grid>
@@ -52,7 +55,7 @@
                            Text="{Binding address}" 
                            FontSize="{StaticResource PhoneFontSizeLarge}" 
                            TextWrapping="Wrap" Margin="24,-20,0,12"/>
-                <map:Map x:Name="mapPlace" Grid.Row="2" Margin="24,12,12,12" ZoomLevel="14"/>
+                <map:Map x:Name="mapPlace" Grid.Row="2" Margin="24,12,12,12" ZoomLevel="18"/>
             </Grid>
         </phone:PanoramaItem>
         <phone:PanoramaItem>
@@ -73,20 +76,24 @@
                                FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
                                FontFamily="{StaticResource PhoneFontFamilyLight}" 
                                Opacity="0.7">
-                        <Run Text="{Binding LocalizedResources.TxbPlacePriceDescription, Mode=OneWay, Source={StaticResource LocalizedStrings}}" />
+                        <Run Text="{Binding LocalizedResources.TxbPlacePriceDescription, 
+                            Mode=OneWay, 
+                            Source={StaticResource LocalizedStrings}}" />
                         <Run Text="{Binding minPrice}" 
                              FontSize="{StaticResource PhoneFontSizeLarge}" 
-                             FontFamily="{StaticResource PhoneFontFamilyNormal}" />
+                             FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
                         <Run x:Name="run2"
                              FontSize="{StaticResource PhoneFontSizeLarge}" 
-                             FontFamily="{StaticResource PhoneFontFamilyNormal}"></Run>
-                        <Run Text="{Binding LocalizedResources.TxbPlacePriceTo, Mode=OneWay, Source={StaticResource LocalizedStrings}}"/>
+                             FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
+                        <Run Text="{Binding LocalizedResources.TxbPlacePriceTo, 
+                            Mode=OneWay, 
+                            Source={StaticResource LocalizedStrings}}"/>
                         <Run Text="{Binding maxPrice}"
                              FontSize="{StaticResource PhoneFontSizeLarge}" 
                                FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
                         <Run x:Name="run"
                              FontSize="{StaticResource PhoneFontSizeLarge}" 
-                             FontFamily="{StaticResource PhoneFontFamilyNormal}"></Run>
+                             FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
                     </TextBlock>
                     <TextBlock 
                         Text="{Binding LocalizedResources.TxbPlaceFeatures, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
@@ -100,7 +107,11 @@
                     <ListBox.ItemTemplate>  
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="12" TextWrapping="Wrap" Visibility="{Binding Exist}" Text="{Binding Name}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                                <TextBlock Margin="12" 
+                                           TextWrapping="Wrap" 
+                                           Visibility="{Binding Exist}" 
+                                           Text="{Binding Name}" 
+                                           FontSize="{StaticResource PhoneFontSizeLarge}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

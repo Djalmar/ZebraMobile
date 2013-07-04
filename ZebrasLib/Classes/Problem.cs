@@ -42,6 +42,7 @@ namespace ZebrasLib
             public string icon { get; set; }
             public double latitude { get; set; }
             public double longitude { get; set; }
+            public int distance { get; set; }
         }
 
         public class ProblemsResult

@@ -56,7 +56,7 @@ namespace OurFacebook
                 downloadedList.SetResult(formatedList.ToList());
             };
 
-            fb.GetTaskAsync("/me/friends?fields=installed,name,picture");
+            fb.GetTaskAsync("/me/friends?fields=installed,picture,name");
             return downloadedList.Task;
         }
 
@@ -67,12 +67,18 @@ namespace OurFacebook
             {
                 foreach (Reporter reporter in P.reporters)
                 {
-                    user = await FacebookMethods.getUserInfo(accessToken, reporter.facebookCode);
-                    if (user.Name != null)
+                    try
                     {
-                        reporter.name = user.Name;
-                        reporter.picture = user.picture.data.url;
+                        user = new facebookUser();
+                        user = await FacebookMethods.getUserInfo(accessToken, reporter.facebookCode.Trim());
+                        if (user.Name != null)
+                        {
+                            reporter.name = user.Name;
+                            reporter.picture = user.picture.data.url;
+                        }
                     }
+                    catch (System.Exception)
+                    {}
                 }
             }
             return list;

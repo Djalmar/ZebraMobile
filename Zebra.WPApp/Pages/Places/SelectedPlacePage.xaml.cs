@@ -17,6 +17,7 @@ using System.Globalization;
 using ZebrasLib;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using Microsoft.Phone.Tasks;
 namespace Zebra.WPApp.Pages.Places
 {
     public partial class SelectedPlacePage : PhoneApplicationPage
@@ -32,6 +33,19 @@ namespace Zebra.WPApp.Pages.Places
             watcher = new GeoCoordinateWatcher();
             watcher.PositionChanged += watcher_PositionChanged;
             watcher.StatusChanged += watcher_StatusChanged;
+            mapPlace.Tap += mapPlace_Tap;
+        }
+
+        void mapPlace_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            MapsDirectionsTask task = new MapsDirectionsTask();
+            task.Start = new LabeledMapLocation(AppResources.TxtPlacesYoureHere, new GeoCoordinate(Latitude, Longitude));
+            task.End = new LabeledMapLocation(staticClasses.selectedPlace.name, 
+                new GeoCoordinate(
+                    staticClasses.selectedPlace.latitude,
+                    staticClasses.selectedPlace.longitude));
+
+            task.Show();
         }
 
         void SelectedPlacePage_Loaded(object sender, RoutedEventArgs e)
@@ -82,8 +96,9 @@ namespace Zebra.WPApp.Pages.Places
             lstRelatedByFeatures.ItemsSource = ZebrasLib.Places.PlacesMethods.getDistancesForEachPlace(Latitude,
                 Longitude, 
                 (
-                    DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.minPrice,
-                    staticClasses.selectedPlace.maxPrice,
+                   DBPhone.PlacesMethods.getRelatedPlacesBasedOn(
+                    staticClasses.selectedPlace.kidsArea,
+                    staticClasses.selectedPlace.smokingArea,
                     staticClasses.selectedPlace.parentCategoryCode,
                     staticClasses.selectedPlace.code)
                     ));
@@ -100,10 +115,12 @@ namespace Zebra.WPApp.Pages.Places
             lstRelatedByPrices.ItemsSource = ZebrasLib.Places.PlacesMethods.getDistancesForEachPlace(Latitude,
                 Longitude,
                 ( 
-                    DBPhone.PlacesMethods.getRelatedPlacesBasedOn(staticClasses.selectedPlace.kidsArea,
-                    staticClasses.selectedPlace.smokingArea,
+                 DBPhone.PlacesMethods.getRelatedPlacesBasedOn(
+                    staticClasses.selectedPlace.minPrice,
+                    staticClasses.selectedPlace.maxPrice,
                     staticClasses.selectedPlace.parentCategoryCode,
                     staticClasses.selectedPlace.code)
+                    
                     ));
             if (lstRelatedByPrices.Items.Count == 0)
             {

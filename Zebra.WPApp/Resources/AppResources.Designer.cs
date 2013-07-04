@@ -223,7 +223,7 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your limit.
+        ///   Looks up a localized string similar to Your limit?.
         /// </summary>
         public static string TxbFindItemMaxMoney {
             get {
@@ -232,7 +232,7 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How much are you gonna spend.
+        ///   Looks up a localized string similar to How much are you gonna spend?.
         /// </summary>
         public static string TxbFindItemMinMoney {
             get {
@@ -250,7 +250,7 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How many people are there.
+        ///   Looks up a localized string similar to How many are you?.
         /// </summary>
         public static string TxbFindItemPeople {
             get {
@@ -520,7 +520,7 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the categories you are most interesed in.
+        ///   Looks up a localized string similar to Select the categories you like the most so we can download them for you..
         /// </summary>
         public static string TxbWhatDownload {
             get {
@@ -579,6 +579,15 @@ namespace Zebra.WPApp.Resources {
         public static string TxtbMiles {
             get {
                 return ResourceManager.GetString("TxtbMiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a rating so we can choose selected places for you.
+        /// </summary>
+        public static string TxtbSettingsRating {
+            get {
+                return ResourceManager.GetString("TxtbSettingsRating", resourceCulture);
             }
         }
         
@@ -696,6 +705,15 @@ namespace Zebra.WPApp.Resources {
         public static string TxtParking {
             get {
                 return ResourceManager.GetString("TxtParking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;re here.
+        /// </summary>
+        public static string TxtPlacesYoureHere {
+            get {
+                return ResourceManager.GetString("TxtPlacesYoureHere", resourceCulture);
             }
         }
         
@@ -822,6 +840,87 @@ namespace Zebra.WPApp.Resources {
         public static string TxtSubCategoriesPlacesFound {
             get {
                 return ResourceManager.GetString("TxtSubCategoriesPlacesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That&apos;s nice!. No problems reported today so far..
+        /// </summary>
+        public static string TxtTroublesNoReports {
+            get {
+                return ResourceManager.GetString("TxtTroublesNoReports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No problems reported by friends today..
+        /// </summary>
+        public static string TxtTroublesNoReportsByFriends {
+            get {
+                return ResourceManager.GetString("TxtTroublesNoReportsByFriends", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to problems today..
+        /// </summary>
+        public static string TxtTroublesOcurrence {
+            get {
+                return ResourceManager.GetString("TxtTroublesOcurrence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to problem today..
+        /// </summary>
+        public static string TxtTroublesOcurrenceOne {
+            get {
+                return ResourceManager.GetString("TxtTroublesOcurrenceOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last one was reported by.
+        /// </summary>
+        public static string TxtTroublesReportedBy {
+            get {
+                return ResourceManager.GetString("TxtTroublesReportedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please tell us the max amount of money you are willing to spend..
+        /// </summary>
+        public static string TxtWalletNoMaxMoney {
+            get {
+                return ResourceManager.GetString("TxtWalletNoMaxMoney", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please tell us how much do you want to spend..
+        /// </summary>
+        public static string TxtWalletNoMinMoney {
+            get {
+                return ResourceManager.GetString("TxtWalletNoMinMoney", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We need to know how many people are you..
+        /// </summary>
+        public static string TxtWalletNoPeople {
+            get {
+                return ResourceManager.GetString("TxtWalletNoPeople", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please write something so we can search it for you..
+        /// </summary>
+        public static string TxtWalletNoTextIntroduced {
+            get {
+                return ResourceManager.GetString("TxtWalletNoTextIntroduced", resourceCulture);
             }
         }
     }

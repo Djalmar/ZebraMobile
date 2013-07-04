@@ -100,14 +100,14 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Begin\AboutZebritas.xaml.cs">
+      <DependentUpon>AboutZebritas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Begin\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Begin\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Begin\SplashPage.xaml.cs">
-      <DependentUpon>SplashPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Login\FacebookLoginPage.xaml.cs">
       <DependentUpon>FacebookLoginPage.xaml</DependentUpon>
@@ -162,15 +162,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Begin\AboutZebritas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Begin\MenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Begin\SettingsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Begin\SplashPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -239,6 +239,7 @@
     <Content Include="Assets\AppBar\edit.png" />
     <Content Include="Assets\AppBar\share.png" />
     <Content Include="Assets\AppBar\upload.png" />
+    <Content Include="Assets\Icons\Categories\green.png" />
     <Content Include="Assets\Icons\Categories\beer.png" />
     <Content Include="Assets\FondoF.png" />
     <Content Include="Assets\FondoFF.png" />
@@ -246,6 +247,7 @@
     <Content Include="Assets\Icons\Categories\art.png" />
     <Content Include="Assets\Icons\Categories\banc.png" />
     <Content Include="Assets\Icons\Categories\build.png" />
+    <Content Include="Assets\Icons\Categories\buildings.png" />
     <Content Include="Assets\Icons\Categories\cine.png" />
     <Content Include="Assets\Icons\Categories\coffee.png" />
     <Content Include="Assets\Icons\Categories\hospital.png" />
@@ -266,6 +268,9 @@
     <Content Include="Assets\Icons\Categories\sports.png" />
     <Content Include="Assets\Icons\Categories\transport.png" />
     <Content Include="Assets\AppBar\next.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\zebrita.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MenuTile\Cebras1.jpg" />

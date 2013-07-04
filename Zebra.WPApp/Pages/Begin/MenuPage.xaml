@@ -33,7 +33,10 @@
     </toolkit:TransitionService.NavigationOutTransition>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/FondoFF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.2"></ImageBrush>
+            <ImageBrush ImageSource="/Assets/FondoFF.png" 
+                        Stretch="UniformToFill" 
+                        AlignmentX="Left" 
+                        Opacity="0.4"/>
         </Grid.Background>
         <Grid Width="432" HorizontalAlignment="Left" Margin="12,0,0,12">
             <Grid.ColumnDefinitions>
@@ -61,14 +64,16 @@
                 FontSize="100"/>
             <toolkit:HubTile Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
                              toolkit:TurnstileFeatherEffect.FeatheringIndex="1"
-                             Tap="btnTraffic_Tap"
+                             Name="btnTraffic"
                              Margin="12,12,0,0"
                              Source="/Assets/MenuTile/Cebras4.jpg"
                              Notification="{Binding TargetNullValue=2newEvents}"
                              DisplayNotification="True"
                              Title="{Binding LocalizedResources.TileWhatsGoingOn, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                              Size="Large" Background="#FF009E00"/>
-            <toolkit:HubTile Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
+            <toolkit:HubTile Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                             Grid.RowSpan="2"
+                             Name="btnPlaces"
                              Background="#FFA300AB"
                              toolkit:TurnstileFeatherEffect.FeatheringIndex="7"
                              Tap="btnPlaces_Tap"
@@ -80,7 +85,7 @@
             <toolkit:HubTile Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2"
                              Background="#FFE51400"
                              toolkit:TurnstileFeatherEffect.FeatheringIndex="2"
-                             Tap="btnWallet_Tap"
+                             Name="btnWallet"
                              Margin="12,12,0,0"
                              Source="/Assets/MenuTile/Cebras2.jpg"
                              Title="{Binding LocalizedResources.TileWallet, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
@@ -92,7 +97,7 @@
                              Margin="12,12,0,0"
                              Title="Zebra"
                              GroupTag="menu"
-                             Tap="btnZebra_Tap"
+                             Name="btnZebra"
                              Size="Small" 
                              Source="/Assets/MenuTile/Z.png"
                              Background="#FF007ACC"/>
@@ -104,24 +109,6 @@
                              Source="/Assets/Icons/ApplicationBar.settings.png"
                              Size="Small" 
                              Background="Gray"/>
-            <!--<toolkit:HubTile Grid.Row="4" Grid.Column="2" 
-                             toolkit:TurnstileFeatherEffect.FeatheringIndex="6"
-                             Margin="12,10,0,0"
-                             Source="/Images/Beignets.jpg"
-                             Title="Beignets"
-                             Notification="New&#x0d;&#x0a;Orleans"
-                             DisplayNotification="True"
-                             GroupTag="Sizes"
-                             Size="Small"/>
-            <toolkit:HubTile Grid.Row="4" Grid.Column="3" 
-                             toolkit:TurnstileFeatherEffect.FeatheringIndex="5"
-                             Margin="12,10,0,0"
-                             Source="/Images/Dessert.jpg"
-                             Title="Beignets"
-                             Notification="New&#x0d;&#x0a;Orleans"
-                             DisplayNotification="True"
-                             GroupTag="Sizes"
-                             Size="Small" Background="#FF007ACC"/>-->
         </Grid>
     </Grid>
 </phone:PhoneApplicationPage>

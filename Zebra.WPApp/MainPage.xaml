@@ -18,29 +18,30 @@
 			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
 				<EasingColorKeyFrame KeyTime="0" Value="{StaticResource PhoneContrastBackgroundColor}"/>
 				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource PhoneAccentColor}"/>
-				<EasingColorKeyFrame KeyTime="0:0:0.4" Value="{StaticResource PhoneContrastBackgroundColor}"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.3" Value="{StaticResource PhoneContrastBackgroundColor}"/>
 			</ColorAnimationUsingKeyFrames>
 			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle1">
 				<EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource PhoneContrastBackgroundColor}"/>
-				<EasingColorKeyFrame KeyTime="0:0:0.4" Value="{StaticResource PhoneAccentColor}"/>
-				<EasingColorKeyFrame KeyTime="0:0:0.6" Value="{StaticResource PhoneContrastBackgroundColor}"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.3" Value="{StaticResource PhoneAccentColor}"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.4" Value="{StaticResource PhoneContrastBackgroundColor}"/>
 			</ColorAnimationUsingKeyFrames>
 			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle2">
 				<EasingColorKeyFrame KeyTime="0:0:0.4" Value="{StaticResource PhoneContrastBackgroundColor}"/>
-				<EasingColorKeyFrame KeyTime="0:0:0.6" Value="{StaticResource PhoneAccentColor}"/>
-				<EasingColorKeyFrame KeyTime="0:0:0.8" Value="{StaticResource PhoneContrastBackgroundColor}"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.5" Value="{StaticResource PhoneAccentColor}"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.6" Value="{StaticResource PhoneContrastBackgroundColor}"/>
 			</ColorAnimationUsingKeyFrames>
 			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle3">
 				<EasingColorKeyFrame KeyTime="0:0:0.6" Value="{StaticResource PhoneContrastBackgroundColor}"/>
-				<EasingColorKeyFrame KeyTime="0:0:0.8" Value="{StaticResource PhoneAccentColor}"/>
-				<EasingColorKeyFrame KeyTime="0:0:1" Value="{StaticResource PhoneContrastBackgroundColor}"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.7" Value="{StaticResource PhoneAccentColor}"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.8" Value="{StaticResource PhoneContrastBackgroundColor}"/>
 			</ColorAnimationUsingKeyFrames>
 			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle4">
 				<EasingColorKeyFrame KeyTime="0:0:0.8" Value="{StaticResource PhoneContrastBackgroundColor}"/>
-				<EasingColorKeyFrame KeyTime="0:0:1" Value="{StaticResource PhoneAccentColor}"/>
-				<EasingColorKeyFrame KeyTime="0:0:1.2" Value="{StaticResource PhoneContrastBackgroundColor}"/>
+				<EasingColorKeyFrame KeyTime="0:0:0.9" Value="{StaticResource PhoneAccentColor}"/>
+				<EasingColorKeyFrame KeyTime="0:0:1" Value="{StaticResource PhoneContrastBackgroundColor}"/>
 			</ColorAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" 
+                                           Storyboard.TargetName="textBlock">
 				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.5"/>
 				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
 					<EasingDoubleKeyFrame.EasingFunction>
@@ -70,47 +71,83 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-    <!--LayoutRoot is the root grid where all page content is placed-->
+    
     <Grid x:Name="grdSplash">
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.3*" />
         </Grid.RowDefinitions>
-        <TextBlock x:Name="textBlock" Text="Zebra" Grid.Row="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+            <Image Source="/Assets/Icons/zebrita.png"
+    		Height="400"
+    		Width="300"
+                   Grid.RowSpan="3"/>
             <Grid Grid.Row="2" RenderTransformOrigin="0.5,0.5">
-            	<Grid.Projection>
-            		<PlaneProjection RotationX="-69"/>
-            	</Grid.Projection>
-                <Rectangle x:Name="rectangle" Width="50" Height="200" Margin="60,0,370,0" RenderTransformOrigin="0.5,0.5">
-                	<Rectangle.Fill>
-                		<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
-                	</Rectangle.Fill>
-                	<Rectangle.RenderTransform>
-                		<CompositeTransform SkewX="-10"/>
-                	</Rectangle.RenderTransform></Rectangle>
-                <Rectangle x:Name="rectangle4" Width="50" Height="200" Fill="White" Margin="370,0,60,0" RenderTransformOrigin="0.5,0.5">
-                	<Rectangle.RenderTransform>
-                		<CompositeTransform SkewX="10"/>
-                	</Rectangle.RenderTransform></Rectangle>
-                <Rectangle x:Name="rectangle3" Width="50" Height="200" Fill="White" Margin="295,11,135,11" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                	<Rectangle.RenderTransform>
-                		<CompositeTransform SkewX="7"/>
-                	</Rectangle.RenderTransform></Rectangle>
-                <Rectangle x:Name="rectangle1" Width="50" Height="200" Fill="White" Margin="135,11,295,11" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                	<Rectangle.RenderTransform>
-                		<CompositeTransform SkewX="-7"/>
-                	</Rectangle.RenderTransform></Rectangle>
-					<Rectangle x:Name="rectangle2" Width="50" Height="200" Fill="White">
-						<Rectangle.Projection>
-							<PlaneProjection RotationX="-10"/>
-						</Rectangle.Projection></Rectangle>
+                <Grid.Resources>
+                    <Style TargetType="Rectangle" x:Key="rectangles">
+                        <Setter Property="Width" Value="50"/>
+                        <Setter Property="Height" Value="200"/>
+                        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                        <Setter Property="Fill" Value="White"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid.Projection>
+                    <PlaneProjection RotationX="-69"/>
+                </Grid.Projection>
+
+                <Rectangle x:Name="rectangle" 
+    				Style="{StaticResource rectangles}"
+    				Margin="60,0,370,0"
+    				Fill="{StaticResource PhoneAccentBrush}">
+                    <Rectangle.RenderTransform>
+                        <CompositeTransform SkewX="-10"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+
+                <Rectangle x:Name="rectangle4" 
+    				Style="{StaticResource rectangles}"
+    				Margin="370,0,60,0">
+                    <Rectangle.RenderTransform>
+                        <CompositeTransform SkewX="10"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+
+                <Rectangle x:Name="rectangle3" 
+    				Style="{StaticResource rectangles}"
+    				Margin="295,11,135,11" >
+                    <Rectangle.RenderTransform>
+                        <CompositeTransform SkewX="7"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+
+                <Rectangle x:Name="rectangle1" 
+    				Style="{StaticResource rectangles}"
+    				Margin="135,11,295,11" >
+                    <Rectangle.RenderTransform>
+                        <CompositeTransform SkewX="-7"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+
+                <Rectangle x:Name="rectangle2" 
+    				Style="{StaticResource rectangles}">
+                    <Rectangle.Projection>
+                        <PlaneProjection RotationX="-10"/>
+                    </Rectangle.Projection>
+                </Rectangle>
             </Grid>
         </Grid>
+        <TextBlock x:Name="textBlock" 
+    		Text="Zebritas" 
+    		Grid.Row="1" 
+    		FontSize="69" 
+    		HorizontalAlignment="Center" 
+    		VerticalAlignment="Center"
+                   Margin="0,0,0,90"/>
+        
     </Grid>
 </phone:PhoneApplicationPage>

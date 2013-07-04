@@ -243,7 +243,7 @@
     <value>Populares</value>
   </data>
   <data name="TxbWhatDownload" xml:space="preserve">
-    <value>Seleccione las categorias que mas le interesan</value>
+    <value>Seleccione las categorias que mas le gustan, para que las descarguemos.</value>
   </data>
   <data name="TxtSubCategoriesPlacesFound" xml:space="preserve">
     <value> lugares encontrados</value>
@@ -300,13 +300,13 @@
     <value>Cuanto vas a gastar</value>
   </data>
   <data name="TxbFindItemMinMoneyHint" xml:space="preserve">
-    <value>use su moneda local</value>
+    <value>Use su moneda local</value>
   </data>
   <data name="TxbFindItemPeople" xml:space="preserve">
-    <value>Cuantas personas estan ahi</value>
+    <value>¿Cuantos son?</value>
   </data>
   <data name="TxbFindItemPeopleHint" xml:space="preserve">
-    <value>pon un numero</value>
+    <value>Introduce un numero</value>
   </data>
   <data name="TxbFindOr" xml:space="preserve">
     <value>o</value>
@@ -315,7 +315,7 @@
     <value>Escribe algo</value>
   </data>
   <data name="TxbFindSearchBoxHint" xml:space="preserve">
-    <value>buscar</value>
+    <value>Buscar</value>
   </data>
   <data name="TxtFacebookNeeded" xml:space="preserve">
     <value>Necesitas iniciar sesion en Facebook para comenzar a usar la aplicacion.</value>
@@ -370,5 +370,38 @@
   </data>
   <data name="TxtShareAt" xml:space="preserve">
     <value>en</value>
+  </data>
+  <data name="Last one was reported by" xml:space="preserve">
+    <value>El ultimo fue reportado por</value>
+  </data>
+  <data name="TxtTroublesOcurrence" xml:space="preserve">
+    <value>problemas ocurrieron hoy.</value>
+  </data>
+  <data name="TxtTroublesOcurrenceOne" xml:space="preserve">
+    <value>problema ocurrio hoy.</value>
+  </data>
+  <data name="TxtPlacesYoureHere" xml:space="preserve">
+    <value>Estas aqui</value>
+  </data>
+  <data name="TxtbSettingsRating" xml:space="preserve">
+    <value>Elige un rating para tus lugares recomendados</value>
+  </data>
+  <data name="TxtWalletNoMaxMoney" xml:space="preserve">
+    <value>Por favor, indica cuanto dinero estan dipuestos a gastar como maximo</value>
+  </data>
+  <data name="TxtWalletNoMinMoney" xml:space="preserve">
+    <value>Por favor, indica cuanto dinero estan dispuestos a gastar.</value>
+  </data>
+  <data name="TxtWalletNoPeople" xml:space="preserve">
+    <value>Por favor, indique cuantas personas son.</value>
+  </data>
+  <data name="TxtWalletNoTextIntroduced" xml:space="preserve">
+    <value>Por favor, introduzca algo que quiera buscar.</value>
+  </data>
+  <data name="TxtTroublesNoReports" xml:space="preserve">
+    <value>Que interesante!. No se han reportado problemas durante el dia.</value>
+  </data>
+  <data name="TxtTroublesNoReportsByFriends" xml:space="preserve">
+    <value>Tus amigos no han reportado nada durante el dia.</value>
   </data>
 </root>

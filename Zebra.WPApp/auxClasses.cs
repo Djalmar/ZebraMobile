@@ -25,6 +25,13 @@ namespace Zebra.WPApp
         public static string title { get; set; }
         public static Uri link { get; set; }
     }
+
+    public static class TileContent
+    {
+        public static string trafficMessage { get; set; }
+        public static string placeMessage { get; set; }
+        public static string walletMessage { get; set; }
+    }
 }
 namespace Zebra.Utilities
 {

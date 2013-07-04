@@ -12,7 +12,7 @@ using Zebra.WPApp.UserControls;
 using ZebrasLib;
 using ZebrasLib.Classes;
 using ZebrasLib.Events;
-
+using System.Linq;
 namespace Zebra.WPApp.Pages.Trouble
 {
     public partial class TroublesPage : PhoneApplicationPage
@@ -50,9 +50,18 @@ namespace Zebra.WPApp.Pages.Trouble
                 friendsCodes.Add(user.id);
             
             lstEventsByFriends = await ProblemsMethods.GetProblems(friendsCodes, Main.GetValueFromTimeZone());
-            if(lstEventsByFriends.Count>0)
-                lstEventsByFriends= await OurFacebook.FacebookMethods.GetFbInfoForTheseReporters(lstEventsByFriends, App.facebookAccessToken);
-            lstTroublesByFriends.ItemsSource = lstEventsByFriends;
+            if (lstEventsByFriends.Count > 0)
+            {
+                lstEventsByFriends = await OurFacebook.FacebookMethods.GetFbInfoForTheseReporters(lstEventsByFriends, App.facebookAccessToken);
+                lstTroublesByFriends.ItemsSource = lstEventsByFriends;
+            }
+                
+            else {
+                lstTroublesByFriends.Visibility = Visibility.Collapsed;
+                txtNoReportsTodayByFriends.Visibility = Visibility.Visible;
+                txtNoReportsTodayByFriends.Text = AppResources.TxtTroublesNoReportsByFriends;
+            }
+            
         }
 
         #region AppBar
@@ -95,9 +104,19 @@ namespace Zebra.WPApp.Pages.Trouble
             lstEvents = await ProblemsMethods.GetProblems(latitude,longitude, Main.GetValueFromTimeZone());
             if (lstEvents != null)
             {
-                lstEvents = await OurFacebook.FacebookMethods.GetFbInfoForTheseReporters(lstEvents, App.facebookAccessToken);
                 LoadPushPins();
-                GetFriendsProblems();
+                lstEvents = await OurFacebook.FacebookMethods.GetFbInfoForTheseReporters(lstEvents, App.facebookAccessToken);
+                GetFriendsProblems(); 
+                if (lstEvents.Count == 0)
+                {
+                    txtNoReportsToday.Text = AppResources.TxtTroublesNoReports;
+                    lstTroubles.Visibility = Visibility.Collapsed;
+                    txtNoReportsToday.Visibility = Visibility.Visible;
+
+                    lstTroublesByFriends.Visibility = Visibility.Collapsed;
+                    txtNoReportsTodayByFriends.Visibility = Visibility.Visible;
+                    txtNoReportsTodayByFriends.Text = AppResources.TxtTroublesNoReports;   
+                }
             }
             else
                 SetTheWorldOnFire(AppResources.TxtInternetConnectionProblem);
@@ -155,6 +174,22 @@ namespace Zebra.WPApp.Pages.Trouble
                 lstTroubles.SelectedItem = null;
                 lstTroubles.SelectedIndex = -1;
             }
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnBackKeyPress(e);
+            if (lstTroubles != null)
+            {
+                int troublesCount = lstTroubles.Items.Count;
+                if (troublesCount > 0)
+                {
+                    string name = (lstTroubles.Items.Last() as Problem).reporters.First().name;
+                    TileContent.trafficMessage = troublesCount.ToString() + " " + AppResources.TxtTroublesOcurrence + "\n" +
+                        AppResources.TxtTroublesReportedBy + "\n" + name;
+                }
+            }
+                
         }
     }
 }

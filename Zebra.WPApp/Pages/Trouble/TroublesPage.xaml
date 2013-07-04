@@ -47,41 +47,36 @@
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>
             <DataTemplate x:Key="lstTroubles">
-                <StackPanel Orientation="Horizontal" Margin="12">
-                    <Border Background="{StaticResource PhoneAccentBrush}"
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="12">
+                        <Border Background="{StaticResource PhoneAccentBrush}"
                                         VerticalAlignment="Top"
                                         HorizontalAlignment="Center" 
                                         Width="100"
                                         Height="100"
                                         Margin="0,12,12,0">
-                        <Image Height="20" 
-                                           Width="20" 
+                            <Image Height="80" 
+                                           Width="80" 
                                            Source="{Binding icon}"
                                            />
-                    </Border>
-                    <StackPanel MaxWidth="250">
-                        <StackPanel.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextWrapping" Value="Wrap"/>
-                            </Style>
-                        </StackPanel.Resources>
-                        <TextBlock Text="{Binding description}" 
-                                               FontSize="{StaticResource PhoneFontSizeMedium}" 
-                                               FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
-                        <TextBlock FontSize="{StaticResource PhoneFontSizeNormal}" 
-                                               FontFamily="{StaticResource PhoneFontFamilySemiLight}">
-                                        <Run Text="You are at"/>
-                                        <Run Text="100"
-                                             FontSize="{StaticResource PhoneFontSizeMedium}" 
-                                             FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
-                                        <Run Text="units of distance"/>
-                        </TextBlock>
-                        <TextBlock Text="{Binding dtReportedAt, Converter={StaticResource RelativeTimeConverter}}" 
-                                               FontSize="32"/>
-                        <TextBlock Text="{Binding reportedAt}"
-                                        FontSize="{StaticResource PhoneFontSizeNormal}" 
-                                        FontFamily="{StaticResource PhoneFontFamilyLight}" />
+                        </Border>
+                        <StackPanel MaxWidth="250">
+                            <TextBlock Text="{Binding dtReportedAt, Converter={StaticResource RelativeTimeConverter}}" 
+                                               FontSize="23"/>
+                            <TextBlock Text="{Binding description}" 
+                                   TextWrapping="Wrap"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="{StaticResource PhoneFontSizeSmall}" 
+                                   Text="You are at "/>
+                                <TextBlock  Name="txtbDistance" 
+                                        FontSize="{StaticResource PhoneFontSizeSmall}" 
+                                        Text="{Binding distance}"/>
+                                <TextBlock  Text=" mts"
+                                        FontSize="{StaticResource PhoneFontSizeSmall}" />
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
+                    <Rectangle Height="10"/>
                 </StackPanel>
             </DataTemplate>
         </Grid.Resources>
@@ -124,9 +119,13 @@
                                    FontSize="50"/>
                     </DataTemplate>
                 </phone:PanoramaItem.HeaderTemplate>
+                <Grid>
                 <ListBox Name="lstTroubles" SelectionChanged="lstTroubles_SelectionChanged"
-                         ItemTemplate="{StaticResource lstTroubles}">
-                </ListBox>
+                         ItemTemplate="{StaticResource lstTroubles}"/>
+                <TextBlock Name="txtNoReportsToday"
+                            Style="{StaticResource txtNotFound}"/>    
+                </Grid>
+                
             </phone:PanoramaItem>
             <phone:PanoramaItem Header="{Binding}">
                 <phone:PanoramaItem.HeaderTemplate>
@@ -137,10 +136,14 @@
                                    FontSize="50"/>
                     </DataTemplate>
                 </phone:PanoramaItem.HeaderTemplate>
-                <ListBox Name="lstTroublesByFriends" 
+                <Grid>
+                    <ListBox Name="lstTroublesByFriends" 
                          SelectionChanged="lstTroubles_SelectionChanged"
                          ItemTemplate="{StaticResource lstTroubles}">
-                </ListBox>
+                    </ListBox>
+                    <TextBlock Name="txtNoReportsTodayByFriends"
+                            Style="{StaticResource txtNotFound}"/>
+                </Grid>
             </phone:PanoramaItem>
         </phone:Panorama>
         <ProgressBar x:Name="prgEvents" VerticalAlignment="Top" IsIndeterminate="True" Margin="6" Visibility="Collapsed"/>

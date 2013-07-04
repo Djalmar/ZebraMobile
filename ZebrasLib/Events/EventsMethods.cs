@@ -12,25 +12,6 @@ namespace ZebrasLib
     {
         public static partial class ProblemsMethods
         {
-            //public static async Task<ProblemsResult> ReportProblem(
-            //        string facebookCode,
-            //        double latitude,
-            //        double longitude,
-            //        string description,
-            //        int type)
-            //{
-            //    string strlatitude = Convert.ToString(latitude, new CultureInfo("en-US"));
-            //    string strlongitude = Convert.ToString(longitude, new CultureInfo("en-US"));
-            //    string data =
-            //        "facebookcode=" + facebookCode +
-            //        "&latitude=" + strlatitude +
-            //        "&longitude=" + strlongitude +
-            //        "&description=" + description +
-            //        "&type=" + type;
-            //    string result = await Internet.UploadStringAsync(Main.urlReportProblem, data);
-            //    return JsonConvert.DeserializeObject<ProblemsResult>(result);
-            //}
-
             public static async Task<List<Problem>> GetProblems(double latitude, double longitude, int timeZone)
             {
                 string strlatitude = Convert.ToString(latitude, new CultureInfo("en-US"));
@@ -43,7 +24,11 @@ namespace ZebrasLib
                 if (result != null)
                 {
                     if (Main.thereIsNoProblemo(result.status))
+                    {
+                        foreach (Problem P in result.problemsList)
+                            P.distance = (int)(Main.findDistance(latitude, longitude, P.latitude, P.longitude));
                         return result.problemsList;
+                    }
                     else return null;
                 }
                 return null;

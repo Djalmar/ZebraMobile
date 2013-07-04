@@ -50,26 +50,31 @@
             <ListBox x:Name="lstReporters" ItemsSource="{Binding reporters}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Margin="12">
-                            <Image Width="150" Height="150" Source="{Binding picture}"></Image>
-                            <StackPanel MaxWidth="300">
-                                <StackPanel.Resources>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="TextWrapping" Value="Wrap"/>
-                                    </Style>
-                                </StackPanel.Resources>
-                                <TextBlock Text="{Binding name}"
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="12">
+                                <Image Width="150" Height="150" Source="{Binding picture}"
+                                   Margin="0,12,12,0"/>
+                                <StackPanel MaxWidth="300">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextWrapping" Value="Wrap"/>
+                                        </Style>
+                                        <toolkit:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
+                                    </StackPanel.Resources>
+                                    <TextBlock Text="{Binding name}"
                                            FontSize="{StaticResource PhoneFontSizeLarge}" 
                                            FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
-                                <TextBlock Text="{Binding description}"
+                                    <TextBlock Text="{Binding description}"
                                            FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
                                            FontFamily="{StaticResource PhoneFontFamilySemiLight}"
                                            Opacity="0.85"/>
-                                <TextBlock Text="{Binding reportedAt}"
+                                    <TextBlock Text="{Binding dtReportedAt, Converter={StaticResource RelativeTimeConverter}}" 
                                            FontSize="{StaticResource PhoneFontSizeNormal}" 
                                                FontFamily="{StaticResource PhoneFontFamilySemiLight}"
                                            Opacity="0.7"/>
+                                </StackPanel>
                             </StackPanel>
+                            <Rectangle Height="12"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

@@ -1,28 +1,27 @@
 ﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Device.Location;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Navigation;
 using Zebra.WPApp.Resources;
 using ZebrasLib;
 using ZebrasLib.Classes;
-using ZebrasLib.Events;
-using Newtonsoft.Json;
+
 namespace Zebra.WPApp.Pages.Trouble
 {
     public partial class ReportPage : PhoneApplicationPage
     {
         private List<string> troubleCategoryList;
+
         public GeoCoordinateWatcher watcher { get; set; }
+
         public ProblemsResult result { get; set; }
-        double latitude;
-        double longitude;
+
+        private double latitude;
+        private double longitude;
 
         public ReportPage()
         {
@@ -41,24 +40,25 @@ namespace Zebra.WPApp.Pages.Trouble
         }
 
         #region AppBar
+
         private void LoadAppBar()
         {
             ApplicationBar = new ApplicationBar();
 
             ApplicationBarIconButton btnShare = new ApplicationBarIconButton();
-            btnShare.IconUri = new Uri("/Assets/AppBar/share.png",UriKind.Relative);
+            btnShare.IconUri = new Uri("/Assets/AppBar/share.png", UriKind.Relative);
             btnShare.Text = AppResources.TxtShare + " n " + AppResources.TxtReport;
             btnShare.Click += btnShare_Click;
             ApplicationBar.Buttons.Add(btnShare);
 
             ApplicationBarIconButton btnReport = new ApplicationBarIconButton();
-            btnReport.IconUri = new Uri("/Assets/AppBar/upload.png",UriKind.Relative);
+            btnReport.IconUri = new Uri("/Assets/AppBar/upload.png", UriKind.Relative);
             btnReport.Text = AppResources.TxtReport;
             btnReport.Click += btnReport_Click;
             ApplicationBar.Buttons.Add(btnReport);
         }
 
-        void btnReport_Click(object sender, EventArgs e)
+        private void btnReport_Click(object sender, EventArgs e)
         {
             Report();
             NavigationService.GoBack();
@@ -76,12 +76,13 @@ namespace Zebra.WPApp.Pages.Trouble
                     txtDescription.Text,
                     reportType);
         }
-        async void ReportEvent(string facebookCode,
+
+        private async void ReportEvent(string facebookCode,
                     double latitude,
                     double longitude,
                     string description,
                     int type)
-        { 
+        {
             string data =
                     "facebookcode=" + App.facebookId +
                     "&latitude=" + latitude +
@@ -89,13 +90,14 @@ namespace Zebra.WPApp.Pages.Trouble
                     "&description=" + description +
                     "&type=" + type +
                     "&timezone=" + Main.GetValueFromTimeZone();
-            string resultFromServer = await Zebra.Utilities.Internet.UploadStringAsyncUsingPUT(new Uri(Main.urlReportProblem,UriKind.Absolute), data);
+            string resultFromServer = await Zebra.Utilities.Internet.UploadStringAsyncUsingPUT(new Uri(Main.urlReportProblem, UriKind.Absolute), data);
             ProblemsResult result = JsonConvert.DeserializeObject<ProblemsResult>(resultFromServer);
             if (result != null)
             {
                 if (result.status == "200")
                     MessageBox.Show(AppResources.TxtReportSucceded);
-                else {
+                else
+                {
                     if (result.status == "400")
                         MessageBox.Show(AppResources.TxtReportRepeated);
                     else MessageBox.Show(AppResources.TxtReportFailed);
@@ -104,9 +106,10 @@ namespace Zebra.WPApp.Pages.Trouble
             else MessageBox.Show(AppResources.TxtInternetConnectionProblem);
         }
 
-        void btnShare_Click(object sender, EventArgs e)
+        private void btnShare_Click(object sender, EventArgs e)
         {
             #region Report
+
             ProblemsResult result = new ProblemsResult();
             string description = txtDescription.Text;
             int reportType = lspTroubleCategory.SelectedIndex + 1;
@@ -116,20 +119,26 @@ namespace Zebra.WPApp.Pages.Trouble
                     longitude,
                     txtDescription.Text,
                     reportType);
-            #endregion
+
+            #endregion Report
+
             #region Share
-            ShareContent.title = AppResources.TxtShareImAt +" "+ lspTroubleCategory.SelectedItem.ToString();
+
+            ShareContent.title = AppResources.TxtShareImAt + " " + lspTroubleCategory.SelectedItem.ToString();
             ShareContent.message = txtDescription.Text;
-            ShareContent.link= new Uri("http://bing.com/maps/default.aspx" +
-                "?cp=" + latitude + "~" + longitude+
+            ShareContent.link = new Uri("http://bing.com/maps/default.aspx" +
+                "?cp=" + latitude + "~" + longitude +
                 "&lvl=18" +
-                "&style=r",UriKind.Absolute);
+                "&style=r", UriKind.Absolute);
 
             NavigationService.Navigate(new Uri("/Pages/Share.xaml", UriKind.Relative));
-            #endregion
+
+            #endregion Share
+
             NavigationService.GoBack();
         }
-        #endregion
+
+        #endregion AppBar
 
         private void LoadProblemsList()
         {
