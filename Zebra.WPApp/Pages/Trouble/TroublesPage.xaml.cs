@@ -20,6 +20,7 @@ namespace Zebra.WPApp.Pages.Trouble
         public List<Problem> lstEvents { get; set; }
         public List<Problem> lstEventsByFriends { get; set; }
         ApplicationBarIconButton btnReport;
+        ApplicationBarIconButton btnAR;
         private GeoCoordinateWatcher watcher;
         private double latitude;
         private double longitude;
@@ -73,6 +74,33 @@ namespace Zebra.WPApp.Pages.Trouble
             btnReport.Text = AppResources.TxtReport;
             btnReport.Click += btnReport_Click;
             ApplicationBar.Buttons.Add(btnReport);
+
+            btnAR = new ApplicationBarIconButton();
+            btnAR.IconUri = new Uri("/Assets/AppBar/AR.png", UriKind.Relative);
+            btnAR.Text = AppResources.TxtReport;
+            btnAR.Click += btnAR_Click;
+            ApplicationBar.Buttons.Add(btnAR);
+        }
+
+        void btnAR_Click(object sender, EventArgs e)
+        {
+            if (lstEvents.Count > 0)
+            {
+                staticClasses.lstGartItems = new System.Collections.ObjectModel.ObservableCollection<GART.Data.ARItem>();
+                foreach (Problem P in lstEvents)
+                {
+                    staticClasses.lstGartItems.Add(
+                        new GARTItem
+                        {
+                            Name = P.reporters.First().name,
+                            Icon = P.reporters.First().picture,
+                            Content = P.description,
+                            GeoLocation = new GeoCoordinate(P.latitude, P.longitude),
+                        }
+                    );
+                }
+                NavigationService.Navigate(new Uri("/Pages/AR.xaml", UriKind.Relative));
+            }
         }
 
         void btnReport_Click(object sender, EventArgs e)

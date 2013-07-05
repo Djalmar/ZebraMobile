@@ -1,31 +1,36 @@
-﻿using System;
+﻿using Microsoft.Phone.Controls;
+using Microsoft.Phone.Maps.Controls;
+using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Device.Location;
 using System.Linq;
-using System.Net;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using Zebra.WPApp;
-using Zebra.WPApp.UserControls;
-using Microsoft.Phone.Maps.Controls;
-using System.Device.Location;
-using ZebrasLib.Classes;
 using Zebra.WPApp.Resources;
-using System.Globalization;
-using ZebrasLib;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
-using Microsoft.Phone.Tasks;
+using Zebra.WPApp.UserControls;
+using ZebrasLib.Classes;
+
 namespace Zebra.WPApp.Pages.Places
 {
     public partial class SelectedPlacePage : PhoneApplicationPage
     {
         public double Latitude { get; set; }
+
         public double Longitude { get; set; }
+
         public GeoCoordinateWatcher watcher { get; set; }
+
         public int Cantidad { get; set; }
+
+        public List<Place> lstByPrice { get; set; }
+
+        public List<Place> lstByFeatures { get; set; }
+
         public SelectedPlacePage()
         {
             InitializeComponent();
@@ -36,11 +41,11 @@ namespace Zebra.WPApp.Pages.Places
             mapPlace.Tap += mapPlace_Tap;
         }
 
-        void mapPlace_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void mapPlace_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             MapsDirectionsTask task = new MapsDirectionsTask();
             task.Start = new LabeledMapLocation(AppResources.TxtPlacesYoureHere, new GeoCoordinate(Latitude, Longitude));
-            task.End = new LabeledMapLocation(staticClasses.selectedPlace.name, 
+            task.End = new LabeledMapLocation(staticClasses.selectedPlace.name,
                 new GeoCoordinate(
                     staticClasses.selectedPlace.latitude,
                     staticClasses.selectedPlace.longitude));
@@ -48,7 +53,7 @@ namespace Zebra.WPApp.Pages.Places
             task.Show();
         }
 
-        void SelectedPlacePage_Loaded(object sender, RoutedEventArgs e)
+        private void SelectedPlacePage_Loaded(object sender, RoutedEventArgs e)
         {
             LoadAppBar();
             watcher.Start();
@@ -59,23 +64,56 @@ namespace Zebra.WPApp.Pages.Places
             ApplicationBar = new ApplicationBar();
 
             ApplicationBarIconButton btnShare = new ApplicationBarIconButton();
-            btnShare.IconUri = new Uri("/Assets/AppBar/Share.png",UriKind.Relative);
+            btnShare.IconUri = new Uri("/Assets/AppBar/Share.png", UriKind.Relative);
             btnShare.Text = AppResources.TxtShare;
-            btnShare.Click+=btnShare_Click;
+            btnShare.Click += btnShare_Click;
             ApplicationBar.Buttons.Add(btnShare);
+
+            ApplicationBarIconButton btnAR = new ApplicationBarIconButton();
+            btnAR.IconUri = new Uri("/Assets/AppBar/download.png", UriKind.Relative);
+            btnAR.Text = AppResources.AppBarDownload;
+            btnAR.Click += btnAR_Click;
+            ApplicationBar.Buttons.Add(btnAR);
         }
 
-        void btnShare_Click(object sender, EventArgs e)
+        private void btnAR_Click(object sender, EventArgs e)
         {
-            ShareContent.title= AppResources.TxtShareImAt + " " + staticClasses.selectedPlace.name;
+            List<Place> lstAR = new List<Place>();
+            IEnumerable<Place> lstDistincts;
+            lstAR.AddRange(lstByFeatures);
+            lstAR.AddRange(lstByPrice);
+            lstDistincts = lstAR.Distinct();
+            lstAR = lstDistincts.ToList();
+            if (lstAR.Count > 0)
+            {
+                staticClasses.lstGartItems = new System.Collections.ObjectModel.ObservableCollection<GART.Data.ARItem>();
+                foreach (Place P in lstAR)
+                {
+                    staticClasses.lstGartItems.Add(
+                        new GARTItem
+                        {
+                            Name = P.name,
+                            Icon = staticClasses.selectedCategory.icon,
+                            Content = P.address,
+                            GeoLocation = new GeoCoordinate(P.latitude, P.longitude),
+                        }
+                    );
+                }
+                NavigationService.Navigate(new Uri("/Pages/AR.xaml", UriKind.Relative));
+            }
+        }
+
+        private void btnShare_Click(object sender, EventArgs e)
+        {
+            ShareContent.title = AppResources.TxtShareImAt + " " + staticClasses.selectedPlace.name;
             ShareContent.message = AppResources.TxtShareSomebody + "\n" +
                 AppResources.TxtSharePlaceIts + " " + staticClasses.selectedPlace.address;
             ShareContent.link = new Uri("http://bing.com/maps/default.aspx" +
                 "?cp=" + staticClasses.selectedPlace.latitude + "~" + staticClasses.selectedPlace.longitude +
                 "&lvl=18" +
                 "&style=r", UriKind.Absolute);
-                
-            NavigationService.Navigate(new Uri("/Pages/Share.xaml",UriKind.Relative));
+
+            NavigationService.Navigate(new Uri("/Pages/Share.xaml", UriKind.Relative));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -88,13 +126,16 @@ namespace Zebra.WPApp.Pages.Places
                 panItemPrices.Visibility = Visibility.Collapsed;
             }
         }
+
         private void LoadRelatedPlaces()
-        { 
+        {
+            #region Features
+
             lstRelatedByFeatures.ItemsSource = null;
             lstRelatedByFeatures.Visibility = System.Windows.Visibility.Visible;
             txtNoPlacesRelatedByFeature.Visibility = System.Windows.Visibility.Collapsed;
-            lstRelatedByFeatures.ItemsSource = ZebrasLib.Places.PlacesMethods.getDistancesForEachPlace(Latitude,
-                Longitude, 
+            lstByFeatures = ZebrasLib.Places.PlacesMethods.getDistancesForEachPlace(Latitude,
+                Longitude,
                 (
                    DBPhone.PlacesMethods.getRelatedPlacesBasedOn(
                     staticClasses.selectedPlace.kidsArea,
@@ -102,26 +143,30 @@ namespace Zebra.WPApp.Pages.Places
                     staticClasses.selectedPlace.parentCategoryCode,
                     staticClasses.selectedPlace.code)
                     ));
-
+            lstFeatures.ItemsSource = lstByFeatures;
             if (lstRelatedByFeatures.Items.Count == 0)
             {
                 lstRelatedByFeatures.Visibility = Visibility.Collapsed;
                 txtNoPlacesRelatedByFeature.Text = AppResources.TxtNoPlacesRelated;
                 txtNoPlacesRelatedByFeature.Visibility = Visibility.Visible;
             }
+
+            #endregion Features
+
             lstRelatedByPrices.ItemsSource = null;
             lstRelatedByPrices.Visibility = System.Windows.Visibility.Visible;
             txtNoPlacesRelatedByPrice.Visibility = System.Windows.Visibility.Collapsed;
-            lstRelatedByPrices.ItemsSource = ZebrasLib.Places.PlacesMethods.getDistancesForEachPlace(Latitude,
+            lstByPrice = ZebrasLib.Places.PlacesMethods.getDistancesForEachPlace(Latitude,
                 Longitude,
-                ( 
+                (
                  DBPhone.PlacesMethods.getRelatedPlacesBasedOn(
                     staticClasses.selectedPlace.minPrice,
                     staticClasses.selectedPlace.maxPrice,
                     staticClasses.selectedPlace.parentCategoryCode,
                     staticClasses.selectedPlace.code)
-                    
+
                     ));
+            lstRelatedByPrices.ItemsSource = lstByPrice;
             if (lstRelatedByPrices.Items.Count == 0)
             {
                 lstRelatedByPrices.Visibility = Visibility.Collapsed;
@@ -137,7 +182,7 @@ namespace Zebra.WPApp.Pages.Places
             txbFeatures.Visibility = System.Windows.Visibility.Visible;
             var query = from variable in listaServicios where variable.Exist.Equals("Visible") select variable;
             var lista = query.ToList();
-            if (lista.Count!=0)
+            if (lista.Count != 0)
                 lstFeatures.ItemsSource = listaServicios;
             else
                 txbFeatures.Visibility = System.Windows.Visibility.Collapsed;
@@ -162,8 +207,9 @@ namespace Zebra.WPApp.Pages.Places
             mapPlace.Center = new GeoCoordinate(staticClasses.selectedPlace.latitude, staticClasses.selectedPlace.longitude);
             mapPlace.ZoomLevel = 14;
         }
-       
+
         #region GPS
+
         private void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
         {
             switch (e.Status)
@@ -192,8 +238,8 @@ namespace Zebra.WPApp.Pages.Places
             LoadRelatedPlaces();
             watcher.Stop();
         }
-        #endregion
 
+        #endregion GPS
 
         private List<Service> CrearListadeServicios()
         {
@@ -206,6 +252,7 @@ namespace Zebra.WPApp.Pages.Places
                 new Service(){Name=AppResources.TxtKids,Exist=staticClasses.selectedPlace.kidsArea.ToString()}
             };
         }
+
         private void lstRelatedByPrices_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Place place = lstRelatedByPrices.SelectedItem as Place;
@@ -226,19 +273,19 @@ namespace Zebra.WPApp.Pages.Places
                 mapPlace.Layers.Clear();
                 this.SelectedPlacePage_Loaded(sender, e);
             }
-        } 
+        }
 
         /// <summary>
         /// Method you can use to rate places
         /// </summary>
         /// <param name="placeCode">Just the place code, </param>
         /// <param name="rating">Remember that now rating is an INTEGER, not a float, not a double</param>
-        /// <returns>Returns a bool to say if the rating was succesfull, so you should display an mbox for the user saying 
+        /// <returns>Returns a bool to say if the rating was succesfull, so you should display an mbox for the user saying
         /// what happened, if it was succesful or not.</returns>
         public static async Task<bool> tryRatePlace(string placeCode, int rating)
         {
-            string data = "code="+placeCode+
-                "&rating="+rating;
+            string data = "code=" + placeCode +
+                "&rating=" + rating;
             string downloadedString = await Zebra.Utilities.Internet.UploadStringAsyncUsingPUT(new Uri(ZebrasLib.Main.urlPlacesRate, UriKind.Absolute), data);
             PlacesResult result = JsonConvert.DeserializeObject<PlacesResult>(downloadedString);
             if (result != null)
@@ -249,16 +296,17 @@ namespace Zebra.WPApp.Pages.Places
             }
             return false;
         }
-        
+
         public class Service
         {
             public string Name { get; set; }
+
             private string exists;
 
             public string Exist
             {
                 get { return exists; }
-                set 
+                set
                 {
                     if (value.Equals("True"))
                         exists = "Visible";

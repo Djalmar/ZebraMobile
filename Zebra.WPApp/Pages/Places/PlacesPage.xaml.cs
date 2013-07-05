@@ -60,6 +60,35 @@ namespace Zebra.WPApp.Pages.Places
             btnUpdatePlaces.Text = AppResources.AppBarDownload;
             btnUpdatePlaces.Click += btnUpdatePlaces_Click;
             ApplicationBar.Buttons.Add(btnUpdatePlaces);
+
+            ApplicationBarIconButton btnAR = new ApplicationBarIconButton();
+            btnAR.IconUri = new Uri("/Assets/AppBar/download.png", UriKind.Relative);
+            btnAR.Text = AppResources.AppBarDownload;
+            btnAR.Click += btnAR_Click;
+            ApplicationBar.Buttons.Add(btnAR);
+
+            
+        }
+
+        void btnAR_Click(object sender, EventArgs e)
+        {
+            if (lstAllPlaces.Count > 0)
+            {
+                staticClasses.lstGartItems = new System.Collections.ObjectModel.ObservableCollection<GART.Data.ARItem>();
+                foreach (Place P in lstAllPlaces)
+                {
+                    staticClasses.lstGartItems.Add(
+                        new GARTItem
+                        {
+                            Name = P.name,
+                            Icon = staticClasses.selectedCategory.icon,
+                            Content = P.address,
+                            GeoLocation = new GeoCoordinate(P.latitude, P.longitude),
+                        }
+                    );
+                }
+                NavigationService.Navigate(new Uri("/Pages/AR.xaml", UriKind.Relative));
+            }
         }
 
         private async void btnUpdatePlaces_Click(object sender, EventArgs e)

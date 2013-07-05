@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using ZebrasLib.Classes;
-
+using GART;
+using GART.Data;
+using System.Collections.ObjectModel;
 namespace Zebra.WPApp
 {
     public class bindingCategory
@@ -17,6 +19,7 @@ namespace Zebra.WPApp
         public static Place selectedPlace{ get; set; }
         public static Category selectedCategory{ get; set; }
         public static Problem selectedEvent { get; set; }
+        public static ObservableCollection<ARItem> lstGartItems { get; set; }
     }
 
     public static class ShareContent
@@ -31,6 +34,12 @@ namespace Zebra.WPApp
         public static string trafficMessage { get; set; }
         public static string placeMessage { get; set; }
         public static string walletMessage { get; set; }
+    }
+
+    public class GARTItem : ARItem
+    {
+        public string Icon { get; set; }
+        public string Name { get; set; }
     }
 }
 namespace Zebra.Utilities
