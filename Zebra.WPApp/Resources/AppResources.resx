@@ -407,4 +407,7 @@
   <data name="TxtTroublesNoReportsByFriends" xml:space="preserve">
     <value>No problems reported by friends today.</value>
   </data>
+  <data name="TxbTroublesYourDistance" xml:space="preserve">
+    <value>You are at </value>
+  </data>
 </root>

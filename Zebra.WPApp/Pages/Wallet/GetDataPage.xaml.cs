@@ -27,7 +27,7 @@ namespace Zebra.WPApp.Pages.Wallet
         {
             if(pivotMain.SelectedIndex==0)
                 btnFind.IconUri = new Uri("/Assets/AppBar/next.png", UriKind.Relative);
-            else btnFind.IconUri = new Uri("/Assets/AppBar/find.png", UriKind.Relative);
+            else btnFind.IconUri = new Uri("/Assets/AppBar/check.png", UriKind.Relative);
         }
 
         void GetDataPage_Loaded(object sender, RoutedEventArgs e)

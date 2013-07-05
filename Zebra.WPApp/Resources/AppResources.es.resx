@@ -404,4 +404,7 @@
   <data name="TxtTroublesNoReportsByFriends" xml:space="preserve">
     <value>Tus amigos no han reportado nada durante el dia.</value>
   </data>
+  <data name="TxbTroublesYourDistance" xml:space="preserve">
+    <value>Estas a </value>
+  </data>
 </root>

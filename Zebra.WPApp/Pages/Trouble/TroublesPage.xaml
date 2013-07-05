@@ -22,7 +22,8 @@
             <Setter Property="Margin" Value="12,0,0,12"/>
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
         </Style>
-        <toolkit:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
+        <toolkit:RelativeTimeConverter x:Key="RelativeTimeConverter">
+        </toolkit:RelativeTimeConverter>
     </phone:PhoneApplicationPage.Resources>
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -64,15 +65,25 @@
                             <TextBlock Text="{Binding dtReportedAt, Converter={StaticResource RelativeTimeConverter}}" 
                                                FontSize="23"/>
                             <TextBlock Text="{Binding description}" 
-                                   TextWrapping="Wrap"/>
+                                       TextWrapping="Wrap"
+                                       FontSize="{StaticResource PhoneFontSizeNormal}" 
+                                       FontFamily="{StaticResource PhoneFontFamilySemiLight}"/>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="{StaticResource PhoneFontSizeSmall}" 
-                                   Text="You are at "/>
+                                <TextBlock FontSize="{StaticResource PhoneFontSizeSmall}"
+                                           
+                                       FontFamily="{StaticResource PhoneFontFamilyLight}"
+                                   Text="{Binding LocalizedResources.TxbTroublesYourDistance, 
+            Mode=OneWay, 
+            Source={StaticResource LocalizedStrings}}"/>
                                 <TextBlock  Name="txtbDistance" 
-                                        FontSize="{StaticResource PhoneFontSizeSmall}" 
+                                        FontSize="{StaticResource PhoneFontSizeSmall}"
+                                             
+                                       FontFamily="{StaticResource PhoneFontFamilyLight}"
                                         Text="{Binding distance}"/>
                                 <TextBlock  Text=" mts"
-                                        FontSize="{StaticResource PhoneFontSizeSmall}" />
+                                        FontSize="{StaticResource PhoneFontSizeSmall}" 
+                                             
+                                       FontFamily="{StaticResource PhoneFontFamilyLight}"/>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
