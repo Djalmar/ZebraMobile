@@ -33,7 +33,7 @@
     </phone:PhoneApplicationPage.Resources>
     <phone:Panorama Title="{Binding name}" x:Name="panorama">
         <phone:Panorama.Background>
-            <ImageBrush ImageSource="/Assets/FondoF.png" 
+            <ImageBrush ImageSource="/Assets/FondoFF.png" 
                         Stretch="UniformToFill" 
                         AlignmentX="Left" 
                         Opacity="0.4"/>

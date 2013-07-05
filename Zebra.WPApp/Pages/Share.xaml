@@ -16,14 +16,21 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone">
 
     <controls:Pivot
-        Title="{Binding LocalizedResources.TxbShareTitle,
-                Source={StaticResource LocalizedStrings}}">
+        Title="{Binding}">
+        <controls:Pivot.TitleTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding LocalizedResources.TxbShareTitle,
+                Source={StaticResource LocalizedStrings}}" FontFamily="{StaticResource PhoneFontFamilyNormal}" FontSize="{StaticResource PhoneFontSizeExtraLarge}">
+                   
+                </TextBlock>
+            </DataTemplate>
+        </controls:Pivot.TitleTemplate>
         <controls:PivotItem>
             <StackPanel>
                 <TextBlock Name="txtSMS"
                    Text="Send a SMS"
                    Style="{StaticResource Share}"
-                   tool:TurnstileFeatherEffect.FeatheringIndex="1"/>
+                   tool:TurnstileFeatherEffect.FeatheringIndex="1" FontFamily="{StaticResource PhoneFontFamilySemiLight}"/>
                 <TextBlock Name="txtMail"
                    Text="Send an e-mail"
                    Style="{StaticResource Share}"

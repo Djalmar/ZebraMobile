@@ -35,7 +35,7 @@
     </toolkit:TransitionService.NavigationOutTransition>
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/FondoF.png" Stretch="UniformToFill" Opacity="0.35"/>
+            <ImageBrush ImageSource="/Assets/FondoFF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.35"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

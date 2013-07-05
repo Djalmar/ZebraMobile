@@ -457,6 +457,33 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send an e-mail.
+        /// </summary>
+        public static string TxbShareEmail {
+            get {
+                return ResourceManager.GetString("TxbShareEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send a SMS.
+        /// </summary>
+        public static string TxbShareSms {
+            get {
+                return ResourceManager.GetString("TxbShareSms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On social networks.
+        /// </summary>
+        public static string TxbShareSocial {
+            get {
+                return ResourceManager.GetString("TxbShareSocial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sharing is fun.
         /// </summary>
         public static string TxbShareTitle {

@@ -20,7 +20,7 @@
         Mode=OneWay, 
         Source={StaticResource LocalizedStrings}}">
         <phone:Pivot.Background>
-            <ImageBrush ImageSource="/Assets/FondoF.png" 
+            <ImageBrush ImageSource="/Assets/FondoFF.png" 
                         Stretch="UniformToFill" 
                         AlignmentX="Left" 
                         Opacity="0.35"/>

@@ -92,7 +92,7 @@
             </DataTemplate>
         </Grid.Resources>
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/FondoFF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.2"/>
+            <ImageBrush ImageSource="/Assets/FondoFF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.35"/>
         </Grid.Background>
         <TextBlock Name="txtNoInternet"
                    Style="{StaticResource txtNotFound}"/>

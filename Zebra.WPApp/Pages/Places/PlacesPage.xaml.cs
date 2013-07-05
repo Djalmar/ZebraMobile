@@ -41,7 +41,7 @@ namespace Zebra.WPApp.Pages.Places
             base.OnNavigatedTo(e);
             txbCategory.Title = staticClasses.selectedCategory.name;
             categoryCode = staticClasses.selectedCategory.code;
-            prgPlaces.Visibility = System.Windows.Visibility.Collapsed;
+            //prgPlaces.Visibility = System.Windows.Visibility.Collapsed;
             if(!comingBack)
             {
                 LoadAppBar();

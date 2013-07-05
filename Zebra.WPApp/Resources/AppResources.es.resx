@@ -404,6 +404,15 @@
   <data name="TxtTroublesNoReportsByFriends" xml:space="preserve">
     <value>Tus amigos no han reportado nada durante el dia.</value>
   </data>
+  <data name="TxbShareEmail" xml:space="preserve">
+    <value>Envia un correo electronico</value>
+  </data>
+  <data name="TxbShareSms" xml:space="preserve">
+    <value>Envia un SMS</value>
+  </data>
+  <data name="TxbShareSocial" xml:space="preserve">
+    <value>En redes sociales</value>
+  </data>
   <data name="TxbTroublesYourDistance" xml:space="preserve">
     <value>Estas a </value>
   </data>
