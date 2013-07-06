@@ -416,4 +416,25 @@
   <data name="TxbTroublesYourDistance" xml:space="preserve">
     <value>Estas a </value>
   </data>
+  <data name="TxbAboutHistoryText1" xml:space="preserve">
+    <value>Concebidas el año 2001 como elemento de Educación Ciudadana, el Gobierno Municipal de La Paz introdujo a las Cebras para concientizar a la ciudadanía, conductores y peatones, sobre la importancia del uso de los Pasos de Cebra utilizando elementos lúdicos y artísticos.</value>
+  </data>
+  <data name="TxbAboutHistoryText2" xml:space="preserve">
+    <value>Adolescentes y jóvenes utilizan un traje, convirtiéndose en este amigable y caricaturesco personaje que ha llegado innegablemente a ser parte de la urbe paceña.</value>
+  </data>
+  <data name="TxbAboutHistoryText3" xml:space="preserve">
+    <value>En marzo de 2005 se creó la Dirección de Cultura Ciudadana, consolidando a las amigas Cebras y a sus compañeros los Burros como Educadores Urbanos, ampliando de esta manera los programas de educación a temas de Higiene Urbana, Prevención de Riesgos, Protección de Áreas Verdes, Prevención de violencia y consumo excesivo de Alcohol, además de Educación Vial.</value>
+  </data>
+  <data name="TxbAboutHistoryText4" xml:space="preserve">
+    <value>El año 2007 la Dirección de Cultura Ciudadana se fortalece y se hace posible incrementar el número de Cebras en las calles para continuar educando a la ciudadanía.</value>
+  </data>
+  <data name="TxbAboutHistoryText5" xml:space="preserve">
+    <value>Actualmente acompañadas de los Burros, desarrollan sus actividades en las calles y avenidas de la ciudad siendo cada vez más queridas por todos aquellos que aprecian la simpatía y labor de estos peculiares educadores que ya son parte principal del movimiento paceño.</value>
+  </data>
+  <data name="TxbAboutHistoryText6" xml:space="preserve">
+    <value>Las cebras, de acuerdo a su filosofía de trabajo, dedican su mejor esfuerzo en beneficio de la sociedad; imparten en los choferes la consideración hacia los niños y los adultos mayores, transmiten diferentes valores ciudadanos como el respeto y la tolerancia y apoyan para que los problemas de tráfico se solucionen en armonía.</value>
+  </data>
+  <data name="TxbAboutHistoryTitle" xml:space="preserve">
+    <value>LAS CEBRAS, EDUCADORAS URBANAS DE LA PAZ</value>
+  </data>
 </root>

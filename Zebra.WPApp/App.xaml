@@ -25,8 +25,6 @@
                     Value="32" />
             <Setter Property="FontFamily"
                     Value="Segoe WP Light" />
-            <Setter Property="FontWeight"
-                    Value="SemiBold" />
             <Setter Property="HorizontalAlignment"
                                 Value="Left" />
             <Setter Property="Margin"

@@ -142,6 +142,69 @@ namespace Zebra.WPApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Traducir lo de español.
+        /// </summary>
+        public static string TxbAboutHistoryText1 {
+            get {
+                return ResourceManager.GetString("TxbAboutHistoryText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TxbAboutHistoryText2 {
+            get {
+                return ResourceManager.GetString("TxbAboutHistoryText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TxbAboutHistoryText3 {
+            get {
+                return ResourceManager.GetString("TxbAboutHistoryText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TxbAboutHistoryText4 {
+            get {
+                return ResourceManager.GetString("TxbAboutHistoryText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TxbAboutHistoryText5 {
+            get {
+                return ResourceManager.GetString("TxbAboutHistoryText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TxbAboutHistoryText6 {
+            get {
+                return ResourceManager.GetString("TxbAboutHistoryText6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The zebras.
+        /// </summary>
+        public static string TxbAboutHistoryTitle {
+            get {
+                return ResourceManager.GetString("TxbAboutHistoryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categories.
         /// </summary>
         public static string TxbCategoriesCategories {

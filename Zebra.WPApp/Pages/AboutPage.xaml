@@ -1,0 +1,78 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Zebra.WPApp.Pages.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <!--LayoutRoot contains the root grid where all other page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <phone:Panorama Title="about">
+
+            <!--Panorama item one-->
+            <phone:PanoramaItem Header="zebritas">
+                <Grid Margin="12">
+                    <StackPanel>
+                        <TextBlock Text="Noodles team"
+                                   FontFamily="{StaticResource PhoneFontFamilyLight}" 
+                                   FontSize="{StaticResource PhoneFontSizeExtraLarge}"/>
+                        <TextBlock Text="Version 1.1"
+                                   FontFamily="{StaticResource PhoneFontFamilySemiLight}" 
+                                   FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                        <TextBlock Text="La Paz - Bolivia"
+                                   FontFamily="{StaticResource PhoneFontFamilyNormal}" 
+                                   FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
+                    </StackPanel>
+                </Grid>
+            </phone:PanoramaItem>
+
+            <!--Panorama item two-->
+            <phone:PanoramaItem Header="history">
+                <ScrollViewer>
+                    <Grid>
+                        <StackPanel Margin="12">
+                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}} " TextWrapping="Wrap" FontFamily="{StaticResource PhoneFontFamilyNormal}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText1, Mode=OneWay, Source={StaticResource LocalizedStrings}} " 
+                                       TextWrapping="Wrap" 
+                                       FontFamily="{StaticResource PhoneFontFamilyLight}" FontSize="{StaticResource PhoneFontSizeMedium}" Margin="0,12,0,24"/>
+                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText2, Mode=OneWay, Source={StaticResource LocalizedStrings}} " 
+                                       TextWrapping="Wrap" 
+                                       FontFamily="{StaticResource PhoneFontFamilyLight}" 
+                                       FontSize="{StaticResource PhoneFontSizeMedium}" 
+                                       Margin="0,12,0,24"/>
+                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText3, Mode=OneWay, Source={StaticResource LocalizedStrings}} " 
+                                       TextWrapping="Wrap" 
+                                       FontFamily="{StaticResource PhoneFontFamilyLight}" 
+                                       FontSize="{StaticResource PhoneFontSizeMedium}" 
+                                       Margin="0,12,0,12"/>
+                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText4, Mode=OneWay, Source={StaticResource LocalizedStrings}} " 
+                                       TextWrapping="Wrap" 
+                                       FontFamily="{StaticResource PhoneFontFamilyLight}" 
+                                       FontSize="{StaticResource PhoneFontSizeMedium}" 
+                                       Margin="0,12,0,24"/>
+                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText5, Mode=OneWay, Source={StaticResource LocalizedStrings}} " 
+                                       TextWrapping="Wrap" 
+                                       FontFamily="{StaticResource PhoneFontFamilyLight}" 
+                                       FontSize="{StaticResource PhoneFontSizeMedium}" 
+                                       Margin="0,12,0,24"/>
+                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText6, Mode=OneWay, Source={StaticResource LocalizedStrings}} "
+                                       TextWrapping="Wrap" 
+                                       FontFamily="{StaticResource PhoneFontFamilyLight}" 
+                                       FontSize="{StaticResource PhoneFontSizeMedium}" 
+                                       Margin="0,12,0,24"/>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </phone:PanoramaItem>
+        </phone:Panorama>
+    </Grid>
+
+</phone:PhoneApplicationPage>

@@ -419,4 +419,25 @@
   <data name="TxbTroublesYourDistance" xml:space="preserve">
     <value>You are at </value>
   </data>
+  <data name="TxbAboutHistoryText1" xml:space="preserve">
+    <value>Traducir lo de español</value>
+  </data>
+  <data name="TxbAboutHistoryText2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TxbAboutHistoryText3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TxbAboutHistoryText4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TxbAboutHistoryText5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TxbAboutHistoryText6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TxbAboutHistoryTitle" xml:space="preserve">
+    <value>The zebras</value>
+  </data>
 </root>
