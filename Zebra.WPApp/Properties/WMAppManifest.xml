@@ -7,14 +7,11 @@
   <App xmlns="" ProductID="{061d3a57-0f49-4e8f-a30f-22ae28325062}" Title="Zebritas" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Zebra.WPApp author" Description="Sample description" Publisher="Zebra.WPApp" PublisherID="{8613b2d7-fa83-45e2-a2d3-c61a2296ea6a}">
     <IconPath IsRelative="true" IsResource="false">icono5.png</IconPath>
     <Capabilities>
-      <Capability Name="ID_CAP_NETWORKING" />
-      <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
-      <Capability Name="ID_CAP_MEDIALIB_PLAYBACK" />
-      <Capability Name="ID_CAP_SENSORS" />
-      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
       <Capability Name="ID_CAP_MAP" />
       <Capability Name="ID_CAP_LOCATION" />
       <Capability Name="ID_CAP_ISV_CAMERA" />
+      <Capability Name="ID_CAP_SENSORS" />
+      <Capability Name="ID_CAP_NETWORKING" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
@@ -49,7 +46,6 @@
     </ScreenResolutions>
     <Requirements>
       <Requirement Name="ID_REQ_GYROSCOPE" />
-      <Requirement Name="ID_REQ_REARCAMERA" />
     </Requirements>
   </App>
 </Deployment>
