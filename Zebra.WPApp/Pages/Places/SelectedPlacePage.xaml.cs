@@ -70,8 +70,8 @@ namespace Zebra.WPApp.Pages.Places
             ApplicationBar.Buttons.Add(btnShare);
 
             ApplicationBarIconButton btnAR = new ApplicationBarIconButton();
-            btnAR.IconUri = new Uri("/Assets/AppBar/ojo.png", UriKind.Relative);
-            btnAR.Text = AppResources.AppBarDownload;
+            btnAR.IconUri = new Uri("/Assets/AppBar/AR.png", UriKind.Relative);
+            btnAR.Text = AppResources.AR;
             btnAR.Click += btnAR_Click;
             ApplicationBar.Buttons.Add(btnAR);
         }
@@ -95,7 +95,8 @@ namespace Zebra.WPApp.Pages.Places
                             Name = P.name,
                             Icon = staticClasses.selectedCategory.icon,
                             Content = P.address,
-                            GeoLocation = new GeoCoordinate(P.latitude, P.longitude),
+                            GeoLocation = new GeoCoordinate(P.latitude
+                                , P.longitude),
                         }
                     );
                 }
@@ -231,8 +232,10 @@ namespace Zebra.WPApp.Pages.Places
 
         private void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            Latitude = e.Position.Location.Latitude;
-            Longitude = e.Position.Location.Longitude;
+            //Latitude = e.Position.Location.Latitude;
+            //Longitude = e.Position.Location.Longitude;
+            Latitude = -16.482936;
+            Longitude = -68.121576;
             LoadMap();
             LoadPlace();
             LoadRelatedPlaces();

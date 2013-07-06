@@ -103,9 +103,6 @@
     <Compile Include="Pages\AR.xaml.cs">
       <DependentUpon>AR.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Begin\AboutZebritas.xaml.cs">
-      <DependentUpon>AboutZebritas.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Begin\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
@@ -118,7 +115,7 @@
     <Compile Include="Pages\Login\FacebookLoginPage.xaml.cs">
       <DependentUpon>FacebookLoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AboutPage.xaml.cs">
+    <Compile Include="Pages\Begin\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Places\PlacesPage.xaml.cs">
@@ -175,10 +172,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Begin\AboutZebritas.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\Begin\MenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -195,7 +188,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AboutPage.xaml">
+    <Page Include="Pages\Begin\AboutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -250,6 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AppBar\add.png" />
+    <Content Include="Assets\AppBar\AR.png" />
     <Content Include="Assets\AppBar\back.png" />
     <Content Include="Assets\AppBar\basecircle.png" />
     <Content Include="Assets\AppBar\cancel.png" />
@@ -258,7 +252,6 @@
     <Content Include="Assets\AppBar\delete.png" />
     <Content Include="Assets\AppBar\download.png" />
     <Content Include="Assets\AppBar\edit.png" />
-    <Content Include="Assets\AppBar\ojo.png" />
     <Content Include="Assets\AppBar\share.png" />
     <Content Include="Assets\AppBar\upload.png" />
     <Content Include="Assets\bubupage3.png" />
@@ -317,6 +310,7 @@
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
     <Content Include="Videos\bmtdk.mp3" />
+    <Content Include="Assets\zebra.jpg" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml">
       <SubType>Designer</SubType>
@@ -417,7 +411,9 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="FakesAssemblies\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

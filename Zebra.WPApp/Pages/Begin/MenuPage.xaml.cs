@@ -54,7 +54,7 @@ namespace Zebra.WPApp.Pages.Begin
 
         private void btnZebra_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Pages/Begin/AboutZebritas.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Pages/Begin/AboutPage.xaml", UriKind.Relative));
         }
 
         private void btnSettings_Tap(object sender, System.Windows.Input.GestureEventArgs e)

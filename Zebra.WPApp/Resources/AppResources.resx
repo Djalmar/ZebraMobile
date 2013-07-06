@@ -192,7 +192,7 @@
     <value>Places</value>
   </data>
   <data name="TileWallet" xml:space="preserve">
-    <value>Wallet</value>
+    <value>Budget</value>
   </data>
   <data name="TileWhatsGoingOn" xml:space="preserve">
     <value>What's going on</value>
@@ -420,24 +420,27 @@
     <value>You are at </value>
   </data>
   <data name="TxbAboutHistoryText1" xml:space="preserve">
-    <value>Traducir lo de español</value>
+    <value>Born in 2001 as a drivers education program, La Paz city town hall introduced Zebras to educate the citizenship about the importance of the zebra crossings, using people dressed as this animals walking around the city</value>
   </data>
   <data name="TxbAboutHistoryText2" xml:space="preserve">
-    <value />
+    <value>Young boys and girls use the Zebras suit, turning into a friendly and funny character that has become an undeniable trademark of La Paz scene.</value>
   </data>
   <data name="TxbAboutHistoryText3" xml:space="preserve">
-    <value />
+    <value>A Cultural Citizen department was created back in 2005 to help to consolidate the Zebras and their friends, the Burros, as Urban Educators, expanding the tasks of the Zebras to new areas such as protection of green areas, risks prevention, prevention against violence caused by alcohol, and of course drivers education.</value>
   </data>
   <data name="TxbAboutHistoryText4" xml:space="preserve">
-    <value />
+    <value>On 2007, the Cultural Citizen department got more support and this gave the opportunity to increase the number of Zebras on La Paz streets to keep and grow the program</value>
   </data>
   <data name="TxbAboutHistoryText5" xml:space="preserve">
-    <value />
+    <value>Now, along with the Burros, Zebras are loved more than ever by the La Paz citizens because of their hard work relieving the traffic jams, educating the children and so much more.</value>
   </data>
   <data name="TxbAboutHistoryText6" xml:space="preserve">
-    <value />
+    <value>According to their work philosophy, this boys and girls put their best effort to benefit pacenian society. They make the bus drivers treat gently to children and elder people. Plus they transmit different positive values like respect, tolerance and are become mediators on accidents so things can be resolved in a peaceful way.</value>
   </data>
   <data name="TxbAboutHistoryTitle" xml:space="preserve">
-    <value>The zebras</value>
+    <value>The zebras of La Paz</value>
+  </data>
+  <data name="AR" xml:space="preserve">
+    <value>Watch</value>
   </data>
 </root>

@@ -102,8 +102,10 @@ namespace Zebra.WPApp.Pages.Places
 
         private async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            double latitude = e.Position.Location.Latitude;
-            double longitude = e.Position.Location.Longitude;
+            //double latitude = e.Position.Location.Latitude;
+            //double longitude = e.Position.Location.Longitude;
+            double latitude = -16.482936;
+            double longitude = -68.121576;
             prgSearchProgress.Visibility = System.Windows.Visibility.Visible;
             try
             {

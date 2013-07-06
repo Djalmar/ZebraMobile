@@ -50,8 +50,10 @@ namespace Zebra.WPApp.Pages.Wallet
 
         async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            latitude = e.Position.Location.Latitude;
-            longitude = e.Position.Location.Longitude;
+            //latitude = e.Position.Location.Latitude;
+            //longitude = e.Position.Location.Longitude;
+            latitude = -16.482936;
+            longitude = -68.121576;
             if (NavigationContext.QueryString.TryGetValue("content", out content))
                 lstPlace = await WalletMethods.getPlacesBetweenAndQuery(minmoney, maxmoney, latitude, longitude, content);
             else

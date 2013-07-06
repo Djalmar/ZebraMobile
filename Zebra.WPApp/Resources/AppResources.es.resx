@@ -192,7 +192,7 @@
     <value>Lugares</value>
   </data>
   <data name="TileWallet" xml:space="preserve">
-    <value>Billetera</value>
+    <value>Presupuesto</value>
   </data>
   <data name="TileWhatsGoingOn" xml:space="preserve">
     <value>Que esta pasando</value>
@@ -436,5 +436,8 @@
   </data>
   <data name="TxbAboutHistoryTitle" xml:space="preserve">
     <value>LAS CEBRAS, EDUCADORAS URBANAS DE LA PAZ</value>
+  </data>
+  <data name="AR" xml:space="preserve">
+    <value>Ver</value>
   </data>
 </root>

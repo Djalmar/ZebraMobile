@@ -62,8 +62,8 @@ namespace Zebra.WPApp.Pages.Places
             ApplicationBar.Buttons.Add(btnUpdatePlaces);
 
             ApplicationBarIconButton btnAR = new ApplicationBarIconButton();
-            btnAR.IconUri = new Uri("/Assets/AppBar/ojo.png", UriKind.Relative);
-            btnAR.Text = AppResources.AppBarDownload;
+            btnAR.IconUri = new Uri("/Assets/AppBar/AR.png", UriKind.Relative);
+            btnAR.Text = AppResources.AR;
             btnAR.Click += btnAR_Click;
             ApplicationBar.Buttons.Add(btnAR);
 
@@ -129,8 +129,10 @@ namespace Zebra.WPApp.Pages.Places
 
         private async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            latitude = e.Position.Location.Latitude;
-            longitude = e.Position.Location.Longitude;
+            //latitude = e.Position.Location.Latitude;
+            //longitude = e.Position.Location.Longitude;
+            latitude = -16.482936;
+            longitude = -68.121576;
             prgPlaces.Visibility = System.Windows.Visibility.Visible;
             lstAllPlaces = await DownloadOrGetPlacesFromDataBase();
             prgPlaces.Visibility = System.Windows.Visibility.Collapsed;

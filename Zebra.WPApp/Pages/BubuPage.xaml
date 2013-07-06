@@ -15,11 +15,15 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
-        <Grid.Background>
-            <ImageBrush ImageSource="/Assets/FondoFF.png" Stretch="UniformToFill" AlignmentX="Left" Opacity="0.35"/>
-        </Grid.Background>
-        <TextBlock Text="Sorry there was a bubu" HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontFamily="{StaticResource PhoneFontFamilyLight}" FontSize="{StaticResource PhoneFontSizeExtraLarge}"></TextBlock>
-        <Image Source="/Assets/bubupage3.png" Opacity="0.7"></Image>
+        <TextBlock Text="Sorry there was a Boo-Boo on the app"
+                   TextWrapping="Wrap"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Bottom"
+                   Margin="23"
+                   FontFamily="{StaticResource PhoneFontFamilyLight}" 
+                   FontSize="{StaticResource PhoneFontSizeLarge}"/>
+        <Image Source="/Assets/bubupage3.png" 
+               Opacity="0.7"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

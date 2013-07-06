@@ -76,15 +76,15 @@ namespace Zebra.WPApp.Pages.Trouble
             ApplicationBar.Buttons.Add(btnReport);
 
             btnAR = new ApplicationBarIconButton();
-            btnAR.IconUri = new Uri("/Assets/AppBar/ojo.png", UriKind.Relative);
-            btnAR.Text = AppResources.TxtReport;
+            btnAR.IconUri = new Uri("/Assets/AppBar/AR.png", UriKind.Relative);
+            btnAR.Text = AppResources.AR;
             btnAR.Click += btnAR_Click;
             ApplicationBar.Buttons.Add(btnAR);
         }
 
         void btnAR_Click(object sender, EventArgs e)
         {
-            if (lstEvents.Count > 0)
+             if (lstEvents.Count > 0)
             {
                 staticClasses.lstGartItems = new System.Collections.ObjectModel.ObservableCollection<GART.Data.ARItem>();
                 foreach (Problem P in lstEvents)
@@ -126,8 +126,10 @@ namespace Zebra.WPApp.Pages.Trouble
 
         private async void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            latitude = e.Position.Location.Latitude;
-            longitude = e.Position.Location.Longitude;
+            //latitude = e.Position.Location.Latitude;
+            //longitude = e.Position.Location.Longitude;
+            latitude = -16.482936;
+            longitude = -68.121576;
             prgEvents.Visibility = System.Windows.Visibility.Visible;
             lstEvents = await ProblemsMethods.GetProblems(latitude,longitude, Main.GetValueFromTimeZone());
             if (lstEvents != null)

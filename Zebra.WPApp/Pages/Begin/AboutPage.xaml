@@ -13,11 +13,13 @@
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
 
-    <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot">
         <phone:Panorama Title="about">
-
-            <!--Panorama item one-->
+            <phone:Panorama.Background>
+                <ImageBrush ImageSource="/Assets/zebra.jpg"
+                            Stretch="UniformToFill"
+                            Opacity="0.2"/>
+            </phone:Panorama.Background>
             <phone:PanoramaItem Header="zebritas">
                 <Grid Margin="12">
                     <StackPanel>
@@ -34,7 +36,6 @@
                 </Grid>
             </phone:PanoramaItem>
 
-            <!--Panorama item two-->
             <phone:PanoramaItem Header="history">
                 <ScrollViewer>
                     <Grid>

@@ -241,11 +241,7 @@ namespace Zebra.WPApp
         // Code to execute on Unhandled Exceptions  
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
-            if (Debugger.IsAttached)
-            {
-                // An unhandled exception has occurred; break into the debugger
-                Debugger.Break();
-            }
+            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/Pages/BuBuPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
         #region Phone application initialization
