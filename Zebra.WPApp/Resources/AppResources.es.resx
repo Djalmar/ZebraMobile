@@ -440,4 +440,13 @@
   <data name="AR" xml:space="preserve">
     <value>Ver</value>
   </data>
+  <data name="TxbFilters" xml:space="preserve">
+    <value>Filtros</value>
+  </data>
+  <data name="TxbResult" xml:space="preserve">
+    <value>Resultado</value>
+  </data>
+  <data name="TxbSelect" xml:space="preserve">
+    <value>Seleccione alguno</value>
+  </data>
 </root>

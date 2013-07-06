@@ -143,8 +143,8 @@ namespace Zebra.WPApp.Pages.Places
                     staticClasses.selectedPlace.smokingArea,
                     staticClasses.selectedPlace.parentCategoryCode,
                     staticClasses.selectedPlace.code)
-                    ));
-            lstFeatures.ItemsSource = lstByFeatures;
+                    ),App.usesKilometers);
+            lstRelatedByFeatures.ItemsSource = lstByFeatures;
             if (lstRelatedByFeatures.Items.Count == 0)
             {
                 lstRelatedByFeatures.Visibility = Visibility.Collapsed;
@@ -166,7 +166,7 @@ namespace Zebra.WPApp.Pages.Places
                     staticClasses.selectedPlace.parentCategoryCode,
                     staticClasses.selectedPlace.code)
 
-                    ));
+                    ),App.usesKilometers);
             lstRelatedByPrices.ItemsSource = lstByPrice;
             if (lstRelatedByPrices.Items.Count == 0)
             {

@@ -42,7 +42,9 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding TargetNullValue=Result}" Margin="12" 
+        <TextBlock Text="{Binding LocalizedResources.TxbResult, 
+        Mode=OneWay, 
+        Source={StaticResource LocalizedStrings}}" Margin="12" 
                    FontSize="38"
                    FontFamily="{StaticResource PhoneFontFamilyNormal}"
                    Opacity="0.7"/>
@@ -54,12 +56,16 @@
                                   Expander="{Binding}">
                 <toolkit:ExpanderView.HeaderTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding TargetNullValue=Filters}" FontSize="32"/>
+                        <TextBlock Text="{Binding LocalizedResources.TxbFilters, 
+        Mode=OneWay, 
+        Source={StaticResource LocalizedStrings}}" FontSize="32"/>
                     </DataTemplate>
                 </toolkit:ExpanderView.HeaderTemplate>
                 <toolkit:ExpanderView.ExpanderTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding TargetNullValue=Select_some}" 
+                        <TextBlock Text="{Binding LocalizedResources.TxbSelect, 
+        Mode=OneWay, 
+        Source={StaticResource LocalizedStrings}}" 
                                    Opacity="0.7" 
                                    FontFamily="{StaticResource PhoneFontFamilyLight}"
                                    FontSize="28"/>
@@ -71,13 +77,26 @@
                     </Style>
                 </toolkit:ExpanderView.Resources>
                 <toolkit:ExpanderView.Items>
-                    <CheckBox x:Name="cbxParking" Content="{Binding TargetNullValue=Parking}"/>
-                    <CheckBox x:Name="cbxHolidays" Content="{Binding TargetNullValue=Holidays}"/>
-                    <CheckBox x:Name="cbxSmokingArea" Content="{Binding TargetNullValue=Smoking_Area}"/>
-                    <CheckBox x:Name="cbxKidsArea" Content="{Binding TargetNullValue=Kids_Area}"/>
-                    <CheckBox x:Name="cbxDelivery" Content="{Binding TargetNullValue=Delivery}"/>
+                    <CheckBox x:Name="cbxParking" 
+                              Content="{Binding LocalizedResources.TxtParking, 
+        Mode=OneWay, 
+        Source={StaticResource LocalizedStrings}}"/>
+                    <CheckBox x:Name="cbxHolidays" Content="{Binding LocalizedResources.TxtHolidays, 
+        Mode=OneWay, 
+        Source={StaticResource LocalizedStrings}}"/>
+                    <CheckBox x:Name="cbxSmokingArea" Content="{Binding LocalizedResources.TxtSmoking, 
+        Mode=OneWay, 
+        Source={StaticResource LocalizedStrings}}"/>
+                    <CheckBox x:Name="cbxKidsArea" Content="{Binding LocalizedResources.TxtKids, 
+        Mode=OneWay, 
+        Source={StaticResource LocalizedStrings}}"/>
+                    <CheckBox x:Name="cbxDelivery" Content="{Binding LocalizedResources.TxtDelivery, 
+        Mode=OneWay, 
+        Source={StaticResource LocalizedStrings}}"/>
                     <StackPanel>
-                        <TextBlock Text="{Binding TargetNullValue=Rating}" 
+                        <TextBlock Text="{Binding LocalizedResources.TxbPlaceRating, 
+        Mode=OneWay, 
+        Source={StaticResource LocalizedStrings}}" 
                                    Opacity="0.7"/>
                     </StackPanel>
                 </toolkit:ExpanderView.Items>

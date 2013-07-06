@@ -162,7 +162,7 @@ namespace Zebra.WPApp.Pages.Begin
         {
             List<ZebrasLib.Classes.Place> lstDownloadedPlaces;
             lstDownloadedPlaces = await ZebrasLib.Places.PlacesMethods.getAllPlacesFromThisCategories(selectedCategories,
-                latitude, longitude);
+                latitude, longitude,App.usesKilometers);
             if (lstDownloadedPlaces != null)
             {
                 DBPhone.PlacesMethods.AddItems(lstDownloadedPlaces);

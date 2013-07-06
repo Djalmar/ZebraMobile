@@ -5,7 +5,7 @@
     <Language code="es" />
   </Languages>
   <App xmlns="" ProductID="{061d3a57-0f49-4e8f-a30f-22ae28325062}" Title="Zebritas" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Zebra.WPApp author" Description="Sample description" Publisher="Zebra.WPApp" PublisherID="{8613b2d7-fa83-45e2-a2d3-c61a2296ea6a}">
-    <IconPath IsRelative="true" IsResource="false">icono5.png</IconPath>
+    <IconPath IsRelative="true" IsResource="false">Assets\Icons\icono5.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_MAP" />
       <Capability Name="ID_CAP_LOCATION" />
@@ -20,9 +20,9 @@
     <Tokens>
       <PrimaryToken TokenID="Zebra.WPAppToken" TaskName="_default">
         <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">icono5.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">tilePequeño.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">TileMediano.png</BackgroundImageURI>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\TileMediano.png</BackgroundImageURI>
           <Title>Zebritas</Title>
           <BackContent>
           </BackContent>
@@ -30,8 +30,7 @@
           </BackBackgroundImageURI>
           <BackTitle>
           </BackTitle>
-          <LargeBackgroundImageURI IsRelative="true" IsResource="false">
-          </LargeBackgroundImageURI>
+          <LargeBackgroundImageURI IsRelative="true" IsResource="false">tileGrande.png</LargeBackgroundImageURI>
           <LargeBackContent />
           <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
           </LargeBackBackgroundImageURI>

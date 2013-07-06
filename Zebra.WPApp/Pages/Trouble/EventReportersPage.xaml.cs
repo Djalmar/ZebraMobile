@@ -16,6 +16,13 @@ namespace Zebra.WPApp.Pages.Trouble
         public EventReportersPage()
         {
             InitializeComponent();
+            if (staticClasses.selectedEvent.isVerified)
+            {
+                foreach (var item in staticClasses.selectedEvent.reporters)
+                {
+                    item.picture = "/Assets/Icons/icono3.png";
+                }
+            }
             DataContext = staticClasses.selectedEvent;
         }
     }

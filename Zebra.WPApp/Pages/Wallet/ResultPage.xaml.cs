@@ -55,11 +55,11 @@ namespace Zebra.WPApp.Pages.Wallet
             latitude = -16.482936;
             longitude = -68.121576;
             if (NavigationContext.QueryString.TryGetValue("content", out content))
-                lstPlace = await WalletMethods.getPlacesBetweenAndQuery(minmoney, maxmoney, latitude, longitude, content);
+                lstPlace = await WalletMethods.getPlacesBetweenAndQuery(minmoney, maxmoney, latitude, longitude, content,App.usesKilometers);
             else
                 if (NavigationContext.QueryString.TryGetValue("categorie", out categorie))
                     lstPlace = await WalletMethods.getPlacesBetween(maxmoney, minmoney,
-                        latitude, longitude,categorie);
+                        latitude, longitude,categorie,App.usesKilometers);
             prgResults.Visibility = System.Windows.Visibility.Collapsed;            
             if (lstPlace != null)
                 lstResults.ItemsSource = lstPlace;

@@ -209,7 +209,7 @@
                             <TextBlock Text="7" Grid.Column="3" HorizontalAlignment="Center" toolkit:TurnstileFeatherEffect.FeatheringIndex="6"/>
                             <TextBlock Text="10+" Grid.Column="4" HorizontalAlignment="Center" toolkit:TurnstileFeatherEffect.FeatheringIndex="7"/>
                         </Grid>
-                        <toolkit:ToggleSwitch Name="tglSwitchDistanceUnit" 
+                        <toolkit:ToggleSwitch Name="tglSwitchDistanceUnit" Visibility="Collapsed" 
                                                 IsChecked="true"
                                                 Content="{Binding LocalizedResources.TxtbKilometers,
                                                         Source={StaticResource LocalizedStrings}}"

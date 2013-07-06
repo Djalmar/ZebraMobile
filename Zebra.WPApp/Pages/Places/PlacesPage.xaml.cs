@@ -99,7 +99,7 @@ namespace Zebra.WPApp.Pages.Places
             lstAllPlaces = await DownloadPlacesFromTheInternet(latitude,longitude);
             if (lstAllPlaces != null)
             {
-                lstAllPlaces = PlacesMethods.getDistancesForEachPlace(latitude, longitude, lstAllPlaces);
+                lstAllPlaces = PlacesMethods.getDistancesForEachPlace(latitude, longitude, lstAllPlaces,App.usesKilometers);
                 PopulateLists(lstAllPlaces);
                 UpdateDataBase(lstAllPlaces);
             }
@@ -138,7 +138,7 @@ namespace Zebra.WPApp.Pages.Places
             prgPlaces.Visibility = System.Windows.Visibility.Collapsed;
             if (lstAllPlaces != null)
             {
-                lstAllPlaces = PlacesMethods.getDistancesForEachPlace(latitude,longitude, lstAllPlaces);
+                lstAllPlaces = PlacesMethods.getDistancesForEachPlace(latitude,longitude, lstAllPlaces,App.usesKilometers);
                 PopulateLists(lstAllPlaces);
             }
             watcher.Stop();
@@ -165,7 +165,7 @@ namespace Zebra.WPApp.Pages.Places
 
         private async Task<List<Place>> DownloadPlacesFromTheInternet(double latitude, double longitude)
         {
-            List<Place> lstFromTheInternet = await PlacesMethods.getAllPlacesByCategory(categoryCode, latitude,longitude);
+            List<Place> lstFromTheInternet = await PlacesMethods.getAllPlacesByCategory(categoryCode, latitude,longitude,App.usesKilometers);
             if (lstFromTheInternet != null)
             {
                 if (lstFromTheInternet.Count > 0)

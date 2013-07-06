@@ -26,7 +26,7 @@ namespace ZebrasLib
             //}
 
             public static async Task<List<Place>> getPlacesBetween(int maxPrice, int minPrice, 
-                double latitude, double longitude, string categorie)
+                double latitude, double longitude, string categorie,bool km)
             {
                 string url = Main.urlWalletBetween +
                     "longitude=" + longitude +
@@ -36,11 +36,11 @@ namespace ZebrasLib
                     "&code=" + categorie;
                 List<Place> listToReturn = await Main.GetPlaces(url);
                 
-                return DistancesForThis(listToReturn,latitude,longitude,categorie);
+                return DistancesForThis(listToReturn,latitude,longitude,categorie,km);
             }
 
             public static async Task<List<Place>> getPlacesBetweenAndQuery(int maxPrice, int minPrice, 
-                double latitude, double longitude, string query)
+                double latitude, double longitude, string query,bool km)
             {
                 string url = Main.urlWalletBetweenQuery +
                     "longitude=" + longitude +
@@ -48,16 +48,16 @@ namespace ZebrasLib
                     "&maxprice=" + maxPrice +
                     "&minprice=" + minPrice +
                     "&query=" + query;
-                return DistancesForThis(await Main.GetPlaces(url),latitude,longitude,"");
+                return DistancesForThis(await Main.GetPlaces(url),latitude,longitude,"",km);
             }
 
-            private static List<Place> DistancesForThis(List<Place> lstToReturn, double latitude, double longitude,string categorie)
+            private static List<Place> DistancesForThis(List<Place> lstToReturn, double latitude, double longitude,string categorie,bool km)
             {
                 List<Place> lstToFill = new List<Place>();
 
                 if (lstToReturn != null)
                 {
-                    lstToFill = PlacesMethods.getDistancesForEachPlace(latitude, longitude, lstToReturn);
+                    lstToFill = PlacesMethods.getDistancesForEachPlace(latitude, longitude, lstToReturn,km);
                     if (lstToFill != null)
                         lstToFill = GetParentCategories(lstToFill, categorie);
                     return lstToFill;

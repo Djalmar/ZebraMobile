@@ -109,7 +109,7 @@ namespace Zebra.WPApp.Pages.Places
             prgSearchProgress.Visibility = System.Windows.Visibility.Visible;
             try
             {
-                List<Place> lstReturned = await PlacesMethods.getPlacesByQuery(txtSearch.Text, latitude, longitude);
+                List<Place> lstReturned = await PlacesMethods.getPlacesByQuery(txtSearch.Text, latitude, longitude,App.usesKilometers);
                 if (lstReturned != null)
                         lstSearchResults.ItemsSource = lstReturned;
                 else MessageBox.Show(AppResources.TxtInternetConnectionProblem);

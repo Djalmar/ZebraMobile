@@ -443,4 +443,13 @@
   <data name="AR" xml:space="preserve">
     <value>Watch</value>
   </data>
+  <data name="TxbFilters" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="TxbResult" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="TxbSelect" xml:space="preserve">
+    <value>Select some</value>
+  </data>
 </root>

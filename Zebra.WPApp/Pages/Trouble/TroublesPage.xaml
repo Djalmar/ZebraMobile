@@ -80,7 +80,7 @@
                                              
                                        FontFamily="{StaticResource PhoneFontFamilyLight}"
                                         Text="{Binding distance}"/>
-                                <TextBlock  Text=" mts"
+                                <TextBlock Name="txbKilometros"  Text=" km"
                                         FontSize="{StaticResource PhoneFontSizeSmall}" 
                                              
                                        FontFamily="{StaticResource PhoneFontFamilyLight}"/>

@@ -16,7 +16,7 @@ namespace ZebrasLib
                 return await GetCategories(Main.urlCategories);
             }
 
-            public static async Task<List<Place>> getAllPlacesByCategory(string categoryCode, double latitude, double longitude)
+            public static async Task<List<Place>> getAllPlacesByCategory(string categoryCode, double latitude, double longitude,bool km)
             {
                 string strlatitude = Convert.ToString(latitude, new CultureInfo("en-US"));
                 string strlongitude = Convert.ToString(longitude, new CultureInfo("en-US"));
@@ -24,10 +24,10 @@ namespace ZebrasLib
                     "code=" + categoryCode +
                     "&latitude= " + strlatitude +
                     "&longitude=" + strlongitude;
-                return await FormatLocalizationAndGetDistances(latitude, longitude, url);
+                return await FormatLocalizationAndGetDistances(latitude, longitude, url,km);
             }
 
-            public static async Task<List<Place>> getPlacesByQuery(string query, double latitude, double longitude)
+            public static async Task<List<Place>> getPlacesByQuery(string query, double latitude, double longitude,bool km)
             {
                 string strlatitude = Convert.ToString(latitude, new CultureInfo("en-US"));
                 string strlongitude = Convert.ToString(longitude, new CultureInfo("en-US"));
@@ -36,10 +36,10 @@ namespace ZebrasLib
                     "&latitude= " + strlatitude +
                     "&longitude=" + strlongitude;
 
-                return await FormatLocalizationAndGetDistances(latitude, longitude, url);
+                return await FormatLocalizationAndGetDistances(latitude, longitude, url,km);
             }
 
-            private static async Task<List<Place>> FormatLocalizationAndGetDistances(double latitude, double longitude, string url)
+            private static async Task<List<Place>> FormatLocalizationAndGetDistances(double latitude, double longitude, string url,bool km)
             {
                 List<Place> lstPlaces = await Main.GetPlaces(url);
                 if (lstPlaces != null)
@@ -49,18 +49,18 @@ namespace ZebrasLib
                         P.latitude = Convert.ToDouble(P.strlatitude, new CultureInfo("en-US"));
                         P.longitude = Convert.ToDouble(P.strlongitude, new CultureInfo("en-US"));
                     }
-                    lstPlaces = getDistancesForEachPlace(latitude, longitude, lstPlaces);
+                    lstPlaces = getDistancesForEachPlace(latitude, longitude, lstPlaces,km);
                     return getPlacesOrderedByDistance(lstPlaces);
                 }
                 else return null;
             }
 
-            public static async Task<List<Place>> getAllPlacesFromThisCategories(List<Category> lstCategories, double latitude, double longitude)
+            public static async Task<List<Place>> getAllPlacesFromThisCategories(List<Category> lstCategories, double latitude, double longitude,bool km)
             {
                 List<Place> allPlaces = new List<Place>();
                 foreach (Category category in lstCategories)
                 {
-                    List<Place> placesFromThisCategory = await getAllPlacesByCategory(category.code, latitude, longitude);
+                    List<Place> placesFromThisCategory = await getAllPlacesByCategory(category.code, latitude, longitude,km);
                     allPlaces.AddRange(placesFromThisCategory);
                 }
                 return allPlaces;
@@ -95,13 +95,21 @@ namespace ZebrasLib
                 return newList.ToList();
             }
 
-            public static List<Place> getDistancesForEachPlace(double latitude, double longitude, List<Place> lstPlaces)
+            public static List<Place> getDistancesForEachPlace(double latitude, double longitude, List<Place> lstPlaces,bool km)
             {
                 foreach (Place P in lstPlaces)
                 {
                     P.latitude = Convert.ToDouble(P.strlatitude, new CultureInfo("en-US"));
                     P.longitude = Convert.ToDouble(P.strlongitude, new CultureInfo("en-US"));
-                    P.distance = Main.findDistance(P.latitude, P.longitude, latitude, longitude);
+                    if (km)
+                    {
+                        P.distance = Main.findDistance(P.latitude, P.longitude, latitude, longitude);
+                        
+                    }
+                    else
+                    {
+                        P.distance = Main.findDistance(P.latitude, P.longitude, latitude, longitude) * 1.6;
+                    }
                 }
                 return lstPlaces;
             }
