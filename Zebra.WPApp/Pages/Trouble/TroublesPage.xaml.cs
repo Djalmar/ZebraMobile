@@ -76,7 +76,7 @@ namespace Zebra.WPApp.Pages.Trouble
             ApplicationBar.Buttons.Add(btnReport);
 
             btnAR = new ApplicationBarIconButton();
-            btnAR.IconUri = new Uri("/Assets/AppBar/AR.png", UriKind.Relative);
+            btnAR.IconUri = new Uri("/Assets/AppBar/ojo.png", UriKind.Relative);
             btnAR.Text = AppResources.TxtReport;
             btnAR.Click += btnAR_Click;
             ApplicationBar.Buttons.Add(btnAR);

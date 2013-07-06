@@ -258,6 +258,7 @@
     <Content Include="Assets\AppBar\delete.png" />
     <Content Include="Assets\AppBar\download.png" />
     <Content Include="Assets\AppBar\edit.png" />
+    <Content Include="Assets\AppBar\ojo.png" />
     <Content Include="Assets\AppBar\share.png" />
     <Content Include="Assets\AppBar\upload.png" />
     <Content Include="Assets\bubupage3.png" />

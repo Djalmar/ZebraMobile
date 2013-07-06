@@ -62,7 +62,7 @@ namespace Zebra.WPApp.Pages.Places
             ApplicationBar.Buttons.Add(btnUpdatePlaces);
 
             ApplicationBarIconButton btnAR = new ApplicationBarIconButton();
-            btnAR.IconUri = new Uri("/Assets/AppBar/download.png", UriKind.Relative);
+            btnAR.IconUri = new Uri("/Assets/AppBar/ojo.png", UriKind.Relative);
             btnAR.Text = AppResources.AppBarDownload;
             btnAR.Click += btnAR_Click;
             ApplicationBar.Buttons.Add(btnAR);
