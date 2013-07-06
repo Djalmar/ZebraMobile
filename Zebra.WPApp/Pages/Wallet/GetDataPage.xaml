@@ -71,7 +71,7 @@
                         <toolkit:ListPicker.HeaderTemplate>
                             <DataTemplate>
                                 <TextBlock Margin="0,12,12,12" 
-                                           Text="{Binding LocalizedResources.TxbFindCategory, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
+                                           Text="{Binding LocalizedResources.TxbFindCategory}" 
                                            FontSize="{StaticResource PhoneFontSizeLarge}" 
                                            FontFamily="{StaticResource PhoneFontFamilySemiLight}"/>
                             </DataTemplate>

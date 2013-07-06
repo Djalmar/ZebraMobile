@@ -1,0 +1,30 @@
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.Controls.RotationSource: type is a value type.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.BaseControls.ControlOrientation: type is a value type.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.Data.ARDefaults: type is sealed.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.Data.ARHelper: type is sealed.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.Data.ARValidators: type is sealed.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.Data.ExpressionExtensions: type is sealed.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.Data.GeoCodeCalc: type is sealed.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.Data.GeoCodeCalcMeasurement: type is a value type.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.GeoExtensions: type is sealed.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.ARService: type is a value type.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.UIHelper: type is sealed.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.X3D.Matrix: type is a value type.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.X3D.Quaternion: type is a value type.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.X3D.Vector2: type is a value type.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.X3D.Vector3: type is a value type.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate stub for GART.X3D.Viewport: type is a value type.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate shim for GART.BaseControls.IOrientationAware: type is an interface.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate shim for GART.Controls.IARView: type is an interface.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate shim for GART.Controls.IARItemsView: type is an interface.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate shim for GART.Controls.RotationSource: type is an enum.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate shim for GART.BaseControls.ControlOrientation: type is an enum.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate shim for GART.Controls.ARDisplay+<>c__DisplayClass3: type is not supported because of internal limitations.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate shim for GART.Controls.ARDisplay+<>c__DisplayClass6: type is not supported because of internal limitations.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate shim for GART.Controls.ARDisplay+<>c__DisplayClass9: type is not supported because of internal limitations.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate shim for GART.Controls.HeadingIndicator+PartNames: type is not visible to exported or assembly(GART.WP8.Fakes).
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate shim for GART.Controls.OverheadMap+PartNames: type is not visible to exported or assembly(GART.WP8.Fakes).
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate shim for GART.Controls.VideoPreview+PartNames: type is not visible to exported or assembly(GART.WP8.Fakes).
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate shim for GART.Controls.WorldView+PartNames: type is not visible to exported or assembly(GART.WP8.Fakes).
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate shim for GART.Data.GeoCodeCalcMeasurement: type is an enum.
+C:\Users\D'jalmar\Documents\GitHub\ZebraMobile\Zebra.WPApp\Fakes\GART.WP8.fakes : warning : Cannot generate shim for GART.ARService: type is an enum.

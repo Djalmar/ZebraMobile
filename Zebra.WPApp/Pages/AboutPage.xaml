@@ -39,31 +39,32 @@
                 <ScrollViewer>
                     <Grid>
                         <StackPanel Margin="12">
-                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}} " TextWrapping="Wrap" FontFamily="{StaticResource PhoneFontFamilyNormal}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
-                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText1, Mode=OneWay, Source={StaticResource LocalizedStrings}} " 
+                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryTitle, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
+                                       TextWrapping="Wrap" FontFamily="{StaticResource PhoneFontFamilyNormal}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText1, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
                                        TextWrapping="Wrap" 
                                        FontFamily="{StaticResource PhoneFontFamilyLight}" FontSize="{StaticResource PhoneFontSizeMedium}" Margin="0,12,0,24"/>
-                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText2, Mode=OneWay, Source={StaticResource LocalizedStrings}} " 
+                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText2, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
                                        TextWrapping="Wrap" 
                                        FontFamily="{StaticResource PhoneFontFamilyLight}" 
                                        FontSize="{StaticResource PhoneFontSizeMedium}" 
                                        Margin="0,12,0,24"/>
-                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText3, Mode=OneWay, Source={StaticResource LocalizedStrings}} " 
+                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText3, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
                                        TextWrapping="Wrap" 
                                        FontFamily="{StaticResource PhoneFontFamilyLight}" 
                                        FontSize="{StaticResource PhoneFontSizeMedium}" 
                                        Margin="0,12,0,12"/>
-                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText4, Mode=OneWay, Source={StaticResource LocalizedStrings}} " 
+                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText4, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
                                        TextWrapping="Wrap" 
                                        FontFamily="{StaticResource PhoneFontFamilyLight}" 
                                        FontSize="{StaticResource PhoneFontSizeMedium}" 
                                        Margin="0,12,0,24"/>
-                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText5, Mode=OneWay, Source={StaticResource LocalizedStrings}} " 
+                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText5, Mode=OneWay, Source={StaticResource LocalizedStrings}}" 
                                        TextWrapping="Wrap" 
                                        FontFamily="{StaticResource PhoneFontFamilyLight}" 
                                        FontSize="{StaticResource PhoneFontSizeMedium}" 
                                        Margin="0,12,0,24"/>
-                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText6, Mode=OneWay, Source={StaticResource LocalizedStrings}} "
+                            <TextBlock Text="{Binding LocalizedResources.TxbAboutHistoryText6, Mode=OneWay, Source={StaticResource LocalizedStrings}}"
                                        TextWrapping="Wrap" 
                                        FontFamily="{StaticResource PhoneFontFamilyLight}" 
                                        FontSize="{StaticResource PhoneFontSizeMedium}" 

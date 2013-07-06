@@ -4,8 +4,8 @@
   <Languages xmlns="">
     <Language code="es" />
   </Languages>
-  <App xmlns="" ProductID="{061d3a57-0f49-4e8f-a30f-22ae28325062}" Title="Zebra.WPApp" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Zebra.WPApp author" Description="Sample description" Publisher="Zebra.WPApp" PublisherID="{8613b2d7-fa83-45e2-a2d3-c61a2296ea6a}">
-    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
+  <App xmlns="" ProductID="{061d3a57-0f49-4e8f-a30f-22ae28325062}" Title="Zebritas" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Zebra.WPApp author" Description="Sample description" Publisher="Zebra.WPApp" PublisherID="{8613b2d7-fa83-45e2-a2d3-c61a2296ea6a}">
+    <IconPath IsRelative="true" IsResource="false">icono5.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
@@ -22,27 +22,30 @@
     <Tokens>
       <PrimaryToken TokenID="Zebra.WPAppToken" TaskName="_default">
         <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">icono5.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>Zebra.WPApp</Title>
+          <BackgroundImageURI IsRelative="true" IsResource="false">TileMediano.png</BackgroundImageURI>
+          <Title>Zebritas</Title>
           <BackContent>
           </BackContent>
           <BackBackgroundImageURI>
           </BackBackgroundImageURI>
           <BackTitle>
           </BackTitle>
+          <LargeBackgroundImageURI IsRelative="true" IsResource="false">TileGrande1.png</LargeBackgroundImageURI>
+          <LargeBackContent />
+          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
+          </LargeBackBackgroundImageURI>
           <DeviceLockImageURI>
           </DeviceLockImageURI>
-          <HasLarge>
-          </HasLarge>
+          <HasLarge>True</HasLarge>
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
     <ScreenResolutions>
-      <ScreenResolution Name="ID_RESOLUTION_WVGA" />
       <ScreenResolution Name="ID_RESOLUTION_WXGA" />
       <ScreenResolution Name="ID_RESOLUTION_HD720P" />
+      <ScreenResolution Name="ID_RESOLUTION_WVGA" />
     </ScreenResolutions>
     <Requirements>
       <Requirement Name="ID_REQ_GYROSCOPE" />
